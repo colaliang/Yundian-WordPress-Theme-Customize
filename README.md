@@ -1,8 +1,8 @@
-# ERDU Lighting - B2B WordPress Theme (尔度照明定制主题)
+# ERDU Lighting - B2B WordPress Theme (二度照明定制主题)
 
 ## 项目简介 (Project Overview)
 
-本项目是专为 **ERDU Lighting (尔度照明)** —— 专业的 48V 磁吸轨道灯制造商，量身定制的高质量 B2B 独立站 WordPress 主题。该项目采用了现代化的无构建（No-Build）架构，并深度结合 ACF Pro，摒弃了传统页面构建器的臃肿，实现了极佳的性能、SEO 以及灵活的后台管理体验。
+本项目是专为 **ERDU Lighting (二度照明)** —— 专业的 48V 磁吸轨道灯制造商，量身定制的高质量 B2B 独立站 WordPress 主题。该项目采用了现代化的无构建（No-Build）架构，并深度结合 ACF Pro，摒弃了传统页面构建器的臃肿，实现了极佳的性能、SEO 以及灵活的后台管理体验。
 
 ## 核心技术架构 (Tech Stack & Architecture)
 
@@ -63,4 +63,4 @@ erdu-wp-theme/
 
 ## 许可证 (License)
 
-本项目主题受版权保护，未经许可不得擅自用于其他商业项目。
+本项目采用 [MIT License](LICENSE) 开源协议。您可以自由地使用、修改和分发本项目的代码，甚至用于商业项目，只需保留原作者的版权声明和许可声明即可。
