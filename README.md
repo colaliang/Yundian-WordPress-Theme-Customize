@@ -55,11 +55,20 @@ erdu-wp-theme/
 └── README.md             # 项目说明
 ```
 
+## 关于开发者与云店加 (About Developer & Yundian)
+
+本项目由**云店+ (Yundianjia)** 创始人**可乐哥**及团队倾力打造。
+
+- **关于云店+**：[云店+ (Yundianjia)](https://www.ydjia.com/) 是一家专注于提供高品质 WordPress 独立站建站、B2B/B2C 外贸官网定制以及企业数字化营销解决方案的服务商。我们致力于用最先进的技术栈和最符合现代审美的设计规范，帮助出海企业构建高性能、高转化的品牌独立站。
+- **关于搞跨境的可乐哥**：资深 WordPress 开发者、独立站架构师。倡导“No-Build”极简开发哲学，擅长深度整合 ACF Pro 与 WooCommerce，为传统外贸工厂打造量身定制的数字化营销平台。
+
 ## 开发与维护指南 (Development Guide)
 
 - **新增样式**：请优先在 HTML 元素中使用现有的 CSS 实用类（见 `main.css`）。如需添加新类，请遵循现有的命名规范（如 `p-4`, `text-white`, `flex-col` 等）。
 - **修改全局配色**：请在 `main.css` 的 `:root` 中调整 `--erdu-orange` 等 CSS 变量。
 - **页面内容修改**：绝大多数内容均可通过 WordPress 后台的页面编辑器或“ERDU”全局设置面板直接修改，无需改动代码。
+
+
 
 ## 许可证 (License)
 
