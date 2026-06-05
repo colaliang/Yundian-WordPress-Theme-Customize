@@ -1,0 +1,614 @@
+/**
+ * ERDU Lighting Theme - Admin Styles
+ *
+ * @package ERDU_Lighting
+ * @version 1.0.0
+ */
+
+/* ===== ACF Meta Box ===== */
+.post-type-erdu_product #acf-group_product,
+.post-type-erdu_case #acf-group_case,
+.post-type-erdu_exhibition #acf-group_exhibition {
+    border-left: 4px solid #F37021;
+}
+
+/* ===== Dashboard Container ===== */
+.erdu-dashboard {
+    max-width: 1200px;
+    margin: 20px 0;
+}
+
+/* ===== Dashboard Header ===== */
+.erdu-dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.erdu-dashboard-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.erdu-dashboard-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.erdu-dashboard-logo h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: #1d2327;
+}
+
+.erdu-dashboard-version {
+    display: inline-block;
+    background: #F37021;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+}
+
+.erdu-btn-customize {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #F37021;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.erdu-btn-customize:hover {
+    background: #D45A0F;
+    color: #fff !important;
+}
+
+.erdu-btn-customize .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+}
+
+/* ===== Stats Bar ===== */
+.erdu-stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.erdu-stat-item {
+    flex: 1;
+    padding: 0 24px;
+    border-right: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.erdu-stat-item:last-child {
+    border-right: none;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.erdu-stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #F37021;
+    line-height: 1.2;
+}
+
+.erdu-stat-label {
+    font-size: 12px;
+    color: #8c8f94;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.erdu-btn-manage {
+    display: inline-block;
+    background: #F37021;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.erdu-btn-manage:hover {
+    background: #D45A0F;
+}
+
+/* ===== Section Title ===== */
+.erdu-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 28px 0 16px;
+}
+
+.erdu-section-title h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+    margin: 0;
+}
+
+.erdu-module-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.erdu-link-btn {
+    background: none;
+    border: none;
+    color: #8c8f94;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.erdu-link-btn:hover {
+    color: #F37021;
+}
+
+/* ===== Quick Settings Grid ===== */
+.erdu-quick-settings {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.erdu-setting-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 18px 20px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.erdu-setting-card:hover {
+    border-color: #F37021;
+    box-shadow: 0 4px 12px rgba(243,112,33,0.1);
+    text-decoration: none;
+}
+
+.erdu-setting-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: #FFF5ED;
+    color: #F37021;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.erdu-setting-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d2327;
+    margin: 0 0 2px;
+}
+
+.erdu-setting-action {
+    font-size: 12px;
+    color: #8c8f94;
+}
+
+/* ===== Modules Grid ===== */
+.erdu-modules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.erdu-module-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 16px 20px;
+    transition: all 0.2s;
+}
+
+.erdu-module-card:hover {
+    border-color: #F37021;
+}
+
+.erdu-module-info h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1d2327;
+    margin: 0 0 4px;
+}
+
+.erdu-module-meta {
+    font-size: 11px;
+    color: #8c8f94;
+}
+
+.erdu-module-meta a {
+    color: #8c8f94;
+    text-decoration: none;
+}
+
+.erdu-module-meta a:hover {
+    color: #F37021;
+    text-decoration: underline;
+}
+
+.erdu-text-muted {
+    color: #c3c4c7;
+}
+
+/* ===== Toggle Switch ===== */
+.erdu-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.erdu-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.erdu-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c3c4c7;
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.erdu-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.erdu-switch input:checked + .erdu-slider {
+    background-color: #F37021;
+}
+
+.erdu-switch input:checked + .erdu-slider:before {
+    transform: translateX(20px);
+}
+
+.erdu-module-form {
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Settings Form ===== */
+.erdu-settings-form {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.erdu-settings-section {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.erdu-settings-section:last-of-type {
+    border-bottom: none;
+}
+
+.erdu-settings-section h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d2327;
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #F37021;
+    display: inline-block;
+}
+
+.erdu-settings-section .form-table th {
+    padding: 12px 10px 12px 0;
+    width: 200px;
+}
+
+.erdu-settings-section .form-table td {
+    padding: 12px 10px;
+}
+
+.erdu-color-picker {
+    width: 60px;
+    height: 36px;
+    border: 1px solid #c3c4c7;
+    border-radius: 6px;
+    padding: 2px;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* ===== Pages Table ===== */
+.erdu-pages-table {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.erdu-pages-table th {
+    background: #f6f7f7;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 14px 16px;
+}
+
+.erdu-pages-table td {
+    padding: 14px 16px;
+    font-size: 13px;
+}
+
+.erdu-status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.erdu-status-ok {
+    background: #d1f7d1;
+    color: #1a7a1a;
+}
+
+.erdu-status-missing {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* ===== Notice ===== */
+.notice.erdu-notice {
+    border-left-color: #F37021;
+    background: #FFF5ED;
+}
+
+.notice.erdu-notice .notice-title {
+    font-weight: bold;
+    color: #D45A0F;
+}
+
+/* ===== Menu Icon Color ===== */
+#toplevel_page_erdu-dashboard .wp-menu-image::before {
+    color: #F37021 !important;
+}
+
+#toplevel_page_erdu-dashboard.wp-has-current-submenu .wp-menu-image::before,
+#toplevel_page_erdu-dashboard:hover .wp-menu-image::before {
+    color: #fff !important;
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 1200px) {
+    .erdu-quick-settings {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .erdu-modules-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 782px) {
+    .erdu-quick-settings {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .erdu-modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .erdu-stats-bar {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .erdu-stat-item {
+        flex: 1 1 40%;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 16px;
+    }
+    .erdu-dashboard-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .erdu-quick-settings,
+    .erdu-modules-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ===== Repeater Field ===== */
+.erdu-repeater {
+    margin-top: 12px;
+}
+
+.erdu-repeater-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.erdu-repeater-row {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.erdu-repeater-row-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.erdu-repeater-handle {
+    cursor: grab;
+    color: #9ca3af;
+    font-size: 16px;
+    user-select: none;
+}
+
+.erdu-repeater-label {
+    font-weight: 600;
+    font-size: 13px;
+    color: #374151;
+    flex: 1;
+}
+
+.erdu-repeater-remove {
+    background: #fee2e2;
+    border: none;
+    color: #dc2626;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.erdu-repeater-remove:hover {
+    background: #dc2626;
+    color: #fff;
+}
+
+.erdu-repeater-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.erdu-repeater-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.erdu-repeater-field input,
+.erdu-repeater-field textarea {
+    width: 100%;
+}
+
+.erdu-repeater-add {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    background: #F37021 !important;
+    border-color: #F37021 !important;
+    color: #fff !important;
+}
+
+.erdu-repeater-add:hover {
+    background: #D45A0F !important;
+    border-color: #D45A0F !important;
+}
+
+.erdu-repeater-add .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+}
+
+/* ===== Module Config Back Link ===== */
+.erdu-back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #f3f4f6;
+    border-radius: 8px;
+    color: #6b7280;
+    text-decoration: none;
+    margin-right: 12px;
+    transition: all 0.2s;
+}
+
+.erdu-back-link:hover {
+    background: #F37021;
+    color: #fff;
+}
+
+/* ===== Module Icon on Dashboard ===== */
+.erdu-module-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #FFF5ED;
+    border-radius: 8px;
+    color: #F37021;
+    font-size: 16px;
+    margin-right: 12px;
+}

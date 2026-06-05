@@ -1,0 +1,1102 @@
+<?php
+/**
+ * ERDU Admin Dashboard
+ * Theme management panel with quick settings, module toggles, and page management
+ *
+ * @package ERDU_Lighting
+ */
+
+if (!defined('ABSPATH')) exit;
+
+// ==========================================
+// 1. Admin Menu Registration
+// ==========================================
+
+add_action('admin_menu', 'erdu_admin_menu');
+function erdu_admin_menu()
+{
+    // Main menu
+    add_menu_page(
+        __('ERDU', 'erdu-wp'),
+        __('ERDU', 'erdu-wp'),
+        'manage_options',
+        'erdu-dashboard',
+        'erdu_dashboard_page',
+        'dashicons-lightbulb',
+        3
+    );
+
+    // Dashboard submenu
+    add_submenu_page(
+        'erdu-dashboard',
+        __('Dashboard', 'erdu-wp'),
+        __('Dashboard', 'erdu-wp'),
+        'manage_options',
+        'erdu-dashboard',
+        'erdu_dashboard_page'
+    );
+
+    // Pages submenu
+    add_submenu_page(
+        'erdu-dashboard',
+        __('Pages', 'erdu-wp'),
+        __('Pages', 'erdu-wp'),
+        'manage_options',
+        'erdu-pages',
+        'erdu_pages_page'
+    );
+
+    // Customize link (external)
+    add_submenu_page(
+        'erdu-dashboard',
+        __('Customize', 'erdu-wp'),
+        __('Customize', 'erdu-wp'),
+        'manage_options',
+        'customize.php?autofocus[panel]=erdu_theme_options'
+    );
+
+    // Settings submenu
+    add_submenu_page(
+        'erdu-dashboard',
+        __('Settings', 'erdu-wp'),
+        __('Settings', 'erdu-wp'),
+        'manage_options',
+        'erdu-settings',
+        'erdu_settings_page'
+    );
+
+    // Module Config submenu (hidden from menu, accessed via module cards)
+    add_submenu_page(
+        'erdu-dashboard',
+        __('Module Config', 'erdu-wp'),
+        __('Module Config', 'erdu-wp'),
+        'manage_options',
+        'erdu-module',
+        'erdu_module_config_page'
+    );
+
+    // Register Customizer panel
+    add_action('customize_register', 'erdu_customizer_register');
+}
+
+// ==========================================
+// 2. Dashboard Page
+// ==========================================
+
+function erdu_dashboard_page()
+{
+    // Handle module toggle
+    if (isset($_POST['erdu_toggle_module']) && check_admin_referer('erdu_dashboard_nonce')) {
+        $module = sanitize_key($_POST['erdu_toggle_module']);
+        $state  = isset($_POST['erdu_module_state']) ? true : false;
+        $modules = get_option('erdu_modules', erdu_default_modules());
+        if (isset($modules[$module])) {
+            $modules[$module]['enabled'] = $state;
+            update_option('erdu_modules', $modules);
+        }
+        wp_redirect(admin_url('admin.php?page=erdu-dashboard&saved=1'));
+        exit;
+    }
+
+    // Handle quick link clicks
+    if (isset($_GET['saved'])) {
+        add_settings_error('erdu_messages', 'erdu_message', __('Settings saved.', 'erdu-wp'), 'updated');
+    }
+
+    $modules   = get_option('erdu_modules', erdu_default_modules());
+    $page_count = wp_count_posts('page')->publish;
+    $product_count = wp_count_posts('product')->publish;
+    $case_count = wp_count_posts('erdu_case')->publish;
+    ?>
+    <div class="wrap erdu-dashboard">
+        <div class="erdu-dashboard-header">
+            <div class="erdu-dashboard-brand">
+                <div class="erdu-dashboard-logo">
+                    <span style="background: #F37021; color: #fff; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold;">E</span>
+                    <h1><?php _e('ERDU Lighting', 'erdu-wp'); ?></h1>
+                </div>
+                <span class="erdu-dashboard-version">v<?php echo ERDU_VERSION; ?></span>
+            </div>
+            <a href="<?php echo esc_url(admin_url('customize.php')); ?>" class="erdu-btn-customize">
+                <span class="dashicons dashicons-admin-customizer"></span>
+                <?php _e('Go to Customizer', 'erdu-wp'); ?> 
+            </a>
+        </div>
+
+        <?php settings_errors('erdu_messages'); ?>
+
+        <!-- Stats Bar -->
+        <div class="erdu-stats-bar">
+            <div class="erdu-stat-item">
+                <span class="erdu-stat-number"><?php echo intval($page_count); ?></span>
+                <span class="erdu-stat-label"><?php _e('Pages', 'erdu-wp'); ?></span>
+            </div>
+            <div class="erdu-stat-item">
+                <span class="erdu-stat-number"><?php echo intval($product_count); ?></span>
+                <span class="erdu-stat-label"><?php _e('Products', 'erdu-wp'); ?></span>
+            </div>
+            <div class="erdu-stat-item">
+                <span class="erdu-stat-number"><?php echo intval($case_count); ?></span>
+                <span class="erdu-stat-label"><?php _e('Case Studies', 'erdu-wp'); ?></span>
+            </div>
+            <div class="erdu-stat-item">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-pages')); ?>" class="erdu-btn-manage">
+                    <?php _e('Manage Pages', 'erdu-wp'); ?>
+                </a>
+            </div>
+        </div>
+
+        <!-- Quick Settings — Global -->
+        <div class="erdu-section-title">
+            <h2><?php _e('Quick Settings', 'erdu-wp'); ?></h2>
+        </div>
+        <div class="erdu-quick-settings">
+            <a href="<?php echo esc_url(admin_url('customize.php?autofocus[section]=title_tagline')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-format-image"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Site Identity', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('Customize', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('customize.php?autofocus[section]=erdu_colors_section')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-art"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Colors', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('Customize', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-dashboard')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-admin-generic"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Theme Settings', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('Dashboard', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('nav-menus.php')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-list-view"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Navigation Menu', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('Settings', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-footer-settings')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-align-full-width"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Footer', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('ACF Settings', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('edit.php?post_type=page')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-admin-page"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Pages', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('Manage', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Quick Settings — Content Modules -->
+        <div class="erdu-section-title">
+            <h2><?php _e('Content Modules', 'erdu-wp'); ?></h2>
+        </div>
+        <div class="erdu-quick-settings">
+            <a href="<?php echo esc_url(admin_url('edit.php')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-welcome-write-blog"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Blog', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('Posts', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('edit.php?post_type=erdu_case')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-portfolio"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Case Studies', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('CPT', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('edit.php?post_type=erdu_news')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-format-aside"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('News', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('CPT', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('edit.php?post_type=product')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-cart"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Products', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('WooCommerce', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('edit.php?post_type=erdu_exhibition')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-calendar-alt"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Exhibitions', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('CPT', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-footer-settings')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-admin-generic"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Footer Config', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('ACF', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Module Toggles -->
+        <div class="erdu-section-title">
+            <h2><?php _e('Modules', 'erdu-wp'); ?></h2>
+            <div class="erdu-module-actions">
+                <button type="button" class="erdu-link-btn" onclick="document.querySelectorAll('.erdu-module-toggle').forEach(function(t){t.checked=true;}); return false;"><?php _e('Activate All', 'erdu-wp'); ?></button>
+                <button type="button" class="erdu-link-btn" onclick="document.querySelectorAll('.erdu-module-toggle').forEach(function(t){t.checked=false;}); return false;"><?php _e('Deactivate All', 'erdu-wp'); ?></button>
+            </div>
+        </div>
+        <div class="erdu-modules-grid">
+            <?php foreach ($modules as $key => $module) : ?>
+                <div class="erdu-module-card">
+                    <div class="erdu-module-info">
+                        <h4><?php echo esc_html($module['title']); ?></h4>
+                        <span class="erdu-module-meta">
+                            <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-module&module=' . $key)); ?>"><?php _e('Configure', 'erdu-wp'); ?></a>
+                        </span>
+                    </div>
+                    <form method="post" action="" class="erdu-module-form">
+                        <?php wp_nonce_field('erdu_dashboard_nonce'); ?>
+                        <input type="hidden" name="erdu_toggle_module" value="<?php echo esc_attr($key); ?>">
+                        <label class="erdu-switch">
+                            <input type="checkbox" name="erdu_module_state" class="erdu-module-toggle" value="1" <?php checked($module['enabled']); ?> onchange="this.form.submit();">
+                            <span class="erdu-slider"></span>
+                        </label>
+                    </form>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php
+}
+
+// ==========================================
+// 3. Pages Management Page
+// ==========================================
+
+function erdu_pages_page()
+{
+    $pages = array(
+        'home'        => array('title' => 'Home',               'template' => 'front-page.php',          'desc' => __('Homepage with hero, stats, products, and more', 'erdu-wp')),
+        'about'       => array('title' => 'About Us',           'template' => 'page-about.php',          'desc' => __('Company profile, timeline, values, factory', 'erdu-wp')),
+        'products'    => array('title' => 'Products',           'template' => 'page-products.php',       'desc' => __('Product catalog with filters and search', 'erdu-wp')),
+        'solutions'   => array('title' => 'Solutions',          'template' => 'page-solutions.php',      'desc' => __('Application solutions by industry', 'erdu-wp')),
+        'quality'     => array('title' => 'Quality First',      'template' => 'page-quality.php',        'desc' => __('Quality control process and certifications', 'erdu-wp')),
+        'distributor' => array('title' => 'Distributor Program','template' => 'page-distributor.php',    'desc' => __('Global distributor partnership application', 'erdu-wp')),
+        'cases'       => array('title' => 'Case Studies',       'template' => 'page-cases.php',          'desc' => __('Project case studies and portfolio', 'erdu-wp')),
+        'news'        => array('title' => 'News & Events',      'template' => 'page-news.php',           'desc' => __('News articles and exhibition info', 'erdu-wp')),
+        'contact'     => array('title' => 'Contact Us',         'template' => 'page-contact.php',        'desc' => __('Contact form and company information', 'erdu-wp')),
+    );
+    ?>
+    <div class="wrap erdu-dashboard">
+        <div class="erdu-dashboard-header">
+            <h1><?php _e('Page Management', 'erdu-wp'); ?></h1>
+        </div>
+
+        <table class="wp-list-table widefat fixed striped erdu-pages-table">
+            <thead>
+                <tr>
+                    <th class="column-title"><?php _e('Page', 'erdu-wp'); ?></th>
+                    <th><?php _e('Slug', 'erdu-wp'); ?></th>
+                    <th><?php _e('Template', 'erdu-wp'); ?></th>
+                    <th><?php _e('Description', 'erdu-wp'); ?></th>
+                    <th><?php _e('Status', 'erdu-wp'); ?></th>
+                    <th><?php _e('Actions', 'erdu-wp'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($pages as $slug => $page_data) :
+                    $page = erdu_get_page_by_slug($slug);
+                    $status_class = $page ? 'erdu-status-ok' : 'erdu-status-missing';
+                    $status_text  = $page ? __('Created', 'erdu-wp') : __('Not Created', 'erdu-wp');
+                ?>
+                    <tr>
+                        <td class="column-title">
+                            <strong><?php echo esc_html($page_data['title']); ?></strong>
+                        </td>
+                        <td><code><?php echo esc_html($slug); ?></code></td>
+                        <td><code><?php echo esc_html($page_data['template']); ?></code></td>
+                        <td><?php echo esc_html($page_data['desc']); ?></td>
+                        <td>
+                            <span class="erdu-status-badge <?php echo esc_attr($status_class); ?>">
+                                <?php echo esc_html($status_text); ?>
+                            </span>
+                        </td>
+                        <td>
+                            <?php if ($page) : ?>
+                                <a href="<?php echo esc_url(get_edit_post_link($page->ID)); ?>" class="button button-small"><?php _e('Edit', 'erdu-wp'); ?></a>
+                                <a href="<?php echo esc_url(get_permalink($page->ID)); ?>" target="_blank" class="button button-small"><?php _e('View', 'erdu-wp'); ?></a>
+                            <?php else : ?>
+                                <span class="erdu-text-muted"><?php _e('Will be created on theme activation', 'erdu-wp'); ?></span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php
+}
+
+// ==========================================
+// 4. Settings Page
+// ==========================================
+
+function erdu_settings_page()
+{
+    // Save settings
+    if (isset($_POST['erdu_save_settings']) && check_admin_referer('erdu_settings_nonce')) {
+        $settings = array(
+            'primary_color'     => sanitize_hex_color(wp_unslash($_POST['erdu_primary_color'] ?? '#F37021')),
+            'primary_dark'      => sanitize_hex_color(wp_unslash($_POST['erdu_primary_dark'] ?? '#D45A0F')),
+            'footer_bg'         => sanitize_hex_color(wp_unslash($_POST['erdu_footer_bg'] ?? '#1a1a2e')),
+            'header_sticky'     => isset($_POST['erdu_header_sticky']) ? true : false,
+            'show_breadcrumb'   => isset($_POST['erdu_show_breadcrumb']) ? true : false,
+            'show_cta'          => isset($_POST['erdu_show_cta']) ? true : false,
+            'phone'             => sanitize_text_field(wp_unslash($_POST['erdu_phone'] ?? '')),
+            'email'             => sanitize_email(wp_unslash($_POST['erdu_email'] ?? '')),
+            'address'           => sanitize_textarea_field(wp_unslash($_POST['erdu_address'] ?? '')),
+            'facebook'          => esc_url_raw(wp_unslash($_POST['erdu_facebook'] ?? '')),
+            'linkedin'          => esc_url_raw(wp_unslash($_POST['erdu_linkedin'] ?? '')),
+            'youtube'           => esc_url_raw(wp_unslash($_POST['erdu_youtube'] ?? '')),
+            'instagram'         => esc_url_raw(wp_unslash($_POST['erdu_instagram'] ?? '')),
+            'analytics_id'      => sanitize_text_field(wp_unslash($_POST['erdu_analytics_id'] ?? '')),
+        );
+        update_option('erdu_settings', $settings);
+        add_settings_error('erdu_settings_messages', 'erdu_settings_message', __('Settings saved successfully.', 'erdu-wp'), 'updated');
+    }
+
+    // Reset to defaults
+    if (isset($_POST['erdu_reset_settings']) && check_admin_referer('erdu_settings_nonce')) {
+        delete_option('erdu_settings');
+        add_settings_error('erdu_settings_messages', 'erdu_settings_message', __('Settings reset to defaults.', 'erdu-wp'), 'updated');
+    }
+
+    $s = get_option('erdu_settings', erdu_default_settings());
+    ?>
+    <div class="wrap erdu-dashboard">
+        <div class="erdu-dashboard-header">
+            <h1><?php _e('Theme Settings', 'erdu-wp'); ?></h1>
+        </div>
+
+        <?php settings_errors('erdu_settings_messages'); ?>
+
+        <form method="post" action="" class="erdu-settings-form">
+            <?php wp_nonce_field('erdu_settings_nonce'); ?>
+
+            <!-- Colors -->
+            <div class="erdu-settings-section">
+                <h2><?php _e('Colors', 'erdu-wp'); ?></h2>
+                <table class="form-table">
+                    <tr>
+                        <th><label for="erdu_primary_color"><?php _e('Primary Color', 'erdu-wp'); ?></label></th>
+                        <td>
+                            <input type="color" id="erdu_primary_color" name="erdu_primary_color" value="<?php echo esc_attr($s['primary_color']); ?>" class="erdu-color-picker">
+                            <code><?php echo esc_html($s['primary_color']); ?></code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_primary_dark"><?php _e('Primary Dark', 'erdu-wp'); ?></label></th>
+                        <td>
+                            <input type="color" id="erdu_primary_dark" name="erdu_primary_dark" value="<?php echo esc_attr($s['primary_dark']); ?>" class="erdu-color-picker">
+                            <code><?php echo esc_html($s['primary_dark']); ?></code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_footer_bg"><?php _e('Footer Background', 'erdu-wp'); ?></label></th>
+                        <td>
+                            <input type="color" id="erdu_footer_bg" name="erdu_footer_bg" value="<?php echo esc_attr($s['footer_bg']); ?>" class="erdu-color-picker">
+                            <code><?php echo esc_html($s['footer_bg']); ?></code>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Layout -->
+            <div class="erdu-settings-section">
+                <h2><?php _e('Layout', 'erdu-wp'); ?></h2>
+                <table class="form-table">
+                    <tr>
+                        <th><?php _e('Sticky Header', 'erdu-wp'); ?></th>
+                        <td>
+                            <label class="erdu-switch">
+                                <input type="checkbox" name="erdu_header_sticky" <?php checked($s['header_sticky']); ?>>
+                                <span class="erdu-slider"></span>
+                            </label>
+                            <span class="description"><?php _e('Header stays fixed when scrolling', 'erdu-wp'); ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php _e('Breadcrumb', 'erdu-wp'); ?></th>
+                        <td>
+                            <label class="erdu-switch">
+                                <input type="checkbox" name="erdu_show_breadcrumb" <?php checked($s['show_breadcrumb']); ?>>
+                                <span class="erdu-slider"></span>
+                            </label>
+                            <span class="description"><?php _e('Show breadcrumb navigation on inner pages', 'erdu-wp'); ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?php _e('CTA Section', 'erdu-wp'); ?></th>
+                        <td>
+                            <label class="erdu-switch">
+                                <input type="checkbox" name="erdu_show_cta" <?php checked($s['show_cta']); ?>>
+                                <span class="erdu-slider"></span>
+                            </label>
+                            <span class="description"><?php _e('Show call-to-action banners on pages', 'erdu-wp'); ?></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="erdu-settings-section">
+                <h2><?php _e('Contact Information', 'erdu-wp'); ?></h2>
+                <table class="form-table">
+                    <tr>
+                        <th><label for="erdu_phone"><?php _e('Phone', 'erdu-wp'); ?></label></th>
+                        <td><input type="text" id="erdu_phone" name="erdu_phone" value="<?php echo esc_attr($s['phone']); ?>" class="regular-text"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_email"><?php _e('Email', 'erdu-wp'); ?></label></th>
+                        <td><input type="email" id="erdu_email" name="erdu_email" value="<?php echo esc_attr($s['email']); ?>" class="regular-text"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_address"><?php _e('Address', 'erdu-wp'); ?></label></th>
+                        <td><textarea id="erdu_address" name="erdu_address" rows="3" class="large-text"><?php echo esc_textarea($s['address']); ?></textarea></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Social Media -->
+            <div class="erdu-settings-section">
+                <h2><?php _e('Social Media', 'erdu-wp'); ?></h2>
+                <table class="form-table">
+                    <tr>
+                        <th><label for="erdu_facebook"><?php _e('Facebook', 'erdu-wp'); ?></label></th>
+                        <td><input type="url" id="erdu_facebook" name="erdu_facebook" value="<?php echo esc_attr($s['facebook']); ?>" class="regular-text" placeholder="https://"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_linkedin"><?php _e('LinkedIn', 'erdu-wp'); ?></label></th>
+                        <td><input type="url" id="erdu_linkedin" name="erdu_linkedin" value="<?php echo esc_attr($s['linkedin']); ?>" class="regular-text" placeholder="https://"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_youtube"><?php _e('YouTube', 'erdu-wp'); ?></label></th>
+                        <td><input type="url" id="erdu_youtube" name="erdu_youtube" value="<?php echo esc_attr($s['youtube']); ?>" class="regular-text" placeholder="https://"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_instagram"><?php _e('Instagram', 'erdu-wp'); ?></label></th>
+                        <td><input type="url" id="erdu_instagram" name="erdu_instagram" value="<?php echo esc_attr($s['instagram']); ?>" class="regular-text" placeholder="https://"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Analytics -->
+            <div class="erdu-settings-section">
+                <h2><?php _e('Analytics', 'erdu-wp'); ?></h2>
+                <table class="form-table">
+                    <tr>
+                        <th><label for="erdu_analytics_id"><?php _e('Google Analytics ID', 'erdu-wp'); ?></label></th>
+                        <td><input type="text" id="erdu_analytics_id" name="erdu_analytics_id" value="<?php echo esc_attr($s['analytics_id']); ?>" class="regular-text" placeholder="G-XXXXXXXXXX"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <p class="submit">
+                <input type="submit" name="erdu_save_settings" class="button button-primary" value="<?php _e('Save Settings', 'erdu-wp'); ?>">
+                <input type="submit" name="erdu_reset_settings" class="button" value="<?php _e('Reset to Defaults', 'erdu-wp'); ?>" onclick="return confirm('<?php _e('Are you sure? This will reset all settings.', 'erdu-wp'); ?>');">
+            </p>
+        </form>
+    </div>
+    <?php
+}
+
+// ==========================================
+// 5. Default Data
+// ==========================================
+
+function erdu_default_modules()
+{
+    return array(
+        'products'    => array(
+            'title'   => __('Products', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-cart',
+            'fields'  => array(
+                'section_title'  => array('label' => __('Section Title', 'erdu-wp'),       'type' => 'text',    'default' => __('Explore Our Product Series', 'erdu-wp')),
+                'section_desc'   => array('label' => __('Section Description', 'erdu-wp'), 'type' => 'textarea','default' => __('Comprehensive 48V magnetic track lighting solutions', 'erdu-wp')),
+                'per_page'       => array('label' => __('Products Per Page', 'erdu-wp'),   'type' => 'number',  'default' => 12),
+                'show_filter'    => array('label' => __('Show Category Filter', 'erdu-wp'),'type' => 'toggle',  'default' => true),
+                'show_search'    => array('label' => __('Show Search Box', 'erdu-wp'),     'type' => 'toggle',  'default' => true),
+            ),
+        ),
+        'cases'       => array(
+            'title'   => __('Case Studies', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-portfolio',
+            'fields'  => array(
+                'section_title' => array('label' => __('Section Title', 'erdu-wp'),      'type' => 'text',    'default' => __('Case Studies', 'erdu-wp')),
+                'section_desc'  => array('label' => __('Section Description', 'erdu-wp'),'type' => 'textarea','default' => __('See how ERDU transforms spaces worldwide', 'erdu-wp')),
+                'per_page'      => array('label' => __('Cases Per Page', 'erdu-wp'),     'type' => 'number',  'default' => 9),
+                'show_filter'   => array('label' => __('Show Industry Filter', 'erdu-wp'),'type' => 'toggle', 'default' => true),
+            ),
+        ),
+        'exhibitions' => array(
+            'title'   => __('Exhibitions', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-calendar-alt',
+            'fields'  => array(
+                'section_title'   => array('label' => __('Section Title', 'erdu-wp'),       'type' => 'text',    'default' => __('Upcoming Exhibitions', 'erdu-wp')),
+                'section_desc'    => array('label' => __('Section Description', 'erdu-wp'), 'type' => 'textarea','default' => __('Meet us at global lighting exhibitions', 'erdu-wp')),
+                'show_past'       => array('label' => __('Show Past Exhibitions', 'erdu-wp'),'type' => 'toggle',  'default' => false),
+                'max_display'     => array('label' => __('Max to Display', 'erdu-wp'),      'type' => 'number',  'default' => 4),
+            ),
+        ),
+        'news'        => array(
+            'title'   => __('News', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-media-document',
+            'fields'  => array(
+                'section_title' => array('label' => __('Section Title', 'erdu-wp'),      'type' => 'text',    'default' => __('Latest News', 'erdu-wp')),
+                'section_desc'  => array('label' => __('Section Description', 'erdu-wp'),'type' => 'textarea','default' => __('Stay updated with ERDU', 'erdu-wp')),
+                'per_page'      => array('label' => __('Articles Per Page', 'erdu-wp'),  'type' => 'number',  'default' => 6),
+                'show_excerpt'  => array('label' => __('Show Excerpt', 'erdu-wp'),       'type' => 'toggle',  'default' => true),
+            ),
+        ),
+        'distributor' => array(
+            'title'   => __('Distributor Program', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-groups',
+            'fields'  => array(
+                'section_title'  => array('label' => __('Page Title', 'erdu-wp'),         'type' => 'text',    'default' => __('Global Distributor Program', 'erdu-wp')),
+                'section_desc'   => array('label' => __('Page Description', 'erdu-wp'),   'type' => 'textarea','default' => __('Partner with ERDU to grow your lighting business', 'erdu-wp')),
+                'success_message'=> array('label' => __('Success Message', 'erdu-wp'),   'type' => 'textarea','default' => __('Thank you! We will review your application within 3 business days.', 'erdu-wp')),
+                'recipient_email'=> array('label' => __('Recipient Email', 'erdu-wp'),    'type' => 'text',    'default' => get_option('admin_email')),
+            ),
+        ),
+        'contact_form'=> array(
+            'title'   => __('Contact Form', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-email-alt',
+            'fields'  => array(
+                'section_title'   => array('label' => __('Form Title', 'erdu-wp'),        'type' => 'text',    'default' => __('Send Us a Message', 'erdu-wp')),
+                'section_desc'    => array('label' => __('Form Description', 'erdu-wp'),  'type' => 'textarea','default' => __('Fill out the form below and we will get back to you within 24 hours.', 'erdu-wp')),
+                'success_message' => array('label' => __('Success Message', 'erdu-wp'),   'type' => 'textarea','default' => __('Thank you for contacting us. We will get back to you within 24 hours.', 'erdu-wp')),
+                'recipient_email' => array('label' => __('Recipient Email', 'erdu-wp'),   'type' => 'text',    'default' => get_option('admin_email')),
+                'show_phone'      => array('label' => __('Show Phone Field', 'erdu-wp'),  'type' => 'toggle',  'default' => true),
+                'show_company'    => array('label' => __('Show Company Field', 'erdu-wp'),'type' => 'toggle',  'default' => true),
+            ),
+        ),
+        'testimonials'=> array(
+            'title'   => __('Testimonials', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-format-quote',
+            'fields'  => array(
+                'section_title' => array('label' => __('Section Title', 'erdu-wp'),      'type' => 'text',    'default' => __('What Our Clients Say', 'erdu-wp')),
+                'section_desc'  => array('label' => __('Section Description', 'erdu-wp'),'type' => 'textarea','default' => __('Trusted by lighting professionals worldwide', 'erdu-wp')),
+                'items'         => array('label' => __('Testimonials', 'erdu-wp'),       'type' => 'repeater',
+                    'sub_fields' => array(
+                        'quote'  => array('label' => __('Quote', 'erdu-wp'),  'type' => 'textarea'),
+                        'author' => array('label' => __('Author', 'erdu-wp'), 'type' => 'text'),
+                        'role'   => array('label' => __('Role', 'erdu-wp'),   'type' => 'text'),
+                    ),
+                ),
+            ),
+        ),
+        'newsletter'  => array(
+            'title'   => __('Newsletter', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-email',
+            'fields'  => array(
+                'section_title' => array('label' => __('Title', 'erdu-wp'),         'type' => 'text',    'default' => __('Stay Updated', 'erdu-wp')),
+                'section_desc'  => array('label' => __('Description', 'erdu-wp'),   'type' => 'textarea','default' => __('Subscribe to get the latest product updates and lighting insights.', 'erdu-wp')),
+                'placeholder'   => array('label' => __('Input Placeholder', 'erdu-wp'),'type' => 'text',  'default' => __('Enter your email', 'erdu-wp')),
+                'button_text'   => array('label' => __('Button Text', 'erdu-wp'),   'type' => 'text',    'default' => __('Subscribe', 'erdu-wp')),
+            ),
+        ),
+        'faq'         => array(
+            'title'   => __('FAQ', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-editor-help',
+            'fields'  => array(
+                'section_title' => array('label' => __('Section Title', 'erdu-wp'),      'type' => 'text',    'default' => __('Frequently Asked Questions', 'erdu-wp')),
+                'items'         => array('label' => __('FAQ Items', 'erdu-wp'),          'type' => 'repeater',
+                    'sub_fields' => array(
+                        'question' => array('label' => __('Question', 'erdu-wp'), 'type' => 'text'),
+                        'answer'   => array('label' => __('Answer', 'erdu-wp'),   'type' => 'textarea'),
+                    ),
+                ),
+            ),
+        ),
+        'breadcrumb'  => array(
+            'title'   => __('Breadcrumb', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-admin-links',
+            'fields'  => array(
+                'separator'  => array('label' => __('Separator', 'erdu-wp'),      'type' => 'text',   'default' => '/'),
+                'home_text'  => array('label' => __('Home Text', 'erdu-wp'),      'type' => 'text',   'default' => __('Home', 'erdu-wp')),
+                'show_home'  => array('label' => __('Show Home Link', 'erdu-wp'), 'type' => 'toggle', 'default' => true),
+            ),
+        ),
+        'social_share'=> array(
+            'title'   => __('Social Share', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-share',
+            'fields'  => array(
+                'show_facebook'  => array('label' => __('Show Facebook', 'erdu-wp'),  'type' => 'toggle', 'default' => true),
+                'show_linkedin'  => array('label' => __('Show LinkedIn', 'erdu-wp'),  'type' => 'toggle', 'default' => true),
+                'show_twitter'   => array('label' => __('Show X / Twitter', 'erdu-wp'),'type' => 'toggle', 'default' => true),
+                'show_email'     => array('label' => __('Show Email', 'erdu-wp'),     'type' => 'toggle', 'default' => true),
+            ),
+        ),
+        'analytics'   => array(
+            'title'   => __('Analytics', 'erdu-wp'),
+            'enabled' => false,
+            'icon'    => 'dashicons-chart-area',
+            'fields'  => array(
+                'ga_id'   => array('label' => __('Google Analytics ID', 'erdu-wp'), 'type' => 'text', 'default' => '', 'placeholder' => 'G-XXXXXXXXXX'),
+                'gtm_id'  => array('label' => __('Google Tag Manager ID', 'erdu-wp'),'type' => 'text', 'default' => '', 'placeholder' => 'GTM-XXXXXX'),
+                'fb_pixel'=> array('label' => __('Facebook Pixel ID', 'erdu-wp'),  'type' => 'text', 'default' => '', 'placeholder' => 'XXXXXXXXXX'),
+            ),
+        ),
+    );
+}
+
+function erdu_default_settings()
+{
+    return array(
+        'primary_color'   => '#F37021',
+        'primary_dark'    => '#D45A0F',
+        'footer_bg'       => '#1a1a2e',
+        'header_sticky'   => true,
+        'show_breadcrumb' => true,
+        'show_cta'        => true,
+        'phone'           => '+86-760-22380830',
+        'email'           => 'gg@erduled.com',
+        'address'         => '6th Floor, JinYe Building, Tongyi Industrial District, Guzhen, Zhongshan, Guangdong, China',
+        'facebook'        => '',
+        'linkedin'        => '',
+        'youtube'         => '',
+        'instagram'       => '',
+        'analytics_id'    => '',
+    );
+}
+
+// ==========================================
+// 6. Customizer Integration
+// ==========================================
+
+function erdu_customizer_register($wp_customize)
+{
+    // NOTE: All ERDU settings are now managed via ERDU → Settings admin menu.
+    // Only Colors remain in Customizer as a convenience for live preview.
+
+    // --- Colors Section (kept in Customizer for live preview) ---
+    $wp_customize->add_section('erdu_colors_section', array(
+        'title'    => __('ERDU Colors', 'erdu-wp'),
+        'priority' => 50,
+    ));
+    $wp_customize->add_setting('erdu_primary_color', array('default' => '#F37021', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'erdu_primary_color', array('label' => __('Primary Color', 'erdu-wp'), 'section' => 'erdu_colors_section')));
+
+    $wp_customize->add_setting('erdu_primary_dark', array('default' => '#D45A0F', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'erdu_primary_dark', array('label' => __('Primary Dark', 'erdu-wp'), 'section' => 'erdu_colors_section')));
+}
+add_action('customize_register', 'erdu_customizer_register');
+
+// ==========================================
+// 7. Auto-create Navigation Menu
+// ==========================================
+
+add_action('after_switch_theme', 'erdu_create_navigation_menu', 20); // Priority 20 = after page creation
+function erdu_create_navigation_menu()
+{
+    $menu_name = 'ERDU Main Menu';
+    $menu_obj  = wp_get_nav_menu_object($menu_name);
+    $menu_id   = 0;
+
+    // Create or get existing menu
+    if ($menu_obj) {
+        $menu_id = $menu_obj->term_id;
+        // Delete all existing items to rebuild
+        $existing_items = wp_get_nav_menu_items($menu_id);
+        if ($existing_items && !is_wp_error($existing_items)) {
+            foreach ($existing_items as $item) {
+                wp_delete_post($item->ID, true);
+            }
+        }
+    } else {
+        $menu_id = wp_create_nav_menu($menu_name);
+        if (is_wp_error($menu_id)) {
+            return;
+        }
+    }
+
+    // Menu items configuration
+    $menu_items = array(
+        array('slug' => 'home',        'label' => __('Home', 'erdu-wp'),        'url' => home_url('/'),              'position' => 1),
+        array('slug' => 'about',       'label' => __('About Us', 'erdu-wp'),    'url' => '', 'position' => 2),
+        array('slug' => 'products',    'label' => __('Products', 'erdu-wp'),    'url' => '', 'position' => 3),
+        array('slug' => 'solutions',   'label' => __('Solutions', 'erdu-wp'),   'url' => '', 'position' => 4),
+        array('slug' => 'quality',     'label' => __('Quality', 'erdu-wp'),     'url' => '', 'position' => 5),
+        array('slug' => 'distributor', 'label' => __('Distributor', 'erdu-wp'), 'url' => '', 'position' => 6),
+        array('slug' => 'cases',       'label' => __('Case Studies', 'erdu-wp'),'url' => '', 'position' => 7),
+        array('slug' => 'news',        'label' => __('News', 'erdu-wp'),        'url' => '', 'position' => 8),
+        array('slug' => 'contact',     'label' => __('Contact', 'erdu-wp'),     'url' => '', 'position' => 9),
+    );
+
+    // Build URL lookup from pages
+    foreach ($menu_items as &$item) {
+        if ($item['slug'] === 'home') {
+            continue; // Home URL already set
+        }
+        $page = erdu_get_page_by_slug($item['slug']);
+        if ($page && !is_wp_error($page)) {
+            $item['url']  = get_permalink($page->ID);
+            $item['page'] = $page->ID;
+        } else {
+            // Fallback: construct URL from slug
+            $item['url'] = user_trailingslashit(home_url($item['slug']));
+        }
+    }
+    unset($item);
+
+    // Add items to menu
+    foreach ($menu_items as $item) {
+        if (!empty($item['page'])) {
+            // Page link
+            wp_update_nav_menu_item($menu_id, 0, array(
+                'menu-item-title'     => $item['label'],
+                'menu-item-object'    => 'page',
+                'menu-item-object-id' => $item['page'],
+                'menu-item-type'      => 'post_type',
+                'menu-item-status'    => 'publish',
+                'menu-item-position'  => $item['position'],
+            ));
+        } else {
+            // Custom link fallback
+            wp_update_nav_menu_item($menu_id, 0, array(
+                'menu-item-title'   => $item['label'],
+                'menu-item-url'     => $item['url'],
+                'menu-item-type'    => 'custom',
+                'menu-item-status'  => 'publish',
+                'menu-item-position'=> $item['position'],
+            ));
+        }
+    }
+
+    // Assign to primary location
+    $locations = get_theme_mod('nav_menu_locations', array());
+    $locations['primary'] = $menu_id;
+    set_theme_mod('nav_menu_locations', $locations);
+}
+
+// ==========================================
+// 7. Module Config Page
+// ==========================================
+
+/**
+ * Display a module selector page when no module is specified.
+ *
+ * @param array  $modules Available modules.
+ * @param string $error   Optional error message.
+ */
+function erdu_module_selector_page($modules, $error = '')
+{
+    ?>
+    <div class="wrap erdu-dashboard">
+        <div class="erdu-dashboard-header">
+            <div class="erdu-dashboard-brand">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-dashboard')); ?>" class="erdu-back-link">
+                    <span class="dashicons dashicons-arrow-left-alt"></span>
+                </a>
+                <h1><?php _e('Module Configuration', 'erdu-wp'); ?></h1>
+            </div>
+        </div>
+
+        <?php if ($error) : ?>
+            <div class="notice notice-error is-dismissible"><p><?php echo esc_html($error); ?></p></div>
+        <?php endif; ?>
+
+        <p class="description" style="margin: 20px 0;"><?php _e('Select a module below to configure its settings:', 'erdu-wp'); ?></p>
+
+        <div class="erdu-quick-settings">
+            <?php foreach ($modules as $key => $module) : ?>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-module&module=' . $key)); ?>" class="erdu-setting-card">
+                    <div class="erdu-setting-icon dashicons <?php echo esc_attr($module['icon']); ?>"></div>
+                    <div class="erdu-setting-info">
+                        <h3><?php echo esc_html($module['title']); ?></h3>
+                        <span class="erdu-setting-action"><?php _e('Configure', 'erdu-wp'); ?></span>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php
+}
+
+function erdu_module_config_page()
+{
+    $module_key = isset($_GET['module']) ? sanitize_key($_GET['module']) : '';
+    $defaults   = erdu_default_modules();
+
+    // If no module specified, show module selector
+    if (empty($module_key)) {
+        erdu_module_selector_page($defaults);
+        return;
+    }
+
+    // If invalid module key, show friendly error with module list
+    if (!isset($defaults[$module_key])) {
+        erdu_module_selector_page($defaults, sprintf(__('Module "%s" not found. Please select a module below:', 'erdu-wp'), esc_html($module_key)));
+        return;
+    }
+
+    $module_def = $defaults[$module_key];
+    $module_title = $module_def['title'];
+    $saved_config = get_option('erdu_module_' . $module_key, array());
+
+    // Handle save
+    if (isset($_POST['erdu_module_save']) && check_admin_referer('erdu_module_nonce')) {
+        $new_config = array();
+        foreach ($module_def['fields'] as $field_key => $field_def) {
+            $input_name = 'erdu_mod_' . $field_key;
+            if ($field_def['type'] === 'toggle') {
+                $new_config[$field_key] = isset($_POST[$input_name]) ? true : false;
+            } elseif ($field_def['type'] === 'number') {
+                $new_config[$field_key] = intval($_POST[$input_name] ?? $field_def['default']);
+            } elseif ($field_def['type'] === 'textarea') {
+                $new_config[$field_key] = sanitize_textarea_field(wp_unslash($_POST[$input_name] ?? ''));
+            } elseif ($field_def['type'] === 'repeater') {
+                // Handle repeater - expect arrays of sub-fields
+                $repeater_data = array();
+                if (isset($_POST[$input_name]) && is_array($_POST[$input_name])) {
+                    foreach ($_POST[$input_name] as $index => $row) {
+                        $clean_row = array();
+                        foreach ($field_def['sub_fields'] as $sub_key => $sub_def) {
+                            $clean_row[$sub_key] = sanitize_text_field(wp_unslash($row[$sub_key] ?? ''));
+                        }
+                        // Only add non-empty rows
+                        $has_value = false;
+                        foreach ($clean_row as $v) {
+                            if (!empty($v)) { $has_value = true; break; }
+                        }
+                        if ($has_value) {
+                            $repeater_data[] = $clean_row;
+                        }
+                    }
+                }
+                $new_config[$field_key] = $repeater_data;
+            } else {
+                $new_config[$field_key] = sanitize_text_field(wp_unslash($_POST[$input_name] ?? ''));
+            }
+        }
+        update_option('erdu_module_' . $module_key, $new_config);
+        $saved_config = $new_config;
+        add_settings_error('erdu_module_messages', 'erdu_module_message', __('Module settings saved.', 'erdu-wp'), 'updated');
+    }
+
+    // Reset to defaults
+    if (isset($_POST['erdu_module_reset']) && check_admin_referer('erdu_module_nonce')) {
+        delete_option('erdu_module_' . $module_key);
+        $saved_config = array();
+        add_settings_error('erdu_module_messages', 'erdu_module_message', __('Module settings reset to defaults.', 'erdu-wp'), 'updated');
+    }
+
+    ?>
+    <div class="wrap erdu-dashboard">
+        <div class="erdu-dashboard-header">
+            <div class="erdu-dashboard-brand">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-dashboard')); ?>" class="erdu-back-link">
+                    <span class="dashicons dashicons-arrow-left-alt"></span>
+                </a>
+                <h1><?php printf(__('%s - Module Configuration', 'erdu-wp'), esc_html($module_title)); ?></h1>
+            </div>
+            <span class="erdu-dashboard-version"><?php echo esc_html($module_key); ?></span>
+        </div>
+
+        <?php settings_errors('erdu_module_messages'); ?>
+
+        <form method="post" action="" class="erdu-settings-form">
+            <?php wp_nonce_field('erdu_module_nonce'); ?>
+
+            <?php foreach ($module_def['fields'] as $field_key => $field_def) :
+                $input_name = 'erdu_mod_' . $field_key;
+                $value = isset($saved_config[$field_key]) ? $saved_config[$field_key] : $field_def['default'];
+            ?>
+                <div class="erdu-settings-section">
+                    <?php if ($field_def['type'] === 'repeater') : ?>
+                        <h2><?php echo esc_html($field_def['label']); ?></h2>
+                        <p class="description"><?php _e('Add, edit, or remove items below.', 'erdu-wp'); ?></p>
+                        <div class="erdu-repeater" data-module="<?php echo esc_attr($module_key); ?>" data-field="<?php echo esc_attr($field_key); ?>">
+                            <div class="erdu-repeater-items">
+                                <?php
+                                $items = is_array($value) ? $value : array();
+                                // Ensure at least one empty row
+                                if (empty($items)) { $items = array(array_fill_keys(array_keys($field_def['sub_fields']), '')); }
+                                foreach ($items as $index => $row) : ?>
+                                    <div class="erdu-repeater-row" data-index="<?php echo $index; ?>">
+                                        <div class="erdu-repeater-row-header">
+                                            <span class="erdu-repeater-handle">&#9776;</span>
+                                            <span class="erdu-repeater-label">#<?php echo $index + 1; ?></span>
+                                            <button type="button" class="erdu-repeater-remove" title="<?php _e('Remove', 'erdu-wp'); ?>">&times;</button>
+                                        </div>
+                                        <div class="erdu-repeater-fields">
+                                            <?php foreach ($field_def['sub_fields'] as $sub_key => $sub_def) :
+                                                $sub_value = isset($row[$sub_key]) ? $row[$sub_key] : '';
+                                                $sub_name = $input_name . '[' . $index . '][' . $sub_key . ']';
+                                            ?>
+                                                <div class="erdu-repeater-field">
+                                                    <label><?php echo esc_html($sub_def['label']); ?></label>
+                                                    <?php if ($sub_def['type'] === 'textarea') : ?>
+                                                        <textarea name="<?php echo esc_attr($sub_name); ?>" rows="3" class="large-text"><?php echo esc_textarea($sub_value); ?></textarea>
+                                                    <?php else : ?>
+                                                        <input type="text" name="<?php echo esc_attr($sub_name); ?>" value="<?php echo esc_attr($sub_value); ?>" class="regular-text">
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <button type="button" class="erdu-repeater-add button">
+                                <span class="dashicons dashicons-plus-alt2"></span>
+                                <?php _e('Add Item', 'erdu-wp'); ?>
+                            </button>
+                        </div>
+                    <?php elseif ($field_def['type'] === 'toggle') : ?>
+                        <table class="form-table">
+                            <tr>
+                                <th><label for="<?php echo esc_attr($input_name); ?>"><?php echo esc_html($field_def['label']); ?></label></th>
+                                <td>
+                                    <label class="erdu-switch">
+                                        <input type="checkbox" name="<?php echo esc_attr($input_name); ?>" id="<?php echo esc_attr($input_name); ?>" value="1" <?php checked($value); ?>>
+                                        <span class="erdu-slider"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                    <?php elseif ($field_def['type'] === 'textarea') : ?>
+                        <table class="form-table">
+                            <tr>
+                                <th><label for="<?php echo esc_attr($input_name); ?>"><?php echo esc_html($field_def['label']); ?></label></th>
+                                <td>
+                                    <textarea name="<?php echo esc_attr($input_name); ?>" id="<?php echo esc_attr($input_name); ?>" rows="4" class="large-text"><?php echo esc_textarea($value); ?></textarea>
+                                    <?php if (!empty($field_def['placeholder'])) : ?>
+                                        <p class="description"><?php echo esc_html($field_def['placeholder']); ?></p>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        </table>
+                    <?php else : // text, number ?>
+                        <table class="form-table">
+                            <tr>
+                                <th><label for="<?php echo esc_attr($input_name); ?>"><?php echo esc_html($field_def['label']); ?></label></th>
+                                <td>
+                                    <input type="<?php echo esc_attr($field_def['type']); ?>"
+                                           name="<?php echo esc_attr($input_name); ?>"
+                                           id="<?php echo esc_attr($input_name); ?>"
+                                           value="<?php echo esc_attr($value); ?>"
+                                           class="regular-text"
+                                           <?php if (!empty($field_def['placeholder'])) echo 'placeholder="' . esc_attr($field_def['placeholder']) . '"'; ?>
+                                           <?php if ($field_def['type'] === 'number' && isset($field_def['default'])) echo 'min="1"'; ?>>
+                                </td>
+                            </tr>
+                        </table>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+
+            <p class="submit">
+                <input type="submit" name="erdu_module_save" class="button button-primary" value="<?php _e('Save Module Settings', 'erdu-wp'); ?>">
+                <input type="submit" name="erdu_module_reset" class="button" value="<?php _e('Reset to Defaults', 'erdu-wp'); ?>" onclick="return confirm('<?php _e('Reset all settings for this module?', 'erdu-wp'); ?>');">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-dashboard')); ?>" class="button"><?php _e('Back to Dashboard', 'erdu-wp'); ?></a>
+            </p>
+        </form>
+    </div>
+
+    <!-- Repeater JS Template -->
+    <script type="text/template" id="erdu-repeater-template">
+        <div class="erdu-repeater-row" data-index="{index}">
+            <div class="erdu-repeater-row-header">
+                <span class="erdu-repeater-handle">&#9776;</span>
+                <span class="erdu-repeater-label">#{index_label}</span>
+                <button type="button" class="erdu-repeater-remove" title="<?php _e('Remove', 'erdu-wp'); ?>">&times;</button>
+            </div>
+            <div class="erdu-repeater-fields">
+                {fields}
+            </div>
+        </div>
+    </script>
+
+    <script>
+    (function() {
+        // Repeater add/remove functionality
+        document.querySelectorAll('.erdu-repeater').forEach(function(repeater) {
+            var itemsContainer = repeater.querySelector('.erdu-repeater-items');
+            var addBtn = repeater.querySelector('.erdu-repeater-add');
+            var template = document.getElementById('erdu-repeater-template').innerHTML;
+
+            // Extract field names from first row
+            var firstRow = itemsContainer.querySelector('.erdu-repeater-row');
+            var moduleField = repeater.dataset.field;
+
+            function updateIndexes() {
+                itemsContainer.querySelectorAll('.erdu-repeater-row').forEach(function(row, idx) {
+                    row.dataset.index = idx;
+                    row.querySelector('.erdu-repeater-label').textContent = '#' + (idx + 1);
+                    row.querySelectorAll('input, textarea').forEach(function(input) {
+                        var name = input.name;
+                        // Update index in name
+                        name = name.replace(/\[\d+\]/, '[' + idx + ']');
+                        input.name = name;
+                    });
+                });
+            }
+
+            // Add row
+            addBtn.addEventListener('click', function() {
+                var count = itemsContainer.querySelectorAll('.erdu-repeater-row').length;
+                var lastRow = itemsContainer.querySelector('.erdu-repeater-row:last-child');
+                if (!lastRow) return;
+
+                var newRow = lastRow.cloneNode(true);
+                newRow.querySelectorAll('input, textarea').forEach(function(input) {
+                    input.value = '';
+                    var name = input.name.replace(/\[\d+\]/, '[' + count + ']');
+                    input.name = name;
+                });
+                newRow.dataset.index = count;
+                newRow.querySelector('.erdu-repeater-label').textContent = '#' + (count + 1);
+                itemsContainer.appendChild(newRow);
+                bindRemove(newRow);
+            });
+
+            // Remove row
+            function bindRemove(row) {
+                var removeBtn = row.querySelector('.erdu-repeater-remove');
+                removeBtn.addEventListener('click', function() {
+                    if (itemsContainer.querySelectorAll('.erdu-repeater-row').length > 1) {
+                        row.remove();
+                        updateIndexes();
+                    } else {
+                        // Clear last row instead of removing
+                        row.querySelectorAll('input, textarea').forEach(function(input) {
+                            input.value = '';
+                        });
+                    }
+                });
+            }
+
+            itemsContainer.querySelectorAll('.erdu-repeater-row').forEach(bindRemove);
+        });
+    })();
+    </script>
+    <?php
+}

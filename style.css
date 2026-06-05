@@ -1,0 +1,499 @@
+/*
+Theme Name: ERDU Lighting
+Theme URI: https://www.erduled.com/
+Author: ERDU Lighting Technology Co., Ltd.
+Author URI: https://www.erduled.com/
+Description: Custom WordPress theme for ERDU Lighting — Professional 48V Magnetic Track Light Manufacturer. Hermes orange color scheme, fully responsive, ACF Pro ready.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: erdu-wp
+Domain Path: /languages
+Tags: custom-theme, responsive, orange, lighting, b2b
+*/
+
+/* ===== CSS Variables - Hermes Orange Theme ===== */
+:root {
+  --erdu-orange: #F37021;
+  --erdu-orange-dark: #D45A0F;
+  --erdu-orange-light: #FFF5ED;
+  --erdu-orange-hover: #E06010;
+  --erdu-navy: #2D1810;
+  --erdu-navy-light: #4A2510;
+  --erdu-text: #333333;
+  --erdu-text-light: #666666;
+  --erdu-gray: #F5F5F5;
+  --erdu-gray-dark: #E0E0E0;
+  --erdu-border: #E8E8E8;
+  --erdu-white: #FFFFFF;
+  --erdu-success: #22C55E;
+  --erdu-error: #EF4444;
+}
+
+/* ===== Reset & Base ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--erdu-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== Container ===== */
+.erdu-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .erdu-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .erdu-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ===== Typography ===== */
+.erdu-h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--erdu-text);
+}
+
+.erdu-h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--erdu-text);
+}
+
+.erdu-h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--erdu-text);
+}
+
+/* ===== Buttons ===== */
+.erdu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.erdu-btn-primary {
+  background-color: var(--erdu-orange);
+  color: var(--erdu-white);
+}
+
+.erdu-btn-primary:hover {
+  background-color: var(--erdu-orange-hover);
+}
+
+.erdu-btn-outline {
+  background-color: transparent;
+  border: 1px solid currentColor;
+  color: var(--erdu-white);
+}
+
+.erdu-btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.erdu-btn-white {
+  background-color: var(--erdu-white);
+  color: var(--erdu-orange);
+}
+
+.erdu-btn-white:hover {
+  background-color: var(--erdu-gray);
+}
+
+/* ===== Sections ===== */
+.erdu-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.erdu-section-sm {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.erdu-bg-gradient {
+  background: linear-gradient(135deg, var(--erdu-navy) 0%, var(--erdu-navy-light) 100%);
+}
+
+.erdu-bg-gradient-orange {
+  background: linear-gradient(135deg, var(--erdu-orange) 0%, var(--erdu-orange-dark) 100%);
+}
+
+/* ===== Cards ===== */
+.erdu-card {
+  background-color: var(--erdu-white);
+  border: 1px solid var(--erdu-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.erdu-card:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Tags / Badges ===== */
+.erdu-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+}
+
+.erdu-badge-orange {
+  background-color: var(--erdu-orange);
+  color: var(--erdu-white);
+}
+
+.erdu-badge-hot {
+  background-color: #EF4444;
+  color: var(--erdu-white);
+}
+
+.erdu-badge-new {
+  background-color: var(--erdu-success);
+  color: var(--erdu-white);
+}
+
+.erdu-badge-green {
+  background-color: #ECFDF5;
+  color: #059669;
+}
+
+.erdu-badge-gray {
+  background-color: var(--erdu-gray);
+  color: var(--erdu-text-light);
+}
+
+/* ===== FAQ Accordion ===== */
+.erdu-faq-item {
+  border: 1px solid var(--erdu-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.erdu-faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--erdu-text);
+  transition: background-color 0.2s;
+}
+
+.erdu-faq-question:hover {
+  background-color: var(--erdu-gray);
+}
+
+.erdu-faq-answer {
+  padding: 0 1rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--erdu-text-light);
+  display: none;
+}
+
+.erdu-faq-answer.active {
+  display: block;
+}
+
+/* ===== Forms ===== */
+.erdu-input,
+.erdu-select,
+.erdu-textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #D1D5DB;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+  background-color: var(--erdu-white);
+  color: var(--erdu-text);
+}
+
+.erdu-input:focus,
+.erdu-select:focus,
+.erdu-textarea:focus {
+  outline: none;
+  border-color: var(--erdu-orange);
+}
+
+.erdu-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.erdu-checkbox {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  accent-color: var(--erdu-orange);
+}
+
+/* ===== Navigation ===== */
+.erdu-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  color: #374151;
+  transition: all 0.2s;
+}
+
+.erdu-nav-link:hover,
+.erdu-nav-link.active {
+  color: var(--erdu-orange);
+  background-color: var(--erdu-orange-light);
+}
+
+/* ===== Footer ===== */
+.erdu-footer {
+  background-color: #1a1a2e;
+  color: #9CA3AF;
+}
+
+.erdu-footer a:hover {
+  color: var(--erdu-white);
+}
+
+/* ===== Utilities ===== */
+.erdu-text-orange {
+  color: var(--erdu-orange);
+}
+
+.erdu-bg-orange-light {
+  background-color: var(--erdu-orange-light);
+}
+
+.erdu-line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.erdu-line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.erdu-animate-fade-in {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ===== Mobile Menu ===== */
+.erdu-mobile-menu {
+  display: none;
+}
+
+.erdu-mobile-menu.active {
+  display: block;
+}
+
+/* ===== Tab System ===== */
+.erdu-tab-btn {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  color: #6B7280;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.erdu-tab-btn.active {
+  color: var(--erdu-orange);
+  border-bottom-color: var(--erdu-orange);
+}
+
+.erdu-tab-btn:hover {
+  color: #374151;
+}
+
+.erdu-tab-panel {
+  display: none;
+}
+
+.erdu-tab-panel.active {
+  display: block;
+}
+
+/* ===== Breadcrumb ===== */
+.erdu-breadcrumb {
+  font-size: 0.875rem;
+  color: #BFDBFE;
+}
+
+.erdu-breadcrumb a {
+  color: #BFDBFE;
+}
+
+.erdu-breadcrumb a:hover {
+  color: var(--erdu-white);
+}
+
+/* ===== Filter Pills ===== */
+.erdu-filter-pill {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  background-color: var(--erdu-gray);
+  color: #4B5563;
+}
+
+.erdu-filter-pill:hover {
+  background-color: #E5E7EB;
+}
+
+.erdu-filter-pill.active {
+  background-color: var(--erdu-orange);
+  color: var(--erdu-white);
+}
+
+/* ===== Quote Block ===== */
+.erdu-quote {
+  border-left: 4px solid var(--erdu-orange);
+  padding-left: 1.5rem;
+  font-style: italic;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1023px) {
+  .erdu-h1 {
+    font-size: 1.875rem;
+  }
+  .erdu-h2 {
+    font-size: 1.5rem;
+  }
+  .erdu-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .erdu-h1 {
+    font-size: 1.5rem;
+  }
+  .erdu-h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* ===== Print ===== */
+@media print {
+  .erdu-header,
+  .erdu-footer,
+  .erdu-mobile-toggle {
+    display: none !important;
+  }
+}
+
+/* ===== WordPress Default Overrides ===== */
+.wp-caption {
+  max-width: 100%;
+}
+
+.aligncenter {
+  display: block;
+  margin: 0 auto;
+}
+
+.gallery img {
+  border: none !important;
+}
+
+/* ===== Accessibility ===== */
+:focus-visible {
+  outline: 2px solid var(--erdu-orange);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
