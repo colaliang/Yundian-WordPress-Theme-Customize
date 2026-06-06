@@ -33,14 +33,9 @@ $product_fields = array(
     array('key' => 'field_product_pdf',      'label' => __('PDF Spec Sheet URL', 'erdu-wp'),'name' => 'product_pdf',      'type' => 'url'),
 );
 
-acf_add_local_field_group(array(
-    'key'      => 'group_product',
-    'title'    => __('Product Details', 'erdu-wp'),
-    'fields'   => $product_fields,
-    'location' => array(array(array('param' => 'post_type', 'operator' => '==', 'value' => 'erdu_product'))),
-    'position' => 'normal',
-    'style'    => 'default',
-));
+// NOTE: Product Details fields were removed. Products are now managed via WooCommerce.
+// WooCommerce products have their own meta fields; ACF can be added to the 'product'
+// post type if needed by creating a new field group targeting post_type == 'product'.
 
 // ==========================================
 // Case Study Fields

@@ -24,7 +24,7 @@ class Erdu_Footer_About {
                     <img src="<?php echo esc_url($settings['logo_image']); ?>" alt="<?php echo esc_attr($settings['logo_text']); ?>" class="h-8">
                 <?php else : ?>
                     <?php if ($settings['logo_icon']) : ?>
-                    <div class="w-8 h-8 rounded flex items-center justify-center shrink-0" style="background-color: <?php echo esc_attr($theme_settings['primary_color'] ?? '#F37021'); ?>;">
+                    <div class="w-8 h-8 rounded flex items-center justify-center shrink-0 erdu-bg-primary">
                         <span class="text-white font-bold text-sm"><?php echo esc_html($settings['logo_icon_t']); ?></span>
                     </div>
                     <?php endif; ?>
@@ -49,7 +49,7 @@ class Erdu_Footer_About {
                 <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener"
                    class="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
                    style="background-color: rgba(255,255,255,0.1); color: <?php echo esc_attr($settings['text_color']); ?>;"
-                   onmouseover="this.style.backgroundColor='<?php echo esc_attr($theme_settings['primary_color'] ?? '#F37021'); ?>'; this.style.color='#fff';"
+                   onmouseover="this.style.backgroundColor='var(--erdu-primary, #F37021)'; this.style.color='#fff';"
                    onmouseout="this.style.backgroundColor='rgba(255,255,255,0.1)'; this.style.color='<?php echo esc_attr($settings['text_color']); ?>';"
                    aria-label="<?php echo esc_attr($label); ?>">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><?php echo wp_kses_post($svg); ?></svg>

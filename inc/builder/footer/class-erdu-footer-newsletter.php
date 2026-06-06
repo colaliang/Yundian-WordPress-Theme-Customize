@@ -24,7 +24,7 @@ class Erdu_Footer_Newsletter {
                        style="background-color: rgba(255,255,255,0.05); color: <?php echo esc_attr($settings['heading_color']); ?>; border-color: <?php echo esc_attr($settings['border_color']); ?>;"
                        onfocus="this.style.borderColor='<?php echo esc_attr($settings['hover_color']); ?>'"
                        onblur="this.style.borderColor='<?php echo esc_attr($settings['border_color']); ?>'">
-                <button type="submit" class="px-4 py-2 font-medium text-sm rounded-md hover:opacity-90 transition-opacity" style="background-color: <?php echo esc_attr($theme_settings['primary_color'] ?? '#F37021'); ?>; color: #fff;">
+                <button type="submit" class="px-4 py-2 font-medium text-sm rounded-md hover:opacity-90 transition-opacity erdu-bg-primary" style="color: #fff;">
                     <?php echo esc_html($settings['news_btn']); ?>
                 </button>
             </form>

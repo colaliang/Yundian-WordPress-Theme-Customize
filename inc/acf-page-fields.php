@@ -740,28 +740,13 @@ function erdu_register_page_field_groups()
             ),
 
             // --- Products Tab ---
+            // NOTE: Products are pulled from WooCommerce product_cat automatically.
+            // No manual product list needed.
             array('key' => 'field_home_tab_products', 'label' => __('Product Series', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
             array('key' => 'field_home_products_title', 'label' => __('Section Title', 'erdu-wp'), 'name' => 'home_products_title', 'type' => 'text'),
             array('key' => 'field_home_products_desc', 'label' => __('Section Description', 'erdu-wp'), 'name' => 'home_products_desc', 'type' => 'textarea', 'rows' => 2),
-            array('key' => 'field_home_products_source', 'label' => __('Product Source', 'erdu-wp'), 'name' => 'home_products_source', 'type' => 'select',
-                'choices' => array('cpt' => __('From Product CPT', 'erdu-wp'), 'custom' => __('Custom List', 'erdu-wp')),
-                'default_value' => 'cpt'),
-            array('key' => 'field_home_products_count', 'label' => __('Max Products to Show', 'erdu-wp'), 'name' => 'home_products_count', 'type' => 'number', 'default_value' => 4, 'min' => 1, 'max' => 12),
-            array(
-                'key'               => 'field_home_products_custom',
-                'label'             => __('Custom Products', 'erdu-wp'),
-                'name'              => 'home_products_custom',
-                'type'              => 'repeater',
-                'button_label'      => __('Add Product', 'erdu-wp'),
-                'conditional_logic' => array(array(array('field' => 'field_home_products_source', 'operator' => '==', 'value' => 'custom'))),
-                'sub_fields'        => array(
-                    array('key' => 'field_hpc_name', 'label' => __('Name', 'erdu-wp'), 'name' => 'name', 'type' => 'text', 'required' => 1),
-                    array('key' => 'field_hpc_desc', 'label' => __('Description', 'erdu-wp'), 'name' => 'description', 'type' => 'textarea', 'rows' => 2),
-                    array('key' => 'field_hpc_image', 'label' => __('Image', 'erdu-wp'), 'name' => 'image', 'type' => 'image', 'return_format' => 'url'),
-                    array('key' => 'field_hpc_tag', 'label' => __('Tag (NEW/HOT)', 'erdu-wp'), 'name' => 'tag', 'type' => 'text'),
-                    array('key' => 'field_hpc_link', 'label' => __('Link', 'erdu-wp'), 'name' => 'link', 'type' => 'url'),
-                ),
-            ),
+            array('key' => 'field_home_products_count', 'label' => __('Max Categories to Show', 'erdu-wp'), 'name' => 'home_products_count', 'type' => 'number', 'default_value' => 4, 'min' => 1, 'max' => 12,
+                'instructions' => __('Number of WooCommerce product categories to display. Set up categories in WooCommerce > Products > Categories.', 'erdu-wp')),
 
             // --- Applications Tab ---
             array('key' => 'field_home_tab_apps', 'label' => __('Applications', 'erdu-wp'), 'name' => '', 'type' => 'tab'),

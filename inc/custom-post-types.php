@@ -2,57 +2,13 @@
 /**
  * Custom Post Types
  *
+ * NOTE: Products are managed via WooCommerce (product / product_cat).
+ * No custom product CPT is needed.
+ *
  * @package ERDU_Lighting
  */
 
 if (!defined('ABSPATH')) exit;
-
-/**
- * Register Product post type
- */
-add_action('init', 'erdu_register_product_post_type');
-function erdu_register_product_post_type()
-{
-    $labels = array(
-        'name'                  => _x('Products', 'Post type general name', 'erdu-wp'),
-        'singular_name'         => _x('Product', 'Post type singular name', 'erdu-wp'),
-        'menu_name'             => _x('Products', 'Admin Menu text', 'erdu-wp'),
-        'add_new'               => __('Add New', 'erdu-wp'),
-        'add_new_item'          => __('Add New Product', 'erdu-wp'),
-        'edit_item'             => __('Edit Product', 'erdu-wp'),
-        'new_item'              => __('New Product', 'erdu-wp'),
-        'view_item'             => __('View Product', 'erdu-wp'),
-        'search_items'          => __('Search Products', 'erdu-wp'),
-        'not_found'             => __('No products found', 'erdu-wp'),
-    );
-
-    $args = array(
-        'labels'             => $labels,
-        'public'             => false,
-        'publicly_queryable' => false,
-        'show_ui'            => false,
-        'show_in_menu'       => false,
-        'query_var'          => false,
-        'rewrite'            => false,
-        'capability_type'    => 'post',
-        'has_archive'        => false,
-        'hierarchical'       => false,
-        'supports'           => array('title', 'editor', 'thumbnail', 'excerpt'),
-    );
-
-    register_post_type('erdu_product', $args);
-
-    // Product Category
-    register_taxonomy('erdu_product_cat', 'erdu_product', array(
-        'labels'            => array(
-            'name'          => __('Product Categories', 'erdu-wp'),
-            'singular_name' => __('Product Category', 'erdu-wp'),
-        ),
-        'hierarchical'      => true,
-        'public'            => true,
-        'rewrite'           => array('slug' => 'product-category'),
-    ));
-}
 
 /**
  * Register Case Study post type
@@ -246,37 +202,3 @@ function erdu_allow_custom_upload_mimes($mimes)
     return $mimes;
 }
 
-/**
- * Add custom columns to admin
- */
-add_filter('manage_erdu_product_posts_columns', 'erdu_product_columns');
-function erdu_product_columns($columns)
-{
-    $new = array();
-    foreach ($columns as $key => $value) {
-        $new[$key] = $value;
-        if ($key === 'title') {
-            $new['model'] = __('Model', 'erdu-wp');
-            $new['power'] = __('Power', 'erdu-wp');
-            $new['category'] = __('Category', 'erdu-wp');
-        }
-    }
-    return $new;
-}
-
-add_action('manage_erdu_product_posts_custom_column', 'erdu_product_column_content', 10, 2);
-function erdu_product_column_content($column, $post_id)
-{
-    switch ($column) {
-        case 'model':
-            echo esc_html(get_post_meta($post_id, 'product_model', true));
-            break;
-        case 'power':
-            echo esc_html(get_post_meta($post_id, 'product_power', true));
-            break;
-        case 'category':
-            $terms = get_the_term_list($post_id, 'erdu_product_cat', '', ', ');
-            echo $terms ? wp_kses_post($terms) : '—';
-            break;
-    }
-}

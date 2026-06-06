@@ -53,9 +53,7 @@ if (have_posts()) :
         // ====== PRODUCTS ======
         $products_title = erdu_page_field('home_products_title', __('Our Product Series', 'erdu-wp'));
         $products_desc  = erdu_page_field('home_products_desc', __('Professional LED lighting for commercial, residential and industrial applications', 'erdu-wp'));
-        $products_source = erdu_page_field('home_products_source', 'cpt');
         $products_count = erdu_page_field('home_products_count', 4);
-        $products_custom = erdu_page_field('home_products_custom', array());
 
         // ====== APPLICATIONS ======
         $apps_title = erdu_page_field('home_apps_title', __('Applications', 'erdu-wp'));
@@ -212,44 +210,32 @@ if (have_posts()) :
                     <?php
                     $product_items = array();
 
-                    // Load from CPT
-                    if ($products_source === 'cpt') {
-                        $products_query = new WP_Query(array(
-                            'post_type'      => 'erdu_product',
-                            'posts_per_page' => intval($products_count),
-                            'orderby'        => 'menu_order',
-                            'order'          => 'ASC',
+                    // Load from WooCommerce product categories
+                    if (class_exists('WooCommerce')) {
+                        $wc_cats = get_terms(array(
+                            'taxonomy'   => 'product_cat',
+                            'hide_empty' => true,
+                            'parent'     => 0,
+                            'orderby'    => 'name',
+                            'order'      => 'ASC',
+                            'number'     => intval($products_count),
                         ));
-                        if ($products_query->have_posts()) :
-                            while ($products_query->have_posts()) : $products_query->the_post();
-                                $tag = get_post_meta(get_the_ID(), 'product_tag', true);
-                                $img = get_the_post_thumbnail_url(get_the_ID(), 'erdu-card') ?: erdu_placeholder(400, 300);
+                        if (!empty($wc_cats) && !is_wp_error($wc_cats)) {
+                            foreach ($wc_cats as $cat) {
+                                $thumbnail_id = get_term_meta($cat->term_id, 'thumbnail_id', true);
+                                $cat_image    = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : '';
                                 $product_items[] = array(
-                                    'name' => get_the_title(),
-                                    'desc' => wp_trim_words(get_the_excerpt(), 10),
-                                    'img'  => $img,
-                                    'tag'  => $tag && $tag !== 'none' ? strtoupper($tag) : '',
-                                    'link' => get_permalink(),
+                                    'name' => $cat->name,
+                                    'desc' => $cat->description ?: '',
+                                    'img'  => $cat_image ?: 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400',
+                                    'tag'  => '',
+                                    'link' => get_term_link($cat),
                                 );
-                            endwhile;
-                            wp_reset_postdata();
-                        endif;
-                    }
-
-                    // If no CPT products, fall back to custom list
-                    if (empty($product_items) && !empty($products_custom)) {
-                        foreach ($products_custom as $p) {
-                            $product_items[] = array(
-                                'name' => $p['name'],
-                                'desc' => $p['description'] ?? '',
-                                'img'  => $p['image'] ?? erdu_placeholder(400, 300),
-                                'tag'  => !empty($p['tag']) ? strtoupper($p['tag']) : '',
-                                'link' => $p['link'] ?: erdu_get_page_url('products'),
-                            );
+                            }
                         }
                     }
 
-                    // If still empty, use hardcoded demo
+                    // Fallback demo data
                     if (empty($product_items)) {
                         $product_items = array(
                             array('name' => '48V Magnetic Track Light', 'desc' => 'Adjustable spotlight with Samsung LED chips', 'tag' => 'HOT',  'img' => 'https://images.unsplash.com/photo-1540932296774-3ed6d23f9b58?w=400', 'link' => erdu_get_page_url('products')),

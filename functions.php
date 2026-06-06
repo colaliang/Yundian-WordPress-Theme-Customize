@@ -41,6 +41,14 @@ require_once ERDU_DIR . '/inc/builder/class-erdu-builder-footer.php';
 Erdu_Builder_Footer::get_instance();
 
 /**
+ * Load Dynamic CSS Generator & Theme Color Settings
+ */
+require_once ERDU_DIR . '/inc/class-erdu-dynamic-css.php';
+Erdu_Dynamic_CSS::get_instance();
+
+require_once ERDU_DIR . '/inc/acf-theme-colors.php';
+
+/**
  * Theme Setup
  */
 add_action('after_setup_theme', 'erdu_theme_setup');
