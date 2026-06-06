@@ -152,7 +152,7 @@ if (have_posts()) :
         ?>
 
         <!-- Hero -->
-        <section class="relative py-20" style="background: linear-gradient(135deg, #2D1810 0%, #4A2510 100%);">
+        <section class="relative py-20 erdu-bg-secondary">
             <div class="absolute inset-0 opacity-20" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
             <div class="relative erdu-container text-center">
                 <?php erdu_breadcrumb(); ?>
@@ -161,7 +161,7 @@ if (have_posts()) :
                 <?php if ($hero_btn || $hero_btn2) : ?>
                     <div class="flex flex-wrap gap-4 justify-center mt-8">
                         <?php if ($hero_btn && $hero_btn_link) : ?>
-                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors" style="background-color: #F37021;"><?php echo esc_html($hero_btn); ?></a>
+                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors erdu-bg-primary"><?php echo esc_html($hero_btn); ?></a>
                         <?php endif; ?>
                         <?php if ($hero_btn2 && $hero_btn2_link) : ?>
                             <a href="<?php echo esc_url($hero_btn2_link); ?>" class="px-6 py-3 font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors"><?php echo esc_html($hero_btn2); ?></a>
@@ -186,12 +186,12 @@ if (have_posts()) :
         <?php endif; ?>
 
         <!-- Filter + Grid -->
-        <section class="py-12" style="background-color: #F9FAFB;">
+        <section class="py-12 bg-gray-50">
             <div class="erdu-container">
                 <!-- Industry Filters -->
                 <div class="flex flex-wrap gap-2 mb-8">
                     <?php foreach ($industries as $key => $label) : ?>
-                        <a href="<?php echo $key ? add_query_arg('industry', $key) : remove_query_arg('industry'); ?>" class="px-4 py-2 text-sm rounded-full border transition-all <?php echo $industry === $key ? 'text-white border-orange-500' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300'; ?>" <?php echo $industry === $key ? 'style="background-color: #F37021;"' : ''; ?>><?php echo esc_html($label); ?></a>
+                        <a href="<?php echo $key ? add_query_arg('industry', $key) : remove_query_arg('industry'); ?>" class="px-4 py-2 text-sm rounded-full border transition-all <?php echo $industry === $key ? 'text-white border-orange-500 erdu-bg-primary' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300'; ?>"><?php echo esc_html($label); ?></a>
                     <?php endforeach; ?>
                 </div>
 
@@ -212,10 +212,10 @@ if (have_posts()) :
                                     <img src="<?php echo esc_url(!empty($case['image']) ? $case['image'] : 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600'); ?>" alt="<?php echo esc_attr($case['title']); ?>" class="w-full h-full object-cover hover:scale-105 transition-transform">
                                 </div>
                                 <div class="p-5">
-                                    <?php if (!empty($case['industry_label'])) : ?><span class="text-xs px-2 py-1 rounded-full" style="background-color: #FFF5ED; color: #F37021;"><?php echo esc_html($case['industry_label']); ?></span><?php endif; ?>
-                                    <h3 class="font-semibold mt-2 mb-1" style="color: #333;"><?php echo esc_html($case['title']); ?></h3>
+                                    <?php if (!empty($case['industry_label'])) : ?><span class="text-xs px-2 py-1 rounded-full bg-orange-50 erdu-text-primary"><?php echo esc_html($case['industry_label']); ?></span><?php endif; ?>
+                                    <h3 class="font-semibold mt-2 mb-1 text-gray-800"><?php echo esc_html($case['title']); ?></h3>
                                     <?php if (!empty($case['description'])) : ?><p class="text-sm text-gray-500 mb-2"><?php echo esc_html($case['description']); ?></p><?php endif; ?>
-                                    <?php if ($case_link) : ?><span class="text-sm font-medium" style="color: #F37021;"><?php _e('View Case', 'erdu-wp'); ?> &rarr;</span><?php endif; ?>
+                                    <?php if ($case_link) : ?><span class="text-sm font-medium erdu-text-primary"><?php _e('View Case', 'erdu-wp'); ?> &rarr;</span><?php endif; ?>
                                 </div>
                             </div>
                             <?php if ($case_link) : ?></a><?php endif; ?>
@@ -224,7 +224,7 @@ if (have_posts()) :
                 <?php else : ?>
                     <div class="text-center py-12">
                         <p class="text-gray-500"><?php _e('No case studies found for the selected filter.', 'erdu-wp'); ?></p>
-                        <a href="<?php echo esc_url(remove_query_arg('industry')); ?>" class="inline-block mt-4 text-sm font-medium" style="color: #F37021;"><?php _e('View All Cases', 'erdu-wp'); ?></a>
+                        <a href="<?php echo esc_url(remove_query_arg('industry')); ?>" class="inline-block mt-4 text-sm font-medium erdu-text-primary"><?php _e('View All Cases', 'erdu-wp'); ?></a>
                     </div>
                 <?php endif; ?>
             </div>

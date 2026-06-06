@@ -55,7 +55,7 @@ if (have_posts()) :
         ?>
 
         <!-- Hero — Dark Brown -->
-        <section class="relative py-16" style="background-color: #3D2817;">
+        <section class="relative py-16 erdu-bg-secondary">
             <div class="erdu-container">
                 <?php erdu_breadcrumb(); ?>
                 <h1 class="text-3xl md:text-4xl font-bold text-white mt-4"><?php echo esc_html($hero_title); ?></h1>
@@ -75,13 +75,13 @@ if (have_posts()) :
                 <div class="grid lg:grid-cols-12 gap-12">
                     <!-- Left: Contact Info (4 cols) -->
                     <div class="lg:col-span-5">
-                        <h2 class="text-xl font-bold mb-8" style="color: #333;"><?php echo esc_html($info_title); ?></h2>
+                        <h2 class="text-xl font-bold mb-8 text-gray-800"><?php echo esc_html($info_title); ?></h2>
 
                         <div class="space-y-6">
                             <!-- Tel -->
                             <?php if ($phone) : ?>
                             <div class="flex items-start gap-4">
-                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0" style="background-color: #F37021;">
+                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 erdu-bg-primary">
                                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                                 </div>
                                 <div>
@@ -94,7 +94,7 @@ if (have_posts()) :
                             <!-- Mobile -->
                             <?php if ($mobile) : ?>
                             <div class="flex items-start gap-4">
-                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0" style="background-color: #F37021;">
+                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 erdu-bg-primary">
                                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
                                 </div>
                                 <div>
@@ -107,7 +107,7 @@ if (have_posts()) :
                             <!-- Email -->
                             <?php if ($email_addr) : ?>
                             <div class="flex items-start gap-4">
-                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0" style="background-color: #F37021;">
+                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 erdu-bg-primary">
                                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                                 </div>
                                 <div>
@@ -120,7 +120,7 @@ if (have_posts()) :
                             <!-- Address -->
                             <?php if ($address) : ?>
                             <div class="flex items-start gap-4">
-                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0" style="background-color: #F37021;">
+                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 erdu-bg-primary">
                                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 </div>
                                 <div>
@@ -133,7 +133,7 @@ if (have_posts()) :
                             <!-- Working Hours -->
                             <?php if ($hours) : ?>
                             <div class="flex items-start gap-4">
-                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0" style="background-color: #F37021;">
+                                <div class="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 erdu-bg-primary">
                                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 </div>
                                 <div>
@@ -146,16 +146,16 @@ if (have_posts()) :
 
                         <!-- Contact Persons -->
                         <?php if ($persons) : ?>
-                        <div class="mt-10 pt-8" style="border-top: 1px solid #E5E7EB;">
-                            <h3 class="font-bold text-base mb-5" style="color: #333;"><?php _e('Contact Persons', 'erdu-wp'); ?></h3>
+                        <div class="mt-10 pt-8 border-t border-gray-200">
+                            <h3 class="font-bold text-base mb-5 text-gray-800"><?php _e('Contact Persons', 'erdu-wp'); ?></h3>
                             <div class="space-y-4">
                                 <?php foreach ($persons as $p) :
                                     $initial = !empty($p['initial']) ? $p['initial'] : strtoupper(substr($p['name'], 0, 1));
                                 ?>
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0" style="background-color: #F37021;"><?php echo esc_html($initial); ?></div>
+                                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0 erdu-bg-primary"><?php echo esc_html($initial); ?></div>
                                     <div>
-                                        <p class="text-sm font-medium" style="color: #333;"><?php echo esc_html($p['name']); ?> <?php if (!empty($p['title'])) : ?>&mdash; <?php echo esc_html($p['title']); ?><?php endif; ?></p>
+                                        <p class="text-sm font-medium text-gray-800"><?php echo esc_html($p['name']); ?> <?php if (!empty($p['title'])) : ?>&mdash; <?php echo esc_html($p['title']); ?><?php endif; ?></p>
                                         <?php if (!empty($p['email'])) : ?><p class="text-xs text-gray-500"><?php echo esc_html($p['email']); ?></p><?php endif; ?>
                                     </div>
                                 </div>
@@ -166,8 +166,8 @@ if (have_posts()) :
 
                         <!-- Connect With Us -->
                         <?php if ($whatsapp || $wechat) : ?>
-                        <div class="mt-10 pt-8" style="border-top: 1px solid #E5E7EB;">
-                            <h3 class="font-bold text-base mb-5" style="color: #333;"><?php echo esc_html($social_label); ?></h3>
+                        <div class="mt-10 pt-8 border-t border-gray-200">
+                            <h3 class="font-bold text-base mb-5 text-gray-800"><?php echo esc_html($social_label); ?></h3>
                             <div class="flex gap-3">
                                 <?php if ($whatsapp) : ?>
                                 <a href="<?php echo esc_url(strpos($whatsapp, 'http') === 0 ? $whatsapp : 'https://wa.me/' . preg_replace('/[^0-9]/', '', $whatsapp)); ?>" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-opacity hover:opacity-90" style="background-color: #25D366;">
@@ -188,9 +188,9 @@ if (have_posts()) :
 
                     <!-- Right: Form (7 cols) -->
                     <div class="lg:col-span-7">
-                        <h2 class="text-xl font-bold mb-8" style="color: #333;"><?php _e('Send Us a Message', 'erdu-wp'); ?></h2>
+                        <h2 class="text-xl font-bold mb-8 text-gray-800"><?php _e('Send Us a Message', 'erdu-wp'); ?></h2>
 
-                        <div class="rounded-xl p-6 md:p-8 border" style="border-color: #E5E7EB; background-color: #FAFAFA;">
+                        <div class="rounded-xl p-6 md:p-8 border border-gray-200 bg-gray-50">
                             <?php if ($form_success) : ?>
                                 <div class="mb-6 p-4 rounded-lg bg-green-50 text-green-700 border border-green-200"><?php _e('Thank you! Your message has been sent successfully. We will get back to you within 24 business hours.', 'erdu-wp'); ?></div>
                             <?php elseif ($form_error) : ?>
@@ -217,11 +217,11 @@ if (have_posts()) :
                                 <!-- Row 1: Name + Company -->
                                 <div class="grid md:grid-cols-2 gap-5">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Your Name', 'erdu-wp'); ?> <span style="color: #F37021;">*</span></label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Your Name', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
                                         <input type="text" name="contact_name" required placeholder="<?php _e('Full name', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Company Name', 'erdu-wp'); ?> <span style="color: #F37021;">*</span></label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Company Name', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
                                         <input type="text" name="contact_company" required placeholder="<?php _e('Company name', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
                                     </div>
                                 </div>
@@ -229,7 +229,7 @@ if (have_posts()) :
                                 <!-- Row 2: Email + Phone -->
                                 <div class="grid md:grid-cols-2 gap-5">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Email Address', 'erdu-wp'); ?> <span style="color: #F37021;">*</span></label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Email Address', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
                                         <input type="email" name="contact_email" required placeholder="email@company.com" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
                                     </div>
                                     <div>
@@ -241,7 +241,7 @@ if (have_posts()) :
                                 <!-- Row 3: Country + Interested Product -->
                                 <div class="grid md:grid-cols-2 gap-5">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Country', 'erdu-wp'); ?> <span style="color: #F37021;">*</span></label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Country', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
                                         <input type="text" name="contact_country" required placeholder="<?php _e('Your country', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
                                     </div>
                                     <div>
@@ -266,7 +266,7 @@ if (have_posts()) :
 
                                 <!-- Row 5: Message -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Message', 'erdu-wp'); ?> <span style="color: #F37021;">*</span></label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Message', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
                                     <textarea name="contact_message" rows="5" required placeholder="<?php _e('Tell us about your project or inquiry...', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm resize-y bg-white"></textarea>
                                 </div>
 
@@ -277,7 +277,7 @@ if (have_posts()) :
                                 </div>
 
                                 <!-- Submit -->
-                                <button type="submit" class="inline-flex items-center gap-2 px-8 py-3 rounded-lg text-white font-semibold transition-opacity hover:opacity-90" style="background-color: #F37021;">
+                                <button type="submit" class="inline-flex items-center gap-2 px-8 py-3 rounded-lg text-white font-semibold transition-opacity hover:opacity-90 erdu-bg-primary">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
                                     <?php _e('Send Message', 'erdu-wp'); ?>
                                 </button>
@@ -303,12 +303,12 @@ if (have_posts()) :
         <?php if ($faqs) : ?>
         <section class="py-16 bg-white">
             <div class="erdu-container max-w-3xl">
-                <h2 class="text-2xl font-bold mb-8 text-center" style="color: #333;"><?php _e('Frequently Asked Questions', 'erdu-wp'); ?></h2>
+                <h2 class="text-2xl font-bold mb-8 text-center text-gray-800"><?php _e('Frequently Asked Questions', 'erdu-wp'); ?></h2>
                 <div class="space-y-3" id="faq-accordion">
                     <?php foreach ($faqs as $i => $faq) : ?>
                         <div class="border border-gray-200 rounded-lg overflow-hidden bg-white">
                             <button type="button" class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors faq-toggle" data-index="<?php echo intval($i); ?>">
-                                <span class="text-sm font-medium" style="color: #333;"><?php echo esc_html($faq['question']); ?></span>
+                                <span class="text-sm font-medium text-gray-800"><?php echo esc_html($faq['question']); ?></span>
                                 <span class="faq-icon text-xl text-gray-400 transition-transform ml-4 shrink-0" style="line-height: 1;">+</span>
                             </button>
                             <div class="faq-content hidden px-4 pb-4">

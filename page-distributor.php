@@ -50,7 +50,7 @@ if (have_posts()) :
         ?>
 
         <!-- Hero -->
-        <section class="relative py-20" style="background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);">
+        <section class="relative py-20 erdu-bg-dark">
             <div class="absolute inset-0 opacity-20" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
             <div class="relative erdu-container text-center">
                 <?php erdu_breadcrumb(); ?>
@@ -59,7 +59,7 @@ if (have_posts()) :
                 <?php if ($hero_btn || $hero_btn2) : ?>
                     <div class="flex flex-wrap gap-4 justify-center mt-8">
                         <?php if ($hero_btn && $hero_btn_link) : ?>
-                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors" style="background-color: #F37021;"><?php echo esc_html($hero_btn); ?></a>
+                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors erdu-bg-primary"><?php echo esc_html($hero_btn); ?></a>
                         <?php endif; ?>
                         <?php if ($hero_btn2 && $hero_btn2_link) : ?>
                             <a href="<?php echo esc_url($hero_btn2_link); ?>" class="px-6 py-3 font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors"><?php echo esc_html($hero_btn2); ?></a>
@@ -77,7 +77,7 @@ if (have_posts()) :
         <?php endif; ?>
 
         <!-- Intro + Benefits -->
-        <section class="py-16" style="background-color: #F9FAFB;">
+        <section class="py-16 bg-gray-50">
             <div class="erdu-container">
                 <div class="grid lg:grid-cols-2 gap-12">
                     <div>
@@ -89,11 +89,11 @@ if (have_posts()) :
                         <?php endif; ?>
                         <?php if ($requirements) : ?>
                         <div class="bg-white rounded-xl p-6 border border-gray-200">
-                            <h4 class="font-semibold mb-4" style="color: #333;"><?php echo esc_html($req_title); ?></h4>
+                            <h4 class="font-semibold mb-4 text-gray-800"><?php echo esc_html($req_title); ?></h4>
                             <?php if ($req_intro) : ?><p class="text-sm text-gray-500 mb-4"><?php echo esc_html($req_intro); ?></p><?php endif; ?>
                             <ul class="space-y-2 text-sm text-gray-600">
                                 <?php foreach ($requirements as $req) : ?>
-                                    <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-0.5 shrink-0" style="color: #F37021;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><?php echo esc_html($req['text']); ?></li>
+                                    <li class="flex items-start gap-2"><svg class="w-4 h-4 mt-0.5 shrink-0 erdu-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><?php echo esc_html($req['text']); ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -104,8 +104,8 @@ if (have_posts()) :
                         <div class="space-y-4">
                             <?php foreach ($benefits as $b) : ?>
                                 <div class="bg-white rounded-lg p-4 border border-gray-200 flex items-start gap-4">
-                                    <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background-color: #FFF5ED;"><svg class="w-5 h-5" style="color: #F37021;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
-                                    <div><h4 class="font-medium text-sm" style="color: #333;"><?php echo esc_html($b['title']); ?></h4><p class="text-xs text-gray-500"><?php echo esc_html($b['description']); ?></p></div>
+                                    <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-orange-50"><svg class="w-5 h-5 erdu-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                                    <div><h4 class="font-medium text-sm text-gray-800"><?php echo esc_html($b['title']); ?></h4><p class="text-xs text-gray-500"><?php echo esc_html($b['description']); ?></p></div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -118,7 +118,7 @@ if (have_posts()) :
         <section class="py-16 bg-white">
             <div class="erdu-container max-w-3xl">
                 <div class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm">
-                    <h3 class="font-semibold mb-6 text-center" style="color: #333;"><?php _e('Distributor Application', 'erdu-wp'); ?></h3>
+                    <h3 class="font-semibold mb-6 text-center text-gray-800"><?php _e('Distributor Application', 'erdu-wp'); ?></h3>
                     <?php if (isset($_GET['dist_success'])) : ?>
                         <div class="mb-6 p-4 rounded-lg bg-green-50 text-green-700 border border-green-200"><?php _e('Thank you! Your application has been submitted. We will review and contact you within 3 business days.', 'erdu-wp'); ?></div>
                     <?php elseif (isset($_GET['dist_error'])) : ?>

@@ -60,7 +60,7 @@ if (have_posts()) :
         ?>
 
         <!-- Hero -->
-        <section class="relative py-20" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);">
+        <section class="relative py-20 erdu-bg-dark">
             <div class="absolute inset-0 opacity-20" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
             <div class="relative erdu-container text-center">
                 <?php erdu_breadcrumb(); ?>
@@ -69,7 +69,7 @@ if (have_posts()) :
                 <?php if ($hero_btn || $hero_btn2) : ?>
                     <div class="flex flex-wrap gap-4 justify-center mt-8">
                         <?php if ($hero_btn && $hero_btn_link) : ?>
-                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors" style="background-color: #F37021;"><?php echo esc_html($hero_btn); ?></a>
+                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors erdu-bg-primary"><?php echo esc_html($hero_btn); ?></a>
                         <?php endif; ?>
                         <?php if ($hero_btn2 && $hero_btn2_link) : ?>
                             <a href="<?php echo esc_url($hero_btn2_link); ?>" class="px-6 py-3 font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors"><?php echo esc_html($hero_btn2); ?></a>
@@ -98,17 +98,17 @@ if (have_posts()) :
         <?php endif; ?>
 
         <!-- 5-Step Process -->
-        <section class="py-16" style="background-color: #F9FAFB;">
+        <section class="py-16 bg-gray-50">
             <div class="erdu-container">
                 <h2 class="erdu-h2 mb-12 text-center"><?php _e('5-Step Quality Control Process', 'erdu-wp'); ?></h2>
                 <div class="grid md:grid-cols-5 gap-4">
                     <?php foreach ($quality_steps as $i => $s) : ?>
                         <div class="text-center">
-                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style="background-color: #EFF6FF;">
-                                <svg class="w-8 h-8" style="color: #2563EB;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?php echo esc_attr($s['icon']); ?>"/></svg>
+                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-blue-50">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?php echo esc_attr($s['icon']); ?>"/></svg>
                             </div>
-                            <div class="text-sm font-bold mb-1" style="color: #F37021;">STEP <?php echo intval($i + 1); ?></div>
-                            <h4 class="font-semibold text-sm mb-1" style="color: #333;"><?php echo esc_html($s['title']); ?></h4>
+                            <div class="text-sm font-bold mb-1 erdu-text-primary">STEP <?php echo intval($i + 1); ?></div>
+                            <h4 class="font-semibold text-sm mb-1 text-gray-800"><?php echo esc_html($s['title']); ?></h4>
                             <p class="text-xs text-gray-500"><?php echo esc_html($s['description']); ?></p>
                         </div>
                     <?php endforeach; ?>
@@ -118,8 +118,8 @@ if (have_posts()) :
                     <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <?php foreach ($process as $step) : ?>
                             <div class="bg-white p-4 rounded-lg border border-gray-200">
-                                <span class="text-xs font-bold" style="color: #F37021;">#<?php echo esc_html($step['step']); ?></span>
-                                <h4 class="font-semibold text-sm mt-1" style="color: #333;"><?php echo esc_html($step['title']); ?></h4>
+                                <span class="text-xs font-bold erdu-text-primary">#<?php echo esc_html($step['step']); ?></span>
+                                <h4 class="font-semibold text-sm mt-1 text-gray-800"><?php echo esc_html($step['title']); ?></h4>
                                 <?php if (!empty($step['description'])) : ?>
                                     <p class="text-xs text-gray-500 mt-1"><?php echo esc_html($step['description']); ?></p>
                                 <?php endif; ?>
@@ -137,12 +137,12 @@ if (have_posts()) :
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
                     <?php foreach ($certificates as $c) : ?>
                         <div class="p-4 rounded-lg border border-gray-200 flex items-center gap-3 hover:shadow-md transition-shadow">
-                            <svg class="w-10 h-10 shrink-0" style="color: #F37021;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            <svg class="w-10 h-10 shrink-0 erdu-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                             <div>
-                                <h4 class="font-semibold text-sm" style="color: #333;"><?php echo esc_html($c['name']); ?></h4>
+                                <h4 class="font-semibold text-sm text-gray-800"><?php echo esc_html($c['name']); ?></h4>
                                 <p class="text-xs text-gray-500"><?php echo esc_html($c['org']); ?></p>
                                 <?php if (!empty($c['valid'])) : ?>
-                                    <p class="text-xs" style="color: #F37021;"><?php printf(__('Valid until %s', 'erdu-wp'), esc_html($c['valid'])); ?></p>
+                                    <p class="text-xs erdu-text-primary"><?php printf(__('Valid until %s', 'erdu-wp'), esc_html($c['valid'])); ?></p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -152,17 +152,17 @@ if (have_posts()) :
         </section>
 
         <!-- Standards Table -->
-        <section class="py-16" style="background-color: #F9FAFB;">
+        <section class="py-16 bg-gray-50">
             <div class="erdu-container max-w-3xl">
                 <h2 class="erdu-h2 mb-8 text-center"><?php _e('Quality Parameters', 'erdu-wp'); ?></h2>
                 <div class="bg-white rounded-xl shadow-sm overflow-hidden">
                     <table class="w-full text-sm">
-                        <thead><tr style="background-color: #F9FAFB;"><th class="text-left p-4 font-semibold" style="color: #333;"><?php _e('Parameter', 'erdu-wp'); ?></th><th class="text-right p-4 font-semibold" style="color: #333;"><?php _e('Standard', 'erdu-wp'); ?></th></tr></thead>
+                        <thead><tr class="bg-gray-50"><th class="text-left p-4 font-semibold text-gray-800"><?php _e('Parameter', 'erdu-wp'); ?></th><th class="text-right p-4 font-semibold text-gray-800"><?php _e('Standard', 'erdu-wp'); ?></th></tr></thead>
                         <tbody>
                             <?php foreach ($standards as $i => $s) : ?>
                                 <tr class="<?php echo $i % 2 === 0 ? 'bg-white' : ''; ?> border-t border-gray-100">
                                     <td class="p-4 text-gray-600"><?php echo esc_html($s['param']); ?></td>
-                                    <td class="p-4 text-right font-medium" style="color: #F37021;"><?php echo esc_html($s['value']); ?></td>
+                                    <td class="p-4 text-right font-medium erdu-text-primary"><?php echo esc_html($s['value']); ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

@@ -74,7 +74,7 @@ if (have_posts()) :
         ?>
 
         <!-- Hero -->
-        <section class="relative py-20" style="background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);">
+        <section class="relative py-20 erdu-bg-dark">
             <?php if ($hero_bg) : ?>
                 <div class="absolute inset-0 opacity-20" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
             <?php endif; ?>
@@ -85,7 +85,7 @@ if (have_posts()) :
                 <?php if ($hero_btn || $hero_btn2) : ?>
                     <div class="flex flex-wrap gap-4 justify-center mt-8">
                         <?php if ($hero_btn && $hero_btn_link) : ?>
-                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors" style="background-color: #F37021;"><?php echo esc_html($hero_btn); ?></a>
+                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors erdu-bg-primary"><?php echo esc_html($hero_btn); ?></a>
                         <?php endif; ?>
                         <?php if ($hero_btn2 && $hero_btn2_link) : ?>
                             <a href="<?php echo esc_url($hero_btn2_link); ?>" class="px-6 py-3 font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors"><?php echo esc_html($hero_btn2); ?></a>
@@ -124,7 +124,7 @@ if (have_posts()) :
             $featured_query = new WP_Query($featured_args);
             if ($featured_query->have_posts() && $paged <= 1) : 
         ?>
-        <section class="py-16" style="background-color: #F9FAFB;">
+        <section class="py-16 bg-gray-50">
             <div class="erdu-container">
                 <h2 class="erdu-h2 mb-8"><?php echo esc_html($featured_title); ?></h2>
                 <div class="grid md:grid-cols-3 gap-6">
@@ -140,9 +140,9 @@ if (have_posts()) :
                                     <?php
                                     $f_cats = get_the_category();
                                     if ($f_cats) : ?>
-                                        <span class="text-xs px-2 py-1 rounded-full" style="background-color: #FFF5ED; color: #F37021;"><?php echo esc_html($f_cats[0]->name); ?></span>
+                                        <span class="text-xs px-2 py-1 rounded-full bg-orange-50 erdu-text-primary"><?php echo esc_html($f_cats[0]->name); ?></span>
                                     <?php endif; ?>
-                                    <h3 class="font-semibold mt-2 mb-2" style="color: #333;"><?php the_title(); ?></h3>
+                                    <h3 class="font-semibold mt-2 mb-2 text-gray-800"><?php the_title(); ?></h3>
                                     <?php if ($show_excerpt) : ?><p class="text-sm text-gray-500 line-clamp-2"><?php echo get_the_excerpt(); ?></p><?php endif; ?>
                                     <div class="flex items-center gap-3 mt-3 text-xs text-gray-400">
                                         <?php if ($show_date) : ?><span><?php echo get_the_date(); ?></span><?php endif; ?>
@@ -163,9 +163,9 @@ if (have_posts()) :
                 <!-- Category Filters -->
                 <?php if ($show_categories && !empty($categories) && !is_wp_error($categories)) : ?>
                 <div class="flex flex-wrap gap-2 mb-8">
-                    <a href="<?php echo esc_url(remove_query_arg(array('blog_cat', 'blog_page'))); ?>" class="px-4 py-2 text-sm rounded-full border transition-all <?php echo empty($cat_filter) ? 'text-white border-orange-500' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300'; ?>" <?php echo empty($cat_filter) ? 'style="background-color: #F37021;"' : ''; ?>><?php _e('All', 'erdu-wp'); ?></a>
+                    <a href="<?php echo esc_url(remove_query_arg(array('blog_cat', 'blog_page'))); ?>" class="px-4 py-2 text-sm rounded-full border transition-all <?php echo empty($cat_filter) ? 'text-white border-orange-500 erdu-bg-primary' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300'; ?>"><?php _e('All', 'erdu-wp'); ?></a>
                     <?php foreach ($categories as $cat) : ?>
-                        <a href="<?php echo esc_url(add_query_arg(array('blog_cat' => $cat->slug, 'blog_page' => false))); ?>" class="px-4 py-2 text-sm rounded-full border transition-all <?php echo $cat_filter === $cat->slug ? 'text-white border-orange-500' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300'; ?>" <?php echo $cat_filter === $cat->slug ? 'style="background-color: #F37021;"' : ''; ?>><?php echo esc_html($cat->name); ?></a>
+                        <a href="<?php echo esc_url(add_query_arg(array('blog_cat' => $cat->slug, 'blog_page' => false))); ?>" class="px-4 py-2 text-sm rounded-full border transition-all <?php echo $cat_filter === $cat->slug ? 'text-white border-orange-500 erdu-bg-primary' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300'; ?>"><?php echo esc_html($cat->name); ?></a>
                     <?php endforeach; ?>
                 </div>
                 <?php endif; ?>
@@ -188,16 +188,16 @@ if (have_posts()) :
                                         <?php endif; ?>
                                         <div class="p-5">
                                             <?php $post_cats = get_the_category(); if ($post_cats) : ?>
-                                                <span class="text-xs px-2 py-1 rounded-full" style="background-color: #FFF5ED; color: #F37021;"><?php echo esc_html($post_cats[0]->name); ?></span>
+                                                <span class="text-xs px-2 py-1 rounded-full bg-orange-50 erdu-text-primary"><?php echo esc_html($post_cats[0]->name); ?></span>
                                             <?php endif; ?>
-                                            <h3 class="font-semibold mt-2 mb-2" style="color: #333;"><?php the_title(); ?></h3>
+                                            <h3 class="font-semibold mt-2 mb-2 text-gray-800"><?php the_title(); ?></h3>
                                             <?php if ($show_excerpt) : ?><p class="text-sm text-gray-500 line-clamp-3"><?php echo get_the_excerpt(); ?></p><?php endif; ?>
                                             <div class="flex items-center gap-3 mt-3 text-xs text-gray-400">
                                                 <?php if ($show_date) : ?><span><?php echo get_the_date(); ?></span><?php endif; ?>
                                                 <?php if ($show_author) : ?><span><?php the_author(); ?></span><?php endif; ?>
                                             </div>
                                             <?php if ($show_readmore) : ?>
-                                                <span class="text-sm font-medium mt-3 inline-block" style="color: #F37021;"><?php _e('Read More', 'erdu-wp'); ?> &rarr;</span>
+                                                <span class="text-sm font-medium mt-3 inline-block erdu-text-primary"><?php _e('Read More', 'erdu-wp'); ?> &rarr;</span>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -231,8 +231,8 @@ if (have_posts()) :
                 <?php else : ?>
                     <!-- Empty State -->
                     <div class="text-center py-16">
-                        <svg class="w-16 h-16 mx-auto mb-4" style="color: #F37021; opacity: 0.3;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15"/></svg>
-                        <h3 class="text-lg font-semibold mb-2" style="color: #333;"><?php _e('No Blog Posts Yet', 'erdu-wp'); ?></h3>
+                        <svg class="w-16 h-16 mx-auto mb-4 erdu-text-primary" style="opacity: 0.3;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15"/></svg>
+                        <h3 class="text-lg font-semibold mb-2 text-gray-800"><?php _e('No Blog Posts Yet', 'erdu-wp'); ?></h3>
                         <p class="text-gray-500"><?php _e('Blog posts will be published here soon. Check back later!', 'erdu-wp'); ?></p>
                     </div>
                 <?php endif; ?>

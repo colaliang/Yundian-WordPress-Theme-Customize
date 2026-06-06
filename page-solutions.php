@@ -53,7 +53,7 @@ if (have_posts()) :
         ?>
 
         <!-- Hero -->
-        <section class="relative py-20" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);">
+        <section class="relative py-20 erdu-bg-dark">
             <div class="absolute inset-0 opacity-20" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
             <div class="relative erdu-container text-center">
                 <?php erdu_breadcrumb(); ?>
@@ -62,7 +62,7 @@ if (have_posts()) :
                 <?php if ($hero_btn || $hero_btn2) : ?>
                     <div class="flex flex-wrap gap-4 justify-center mt-8">
                         <?php if ($hero_btn && $hero_btn_link) : ?>
-                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors" style="background-color: #F37021;"><?php echo esc_html($hero_btn); ?></a>
+                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors erdu-bg-primary"><?php echo esc_html($hero_btn); ?></a>
                         <?php endif; ?>
                         <?php if ($hero_btn2 && $hero_btn2_link) : ?>
                             <a href="<?php echo esc_url($hero_btn2_link); ?>" class="px-6 py-3 font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors"><?php echo esc_html($hero_btn2); ?></a>
@@ -80,7 +80,7 @@ if (have_posts()) :
         <?php endif; ?>
 
         <!-- Category Filter + Content -->
-        <section class="py-16" style="background-color: #F9FAFB;">
+        <section class="py-16 bg-gray-50">
             <div class="erdu-container">
                 <div class="max-w-3xl mx-auto text-center mb-12">
                     <?php if ($sol_intro) : ?>
@@ -93,7 +93,7 @@ if (have_posts()) :
                 <!-- Category Filters -->
                 <div class="grid md:grid-cols-<?php echo esc_attr(min(count($filter_cats), 5)); ?> gap-4 mb-12">
                     <?php foreach ($filter_cats as $id => $label) : ?>
-                        <a href="?category=<?php echo esc_attr($id); ?>#content" class="p-6 rounded-xl text-left transition-all border <?php echo $cat === $id ? 'text-white border-orange-500 shadow-lg' : 'bg-white text-gray-700 border-gray-200 hover:shadow-md'; ?>" <?php echo $cat === $id ? 'style="background-color: #F37021;"' : ''; ?>>
+                        <a href="?category=<?php echo esc_attr($id); ?>#content" class="p-6 rounded-xl text-left transition-all border <?php echo $cat === $id ? 'text-white border-orange-500 shadow-lg erdu-bg-primary' : 'bg-white text-gray-700 border-gray-200 hover:shadow-md'; ?>">
                             <h3 class="font-semibold text-sm mb-1"><?php echo esc_html($label); ?></h3>
                             <p class="text-xs <?php echo $cat === $id ? 'text-orange-100' : 'text-gray-500'; ?>"><?php _e('View solution', 'erdu-wp'); ?> &rarr;</p>
                         </a>
@@ -114,7 +114,7 @@ if (have_posts()) :
                                     </div>
                                 <?php endif; ?>
                                 <div class="p-5">
-                                    <h4 class="font-semibold mb-1" style="color: #333;"><?php echo esc_html($c['name']); ?></h4>
+                                    <h4 class="font-semibold mb-1 text-gray-800"><?php echo esc_html($c['name']); ?></h4>
                                     <?php if (!empty($c['description'])) : ?>
                                         <p class="text-sm text-gray-500"><?php echo esc_html($c['description']); ?></p>
                                     <?php endif; ?>
