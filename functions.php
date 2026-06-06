@@ -32,10 +32,13 @@ require_once ERDU_DIR . '/inc/template-functions.php';
 require_once ERDU_DIR . '/inc/admin-dashboard.php';
 
 /**
- * Load Header Builder
+ * Load Header & Footer Builder
  */
 require_once ERDU_DIR . '/inc/builder/class-erdu-builder-header.php';
 Erdu_Builder_Header::get_instance();
+
+require_once ERDU_DIR . '/inc/builder/class-erdu-builder-footer.php';
+Erdu_Builder_Footer::get_instance();
 
 /**
  * Theme Setup
