@@ -1,3 +1,10 @@
 
 # Reference Projects
 astra/
+temp_verify/
+release/
+
+# Debug / Local Development Tools
+debug/
+check-php-issues.ps1
+.package-tmp/
