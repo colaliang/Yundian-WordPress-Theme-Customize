@@ -30,13 +30,13 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
 ?>
 
 <!-- Case Hero -->
-<section class="relative py-20" style="background: linear-gradient(135deg, #2D1810 0%, #4A2510 100%);">
+<section class="relative py-20 erdu-bg-secondary">
     <div class="absolute inset-0 opacity-30" style="background-image: url('<?php echo esc_url($hero_img); ?>'); background-size: cover; background-position: center;"></div>
     <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(45,24,16,0.7) 0%, rgba(45,24,16,0.95) 100%);"></div>
     <div class="relative erdu-container">
         <?php erdu_breadcrumb(); ?>
         <div class="max-w-3xl">
-            <span class="inline-block px-3 py-1 text-xs font-medium text-white rounded-full mb-4" style="background-color: #F37021;">
+            <span class="inline-block px-3 py-1 text-xs font-medium text-white rounded-full mb-4 erdu-bg-primary">
                 <?php echo esc_html($ind_label); ?>
             </span>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
@@ -73,12 +73,12 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
 
 <!-- Key Metrics -->
 <?php if ($metrics && is_array($metrics) && count($metrics) > 0) : ?>
-<section class="py-12" style="background-color: #F9FAFB;">
+<section class="py-12 bg-gray-50">
     <div class="erdu-container">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <?php foreach ($metrics as $metric) : ?>
                 <div class="text-center p-6 bg-white rounded-xl border border-gray-100">
-                    <div class="text-3xl md:text-4xl font-bold mb-1" style="color: #F37021;">
+                    <div class="text-3xl md:text-4xl font-bold mb-1 erdu-text-primary">
                         <?php echo esc_html($metric['metric_value']); ?>
                     </div>
                     <div class="text-sm text-gray-500">
@@ -96,12 +96,12 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
     <div class="erdu-container">
         <div class="grid md:grid-cols-3 gap-8">
             <!-- Challenge -->
-            <div class="erdu-card p-8 border-t-4" style="border-color: #EF4444;">
+            <div class="erdu-card p-8 border-t-4 border-red-500">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: #FEF2F2;">
-                        <svg class="w-5 h-5" style="color: #EF4444;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-red-50">
+                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                     </div>
-                    <h3 class="text-lg font-bold" style="color: #333;"><?php _e('Challenge', 'erdu-wp'); ?></h3>
+                    <h3 class="text-lg font-bold text-gray-800"><?php _e('Challenge', 'erdu-wp'); ?></h3>
                 </div>
                 <p class="text-gray-600 leading-relaxed">
                     <?php echo esc_html($challenge ?: __('The client faced significant lighting challenges that needed innovative solutions to meet their specific requirements.', 'erdu-wp')); ?>
@@ -109,12 +109,12 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
             </div>
 
             <!-- Solution -->
-            <div class="erdu-card p-8 border-t-4" style="border-color: #F37021;">
+            <div class="erdu-card p-8 border-t-4 border-orange-500">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: #FFF5ED;">
-                        <svg class="w-5 h-5" style="color: #F37021;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-orange-50">
+                        <svg class="w-5 h-5 erdu-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                     </div>
-                    <h3 class="text-lg font-bold" style="color: #333;"><?php _e('Solution', 'erdu-wp'); ?></h3>
+                    <h3 class="text-lg font-bold text-gray-800"><?php _e('Solution', 'erdu-wp'); ?></h3>
                 </div>
                 <p class="text-gray-600 leading-relaxed">
                     <?php echo esc_html($solution ?: __('ERDU provided a comprehensive 48V magnetic track lighting system tailored to the project needs.', 'erdu-wp')); ?>
@@ -122,12 +122,12 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
             </div>
 
             <!-- Result -->
-            <div class="erdu-card p-8 border-t-4" style="border-color: #10B981;">
+            <div class="erdu-card p-8 border-t-4 border-emerald-500">
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: #ECFDF5;">
-                        <svg class="w-5 h-5" style="color: #10B981;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center bg-emerald-50">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
-                    <h3 class="text-lg font-bold" style="color: #333;"><?php _e('Result', 'erdu-wp'); ?></h3>
+                    <h3 class="text-lg font-bold text-gray-800"><?php _e('Result', 'erdu-wp'); ?></h3>
                 </div>
                 <p class="text-gray-600 leading-relaxed">
                     <?php echo esc_html($result ?: __('The project achieved outstanding results with significant energy savings and improved lighting quality.', 'erdu-wp')); ?>
@@ -139,7 +139,7 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
 
 <!-- Before / After -->
 <?php if ($before || $after) : ?>
-<section class="py-16" style="background-color: #F9FAFB;">
+<section class="py-16 bg-gray-50">
     <div class="erdu-container">
         <div class="text-center mb-10">
             <h2 class="erdu-h2"><?php _e('Transformation', 'erdu-wp'); ?></h2>
@@ -156,8 +156,8 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
             </div>
             <?php endif; ?>
             <?php if ($after) : ?>
-            <div class="rounded-xl overflow-hidden border-2" style="border-color: #F37021;">
-                <div class="p-4 text-white text-sm font-medium flex items-center gap-2" style="background-color: #F37021;">
+            <div class="rounded-xl overflow-hidden border-2 border-orange-500">
+                <div class="p-4 text-white text-sm font-medium flex items-center gap-2 erdu-bg-primary">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     <?php _e('After - ERDU Solution', 'erdu-wp'); ?>
                 </div>
@@ -174,17 +174,17 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
 <section class="py-16">
     <div class="erdu-container">
         <div class="max-w-3xl mx-auto text-center">
-            <svg class="w-12 h-12 mx-auto mb-6 opacity-20" style="color: #F37021;" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            <svg class="w-12 h-12 mx-auto mb-6 opacity-20 erdu-text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
             <blockquote class="text-xl md:text-2xl italic text-gray-700 leading-relaxed mb-6">
                 "<?php echo esc_html($testimonial); ?>"
             </blockquote>
             <div class="flex items-center justify-center gap-4">
-                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold" style="background-color: #F37021;">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold erdu-bg-primary">
                     <?php echo esc_html($person ? substr($person, 0, 1) : 'C'); ?>
                 </div>
                 <div class="text-left">
                     <?php if ($person) : ?>
-                        <div class="font-semibold" style="color: #333;"><?php echo esc_html($person); ?></div>
+                        <div class="font-semibold text-gray-800"><?php echo esc_html($person); ?></div>
                     <?php endif; ?>
                     <?php if ($title) : ?>
                         <div class="text-sm text-gray-500"><?php echo esc_html($title); ?>, <?php echo esc_html($client); ?></div>
@@ -205,7 +205,7 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
 
 <!-- Products Used -->
 <?php if ($products && is_array($products) && count($products) > 0) : ?>
-<section class="py-16" style="background-color: #F9FAFB;">
+<section class="py-16 bg-gray-50">
     <div class="erdu-container">
         <div class="text-center mb-10">
             <h2 class="erdu-h2"><?php _e('Products Used', 'erdu-wp'); ?></h2>
@@ -214,12 +214,12 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <?php foreach ($products as $product) : ?>
                 <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-gray-200">
-                    <div class="w-12 h-12 rounded-lg flex items-center justify-center shrink-0" style="background-color: #FFF5ED;">
-                        <svg class="w-6 h-6" style="color: #F37021;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center shrink-0 bg-orange-50">
+                        <svg class="w-6 h-6 erdu-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                     </div>
                     <div>
-                        <div class="font-medium" style="color: #333;"><?php echo esc_html($product['product_name']); ?></div>
-                        <span class="text-xs px-2 py-0.5 rounded-full" style="background-color: #FFF5ED; color: #F37021;"><?php _e('48V Magnetic', 'erdu-wp'); ?></span>
+                        <div class="font-medium text-gray-800"><?php echo esc_html($product['product_name']); ?></div>
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-orange-50 erdu-text-primary"><?php _e('48V Magnetic', 'erdu-wp'); ?></span>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -254,9 +254,9 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
                         <img src="<?php echo esc_url($rel_img); ?>" alt="<?php the_title_attribute(); ?>" class="w-full h-full object-cover hover:scale-105 transition-transform">
                     </div>
                     <div class="p-5">
-                        <span class="text-xs px-2 py-1 rounded-full" style="background-color: #FFF5ED; color: #F37021;"><?php echo esc_html($rel_ind_label); ?></span>
-                        <h3 class="font-semibold mt-2 mb-1" style="color: #333;"><?php the_title(); ?></h3>
-                        <span class="text-sm font-medium inline-flex items-center gap-1" style="color: #F37021;"><?php _e('View Case', 'erdu-wp'); ?> →</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-orange-50 erdu-text-primary"><?php echo esc_html($rel_ind_label); ?></span>
+                        <h3 class="font-semibold mt-2 mb-1 text-gray-800"><?php the_title(); ?></h3>
+                        <span class="text-sm font-medium inline-flex items-center gap-1 erdu-text-primary"><?php _e('View Case', 'erdu-wp'); ?> →</span>
                     </div>
                 </div>
             <?php
@@ -276,8 +276,8 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
                         <img src="<?php echo esc_url($rc['img']); ?>" alt="<?php echo esc_attr($rc['title']); ?>" class="w-full h-full object-cover">
                     </div>
                     <div class="p-5">
-                        <span class="text-xs px-2 py-1 rounded-full" style="background-color: #FFF5ED; color: #F37021;"><?php echo esc_html($rc['ind']); ?></span>
-                        <h3 class="font-semibold mt-2 mb-1" style="color: #333;"><?php echo esc_html($rc['title']); ?></h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-orange-50 erdu-text-primary"><?php echo esc_html($rc['ind']); ?></span>
+                        <h3 class="font-semibold mt-2 mb-1 text-gray-800"><?php echo esc_html($rc['title']); ?></h3>
                     </div>
                 </div>
             <?php endforeach; endif; ?>

@@ -9,7 +9,7 @@ get_header();
 ?>
 
 <!-- Page Hero -->
-<section class="relative py-20" style="background: linear-gradient(135deg, #2D1810 0%, #4A2510 100%);">
+<section class="relative py-20 erdu-bg-secondary">
     <div class="relative erdu-container text-center">
         <?php erdu_breadcrumb(); ?>
         <h1 class="text-3xl md:text-4xl font-bold text-white"><?php the_title(); ?></h1>
