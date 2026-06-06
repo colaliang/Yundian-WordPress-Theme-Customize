@@ -43,7 +43,7 @@ class Erdu_Header_Contact {
                     </svg>
                     <span><?php echo esc_html($email); ?></span>
                 </a>
-            <?php endif; ?
+            <?php endif; ?>
 
             <?php if ($show_address && $address) : ?>
                 <div class="flex items-center gap-1.5 text-gray-500">
@@ -53,7 +53,7 @@ class Erdu_Header_Contact {
                     </svg>
                     <span class="max-w-[200px] truncate"><?php echo esc_html($address); ?></span>
                 </div>
-            <?php endif; ?
+            <?php endif; ?>
 
             <?php if ($show_hours && $hours) : ?>
                 <div class="flex items-center gap-1.5 text-gray-500">
@@ -62,7 +62,7 @@ class Erdu_Header_Contact {
                     </svg>
                     <span><?php echo esc_html($hours); ?></span>
                 </div>
-            <?php endif; ?
+            <?php endif; ?>
         </div>
         <?php
     }
