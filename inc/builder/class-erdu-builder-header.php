@@ -109,27 +109,27 @@ if (!class_exists('Erdu_Builder_Header')) {
 
             $styles = array();
 
-            // Base header styles (use !important to override hardcoded classes in header.php)
-            $styles[] = '.erdu-header { background-color: ' . esc_attr($bg) . ' !important; color: ' . esc_attr($text) . ' !important; border-bottom: 1px solid ' . esc_attr($border) . ' !important; }';
-            $styles[] = '.erdu-header .erdu-nav-link { color: ' . esc_attr($text) . ' !important; }';
-            $styles[] = '.erdu-header .erdu-nav-link:hover, .erdu-header .erdu-nav-link.active { color: ' . esc_attr($hover) . ' !important; }';
+            // Base header styles
+            $styles[] = '.erdu-header { background-color: ' . esc_attr($bg) . '; color: ' . esc_attr($text) . '; border-bottom: 1px solid ' . esc_attr($border) . '; }';
+            $styles[] = '.erdu-header .erdu-nav-link { color: ' . esc_attr($text) . '; }';
+            $styles[] = '.erdu-header .erdu-nav-link:hover, .erdu-header .erdu-nav-link.active { color: ' . esc_attr($hover) . '; }';
             $styles[] = '.erdu-header .flex.items-center.justify-between { min-height: ' . intval($height) . 'px; }';
 
             // Sticky header
             if ($sticky) {
-                $styles[] = '.erdu-header { position: sticky !important; top: 0 !important; z-index: 50 !important; }';
+                $styles[] = '.erdu-header { position: sticky; top: 0; z-index: 50; }';
                 if ($shadow) {
                     $styles[] = '.erdu-header.is-sticky, .erdu-header.sticky { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }';
                 }
             } else {
-                $styles[] = '.erdu-header { position: relative !important; }';
+                $styles[] = '.erdu-header { position: relative; }';
             }
 
             // Transparent on hero (homepage only)
             if ($transparent && is_front_page()) {
-                $styles[] = '.erdu-header { background-color: transparent !important; border-bottom-color: transparent !important; }';
-                $styles[] = '.erdu-header .erdu-nav-link { color: #ffffff !important; }';
-                $styles[] = '.erdu-header .erdu-nav-link:hover, .erdu-header .erdu-nav-link.active { color: ' . esc_attr($hover) . ' !important; }';
+                $styles[] = '.erdu-header { background-color: transparent; border-bottom-color: transparent; }';
+                $styles[] = '.erdu-header .erdu-nav-link { color: #ffffff; }';
+                $styles[] = '.erdu-header .erdu-nav-link:hover, .erdu-header .erdu-nav-link.active { color: ' . esc_attr($hover) . '; }';
             }
 
             echo '<style id="erdu-header-dynamic-css">' . implode("\n", $styles) . '</style>';

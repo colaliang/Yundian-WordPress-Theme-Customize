@@ -37,15 +37,15 @@ if (!empty($gtm_id) && erdu_module_enabled('analytics')) : ?>
 <?php endif; ?>
 
 <!-- Header -->
-<header class="erdu-header sticky top-0 z-50 bg-white shadow-sm">
+<header class="erdu-header">
     <?php do_action('erdu_above_header'); ?>
-    
+
     <div class="erdu-container">
-        <div class="flex items-center justify-between h-16">
+        <div class="flex items-center justify-between">
             <?php do_action('erdu_primary_header'); ?>
         </div>
     </div>
-    
+
     <?php do_action('erdu_below_header'); ?>
     <?php do_action('erdu_after_header'); ?>
 </header>
