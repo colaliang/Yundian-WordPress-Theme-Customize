@@ -32,6 +32,12 @@ require_once ERDU_DIR . '/inc/template-functions.php';
 require_once ERDU_DIR . '/inc/admin-dashboard.php';
 
 /**
+ * Load Header Builder
+ */
+require_once ERDU_DIR . '/inc/builder/class-erdu-builder-header.php';
+Erdu_Builder_Header::get_instance();
+
+/**
  * Theme Setup
  */
 add_action('after_setup_theme', 'erdu_theme_setup');
@@ -675,7 +681,6 @@ function erdu_get_page_acf_defaults($slug)
         ),
         'home_products_title' => 'Our Product Series',
         'home_products_desc'  => 'Professional LED lighting for commercial, residential and industrial applications',
-        'home_products_source' => 'cpt',
         'home_products_count'  => 4,
         'home_apps_title' => 'Applications',
         'home_apps_desc'  => 'Tailored lighting solutions for every space',
@@ -738,7 +743,7 @@ function erdu_get_page_acf_defaults($slug)
                 'cases'       => array('cases_hero_title', 'cases_hero_subtitle', 'cases_hero_bg', 'cases_hero_btn', 'cases_hero_btn_link', 'cases_hero_btn2', 'cases_hero_btn2_link', 'cases_page_editor', 'cases_intro', 'cases_source', 'cases_count', 'cases_list', 'cases_industries', 'cases_cta_override', 'cases_cta_title', 'cases_cta_button', 'cases_cta_link', 'cases_cta_button2', 'cases_cta_link2'),
                 'news'        => array('news_hero_title', 'news_hero_subtitle', 'news_hero_bg', 'news_hero_btn', 'news_hero_btn_link', 'news_hero_btn2', 'news_hero_btn2_link', 'news_page_editor', 'news_intro', 'news_count', 'news_expo_source', 'news_expo_count', 'news_exhibitions', 'news_tab_news_label', 'news_tab_expo_label', 'news_empty_title', 'news_empty_text', 'news_cta_override', 'news_cta_title', 'news_cta_button', 'news_cta_link', 'news_cta_button2', 'news_cta_link2'),
                 'blog'        => array('blog_hero_title', 'blog_hero_subtitle', 'blog_hero_bg', 'blog_hero_btn', 'blog_hero_btn_link', 'blog_hero_btn2', 'blog_hero_btn2_link', 'blog_page_editor', 'blog_intro', 'blog_count', 'blog_show_categories', 'blog_show_excerpt', 'blog_show_date', 'blog_show_author', 'blog_show_readmore', 'blog_featured_show', 'blog_featured_title', 'blog_featured_count', 'blog_cta_override', 'blog_cta_title', 'blog_cta_button', 'blog_cta_link', 'blog_cta_button2', 'blog_cta_link2'),
-                'home'        => array('home_hero_title', 'home_hero_subtitle', 'home_hero_bg', 'home_hero_btn', 'home_hero_btn_link', 'home_hero_btn2', 'home_hero_btn2_link', 'home_hero_video_enabled', 'home_hero_video', 'home_hero_video_poster', 'home_stats', 'home_about_title', 'home_about_highlight', 'home_about_info', 'home_products_title', 'home_products_desc', 'home_products_source', 'home_products_count', 'home_apps_title', 'home_apps_desc', 'home_apps', 'home_cta_title', 'home_cta_btn', 'home_cta_btn2', 'home_testi_title', 'home_testi_desc', 'home_testimonials', 'home_expo_title', 'home_expo_desc', 'home_expo_source', 'home_expo_count', 'home_expo_custom', 'home_partners_title', 'home_partners', 'home_faq_title', 'home_faq_items', 'home_news_title', 'home_news_placeholder', 'home_news_button'),
+                'home'        => array('home_hero_title', 'home_hero_subtitle', 'home_hero_bg', 'home_hero_btn', 'home_hero_btn_link', 'home_hero_btn2', 'home_hero_btn2_link', 'home_hero_video_enabled', 'home_hero_video', 'home_hero_video_poster', 'home_stats', 'home_about_title', 'home_about_highlight', 'home_about_info', 'home_products_title', 'home_products_desc', 'home_products_count', 'home_apps_title', 'home_apps_desc', 'home_apps', 'home_cta_title', 'home_cta_btn', 'home_cta_btn2', 'home_testi_title', 'home_testi_desc', 'home_testimonials', 'home_expo_title', 'home_expo_desc', 'home_expo_source', 'home_expo_count', 'home_expo_custom', 'home_partners_title', 'home_partners', 'home_faq_title', 'home_faq_items', 'home_news_title', 'home_news_placeholder', 'home_news_button'),
             );
             $page_fields = isset($slug_map[$slug]) ? $slug_map[$slug] : array();
             if (in_array($field_name, $page_fields, true)) {

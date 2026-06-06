@@ -38,113 +38,16 @@ if (!empty($gtm_id) && erdu_module_enabled('analytics')) : ?>
 
 <!-- Header -->
 <header class="erdu-header sticky top-0 z-50 bg-white shadow-sm">
+    <?php do_action('erdu_above_header'); ?>
+    
     <div class="erdu-container">
         <div class="flex items-center justify-between h-16">
-            <!-- Logo -->
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-2">
-                <?php if (has_custom_logo()) : ?>
-                    <?php the_custom_logo(); ?>
-                <?php else : ?>
-                    <div class="w-8 h-8 rounded-sm flex items-center justify-center" style="background-color: #F37021;">
-                        <span class="text-white font-bold text-sm">E</span>
-                    </div>
-                    <span class="text-xl font-bold" style="color: #333;">ERDU</span>
-                    <span class="hidden sm:inline text-xs text-gray-500 ml-1">LIGHTING</span>
-                <?php endif; ?>
-            </a>
-
-            <!-- Desktop Navigation - WordPress Menu -->
-            <nav class="hidden lg:flex items-center gap-1" id="erdu-desktop-nav">
-                <?php
-                if (has_nav_menu('primary')) {
-                    wp_nav_menu(array(
-                        'theme_location'  => 'primary',
-                        'container'       => false,
-                        'items_wrap'      => '%3$s',
-                        'depth'           => 1,
-                        'walker'          => new ERDU_Walker_Nav_Menu(),
-                        'fallback_cb'     => false,
-                    ));
-                } else {
-                    // Fallback: display links to theme pages
-                    $fallback_items = array(
-                        array('label' => __('Home', 'erdu-wp'), 'url' => home_url('/')),
-                        array('label' => __('About Us', 'erdu-wp'), 'url' => erdu_get_page_url('about')),
-                        array('label' => __('Products', 'erdu-wp'), 'url' => erdu_get_page_url('products')),
-                        array('label' => __('Solutions', 'erdu-wp'), 'url' => erdu_get_page_url('solutions')),
-                        array('label' => __('Quality', 'erdu-wp'), 'url' => erdu_get_page_url('quality')),
-                        array('label' => __('Distributor', 'erdu-wp'), 'url' => erdu_get_page_url('distributor')),
-                        array('label' => __('Case Studies', 'erdu-wp'), 'url' => erdu_get_page_url('cases')),
-                        array('label' => __('News', 'erdu-wp'), 'url' => erdu_get_page_url('news')),
-                        array('label' => __('Blog', 'erdu-wp'), 'url' => erdu_get_page_url('blog')),
-                        array('label' => __('Contact', 'erdu-wp'), 'url' => erdu_get_page_url('contact')),
-                    );
-                    foreach ($fallback_items as $item) {
-                        $is_active = erdu_is_current_page($item['url']);
-                        printf(
-                            '<a href="%s" class="erdu-nav-link %s">%s</a>',
-                            esc_url($item['url']),
-                            $is_active ? 'active' : '',
-                            esc_html($item['label'])
-                        );
-                    }
-                }
-                ?>
-            </nav>
-
-            <!-- Language Switcher + Mobile Toggle -->
-            <div class="flex items-center gap-3">
-                <span class="hidden md:inline text-xs text-gray-400">EN / CN</span>
-                <button class="lg:hidden p-2 rounded-md hover:bg-gray-100 erdu-mobile-toggle"
-                        onclick="document.getElementById('mobile-menu').classList.toggle('active')"
-                        aria-label="<?php _e('Toggle menu', 'erdu-wp'); ?>">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
+            <?php do_action('erdu_primary_header'); ?>
         </div>
     </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="erdu-mobile-menu lg:hidden bg-white border-t border-gray-100">
-        <div class="erdu-container py-3 space-y-1">
-            <?php
-            if (has_nav_menu('primary')) {
-                wp_nav_menu(array(
-                    'theme_location'  => 'primary',
-                    'container'       => false,
-                    'items_wrap'      => '%3$s',
-                    'depth'           => 1,
-                    'walker'          => new ERDU_Walker_Mobile_Menu(),
-                    'fallback_cb'     => false,
-                ));
-            } else {
-                $fallback_items = array(
-                    array('label' => __('Home', 'erdu-wp'), 'url' => home_url('/')),
-                    array('label' => __('About Us', 'erdu-wp'), 'url' => erdu_get_page_url('about')),
-                    array('label' => __('Products', 'erdu-wp'), 'url' => erdu_get_page_url('products')),
-                    array('label' => __('Solutions', 'erdu-wp'), 'url' => erdu_get_page_url('solutions')),
-                    array('label' => __('Quality', 'erdu-wp'), 'url' => erdu_get_page_url('quality')),
-                    array('label' => __('Distributor', 'erdu-wp'), 'url' => erdu_get_page_url('distributor')),
-                    array('label' => __('Case Studies', 'erdu-wp'), 'url' => erdu_get_page_url('cases')),
-                    array('label' => __('News', 'erdu-wp'), 'url' => erdu_get_page_url('news')),
-                    array('label' => __('Contact', 'erdu-wp'), 'url' => erdu_get_page_url('contact')),
-                );
-                foreach ($fallback_items as $item) {
-                    $is_active = erdu_is_current_page($item['url']);
-                    $class = $is_active ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-50';
-                    printf(
-                        '<a href="%s" class="block px-3 py-2 text-sm font-medium rounded-md %s">%s</a>',
-                        esc_url($item['url']),
-                        esc_attr($class),
-                        esc_html($item['label'])
-                    );
-                }
-            }
-            ?>
-        </div>
-    </div>
+    
+    <?php do_action('erdu_below_header'); ?>
+    <?php do_action('erdu_after_header'); ?>
 </header>
 
 <main id="primary" class="site-main">
