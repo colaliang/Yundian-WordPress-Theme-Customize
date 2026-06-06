@@ -42,9 +42,10 @@ function erdu_enqueue_assets()
         'nonce'    => wp_create_nonce('erdu_nonce'),
         'home_url' => home_url('/'),
         'settings' => $theme_settings,
-        'customize' => array(
-            'primary_color' => get_theme_mod('erdu_primary_color', '#F37021'),
-            'primary_dark'  => get_theme_mod('erdu_primary_dark', '#D45A0F'),
+        'colors'   => array(
+            'primary_color' => get_field('erdu_primary_color', 'option') ?: '#F37021',
+            'primary_dark'  => get_field('erdu_primary_hover', 'option') ?: '#E05D10',
+            'secondary'     => get_field('erdu_secondary_color', 'option') ?: '#2D1810',
         ),
         'strings'  => array(
             'required' => __('This field is required', 'erdu-wp'),

@@ -136,35 +136,41 @@ if (have_posts()) :
         </section>
         <?php endif; ?>
 
-        <!-- Tabs -->
-        <section class="py-16 bg-gray-50">
+        <!-- News Section -->
+        <section class="py-12 bg-white">
             <div class="erdu-container">
-                <!-- Tab Navigation -->
-                <div class="flex gap-1 mb-8">
-                    <a href="?tab=news" class="px-6 py-3 rounded-lg font-medium text-sm border transition-all <?php echo $active_tab === 'news' ? 'text-white border-orange-500 erdu-bg-primary' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300'; ?>"><?php echo esc_html($tab_news_label); ?></a>
-                    <a href="?tab=exhibitions" class="px-6 py-3 rounded-lg font-medium text-sm border transition-all <?php echo $active_tab === 'exhibitions' ? 'text-white border-orange-500 erdu-bg-primary' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300'; ?>"><?php echo esc_html($tab_expo_label); ?></a>
+                <!-- Category Filter -->
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <a href="?tab=news" class="px-4 py-2 rounded-full text-sm font-medium transition-colors <?php echo $active_tab === 'news' ? 'bg-[#F37021] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'; ?>"><?php echo esc_html($tab_news_label); ?></a>
+                    <a href="?tab=exhibitions" class="px-4 py-2 rounded-full text-sm font-medium transition-colors <?php echo $active_tab === 'exhibitions' ? 'bg-[#F37021] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'; ?>"><?php echo esc_html($tab_expo_label); ?></a>
                 </div>
 
                 <?php if ($active_tab === 'news') : ?>
                     <!-- News Articles from CPT -->
                     <?php if (!empty($news_articles)) : ?>
-                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                             <?php foreach ($news_articles as $article) : ?>
-                                <a href="<?php echo esc_url($article['link']); ?>" class="block group">
-                                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow group-hover:shadow-xl">
-                                        <?php if (!empty($article['image'])) : ?>
-                                            <div class="h-48 overflow-hidden">
-                                                <img src="<?php echo esc_url($article['image']); ?>" alt="<?php echo esc_attr($article['title']); ?>" class="w-full h-full object-cover hover:scale-105 transition-transform">
-                                            </div>
-                                        <?php endif; ?>
-                                        <div class="p-5">
-                                            <p class="text-xs text-gray-400 mb-1"><?php echo esc_html($article['date']); ?></p>
-                                            <h3 class="font-semibold mb-2 text-gray-800"><?php echo esc_html($article['title']); ?></h3>
-                                            <?php if (!empty($article['excerpt'])) : ?><p class="text-sm text-gray-500 line-clamp-3"><?php echo esc_html($article['excerpt']); ?></p><?php endif; ?>
-                                            <span class="text-sm font-medium mt-3 inline-block erdu-text-primary"><?php _e('Read More', 'erdu-wp'); ?> &rarr;</span>
+                                <article class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
+                                    <?php if (!empty($article['image'])) : ?>
+                                        <a href="<?php echo esc_url($article['link']); ?>" class="block">
+                                            <img src="<?php echo esc_url($article['image']); ?>" alt="<?php echo esc_attr($article['title']); ?>" class="w-full h-48 object-cover hover:scale-105 transition-transform">
+                                        </a>
+                                    <?php endif; ?>
+                                    <div class="p-4">
+                                        <div class="flex items-center gap-3 text-xs text-gray-400 mb-2">
+                                            <span class="flex items-center gap-1">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                                <?php echo esc_html($article['date']); ?>
+                                            </span>
                                         </div>
+                                        <h3 class="font-semibold text-[#333] mb-2 line-clamp-2"><a href="<?php echo esc_url($article['link']); ?>" class="hover:text-[#F37021] transition-colors"><?php echo esc_html($article['title']); ?></a></h3>
+                                        <?php if (!empty($article['excerpt'])) : ?><p class="text-sm text-gray-500 mb-3 line-clamp-2"><?php echo esc_html($article['excerpt']); ?></p><?php endif; ?>
+                                        <a href="<?php echo esc_url($article['link']); ?>" class="text-sm text-[#F37021] font-medium hover:underline inline-flex items-center gap-1">
+                                            <?php _e('Read More', 'erdu-wp'); ?>
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        </a>
                                     </div>
-                                </a>
+                                </article>
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>

@@ -94,14 +94,29 @@ if (have_posts()) :
                         $thumb_url = 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600';
                     }
 
+                    // Build meta array: location · area · year
+                    $meta = array();
+                    $location = get_post_meta($case_id, 'case_location', true);
+                    $area     = get_post_meta($case_id, 'case_area', true);
+                    $year     = get_post_meta($case_id, 'case_year', true);
+                    if ($location) $meta[] = $location;
+                    if ($area)     $meta[] = $area;
+                    if ($year)     $meta[] = $year;
+
+                    // Tags
+                    $tags = get_post_meta($case_id, 'case_tags', true);
+                    if (!is_array($tags)) $tags = array();
+
                     $cases[] = array(
-                        'title'       => get_the_title(),
-                        'industry'    => !empty($industry_slugs) ? $industry_slugs[0] : '',
+                        'title'          => get_the_title(),
+                        'industry'       => !empty($industry_slugs) ? $industry_slugs[0] : '',
                         'industry_label' => !empty($industry_names) ? $industry_names[0] : '',
-                        'image'       => $thumb_url,
-                        'description' => get_the_excerpt(),
-                        'link'        => get_permalink(),
-                        'is_cpt'      => true,
+                        'image'          => get_post_meta($case_id, 'case_image_url', true) ?: $thumb_url,
+                        'description'    => get_the_excerpt(),
+                        'link'           => get_permalink(),
+                        'meta'           => $meta,
+                        'tags'           => $tags,
+                        'is_cpt'         => true,
                     );
                 }
                 wp_reset_postdata();
@@ -121,28 +136,37 @@ if (have_posts()) :
 
                 $ind_label = (!empty($c['industry']) && isset($industries[$c['industry']])) ? $industries[$c['industry']] : (isset($c['industry']) ? $c['industry'] : '');
 
+                $meta = array();
+                if (!empty($c['location'])) $meta[] = $c['location'];
+                if (!empty($c['area']))     $meta[] = $c['area'];
+                if (!empty($c['year']))     $meta[] = $c['year'];
+
+                $tags = !empty($c['tags']) && is_array($c['tags']) ? $c['tags'] : array();
+
                 $cases[] = array(
-                    'title'       => $c['title'],
-                    'industry'    => isset($c['industry']) ? $c['industry'] : '',
+                    'title'          => $c['title'],
+                    'industry'       => isset($c['industry']) ? $c['industry'] : '',
                     'industry_label' => $ind_label,
-                    'image'       => !empty($c['image']) ? $c['image'] : 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600',
-                    'description' => isset($c['description']) ? $c['description'] : '',
-                    'link'        => !empty($c['link']) ? $c['link'] : '',
-                    'is_cpt'      => false,
+                    'image'          => !empty($c['image']) ? $c['image'] : 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600',
+                    'description'    => isset($c['description']) ? $c['description'] : '',
+                    'link'           => !empty($c['link']) ? $c['link'] : '',
+                    'meta'           => $meta,
+                    'tags'           => $tags,
+                    'is_cpt'         => false,
                 );
                 $count++;
             }
         }
 
-        // If no cases found, use fallback demo data
+        // If no cases found, use fallback demo data matching the reference design
         if (empty($cases)) {
             $fallback_cases = array(
-                array('title' => __('Luxury Hotel Lobby Renovation', 'erdu-wp'), 'industry' => 'hospitality', 'industry_label' => 'Hospitality', 'image' => 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600', 'description' => __('Complete lighting overhaul for a 5-star hotel lobby using ERDU magnetic track system.', 'erdu-wp'), 'link' => ''),
-                array('title' => __('Flagship Retail Store Lighting', 'erdu-wp'), 'industry' => 'retail', 'industry_label' => 'Retail', 'image' => 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600', 'description' => __('Custom lighting design for a premium retail brand\'s flagship location.', 'erdu-wp'), 'link' => ''),
-                array('title' => __('Tech Company HQ Lighting', 'erdu-wp'), 'industry' => 'office', 'industry_label' => 'Office', 'image' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600', 'description' => __('Smart lighting integration for a modern tech headquarters.', 'erdu-wp'), 'link' => ''),
-                array('title' => __('Modern Villa Lighting Design', 'erdu-wp'), 'industry' => 'residential', 'industry_label' => 'Residential', 'image' => 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600', 'description' => __('Bespoke lighting solution for a luxury residential villa project.', 'erdu-wp'), 'link' => ''),
-                array('title' => __('Shopping Mall Lighting Upgrade', 'erdu-wp'), 'industry' => 'commercial', 'industry_label' => 'Commercial', 'image' => 'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=600', 'description' => __('Energy-efficient LED retrofit for a large commercial shopping complex.', 'erdu-wp'), 'link' => ''),
-                array('title' => __('Boutique Hotel Rooms', 'erdu-wp'), 'industry' => 'hospitality', 'industry_label' => 'Hospitality', 'image' => 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600', 'description' => __('Ambient lighting design for boutique hotel guest rooms.', 'erdu-wp'), 'link' => ''),
+                array('title' => 'Luxury Boutique', 'industry' => 'retail', 'industry_label' => 'Retail & Commercial', 'image' => 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600', 'description' => '68% energy reduction, zero heat emission near merchandise, and customers reported the store felt more luxurious and inviting.', 'link' => '', 'meta' => array('Shanghai, China', '150m²', '2024'), 'tags' => array('48V Magnetic Track', '48V Magnetic Track')),
+                array('title' => 'Modern Hotel Lobby', 'industry' => 'hospitality', 'industry_label' => 'Hospitality', 'image' => 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600', 'description' => '50% energy savings, guest satisfaction scores for \'lobby ambiance\' increased from 7.2 to 9.1, and the installation was completed in 5 days.', 'link' => '', 'meta' => array('Dubai, UAE', '800m²', '2023'), 'tags' => array('Magnetic Pendant Light', 'Magnetic Flood Light')),
+                array('title' => 'Creative Office', 'industry' => 'office', 'industry_label' => 'Office & Public', 'image' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600', 'description' => 'UGR<19 achieved across all work areas, 45% energy reduction, and the company received a Green Building certification.', 'link' => '', 'meta' => array('Singapore', '600m²', '2024'), 'tags' => array('Linear Magnetic Light', 'Spotlight SPT-01')),
+                array('title' => 'Minimalist Living', 'industry' => 'residential', 'industry_label' => 'Residential', 'image' => 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600', 'description' => 'Achieved the desired minimalist aesthetic with full lighting flexibility. The homeowner has reconfigured the layout 4 times since installation.', 'link' => '', 'meta' => array('Melbourne, Australia', '120m²', '2024'), 'tags' => array('48V Magnetic Track', 'Folding Light EMF-02')),
+                array('title' => 'Art Gallery', 'industry' => 'retail', 'industry_label' => 'Retail & Commercial', 'image' => 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600', 'description' => 'CRI95+ across all fixtures, zero UV emission (art-safe), and the gallery reported a 30% increase in visitor dwell time.', 'link' => '', 'meta' => array('Paris, France', '400m²', '2023'), 'tags' => array('48V Magnetic Track', 'Magnetic Track (2m)')),
+                array('title' => 'Industrial Warehouse', 'industry' => 'office', 'industry_label' => 'Office & Public', 'image' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600', 'description' => '62.5% energy reduction, improved color recognition for quality control, and maintenance costs dropped by 70%.', 'link' => '', 'meta' => array('Sao Paulo, Brazil', '2000m²', '2023'), 'tags' => array('High Watt Magnetic', 'High Bay Light')),
             );
             foreach ($fallback_cases as $fc) {
                 if (!empty($industry) && $fc['industry'] !== $industry) continue;
@@ -191,34 +215,49 @@ if (have_posts()) :
                 <!-- Industry Filters -->
                 <div class="flex flex-wrap gap-2 mb-8">
                     <?php foreach ($industries as $key => $label) : ?>
-                        <a href="<?php echo $key ? add_query_arg('industry', $key) : remove_query_arg('industry'); ?>" class="px-4 py-2 text-sm rounded-full border transition-all <?php echo $industry === $key ? 'text-white border-orange-500 erdu-bg-primary' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300'; ?>"><?php echo esc_html($label); ?></a>
+                        <a href="<?php echo $key ? add_query_arg('industry', $key) : remove_query_arg('industry'); ?>" class="px-4 py-2 rounded-full text-sm font-medium transition-colors <?php echo $industry === $key ? 'bg-[#F37021] text-white' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-100'; ?>"><?php echo esc_html($label); ?></a>
                     <?php endforeach; ?>
                 </div>
 
-                <!-- Source indicator (for admin/debug) -->
-                <?php if (current_user_can('manage_options') && defined('WP_DEBUG') && WP_DEBUG) : ?>
-                    <div class="mb-4 text-xs text-gray-400"><?php printf(__('Source: %s', 'erdu-wp'), esc_html($cases_source === 'cpt' ? 'Case Studies CPT' : 'Manual (ACF)')); ?></div>
-                <?php endif; ?>
-
                 <!-- Cases Grid -->
                 <?php if (!empty($cases)) : ?>
-                    <div class="grid md:grid-cols-3 gap-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                         <?php foreach ($cases as $case) :
                             $case_link = !empty($case['link']) ? $case['link'] : '';
                         ?>
-                            <?php if ($case_link) : ?><a href="<?php echo esc_url($case_link); ?>" class="block group"><?php endif; ?>
-                            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow<?php echo $case_link ? ' group-hover:shadow-xl' : ''; ?>">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="<?php echo esc_url(!empty($case['image']) ? $case['image'] : 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600'); ?>" alt="<?php echo esc_attr($case['title']); ?>" class="w-full h-full object-cover hover:scale-105 transition-transform">
+                            <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow group cursor-pointer">
+                                <div class="relative h-52 overflow-hidden">
+                                    <img src="<?php echo esc_url(!empty($case['image']) ? $case['image'] : 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600'); ?>" alt="<?php echo esc_attr($case['title']); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                                    <?php if (!empty($case['industry_label'])) : ?>
+                                        <span class="absolute top-3 left-3 px-3 py-1 bg-[#F37021] text-white text-xs rounded-full"><?php echo esc_html($case['industry_label']); ?></span>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="p-5">
-                                    <?php if (!empty($case['industry_label'])) : ?><span class="text-xs px-2 py-1 rounded-full bg-orange-50 erdu-text-primary"><?php echo esc_html($case['industry_label']); ?></span><?php endif; ?>
-                                    <h3 class="font-semibold mt-2 mb-1 text-gray-800"><?php echo esc_html($case['title']); ?></h3>
-                                    <?php if (!empty($case['description'])) : ?><p class="text-sm text-gray-500 mb-2"><?php echo esc_html($case['description']); ?></p><?php endif; ?>
-                                    <?php if ($case_link) : ?><span class="text-sm font-medium erdu-text-primary"><?php _e('View Case', 'erdu-wp'); ?> &rarr;</span><?php endif; ?>
+                                    <?php if (!empty($case['meta'])) : ?>
+                                        <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                                            <?php foreach ($case['meta'] as $idx => $meta_item) : ?>
+                                                <?php if ($idx > 0) : ?><span>·</span><?php endif; ?>
+                                                <span><?php echo esc_html($meta_item); ?></span>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <h3 class="font-semibold text-[#333] text-lg mb-2"><?php echo esc_html($case['title']); ?></h3>
+                                    <?php if (!empty($case['description'])) : ?><p class="text-sm text-gray-500 mb-3"><?php echo esc_html($case['description']); ?></p><?php endif; ?>
+                                    <?php if (!empty($case['tags'])) : ?>
+                                        <div class="flex flex-wrap gap-1 mb-3">
+                                            <?php foreach ($case['tags'] as $tag) : ?>
+                                                <span class="px-2 py-0.5 bg-orange-50 text-[#F37021] text-xs rounded"><?php echo esc_html($tag); ?></span>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php if ($case_link) : ?>
+                                        <a href="<?php echo esc_url($case_link); ?>" class="text-sm text-[#F37021] font-medium inline-flex items-center gap-1 hover:underline">
+                                            <?php _e('View Case Study', 'erdu-wp'); ?>
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                            <?php if ($case_link) : ?></a><?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 <?php else : ?>

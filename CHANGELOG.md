@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-06-06
+
+### Added
+- **Header Settings ACF Options Page**: Created dedicated Header Settings page under ERDU Dashboard
+  - Layout options: Default / Centered Logo / Split Menu, width, height, sticky, transparent hero
+  - Element visibility toggles: search, language switcher, phone, email, address, CTA, social icons
+  - Mega Menu builder with custom blocks (Links, Product Categories, Image Card, Custom HTML)
+  - Top Bar with customizable content, background/text colors
+  - Contact Info, CTA Button, Social Links, and Appearance tabs
+  - New Header components: Search, Language Switcher, Contact Info, Social Icons, Top Bar, Mega Menu, CTA
+- **Reference Page Style Sync**: Updated multiple page templates to match reference design
+  - Contact page: 1:2 grid layout, compact info cards, product select options
+  - News page: pill-style category filters, article cards with calendar icons
+  - Case Studies page: category overlay badges, meta separators, orange tags, arrow links
+  - Distributor page: full redesign with benefits grid, success stories, application steps, requirements/types/regions, updated form
+  - Quality page: 5-step horizontal process, testing equipment, certifications, parameters table, supply chain partners
+- **Initial Demo Data**: Updated sample Case Studies with reference-page data written on theme activation
+
+### Changed
+- **Admin Dashboard Cleanup**: Removed standalone Page Management page; Pages now managed via native WordPress `Pages` menu
+  - Removed Pages entry from Dashboard submenu and Quick Settings
+  - Removed `erdu_pages_page()` and related admin CSS
+- **Theme Settings Consolidation**: Removed Colors entry from Customizer/Quick Settings; colors unified under ACF Theme Colors
+- **Contact Form Localization**: Updated product dropdown options to match reference site
+- **Distributor Form**: Replaced legacy fields with reference-page fields (business type, city, revenue, target market, first order)
+- Bumped theme version to `1.2.0`
+
+### Fixed
+- Theme Settings link in Quick Settings now correctly links to Theme Colors ACF page
+
 ## [1.1.0] - 2026-06-06
 
 ### Added
@@ -47,6 +77,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Responsive design with mobile menu
 - Multi-language support structure (EN/CN)
 
-[Unreleased]: https://github.com/colaliang/Yundian-WordPress-Theme-Customize/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/colaliang/Yundian-WordPress-Theme-Customize/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/colaliang/Yundian-WordPress-Theme-Customize/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/colaliang/Yundian-WordPress-Theme-Customize/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/colaliang/Yundian-WordPress-Theme-Customize/releases/tag/v1.0.0

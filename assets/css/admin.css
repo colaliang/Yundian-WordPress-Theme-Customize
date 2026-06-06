@@ -377,26 +377,6 @@
     margin-right: 8px;
 }
 
-/* ===== Pages Table ===== */
-.erdu-pages-table {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-
-.erdu-pages-table th {
-    background: #f6f7f7;
-    font-weight: 600;
-    font-size: 13px;
-    padding: 14px 16px;
-}
-
-.erdu-pages-table td {
-    padding: 14px 16px;
-    font-size: 13px;
-}
-
 .erdu-status-badge {
     display: inline-block;
     padding: 3px 10px;

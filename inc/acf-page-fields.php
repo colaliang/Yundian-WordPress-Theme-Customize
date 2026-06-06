@@ -1126,3 +1126,204 @@ function erdu_register_footer_acf_fields()
         'style'    => 'default',
     ));
 }
+
+// ==========================================
+// Header Options Page
+// ==========================================
+
+/**
+ * Read a Header ACF option field with fallback default.
+ *
+ * @param string $field_name ACF field name.
+ * @param mixed  $default    Fallback value if field is empty.
+ * @return mixed
+ */
+function erdu_header_field($field_name, $default = '')
+{
+    if (function_exists('get_field')) {
+        $value = get_field($field_name, 'option');
+        if ($value !== null && $value !== '' && !(is_array($value) && empty($value))) {
+            return $value;
+        }
+    }
+    return $default;
+}
+
+add_action('acf/init', 'erdu_register_header_acf_fields');
+function erdu_register_header_acf_fields()
+{
+    if (!function_exists('acf_add_options_page') || !function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    // Register Options Page for Header
+    acf_add_options_page(array(
+        'page_title'  => __('Header Settings', 'erdu-wp'),
+        'menu_title'  => __('Header', 'erdu-wp'),
+        'menu_slug'   => 'erdu-header-settings',
+        'parent_slug' => 'erdu-dashboard',
+        'capability'  => 'manage_options',
+        'redirect'    => false,
+        'position'    => 4,
+    ));
+
+    // --- Header Field Group ---
+    acf_add_local_field_group(array(
+        'key'      => 'group_header',
+        'title'    => __('Header Settings', 'erdu-wp'),
+        'fields'   => array(
+
+            // ===== Layout Tab =====
+            array('key' => 'field_hd_tab_layout', 'label' => __('Layout', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_hd_layout', 'label' => __('Header Layout', 'erdu-wp'), 'name' => 'hd_layout', 'type' => 'radio',
+                'choices' => array(
+                    'default'   => __('Default (Logo + Menu + Actions)', 'erdu-wp'),
+                    'centered'  => __('Centered Logo', 'erdu-wp'),
+                    'split'     => __('Split Menu (Logo Center)', 'erdu-wp'),
+                ),
+                'default_value' => 'default', 'layout' => 'vertical'),
+            array('key' => 'field_hd_width', 'label' => __('Header Width', 'erdu-wp'), 'name' => 'hd_width', 'type' => 'radio',
+                'choices' => array('container' => __('Container', 'erdu-wp'), 'full' => __('Full Width', 'erdu-wp')),
+                'default_value' => 'container', 'layout' => 'horizontal'),
+            array('key' => 'field_hd_height', 'label' => __('Header Height (px)', 'erdu-wp'), 'name' => 'hd_height', 'type' => 'number',
+                'default_value' => 64, 'min' => 48, 'max' => 120),
+            array('key' => 'field_hd_sticky', 'label' => __('Sticky Header', 'erdu-wp'), 'name' => 'hd_sticky', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 1),
+            array('key' => 'field_hd_sticky_shadow', 'label' => __('Shadow on Sticky', 'erdu-wp'), 'name' => 'hd_sticky_shadow', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 1, 'conditional_logic' => array(array(array('field' => 'field_hd_sticky', 'operator' => '==', 'value' => '1')))),
+            array('key' => 'field_hd_transparent', 'label' => __('Transparent on Hero', 'erdu-wp'), 'name' => 'hd_transparent', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 0, 'instructions' => __('Make header transparent on homepage hero section.', 'erdu-wp')),
+
+            // ===== Elements Visibility Tab =====
+            array('key' => 'field_hd_tab_elements', 'label' => __('Elements', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_hd_show_search', 'label' => __('Show Search', 'erdu-wp'), 'name' => 'hd_show_search', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 1),
+            array('key' => 'field_hd_show_lang', 'label' => __('Show Language Switcher', 'erdu-wp'), 'name' => 'hd_show_lang', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 1),
+            array('key' => 'field_hd_show_phone', 'label' => __('Show Phone', 'erdu-wp'), 'name' => 'hd_show_phone', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 0),
+            array('key' => 'field_hd_show_email', 'label' => __('Show Email', 'erdu-wp'), 'name' => 'hd_show_email', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 0),
+            array('key' => 'field_hd_show_address', 'label' => __('Show Address', 'erdu-wp'), 'name' => 'hd_show_address', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 0),
+            array('key' => 'field_hd_show_cta', 'label' => __('Show CTA Button', 'erdu-wp'), 'name' => 'hd_show_cta', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 1),
+            array('key' => 'field_hd_show_social', 'label' => __('Show Social Icons', 'erdu-wp'), 'name' => 'hd_show_social', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 0),
+
+            // ===== Contact Info Tab =====
+            array('key' => 'field_hd_tab_contact', 'label' => __('Contact Info', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_hd_phone', 'label' => __('Phone Number', 'erdu-wp'), 'name' => 'hd_phone', 'type' => 'text',
+                'default_value' => '+86-760-22380830'),
+            array('key' => 'field_hd_email', 'label' => __('Email', 'erdu-wp'), 'name' => 'hd_email', 'type' => 'email',
+                'default_value' => 'gg@erduled.com'),
+            array('key' => 'field_hd_address', 'label' => __('Address', 'erdu-wp'), 'name' => 'hd_address', 'type' => 'textarea', 'rows' => 2,
+                'default_value' => '6th Floor, JinYe Building, Tongyi Industrial District, Guzhen, Zhongshan, Guangdong, China'),
+            array('key' => 'field_hd_hours', 'label' => __('Business Hours', 'erdu-wp'), 'name' => 'hd_hours', 'type' => 'text',
+                'default_value' => 'Mon-Fri 9:00-18:00 CST'),
+
+            // ===== CTA Button Tab =====
+            array('key' => 'field_hd_tab_cta', 'label' => __('CTA Button', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_hd_cta_text', 'label' => __('Button Text', 'erdu-wp'), 'name' => 'hd_cta_text', 'type' => 'text',
+                'default_value' => 'Get a Quote'),
+            array('key' => 'field_hd_cta_link', 'label' => __('Button Link', 'erdu-wp'), 'name' => 'hd_cta_link', 'type' => 'page_link',
+                'allow_null' => 1),
+            array('key' => 'field_hd_cta_style', 'label' => __('Button Style', 'erdu-wp'), 'name' => 'hd_cta_style', 'type' => 'radio',
+                'choices' => array('primary' => __('Primary', 'erdu-wp'), 'outline' => __('Outline', 'erdu-wp'), 'ghost' => __('Ghost', 'erdu-wp')),
+                'default_value' => 'primary', 'layout' => 'horizontal'),
+            array('key' => 'field_hd_cta_target', 'label' => __('Open in New Tab', 'erdu-wp'), 'name' => 'hd_cta_target', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 0),
+
+            // ===== Mega Menu Tab =====
+            array('key' => 'field_hd_tab_mega', 'label' => __('Mega Menu', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_hd_mega_enable', 'label' => __('Enable Mega Menu', 'erdu-wp'), 'name' => 'hd_mega_enable', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 0),
+            array('key' => 'field_hd_mega_trigger', 'label' => __('Trigger Menu Item', 'erdu-wp'), 'name' => 'hd_mega_trigger', 'type' => 'text',
+                'default_value' => 'Products', 'instructions' => __('Enter the exact menu item label that triggers the mega menu.', 'erdu-wp'),
+                'conditional_logic' => array(array(array('field' => 'field_hd_mega_enable', 'operator' => '==', 'value' => '1')))),
+            array('key' => 'field_hd_mega_columns', 'label' => __('Number of Columns', 'erdu-wp'), 'name' => 'hd_mega_columns', 'type' => 'select',
+                'choices' => array('2' => '2', '3' => '3', '4' => '4'),
+                'default_value' => '3',
+                'conditional_logic' => array(array(array('field' => 'field_hd_mega_enable', 'operator' => '==', 'value' => '1')))),
+            array('key' => 'field_hd_mega_blocks', 'label' => __('Mega Menu Blocks', 'erdu-wp'), 'name' => 'hd_mega_blocks', 'type' => 'repeater',
+                'button_label' => __('Add Block', 'erdu-wp'),
+                'conditional_logic' => array(array(array('field' => 'field_hd_mega_enable', 'operator' => '==', 'value' => '1'))),
+                'sub_fields' => array(
+                    array('key' => 'field_hd_mb_type', 'label' => __('Block Type', 'erdu-wp'), 'name' => 'type', 'type' => 'select',
+                        'choices' => array(
+                            'links'      => __('Links List', 'erdu-wp'),
+                            'products'   => __('Product Categories', 'erdu-wp'),
+                            'image'      => __('Image Card', 'erdu-wp'),
+                            'html'       => __('Custom HTML', 'erdu-wp'),
+                        ),
+                        'default_value' => 'links'),
+                    array('key' => 'field_hd_mb_title', 'label' => __('Block Title', 'erdu-wp'), 'name' => 'title', 'type' => 'text'),
+                    array('key' => 'field_hd_mb_links', 'label' => __('Links', 'erdu-wp'), 'name' => 'links', 'type' => 'repeater',
+                        'button_label' => __('Add Link', 'erdu-wp'),
+                        'conditional_logic' => array(array(array('field' => 'field_hd_mb_type', 'operator' => '==', 'value' => 'links'))),
+                        'sub_fields' => array(
+                            array('key' => 'field_hd_mbl_label', 'label' => __('Label', 'erdu-wp'), 'name' => 'label', 'type' => 'text', 'required' => 1),
+                            array('key' => 'field_hd_mbl_url', 'label' => __('URL', 'erdu-wp'), 'name' => 'url', 'type' => 'url', 'required' => 1),
+                            array('key' => 'field_hd_mbl_desc', 'label' => __('Description', 'erdu-wp'), 'name' => 'desc', 'type' => 'textarea', 'rows' => 2),
+                        )),
+                    array('key' => 'field_hd_mb_image', 'label' => __('Image', 'erdu-wp'), 'name' => 'image', 'type' => 'image',
+                        'return_format' => 'url', 'conditional_logic' => array(array(array('field' => 'field_hd_mb_type', 'operator' => '==', 'value' => 'image')))),
+                    array('key' => 'field_hd_mb_image_link', 'label' => __('Image Link', 'erdu-wp'), 'name' => 'image_link', 'type' => 'url',
+                        'conditional_logic' => array(array(array('field' => 'field_hd_mb_type', 'operator' => '==', 'value' => 'image')))),
+                    array('key' => 'field_hd_mb_html', 'label' => __('Custom HTML', 'erdu-wp'), 'name' => 'html', 'type' => 'textarea', 'rows' => 6,
+                        'conditional_logic' => array(array(array('field' => 'field_hd_mb_type', 'operator' => '==', 'value' => 'html')))),
+                )),
+
+            // ===== Top Bar Tab =====
+            array('key' => 'field_hd_tab_topbar', 'label' => __('Top Bar', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_hd_topbar_enable', 'label' => __('Enable Top Bar', 'erdu-wp'), 'name' => 'hd_topbar_enable', 'type' => 'true_false',
+                'ui' => 1, 'default_value' => 0),
+            array('key' => 'field_hd_topbar_left', 'label' => __('Left Content', 'erdu-wp'), 'name' => 'hd_topbar_left', 'type' => 'text',
+                'default_value' => '', 'instructions' => __('e.g. Welcome message or announcement.', 'erdu-wp'),
+                'conditional_logic' => array(array(array('field' => 'field_hd_topbar_enable', 'operator' => '==', 'value' => '1')))),
+            array('key' => 'field_hd_topbar_right', 'label' => __('Right Content', 'erdu-wp'), 'name' => 'hd_topbar_right', 'type' => 'text',
+                'default_value' => '', 'instructions' => __('e.g. Phone or email.', 'erdu-wp'),
+                'conditional_logic' => array(array(array('field' => 'field_hd_topbar_enable', 'operator' => '==', 'value' => '1')))),
+            array('key' => 'field_hd_topbar_bg', 'label' => __('Background Color', 'erdu-wp'), 'name' => 'hd_topbar_bg', 'type' => 'color_picker',
+                'default_value' => '#1a1a2e', 'conditional_logic' => array(array(array('field' => 'field_hd_topbar_enable', 'operator' => '==', 'value' => '1')))),
+            array('key' => 'field_hd_topbar_text', 'label' => __('Text Color', 'erdu-wp'), 'name' => 'hd_topbar_text', 'type' => 'color_picker',
+                'default_value' => '#ffffff', 'conditional_logic' => array(array(array('field' => 'field_hd_topbar_enable', 'operator' => '==', 'value' => '1')))),
+
+            // ===== Social Links Tab =====
+            array('key' => 'field_hd_tab_social', 'label' => __('Social Links', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_hd_social_links', 'label' => __('Social Links', 'erdu-wp'), 'name' => 'hd_social_links', 'type' => 'repeater',
+                'button_label' => __('Add Social Link', 'erdu-wp'),
+                'sub_fields' => array(
+                    array('key' => 'field_hd_sl_platform', 'label' => __('Platform', 'erdu-wp'), 'name' => 'platform', 'type' => 'select',
+                        'choices' => array(
+                            'facebook'  => 'Facebook',
+                            'linkedin'  => 'LinkedIn',
+                            'youtube'   => 'YouTube',
+                            'instagram' => 'Instagram',
+                            'twitter'   => 'Twitter / X',
+                            'whatsapp'  => 'WhatsApp',
+                            'wechat'    => 'WeChat',
+                            'tiktok'    => 'TikTok',
+                            'custom'    => __('Custom', 'erdu-wp'),
+                        )),
+                    array('key' => 'field_hd_sl_url', 'label' => __('URL', 'erdu-wp'), 'name' => 'url', 'type' => 'url', 'required' => 1),
+                    array('key' => 'field_hd_sl_label', 'label' => __('Label', 'erdu-wp'), 'name' => 'label', 'type' => 'text'),
+                )),
+
+            // ===== Appearance Tab =====
+            array('key' => 'field_hd_tab_appearance', 'label' => __('Appearance', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_hd_bg_color', 'label' => __('Header Background', 'erdu-wp'), 'name' => 'hd_bg_color', 'type' => 'color_picker',
+                'default_value' => '#ffffff'),
+            array('key' => 'field_hd_text_color', 'label' => __('Text Color', 'erdu-wp'), 'name' => 'hd_text_color', 'type' => 'color_picker',
+                'default_value' => '#333333'),
+            array('key' => 'field_hd_link_hover', 'label' => __('Link Hover Color', 'erdu-wp'), 'name' => 'hd_link_hover', 'type' => 'color_picker',
+                'default_value' => '#F37021'),
+            array('key' => 'field_hd_border_color', 'label' => __('Border/Bottom Color', 'erdu-wp'), 'name' => 'hd_border_color', 'type' => 'color_picker',
+                'default_value' => '#e5e7eb'),
+
+        ),
+        'location' => array(array(array('param' => 'options_page', 'operator' => '==', 'value' => 'erdu-header-settings'))),
+        'position' => 'normal',
+        'style'    => 'default',
+    ));
+}

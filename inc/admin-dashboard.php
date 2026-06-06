@@ -36,16 +36,6 @@ function erdu_admin_menu()
         'erdu_dashboard_page'
     );
 
-    // Pages submenu
-    add_submenu_page(
-        'erdu-dashboard',
-        __('Pages', 'erdu-wp'),
-        __('Pages', 'erdu-wp'),
-        'manage_options',
-        'erdu-pages',
-        'erdu_pages_page'
-    );
-
     // Customize link (external)
     add_submenu_page(
         'erdu-dashboard',
@@ -128,10 +118,6 @@ function erdu_dashboard_page()
         <!-- Stats Bar -->
         <div class="erdu-stats-bar">
             <div class="erdu-stat-item">
-                <span class="erdu-stat-number"><?php echo intval($page_count); ?></span>
-                <span class="erdu-stat-label"><?php _e('Pages', 'erdu-wp'); ?></span>
-            </div>
-            <div class="erdu-stat-item">
                 <span class="erdu-stat-number"><?php echo intval($product_count); ?></span>
                 <span class="erdu-stat-label"><?php _e('Products', 'erdu-wp'); ?></span>
             </div>
@@ -140,7 +126,7 @@ function erdu_dashboard_page()
                 <span class="erdu-stat-label"><?php _e('Case Studies', 'erdu-wp'); ?></span>
             </div>
             <div class="erdu-stat-item">
-                <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-pages')); ?>" class="erdu-btn-manage">
+                <a href="<?php echo esc_url(admin_url('edit.php?post_type=page')); ?>" class="erdu-btn-manage">
                     <?php _e('Manage Pages', 'erdu-wp'); ?>
                 </a>
             </div>
@@ -158,18 +144,18 @@ function erdu_dashboard_page()
                     <span class="erdu-setting-action"><?php _e('Customize', 'erdu-wp'); ?></span>
                 </div>
             </a>
-            <a href="<?php echo esc_url(admin_url('customize.php?autofocus[section]=erdu_colors_section')); ?>" class="erdu-setting-card">
-                <div class="erdu-setting-icon dashicons dashicons-art"></div>
-                <div class="erdu-setting-info">
-                    <h3><?php _e('Colors', 'erdu-wp'); ?></h3>
-                    <span class="erdu-setting-action"><?php _e('Customize', 'erdu-wp'); ?></span>
-                </div>
-            </a>
-            <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-dashboard')); ?>" class="erdu-setting-card">
+            <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-theme-colors')); ?>" class="erdu-setting-card">
                 <div class="erdu-setting-icon dashicons dashicons-admin-generic"></div>
                 <div class="erdu-setting-info">
                     <h3><?php _e('Theme Settings', 'erdu-wp'); ?></h3>
-                    <span class="erdu-setting-action"><?php _e('Dashboard', 'erdu-wp'); ?></span>
+                    <span class="erdu-setting-action"><?php _e('Theme Colors', 'erdu-wp'); ?></span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(admin_url('admin.php?page=erdu-header-settings')); ?>" class="erdu-setting-card">
+                <div class="erdu-setting-icon dashicons dashicons-menu-alt3"></div>
+                <div class="erdu-setting-info">
+                    <h3><?php _e('Header', 'erdu-wp'); ?></h3>
+                    <span class="erdu-setting-action"><?php _e('ACF Settings', 'erdu-wp'); ?></span>
                 </div>
             </a>
             <a href="<?php echo esc_url(admin_url('nav-menus.php')); ?>" class="erdu-setting-card">
@@ -184,13 +170,6 @@ function erdu_dashboard_page()
                 <div class="erdu-setting-info">
                     <h3><?php _e('Footer', 'erdu-wp'); ?></h3>
                     <span class="erdu-setting-action"><?php _e('ACF Settings', 'erdu-wp'); ?></span>
-                </div>
-            </a>
-            <a href="<?php echo esc_url(admin_url('edit.php?post_type=page')); ?>" class="erdu-setting-card">
-                <div class="erdu-setting-icon dashicons dashicons-admin-page"></div>
-                <div class="erdu-setting-info">
-                    <h3><?php _e('Pages', 'erdu-wp'); ?></h3>
-                    <span class="erdu-setting-action"><?php _e('Manage', 'erdu-wp'); ?></span>
                 </div>
             </a>
         </div>
@@ -277,75 +256,7 @@ function erdu_dashboard_page()
 }
 
 // ==========================================
-// 3. Pages Management Page
-// ==========================================
-
-function erdu_pages_page()
-{
-    $pages = array(
-        'home'        => array('title' => 'Home',               'template' => 'front-page.php',          'desc' => __('Homepage with hero, stats, products, and more', 'erdu-wp')),
-        'about'       => array('title' => 'About Us',           'template' => 'page-about.php',          'desc' => __('Company profile, timeline, values, factory', 'erdu-wp')),
-        'products'    => array('title' => 'Products',           'template' => 'page-products.php',       'desc' => __('Product catalog with filters and search', 'erdu-wp')),
-        'solutions'   => array('title' => 'Solutions',          'template' => 'page-solutions.php',      'desc' => __('Application solutions by industry', 'erdu-wp')),
-        'quality'     => array('title' => 'Quality First',      'template' => 'page-quality.php',        'desc' => __('Quality control process and certifications', 'erdu-wp')),
-        'distributor' => array('title' => 'Distributor Program','template' => 'page-distributor.php',    'desc' => __('Global distributor partnership application', 'erdu-wp')),
-        'cases'       => array('title' => 'Case Studies',       'template' => 'page-cases.php',          'desc' => __('Project case studies and portfolio', 'erdu-wp')),
-        'news'        => array('title' => 'News & Events',      'template' => 'page-news.php',           'desc' => __('News articles and exhibition info', 'erdu-wp')),
-        'contact'     => array('title' => 'Contact Us',         'template' => 'page-contact.php',        'desc' => __('Contact form and company information', 'erdu-wp')),
-    );
-    ?>
-    <div class="wrap erdu-dashboard">
-        <div class="erdu-dashboard-header">
-            <h1><?php _e('Page Management', 'erdu-wp'); ?></h1>
-        </div>
-
-        <table class="wp-list-table widefat fixed striped erdu-pages-table">
-            <thead>
-                <tr>
-                    <th class="column-title"><?php _e('Page', 'erdu-wp'); ?></th>
-                    <th><?php _e('Slug', 'erdu-wp'); ?></th>
-                    <th><?php _e('Template', 'erdu-wp'); ?></th>
-                    <th><?php _e('Description', 'erdu-wp'); ?></th>
-                    <th><?php _e('Status', 'erdu-wp'); ?></th>
-                    <th><?php _e('Actions', 'erdu-wp'); ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($pages as $slug => $page_data) :
-                    $page = erdu_get_page_by_slug($slug);
-                    $status_class = $page ? 'erdu-status-ok' : 'erdu-status-missing';
-                    $status_text  = $page ? __('Created', 'erdu-wp') : __('Not Created', 'erdu-wp');
-                ?>
-                    <tr>
-                        <td class="column-title">
-                            <strong><?php echo esc_html($page_data['title']); ?></strong>
-                        </td>
-                        <td><code><?php echo esc_html($slug); ?></code></td>
-                        <td><code><?php echo esc_html($page_data['template']); ?></code></td>
-                        <td><?php echo esc_html($page_data['desc']); ?></td>
-                        <td>
-                            <span class="erdu-status-badge <?php echo esc_attr($status_class); ?>">
-                                <?php echo esc_html($status_text); ?>
-                            </span>
-                        </td>
-                        <td>
-                            <?php if ($page) : ?>
-                                <a href="<?php echo esc_url(get_edit_post_link($page->ID)); ?>" class="button button-small"><?php _e('Edit', 'erdu-wp'); ?></a>
-                                <a href="<?php echo esc_url(get_permalink($page->ID)); ?>" target="_blank" class="button button-small"><?php _e('View', 'erdu-wp'); ?></a>
-                            <?php else : ?>
-                                <span class="erdu-text-muted"><?php _e('Will be created on theme activation', 'erdu-wp'); ?></span>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <?php
-}
-
-// ==========================================
-// 4. Settings Page
+// 3. Settings Page
 // ==========================================
 
 function erdu_settings_page()
@@ -353,9 +264,6 @@ function erdu_settings_page()
     // Save settings
     if (isset($_POST['erdu_save_settings']) && check_admin_referer('erdu_settings_nonce')) {
         $settings = array(
-            'primary_color'     => sanitize_hex_color(wp_unslash($_POST['erdu_primary_color'] ?? '#F37021')),
-            'primary_dark'      => sanitize_hex_color(wp_unslash($_POST['erdu_primary_dark'] ?? '#D45A0F')),
-            'footer_bg'         => sanitize_hex_color(wp_unslash($_POST['erdu_footer_bg'] ?? '#1a1a2e')),
             'header_sticky'     => isset($_POST['erdu_header_sticky']) ? true : false,
             'show_breadcrumb'   => isset($_POST['erdu_show_breadcrumb']) ? true : false,
             'show_cta'          => isset($_POST['erdu_show_cta']) ? true : false,
@@ -389,34 +297,6 @@ function erdu_settings_page()
 
         <form method="post" action="" class="erdu-settings-form">
             <?php wp_nonce_field('erdu_settings_nonce'); ?>
-
-            <!-- Colors -->
-            <div class="erdu-settings-section">
-                <h2><?php _e('Colors', 'erdu-wp'); ?></h2>
-                <table class="form-table">
-                    <tr>
-                        <th><label for="erdu_primary_color"><?php _e('Primary Color', 'erdu-wp'); ?></label></th>
-                        <td>
-                            <input type="color" id="erdu_primary_color" name="erdu_primary_color" value="<?php echo esc_attr($s['primary_color']); ?>" class="erdu-color-picker">
-                            <code><?php echo esc_html($s['primary_color']); ?></code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><label for="erdu_primary_dark"><?php _e('Primary Dark', 'erdu-wp'); ?></label></th>
-                        <td>
-                            <input type="color" id="erdu_primary_dark" name="erdu_primary_dark" value="<?php echo esc_attr($s['primary_dark']); ?>" class="erdu-color-picker">
-                            <code><?php echo esc_html($s['primary_dark']); ?></code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><label for="erdu_footer_bg"><?php _e('Footer Background', 'erdu-wp'); ?></label></th>
-                        <td>
-                            <input type="color" id="erdu_footer_bg" name="erdu_footer_bg" value="<?php echo esc_attr($s['footer_bg']); ?>" class="erdu-color-picker">
-                            <code><?php echo esc_html($s['footer_bg']); ?></code>
-                        </td>
-                    </tr>
-                </table>
-            </div>
 
             <!-- Layout -->
             <div class="erdu-settings-section">
@@ -671,9 +551,6 @@ function erdu_default_modules()
 function erdu_default_settings()
 {
     return array(
-        'primary_color'   => '#F37021',
-        'primary_dark'    => '#D45A0F',
-        'footer_bg'       => '#1a1a2e',
         'header_sticky'   => true,
         'show_breadcrumb' => true,
         'show_cta'        => true,
@@ -694,19 +571,8 @@ function erdu_default_settings()
 
 function erdu_customizer_register($wp_customize)
 {
-    // NOTE: All ERDU settings are now managed via ERDU → Settings admin menu.
-    // Only Colors remain in Customizer as a convenience for live preview.
-
-    // --- Colors Section (kept in Customizer for live preview) ---
-    $wp_customize->add_section('erdu_colors_section', array(
-        'title'    => __('ERDU Colors', 'erdu-wp'),
-        'priority' => 50,
-    ));
-    $wp_customize->add_setting('erdu_primary_color', array('default' => '#F37021', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'erdu_primary_color', array('label' => __('Primary Color', 'erdu-wp'), 'section' => 'erdu_colors_section')));
-
-    $wp_customize->add_setting('erdu_primary_dark', array('default' => '#D45A0F', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'erdu_primary_dark', array('label' => __('Primary Dark', 'erdu-wp'), 'section' => 'erdu_colors_section')));
+    // NOTE: All ERDU settings including colors are now managed via ACF Theme Colors.
+    // Customizer integration is intentionally removed to keep color settings unified.
 }
 add_action('customize_register', 'erdu_customizer_register');
 

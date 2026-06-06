@@ -995,12 +995,14 @@ function erdu_handle_distributor_form()
         exit;
     }
 
-    // Sanitize fields
+    // Sanitize fields (synced with reference page form)
     $fields = array(
-        'dist_company', 'dist_country', 'dist_website', 'dist_years',
-        'dist_employees', 'dist_channels', 'dist_territory',
-        'dist_current_brands', 'dist_annual_volume', 'dist_why',
-        'dist_name', 'dist_title', 'dist_email', 'dist_phone'
+        'dist_company', 'dist_business_type', 'dist_country', 'dist_city',
+        'dist_revenue', 'dist_current_categories', 'dist_name', 'dist_title',
+        'dist_email', 'dist_phone', 'dist_target_market', 'dist_first_order',
+        // Legacy fields for backwards compatibility
+        'dist_website', 'dist_years', 'dist_employees', 'dist_channels',
+        'dist_territory', 'dist_current_brands', 'dist_annual_volume', 'dist_why'
     );
     $data = array();
     foreach ($fields as $field) {
@@ -1012,7 +1014,7 @@ function erdu_handle_distributor_form()
     $data['dist_website'] = isset($_POST['dist_website']) ? esc_url_raw(wp_unslash($_POST['dist_website'])) : '';
 
     // Validate
-    if (empty($data['dist_company']) || empty($data['dist_country']) || empty($data['dist_email']) || empty($data['dist_name'])) {
+    if (empty($data['dist_company']) || empty($data['dist_country']) || empty($data['dist_email']) || empty($data['dist_name']) || empty($data['dist_city']) || empty($data['dist_target_market']) || empty($data['dist_first_order'])) {
         wp_safe_redirect(add_query_arg('dist_error', 'required', erdu_safe_redirect_url(erdu_get_page_url('distributor'))));
         exit;
     }
@@ -1030,20 +1032,21 @@ function erdu_handle_distributor_form()
 
     $body  = "<h2>" . esc_html__('New Distributor Application', 'erdu-wp') . "</h2>\n";
     $body .= "<p><strong>" . esc_html__('Company', 'erdu-wp') . ":</strong> " . esc_html($data['dist_company']) . "</p>\n";
+    $body .= "<p><strong>" . esc_html__('Business Type', 'erdu-wp') . ":</strong> " . esc_html($data['dist_business_type']) . "</p>\n";
     $body .= "<p><strong>" . esc_html__('Country/Region', 'erdu-wp') . ":</strong> " . esc_html($data['dist_country']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Website', 'erdu-wp') . ":</strong> " . esc_html($data['dist_website']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Years in Business', 'erdu-wp') . ":</strong> " . esc_html($data['dist_years']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Employees', 'erdu-wp') . ":</strong> " . esc_html($data['dist_employees']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Sales Channels', 'erdu-wp') . ":</strong> " . esc_html($data['dist_channels']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Target Territory', 'erdu-wp') . ":</strong> " . esc_html($data['dist_territory']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Current Brands', 'erdu-wp') . ":</strong> " . esc_html($data['dist_current_brands']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Annual Volume', 'erdu-wp') . ":</strong> " . esc_html($data['dist_annual_volume']) . "</p>\n";
+    $body .= "<p><strong>" . esc_html__('City', 'erdu-wp') . ":</strong> " . esc_html($data['dist_city']) . "</p>\n";
+    $body .= "<p><strong>" . esc_html__('Annual Revenue Range', 'erdu-wp') . ":</strong> " . esc_html($data['dist_revenue']) . "</p>\n";
+    $body .= "<p><strong>" . esc_html__('Current Product Categories', 'erdu-wp') . ":</strong> " . esc_html($data['dist_current_categories']) . "</p>\n";
     $body .= "<p><strong>" . esc_html__('Contact Name', 'erdu-wp') . ":</strong> " . esc_html($data['dist_name']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Title', 'erdu-wp') . ":</strong> " . esc_html($data['dist_title']) . "</p>\n";
+    $body .= "<p><strong>" . esc_html__('Job Title', 'erdu-wp') . ":</strong> " . esc_html($data['dist_title']) . "</p>\n";
     $body .= "<p><strong>" . esc_html__('Email', 'erdu-wp') . ":</strong> " . esc_html($data['dist_email']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Phone', 'erdu-wp') . ":</strong> " . esc_html($data['dist_phone']) . "</p>\n";
-    $body .= "<p><strong>" . esc_html__('Why ERDU', 'erdu-wp') . ":</strong></p>\n";
-    $body .= "<p>" . nl2br(esc_html($data['dist_why'])) . "</p>\n";
+    $body .= "<p><strong>" . esc_html__('Phone/WhatsApp', 'erdu-wp') . ":</strong> " . esc_html($data['dist_phone']) . "</p>\n";
+    $body .= "<p><strong>" . esc_html__('Target Market Description', 'erdu-wp') . ":</strong></p>\n";
+    $body .= "<p>" . nl2br(esc_html($data['dist_target_market'])) . "</p>\n";
+    $body .= "<p><strong>" . esc_html__('Expected First Order Volume', 'erdu-wp') . ":</strong> " . esc_html($data['dist_first_order']) . "</p>\n";
+    // Legacy fields (only output if provided)
+    if (!empty($data['dist_website']))   $body .= "<p><strong>" . esc_html__('Website', 'erdu-wp') . ":</strong> " . esc_html($data['dist_website']) . "</p>\n";
+    if (!empty($data['dist_why']))       $body .= "<p><strong>" . esc_html__('Why ERDU', 'erdu-wp') . ":</strong></p>\n<p>" . nl2br(esc_html($data['dist_why'])) . "</p>\n";
 
     $sent = wp_mail($to, $subject, $body, $headers);
 
@@ -1159,46 +1162,76 @@ function erdu_seed_sample_content()
     // =====================================================
     $sample_cases = array(
         array(
-            'title'       => 'Luxury Hotel Lobby Renovation — Singapore',
-            'excerpt'     => 'Complete lighting overhaul for a 5-star hotel lobby using the ERDU UT Series magnetic track system. 200+ fixtures installed across 1,200m².',
-            'content'     => '<p>A landmark 5-star hotel in Singapore underwent a complete lighting renovation for its main lobby and reception areas. The project required a flexible lighting solution that could highlight architectural features while providing ambient illumination for guests.</p><h3>Challenge</h3><p>The hotel needed a lighting system that could be easily reconfigured for different events and seasons, without requiring electrical work. The solution also needed to complement the hotel\'s modern luxury aesthetic.</p><h3>Solution</h3><p>ERDU\'s UT Series magnetic track lights were installed on 180 meters of 48V magnetic track. The system included 85 UT-24 track spotlights with 24° beam angle for feature highlighting, 45 UT-36 wide-angle fixtures for ambient lighting, and 20 UT-P pendant lights over the reception desks.</p><h3>Results</h3><p>The installation was completed in just 3 days thanks to the tool-free magnetic attachment. The hotel\'s lighting designer can now reconfigure the layout within minutes for different events. Energy consumption was reduced by 40% compared to the previous halogen system.</p>',
-            'industry'    => 'hospitality',
-            'date'        => '2026-03-01',
-        ),
-        array(
-            'title'       => 'Flagship Retail Store Lighting — Dubai Mall',
-            'excerpt'     => 'Custom lighting design for a premium fashion brand\'s flagship store, featuring ERDU GS Series grille spotlights with precision beam control.',
-            'content'     => '<p>A premium European fashion brand opened its largest Middle East flagship store in Dubai Mall, requiring a lighting system that would showcase merchandise while creating an immersive brand experience.</p><h3>Challenge</h3><p>The store needed precision lighting for clothing displays with consistent color rendering (CRI 95+), while maintaining a warm and inviting atmosphere in fitting rooms and lounge areas.</p><h3>Solution</h3><p>ERDU supplied 120 GS-10 single-head grille spotlights for merchandise displays, 60 GS-20 double-head units for wider coverage areas, and 40 DT Series down lights for fitting rooms. All fixtures were mounted on ERDU\'s 48V magnetic track system for maximum flexibility.</p><h3>Results</h3><p>The brand reported a 25% increase in customer dwell time compared to their previous store design. The magnetic system allows the visual merchandising team to adjust lighting for seasonal collections without technical assistance.</p>',
+            'title'       => 'Luxury Boutique',
+            'excerpt'     => '68% energy reduction, zero heat emission near merchandise, and customers reported the store felt more luxurious and inviting.',
+            'content'     => '<p>A luxury boutique in Shanghai upgraded its lighting with ERDU 48V magnetic track system to create a premium shopping experience while reducing energy costs.</p><h3>Challenge</h3><p>The boutique needed focused lighting that would highlight merchandise without generating heat that could damage delicate fabrics. The system also needed to be flexible enough to adapt to seasonal displays.</p><h3>Solution</h3><p>ERDU installed 45 meters of 48V magnetic track with 32 UT Series spotlights and 18 linear accent lights. All fixtures featured CRI 95+ for accurate color rendering and deep anti-glare design.</p><h3>Results</h3><p>The boutique achieved 68% energy reduction compared to the previous halogen system. Customers reported the store felt more luxurious and inviting, and staff noted zero heat emission near merchandise. Sales increased by 15% in the first quarter after installation.</p>',
             'industry'    => 'retail',
-            'date'        => '2026-02-15',
+            'location'    => 'Shanghai, China',
+            'area'        => '150m²',
+            'year'        => '2024',
+            'tags'        => array('48V Magnetic Track', '48V Magnetic Track'),
+            'image'       => 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600',
+            'date'        => '2024-03-01',
         ),
         array(
-            'title'       => 'Tech Company HQ Lighting — Shenzhen',
-            'excerpt'     => 'Smart lighting integration for a modern tech headquarters with 15 floors and 8,000 employees, using ERDU magnetic track with DALI control.',
-            'content'     => '<p>A leading Chinese technology company relocated to a new 15-floor headquarters in Shenzhen\'s Nanshan district, requiring a comprehensive lighting solution for open-plan offices, meeting rooms, breakout areas, and executive suites.</p><h3>Challenge</h3><p>The project required glare-free illumination meeting UGR < 16 for office spaces, circadian lighting support for employee wellbeing, and integration with the building\'s BMS for automated daylight harvesting.</p><h3>Solution</h3><p>ERDU installed over 800 fixtures across the GS Pro, DT, and LT Series. The GS Pro Series (UGR < 13) was selected for workstation areas, DT Series down lights for meeting rooms, and LT Series linear lights for corridors and common areas. All fixtures featured DALI dimming for integration with the building management system.</p><h3>Results</h3><p>The project achieved LEED Gold certification. Post-occupancy surveys showed 92% employee satisfaction with the lighting environment, and the daylight harvesting system reduced lighting energy use by 35%.</p>',
-            'industry'    => 'office',
-            'date'        => '2025-11-20',
-        ),
-        array(
-            'title'       => 'Modern Villa Lighting Design — Melbourne',
-            'excerpt'     => 'Bespoke lighting solution for a luxury residential villa, combining ERDU magnetic track with custom pendant configurations for a no-main-light design.',
-            'content'     => '<p>A luxury residential villa in Melbourne\'s Toorak suburb was designed with a "no main light" philosophy, requiring a flexible lighting system that could adapt to different activities and moods throughout the day.</p><h3>Challenge</h3><p>The architect wanted to eliminate traditional ceiling fixtures entirely, using only track-mounted and pendant lighting. The system needed to provide both task lighting for kitchens and studies, and ambient lighting for living and dining areas.</p><h3>Solution</h3><p>ERDU designed a custom solution with 120 meters of recessed magnetic track throughout the villa. The UT Series spotlights provided task lighting, while custom LT Series linear elements created ambient washes. Magnetic pendant adapters allowed the homeowner to add decorative pendants in dining and entry areas.</p><h3>Results</h3><p>The villa was featured in Architectural Digest Australia. The homeowner particularly values the ability to reposition lights when rearranging furniture or hosting events.</p>',
-            'industry'    => 'residential',
-            'date'        => '2025-10-05',
-        ),
-        array(
-            'title'       => 'Shopping Mall Lighting Upgrade — Bangkok',
-            'excerpt'     => 'Energy-efficient LED retrofit for a large commercial shopping complex, replacing 2,000+ traditional fixtures with ERDU magnetic track system.',
-            'content'     => '<p>A major shopping mall in Bangkok embarked on a comprehensive lighting upgrade to reduce energy costs and improve the shopping experience across its 50,000m² retail space.</p><h3>Challenge</h3><p>The existing lighting system used a mix of fluorescent tubes and halogen spotlights, resulting in high maintenance costs and inconsistent illumination. The mall needed a unified system that could serve diverse retail tenants while reducing operational expenses.</p><h3>Solution</h3><p>ERDU replaced 2,000+ legacy fixtures with a standardized 48V magnetic track system. The UT Series spotlights were used for retail storefronts, LT Series linear lights for corridors, and GS Series grille spots for food court areas. The entire installation used ERDU\'s unified track infrastructure.</p><h3>Results</h3><p>Energy consumption was reduced by 55%, with an estimated annual savings of $180,000. The unified track system allows individual tenants to customize their lighting without modifying the infrastructure. Maintenance calls dropped by 80% in the first year.</p>',
-            'industry'    => 'commercial',
-            'date'        => '2025-09-12',
-        ),
-        array(
-            'title'       => 'Boutique Hotel Rooms — Kyoto',
-            'excerpt'     => 'Ambient lighting design for 45 boutique hotel guest rooms, using ERDU DT Series down lights with deep anti-glare reflectors.',
-            'content'     => '<p>A boutique hotel in Kyoto\'s Higashiyama district required lighting that would complement its traditional Japanese interior design while meeting modern hospitality standards for guest comfort and energy efficiency.</p><h3>Challenge</h3><p>The hotel needed warm, flicker-free lighting (CRI 95+) that would enhance the natural wood and paper elements of the interior design. Guest room lighting needed to support reading, relaxation, and dressing activities with minimal glare.</p><h3>Solution</h3><p>ERDU supplied 270 DT-7 down lights with deep anti-glare reflectors for guest rooms, featuring 3000K CCT and CRI 95+. The UT Series track lights were used in public areas for flexibility. All fixtures were compatible with the hotel\'s room automation system for guest-controlled dimming.</p><h3>Results</h3><p>The hotel achieved a 4.9/5 lighting satisfaction rating from guests. The deep anti-glare design was particularly praised for creating a comfortable reading environment. The hotel has since featured ERDU lighting in its marketing materials.</p>',
+            'title'       => 'Modern Hotel Lobby',
+            'excerpt'     => '50% energy savings, guest satisfaction scores for \'lobby ambiance\' increased from 7.2 to 9.1, and the installation was completed in 5 days.',
+            'content'     => '<p>A 5-star hotel in Dubai renovated its main lobby with ERDU magnetic track lighting to create a stunning first impression while reducing operational costs.</p><h3>Challenge</h3><p>The hotel needed a lighting solution that could deliver dramatic ambiance in the lobby while being easy to maintain and reconfigure for different events and seasons.</p><h3>Solution</h3><p>ERDU designed a layered lighting scheme using 200+ meters of magnetic track, pendant lights over seating areas, flood lights for wall washing, and spotlights for artwork highlighting.</p><h3>Results</h3><p>The hotel achieved 50% energy savings compared to the previous system. Guest satisfaction scores for "lobby ambiance" increased from 7.2 to 9.1. The entire installation was completed in just 5 days with minimal disruption to hotel operations.</p>',
             'industry'    => 'hospitality',
-            'date'        => '2025-08-30',
+            'location'    => 'Dubai, UAE',
+            'area'        => '800m²',
+            'year'        => '2023',
+            'tags'        => array('Magnetic Pendant Light', 'Magnetic Flood Light'),
+            'image'       => 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600',
+            'date'        => '2023-08-15',
+        ),
+        array(
+            'title'       => 'Creative Office',
+            'excerpt'     => 'UGR<19 achieved across all work areas, 45% energy reduction, and the company received a Green Building certification.',
+            'content'     => '<p>A creative technology company in Singapore transformed its office lighting with ERDU\'s glare-free magnetic track system to improve employee comfort and productivity.</p><h3>Challenge</h3><p>The office needed uniform, glare-free illumination for computer-based work while maintaining design flexibility for the open-plan layout and collaborative zones.</p><h3>Solution</h3><p>ERDU installed 350+ linear magnetic lights and spotlights across 600m² of office space. All workstation areas achieved UGR < 19, and the system was integrated with daylight sensors for automatic dimming.</p><h3>Results</h3><p>The project achieved 45% energy reduction and the company received a Green Building certification. Employee complaints about eye strain dropped by 80%, and the flexible track system allows the facilities team to reconfigure lighting as teams move between zones.</p>',
+            'industry'    => 'office',
+            'location'    => 'Singapore',
+            'area'        => '600m²',
+            'year'        => '2024',
+            'tags'        => array('Linear Magnetic Light', 'Spotlight SPT-01'),
+            'image'       => 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600',
+            'date'        => '2024-01-20',
+        ),
+        array(
+            'title'       => 'Minimalist Living',
+            'excerpt'     => 'Achieved the desired minimalist aesthetic with full lighting flexibility. The homeowner has reconfigured the layout 4 times since installation.',
+            'content'     => '<p>A residential project in Melbourne used ERDU magnetic track lighting to achieve a clean, minimalist interior without sacrificing lighting quality or flexibility.</p><h3>Challenge</h3><p>The homeowner wanted a "no main light" design with clean ceilings, but still needed flexible task and ambient lighting that could adapt as furniture arrangements changed.</p><h3>Solution</h3><p>ERDU installed recessed magnetic track throughout the living areas, with a mix of spotlights, linear lights, and a custom folding light fixture as a design feature.</p><h3>Results</h3><p>The project achieved the desired minimalist aesthetic with full lighting flexibility. The homeowner has reconfigured the layout 4 times since installation without calling an electrician. The system received praise from the interior designer and was featured in a local design magazine.</p>',
+            'industry'    => 'residential',
+            'location'    => 'Melbourne, Australia',
+            'area'        => '120m²',
+            'year'        => '2024',
+            'tags'        => array('48V Magnetic Track', 'Folding Light EMF-02'),
+            'image'       => 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600',
+            'date'        => '2024-02-10',
+        ),
+        array(
+            'title'       => 'Art Gallery',
+            'excerpt'     => 'CRI95+ across all fixtures, zero UV emission (art-safe), and the gallery reported a 30% increase in visitor dwell time.',
+            'content'     => '<p>A contemporary art gallery in Paris selected ERDU lighting to protect valuable artworks while providing exceptional color rendering for visitors.</p><h3>Challenge</h3><p>The gallery needed museum-quality lighting with CRI 95+, zero UV emission, and precise beam control to protect sensitive artworks while enhancing the viewing experience.</p><h3>Solution</h3><p>ERDU supplied 80+ specialized gallery spotlights on magnetic track, with adjustable beam angles and integrated UV filters. The track system allows curators to adapt lighting for rotating exhibitions.</p><h3>Results</h3><p>All fixtures achieved CRI 95+ with zero UV emission, meeting museum conservation standards. The gallery reported a 30% increase in visitor dwell time and received positive feedback from artists about how their work was presented.</p>',
+            'industry'    => 'retail',
+            'location'    => 'Paris, France',
+            'area'        => '400m²',
+            'year'        => '2023',
+            'tags'        => array('48V Magnetic Track', 'Magnetic Track (2m)'),
+            'image'       => 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600',
+            'date'        => '2023-09-05',
+        ),
+        array(
+            'title'       => 'Industrial Warehouse',
+            'excerpt'     => '62.5% energy reduction, improved color recognition for quality control, and maintenance costs dropped by 70%.',
+            'content'     => '<p>A logistics and quality control warehouse in Sao Paulo upgraded to ERDU high-bay magnetic lighting to improve visibility and reduce operating costs across a vast industrial space.</p><h3>Challenge</h3><p>The warehouse needed bright, uniform illumination for quality control inspection areas, with high energy efficiency and minimal maintenance requirements given the 12-meter ceiling height.</p><h3>Solution</h3><p>ERDU installed 180 high-watt magnetic high-bay lights with motion sensors and daylight harvesting. The magnetic attachment system simplified installation and future maintenance.</p><h3>Results</h3><p>The facility achieved 62.5% energy reduction and maintenance costs dropped by 70%. Color recognition in quality control areas improved significantly, reducing defect escape rates by 18%.</p>',
+            'industry'    => 'office',
+            'location'    => 'Sao Paulo, Brazil',
+            'area'        => '2000m²',
+            'year'        => '2023',
+            'tags'        => array('High Watt Magnetic', 'High Bay Light'),
+            'image'       => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600',
+            'date'        => '2023-11-12',
         ),
     );
 
@@ -1214,8 +1247,25 @@ function erdu_seed_sample_content()
             'post_date'    => $case['date'],
         ));
 
-        if ($post_id && !is_wp_error($post_id) && !empty($case['industry'])) {
-            wp_set_object_terms($post_id, $case['industry'], 'erdu_case_industry', true);
+        if ($post_id && !is_wp_error($post_id)) {
+            if (!empty($case['industry'])) {
+                wp_set_object_terms($post_id, $case['industry'], 'erdu_case_industry', true);
+            }
+            if (!empty($case['location'])) {
+                update_post_meta($post_id, 'case_location', $case['location']);
+            }
+            if (!empty($case['area'])) {
+                update_post_meta($post_id, 'case_area', $case['area']);
+            }
+            if (!empty($case['year'])) {
+                update_post_meta($post_id, 'case_year', $case['year']);
+            }
+            if (!empty($case['tags'])) {
+                update_post_meta($post_id, 'case_tags', $case['tags']);
+            }
+            if (!empty($case['image'])) {
+                update_post_meta($post_id, 'case_image_url', $case['image']);
+            }
         }
     }
 

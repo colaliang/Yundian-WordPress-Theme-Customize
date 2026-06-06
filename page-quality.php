@@ -11,139 +11,142 @@ if (have_posts()) :
     while (have_posts()) :
         the_post();
 
-        // ---- Hero (independent page fields — NOT from Page Settings) ----
-        $hero_title    = erdu_page_field('quality_hero_title', get_the_title());
+        // ---- Hero ----
+        $hero_title    = erdu_page_field('quality_hero_title', __('Quality First — Every Light, Tested and Trusted', 'erdu-wp'));
         $hero_subtitle = erdu_page_field('quality_hero_subtitle', __("From raw material inspection to final packaging, ERDU's quality assurance system ensures every product meets international standards.", 'erdu-wp'));
         $hero_bg       = erdu_page_field('quality_hero_bg', 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200');
-        $hero_btn      = erdu_page_field('quality_hero_btn', '');
-        $hero_btn_link = erdu_page_field('quality_hero_btn_link', '');
-        $hero_btn2     = erdu_page_field('quality_hero_btn2', '');
-        $hero_btn2_link = erdu_page_field('quality_hero_btn2_link', '');
-
-        // ---- Page Content (between Hero and Quality Intro) ----
-        $page_content = erdu_page_field('quality_page_editor', '');
 
         // ---- Quality Introduction ----
-        $quality_intro = erdu_page_field('quality_intro', '');
+        $quality_intro_quote = erdu_page_field('quality_intro_quote', __('"At ERDU, quality is not a department — it is a mindset embedded in every process."', 'erdu-wp'));
+        $quality_intro_desc  = erdu_page_field('quality_intro_desc', __('We partner with industry-leading component suppliers (Sanan, Aishi, Lifud) and enforce rigorous testing protocols to deliver lighting products that perform reliably for 50,000+ hours.', 'erdu-wp'));
 
         // ---- 5-Step QC Process ----
         $quality_steps = erdu_page_field('quality_steps', array(
-            array('icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => __('IQC — Incoming QC', 'erdu-wp'), 'description' => __('LED chips, drivers, and raw materials inspected upon arrival', 'erdu-wp')),
-            array('icon' => 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z', 'title' => __('IPQC — In-Process QC', 'erdu-wp'), 'description' => __('Real-time monitoring during SMT, assembly, and welding', 'erdu-wp')),
-            array('icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'title' => __('Aging Test', 'erdu-wp'), 'description' => __('48-hour continuous operation under rated voltage', 'erdu-wp')),
-            array('icon' => 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z', 'title' => __('OQC — Final Inspection', 'erdu-wp'), 'description' => __('Color temperature, luminous flux, and beam angle verification', 'erdu-wp')),
-            array('icon' => 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4', 'title' => __('Packaging QC', 'erdu-wp'), 'description' => __('Carton integrity, label accuracy, and drop test', 'erdu-wp')),
+            array('num' => '1', 'title' => __('Incoming Material Inspection', 'erdu-wp'), 'description' => __('LED chips, drivers, aluminum housings, and all components undergo 100% incoming quality inspection. Sample testing for LED bins, driver output, and aluminum composition.', 'erdu-wp')),
+            array('num' => '2', 'title' => __('In-Process Quality Control', 'erdu-wp'), 'description' => __('Real-time monitoring during SMT, soldering, assembly, and testing stages. IPQC inspectors patrol every production line hourly.', 'erdu-wp')),
+            array('num' => '3', 'title' => __('100% Aging Test', 'erdu-wp'), 'description' => __('Every single product undergoes 48-hour continuous burn-in testing at 45°C ambient temperature to detect early failures.', 'erdu-wp')),
+            array('num' => '4', 'title' => __('Photometric Testing', 'erdu-wp'), 'description' => __('Integrating sphere measures luminous flux, color temperature, CRI, and power factor. Tolerance: ±5% on flux, ±150K on CCT.', 'erdu-wp')),
+            array('num' => '5', 'title' => __('Final Inspection & Packaging', 'erdu-wp'), 'description' => __('Visual inspection for cosmetic defects, function verification, label accuracy check, and protective packaging verification.', 'erdu-wp')),
         ));
 
-        // ---- Additional QC Steps ----
-        $process = erdu_page_field('quality_process', array());
+        // ---- Testing Equipment ----
+        $equipment = erdu_page_field('quality_equipment', array(
+            array('name' => __('Integrating Sphere', 'erdu-wp'), 'desc' => __('Luminous flux, CCT, CRI measurement', 'erdu-wp'), 'model' => 'EVERFINE HAAS-2000'),
+            array('name' => __('Aging Test Rack', 'erdu-wp'), 'desc' => __('48-hour continuous burn-in test', 'erdu-wp'), 'model' => __('Custom 256-channel', 'erdu-wp')),
+            array('name' => __('High Voltage Tester', 'erdu-wp'), 'desc' => __('Dielectric strength test', 'erdu-wp'), 'model' => 'Chroma 19052'),
+            array('name' => __('Insulation Resistance Tester', 'erdu-wp'), 'desc' => __('IR measurement', 'erdu-wp'), 'model' => 'Chroma 19073'),
+            array('name' => __('LCR Meter', 'erdu-wp'), 'desc' => __('Component level testing', 'erdu-wp'), 'model' => 'Keysight E4980A'),
+            array('name' => __('Oscilloscope', 'erdu-wp'), 'desc' => __('Driver waveform analysis', 'erdu-wp'), 'model' => 'Rigol DS1054Z'),
+        ));
 
         // ---- Certifications ----
         $certificates = erdu_page_field('quality_certs', array(
-            array('name' => 'CE (LVD/EMC)', 'org' => 'TÜV Rheinland', 'valid' => '2028'),
-            array('name' => 'RoHS 2.0', 'org' => 'SGS', 'valid' => '2027'),
-            array('name' => 'ISO 9001:2015', 'org' => 'BV', 'valid' => '2027'),
-            array('name' => 'ETL / cETL', 'org' => 'Intertek', 'valid' => '2027'),
-            array('name' => 'SAA', 'org' => 'JAS-ANZ', 'valid' => '2027'),
-            array('name' => 'CB Scheme', 'org' => 'IECEE', 'valid' => '2027'),
+            array('name' => 'CE (LVD/EMC)', 'org' => 'TUV SUD · International', 'valid' => 'Valid until 2026-12'),
+            array('name' => 'RoHS 2.0', 'org' => 'SGS · International', 'valid' => 'Valid until 2026-06'),
+            array('name' => 'ERP (EU) 2019/2020', 'org' => 'TUV · International', 'valid' => 'Valid until 2026-09'),
+            array('name' => 'ISO 9001:2015', 'org' => 'TUV · Quality', 'valid' => 'Valid until 2027-03'),
+            array('name' => 'ETL / cETL', 'org' => 'Intertek · North America', 'valid' => 'Valid until 2026-11'),
+            array('name' => 'REACH', 'org' => 'SGS · Environmental', 'valid' => 'Valid until 2026-08'),
         ));
 
         // ---- Quality Parameters ----
         $standards = erdu_page_field('quality_params', array(
-            array('param' => __('Aging Test', 'erdu-wp'), 'value' => __('48 hours', 'erdu-wp')),
-            array('param' => __('Lifespan (L70)', 'erdu-wp'), 'value' => __('50,000 hrs', 'erdu-wp')),
-            array('param' => __('Color Consistency', 'erdu-wp'), 'value' => __('SDCM ≤ 3', 'erdu-wp')),
-            array('param' => __('Surge Protection', 'erdu-wp'), 'value' => __('4kV (standard) / 6kV', 'erdu-wp')),
-            array('param' => __('Operating Temp', 'erdu-wp'), 'value' => __('-20°C ~ +45°C', 'erdu-wp')),
-            array('param' => __('IP Rating', 'erdu-wp'), 'value' => __('IP20 (IP44 optional)', 'erdu-wp')),
+            array('param' => __('LED Chip Brand', 'erdu-wp'), 'value' => 'Sanan / Samsung / Bridgelux (optional)'),
+            array('param' => __('Color Rendering Index', 'erdu-wp'), 'value' => 'Ra ≥ 80 (standard), Ra ≥ 90+ (optional)'),
+            array('param' => __('Color Temperature Tolerance', 'erdu-wp'), 'value' => '±150K'),
+            array('param' => __('Luminous Efficacy', 'erdu-wp'), 'value' => '≥ 100 lm/W'),
+            array('param' => __('Power Factor', 'erdu-wp'), 'value' => '≥ 0.9'),
+            array('param' => __('THD (Total Harmonic Distortion)', 'erdu-wp'), 'value' => '< 20%'),
+            array('param' => __('Surge Protection', 'erdu-wp'), 'value' => '2kV standard, 4kV optional'),
+            array('param' => __('IP Rating', 'erdu-wp'), 'value' => 'IP20 standard, IP44 optional'),
+            array('param' => __('Lifespan (L70)', 'erdu-wp'), 'value' => '50,000 hours'),
+            array('param' => __('Warranty', 'erdu-wp'), 'value' => '3 years standard, 5 years optional'),
+        ));
+
+        // ---- Supply Chain Partners ----
+        $partners = erdu_page_field('quality_partners', array(
+            array('name' => 'Sanan Optoelectronics', 'role' => 'LED Chip', 'desc' => "China's largest LED chip manufacturer"),
+            array('name' => 'Samsung LED', 'role' => 'LED Chip', 'desc' => 'Premium LED chips for high-end series'),
+            array('name' => 'Aishi', 'role' => 'Capacitor', 'desc' => "China's No.1 capacitor brand"),
+            array('name' => 'Lifud', 'role' => 'Driver', 'desc' => 'Leading LED driver supplier'),
+            array('name' => 'Tridonic', 'role' => 'Driver', 'desc' => 'European standard drivers (optional)'),
         ));
         ?>
 
         <!-- Hero -->
-        <section class="relative py-20 erdu-bg-dark">
+        <section class="relative py-20 bg-gradient-to-r from-[#2D1810] to-[#4A2510]">
             <div class="absolute inset-0 opacity-20" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
             <div class="relative erdu-container text-center">
                 <?php erdu_breadcrumb(); ?>
                 <h1 class="text-3xl md:text-4xl font-bold text-white"><?php echo esc_html($hero_title); ?></h1>
-                <p class="text-blue-100 mt-4 max-w-2xl mx-auto"><?php echo esc_html($hero_subtitle); ?></p>
-                <?php if ($hero_btn || $hero_btn2) : ?>
-                    <div class="flex flex-wrap gap-4 justify-center mt-8">
-                        <?php if ($hero_btn && $hero_btn_link) : ?>
-                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors erdu-bg-primary"><?php echo esc_html($hero_btn); ?></a>
-                        <?php endif; ?>
-                        <?php if ($hero_btn2 && $hero_btn2_link) : ?>
-                            <a href="<?php echo esc_url($hero_btn2_link); ?>" class="px-6 py-3 font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors"><?php echo esc_html($hero_btn2); ?></a>
-                        <?php endif; ?>
-                    </div>
-                <?php endif; ?>
+                <p class="text-orange-100 mt-4 max-w-2xl mx-auto"><?php echo esc_html($hero_subtitle); ?></p>
             </div>
         </section>
-
-        <!-- Editable Page Content -->
-        <?php if ($page_content) : ?>
-        <section class="py-12 bg-white">
-            <div class="erdu-container">
-                <div class="prose prose-lg max-w-none"><?php echo wp_kses_post($page_content); ?></div>
-            </div>
-        </section>
-        <?php endif; ?>
 
         <!-- Quality Intro -->
-        <?php if ($quality_intro) : ?>
-        <section class="py-8 bg-white">
-            <div class="erdu-container">
-                <div class="prose max-w-none"><?php echo wp_kses_post($quality_intro); ?></div>
+        <section class="py-16 bg-white">
+            <div class="erdu-container max-w-4xl text-center">
+                <p class="text-xl md:text-2xl font-medium text-[#333] leading-relaxed"><?php echo esc_html($quality_intro_quote); ?></p>
+                <p class="text-gray-600 mt-4"><?php echo esc_html($quality_intro_desc); ?></p>
             </div>
         </section>
-        <?php endif; ?>
 
-        <!-- 5-Step Process -->
+        <!-- 5-Step Quality Control Process -->
         <section class="py-16 bg-gray-50">
             <div class="erdu-container">
-                <h2 class="erdu-h2 mb-12 text-center"><?php _e('5-Step Quality Control Process', 'erdu-wp'); ?></h2>
-                <div class="grid md:grid-cols-5 gap-4">
+                <h2 class="text-2xl font-bold text-[#333] mb-10 text-center"><?php _e('5-Step Quality Control Process', 'erdu-wp'); ?></h2>
+                <div class="flex flex-wrap justify-center gap-4">
                     <?php foreach ($quality_steps as $i => $s) : ?>
-                        <div class="text-center">
-                            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-blue-50">
-                                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?php echo esc_attr($s['icon']); ?>"/></svg>
+                        <div class="flex items-center gap-4">
+                            <div class="w-56 bg-white rounded-xl p-5 border border-gray-200 hover:shadow-md transition-shadow">
+                                <div class="w-10 h-10 bg-[#F37021] rounded-full flex items-center justify-center text-white font-bold mb-3"><?php echo esc_html($s['num']); ?></div>
+                                <h3 class="font-semibold text-[#333] text-sm mb-2"><?php echo esc_html($s['title']); ?></h3>
+                                <p class="text-xs text-gray-500"><?php echo esc_html($s['description']); ?></p>
                             </div>
-                            <div class="text-sm font-bold mb-1 erdu-text-primary">STEP <?php echo intval($i + 1); ?></div>
-                            <h4 class="font-semibold text-sm mb-1 text-gray-800"><?php echo esc_html($s['title']); ?></h4>
-                            <p class="text-xs text-gray-500"><?php echo esc_html($s['description']); ?></p>
+                            <?php if ($i < count($quality_steps) - 1) : ?>
+                                <svg class="w-6 h-6 text-gray-300 hidden lg:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/></svg>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
+            </div>
+        </section>
 
-                <?php if ($process) : ?>
-                    <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <?php foreach ($process as $step) : ?>
-                            <div class="bg-white p-4 rounded-lg border border-gray-200">
-                                <span class="text-xs font-bold erdu-text-primary">#<?php echo esc_html($step['step']); ?></span>
-                                <h4 class="font-semibold text-sm mt-1 text-gray-800"><?php echo esc_html($step['title']); ?></h4>
-                                <?php if (!empty($step['description'])) : ?>
-                                    <p class="text-xs text-gray-500 mt-1"><?php echo esc_html($step['description']); ?></p>
-                                <?php endif; ?>
+        <!-- Testing Equipment -->
+        <section class="py-16 bg-white">
+            <div class="erdu-container">
+                <h2 class="text-2xl font-bold text-[#333] mb-8 text-center"><?php _e('Testing Equipment', 'erdu-wp'); ?></h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <?php foreach ($equipment as $e) : ?>
+                        <div class="bg-gray-50 rounded-xl p-5 flex items-start gap-4">
+                            <svg class="w-8 h-8 text-[#F37021] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-[#333] text-sm"><?php echo esc_html($e['name']); ?></h4>
+                                <p class="text-xs text-gray-500 mt-1"><?php echo esc_html($e['desc']); ?></p>
+                                <p class="text-xs text-[#F37021] mt-1"><?php echo esc_html($e['model']); ?></p>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </section>
 
         <!-- Certifications -->
-        <section class="py-16 bg-white">
+        <section class="py-16 bg-gray-50">
             <div class="erdu-container">
-                <h2 class="erdu-h2 mb-8 text-center"><?php _e('Certifications', 'erdu-wp'); ?></h2>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-[#333] mb-8 text-center"><?php _e('Certifications', 'erdu-wp'); ?></h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <?php foreach ($certificates as $c) : ?>
-                        <div class="p-4 rounded-lg border border-gray-200 flex items-center gap-3 hover:shadow-md transition-shadow">
-                            <svg class="w-10 h-10 shrink-0 erdu-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        <div class="bg-white rounded-xl p-5 border border-gray-200 flex items-center gap-4">
+                            <svg class="w-10 h-10 text-[#F37021] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/>
+                            </svg>
                             <div>
-                                <h4 class="font-semibold text-sm text-gray-800"><?php echo esc_html($c['name']); ?></h4>
+                                <h4 class="font-semibold text-[#333]"><?php echo esc_html($c['name']); ?></h4>
                                 <p class="text-xs text-gray-500"><?php echo esc_html($c['org']); ?></p>
-                                <?php if (!empty($c['valid'])) : ?>
-                                    <p class="text-xs erdu-text-primary"><?php printf(__('Valid until %s', 'erdu-wp'), esc_html($c['valid'])); ?></p>
-                                <?php endif; ?>
+                                <p class="text-xs text-green-600 mt-1"><?php echo esc_html($c['valid']); ?></p>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -151,18 +154,23 @@ if (have_posts()) :
             </div>
         </section>
 
-        <!-- Standards Table -->
-        <section class="py-16 bg-gray-50">
-            <div class="erdu-container max-w-3xl">
-                <h2 class="erdu-h2 mb-8 text-center"><?php _e('Quality Parameters', 'erdu-wp'); ?></h2>
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+        <!-- Quality Standard Parameters -->
+        <section class="py-16 bg-white">
+            <div class="erdu-container max-w-4xl">
+                <h2 class="text-2xl font-bold text-[#333] mb-8 text-center"><?php _e('Quality Standard Parameters', 'erdu-wp'); ?></h2>
+                <div class="overflow-hidden rounded-xl border border-gray-200">
                     <table class="w-full text-sm">
-                        <thead><tr class="bg-gray-50"><th class="text-left p-4 font-semibold text-gray-800"><?php _e('Parameter', 'erdu-wp'); ?></th><th class="text-right p-4 font-semibold text-gray-800"><?php _e('Standard', 'erdu-wp'); ?></th></tr></thead>
+                        <thead class="bg-[#F37021] text-white">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-medium"><?php _e('Parameter', 'erdu-wp'); ?></th>
+                                <th class="px-4 py-3 text-left font-medium"><?php _e('ERDU Standard', 'erdu-wp'); ?></th>
+                            </tr>
+                        </thead>
                         <tbody>
                             <?php foreach ($standards as $i => $s) : ?>
-                                <tr class="<?php echo $i % 2 === 0 ? 'bg-white' : ''; ?> border-t border-gray-100">
-                                    <td class="p-4 text-gray-600"><?php echo esc_html($s['param']); ?></td>
-                                    <td class="p-4 text-right font-medium erdu-text-primary"><?php echo esc_html($s['value']); ?></td>
+                                <tr class="<?php echo $i % 2 === 0 ? 'bg-gray-50' : 'bg-white'; ?>">
+                                    <td class="px-4 py-3 font-medium text-[#333]"><?php echo esc_html($s['param']); ?></td>
+                                    <td class="px-4 py-3 text-gray-600"><?php echo esc_html($s['value']); ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -171,20 +179,37 @@ if (have_posts()) :
             </div>
         </section>
 
+        <!-- Supply Chain Partners -->
+        <section class="py-16 bg-gray-50">
+            <div class="erdu-container">
+                <h2 class="text-2xl font-bold text-[#333] mb-4 text-center"><?php _e('Supply Chain Partners', 'erdu-wp'); ?></h2>
+                <p class="text-center text-gray-500 mb-8 max-w-2xl mx-auto"><?php _e('We only partner with Tier-1 component suppliers who share our commitment to excellence.', 'erdu-wp'); ?></p>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <?php foreach ($partners as $p) : ?>
+                        <div class="bg-white rounded-xl p-5 text-center border border-gray-200">
+                            <div class="text-lg font-bold text-gray-400 mb-1"><?php echo esc_html($p['name']); ?></div>
+                            <div class="text-xs text-[#F37021] mb-2"><?php echo esc_html($p['role']); ?></div>
+                            <div class="text-xs text-gray-500"><?php echo esc_html($p['desc']); ?></div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+
         <?php
     endwhile;
 endif;
 
-// ---- CTA (independent page field — NOT from Page Settings) ----
+// ---- CTA ----
 $cta_override = erdu_page_field('quality_cta_override', false);
 if ($cta_override) {
     erdu_cta_section(
-        erdu_page_field('quality_cta_title', __('Want Quality Products?', 'erdu-wp')),
-        erdu_page_field('quality_cta_button', __('Contact Us', 'erdu-wp')),
+        erdu_page_field('quality_cta_title', __('Want Products with Proven Quality?', 'erdu-wp')),
+        erdu_page_field('quality_cta_button', __('Request Quality Documentation', 'erdu-wp')),
         erdu_page_field('quality_cta_link', erdu_get_page_url('contact'))
     );
 } else {
-    erdu_cta_section(__('Want Quality Products?', 'erdu-wp'), __('Contact Us', 'erdu-wp'), erdu_get_page_url('contact'));
+    erdu_cta_section(__('Want Products with Proven Quality?', 'erdu-wp'), __('Request Quality Documentation', 'erdu-wp'), erdu_get_page_url('contact'));
 }
 
 get_footer();
