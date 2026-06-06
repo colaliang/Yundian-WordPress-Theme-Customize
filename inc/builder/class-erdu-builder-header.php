@@ -69,6 +69,7 @@ if (!class_exists('Erdu_Builder_Header')) {
             require_once ERDU_DIR . '/inc/builder/header/class-erdu-header-cta.php';
             require_once ERDU_DIR . '/inc/builder/header/class-erdu-header-topbar.php';
             require_once ERDU_DIR . '/inc/builder/header/class-erdu-header-mega-menu.php';
+            require_once ERDU_DIR . '/inc/builder/header/class-erdu-header-element-popup.php';
         }
 
         private function setup_hooks() {
@@ -83,6 +84,7 @@ if (!class_exists('Erdu_Builder_Header')) {
             add_action('erdu_primary_header', array('Erdu_Header_Social', 'render'), 28);
             add_action('erdu_primary_header', array('Erdu_Header_Search', 'render'), 29);
             add_action('erdu_primary_header', array('Erdu_Header_Lang', 'render'), 30);
+            add_action('erdu_primary_header', array('Erdu_Header_Element_Popup', 'render'), 32);
             add_action('erdu_primary_header', array('Erdu_Header_CTA', 'render'), 35);
             add_action('erdu_primary_header', array('Erdu_Header_Mobile_Trigger', 'render'), 40);
 

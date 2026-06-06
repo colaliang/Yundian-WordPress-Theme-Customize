@@ -166,6 +166,20 @@ input, textarea, select { font-family: inherit; }
 .h-\[400px\] { height: 400px; }
 .h-\[500px\] { height: 500px; }
 
+/* ===== Hero Section - Responsive Height ===== */
+.min-h-\[60vh\] { min-height: 60vh; }
+.min-h-\[70vh\] { min-height: 70vh; }
+.min-h-\[80vh\] { min-height: 80vh; }
+.min-h-\[100vh\] { min-height: 100vh; }
+@media (min-width: 768px) {
+  .md\:min-h-\[70vh\] { min-height: 70vh; }
+}
+@media (min-width: 1024px) {
+  .lg\:min-h-\[80vh\] { min-height: 80vh; }
+  .lg\:text-6xl { font-size: 3.75rem; line-height: 1; }
+  .lg\:py-32 { padding-top: 8rem; padding-bottom: 8rem; }
+}
+
 /* ===== Typography - Size ===== */
 .text-xs { font-size: 0.75rem; line-height: 1rem; }
 .text-sm { font-size: 0.875rem; line-height: 1.25rem; }

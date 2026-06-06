@@ -1,5 +1,7 @@
 <?php
 /**
+ * Template Name: Home
+ *
  * Front Page Template
  *
  * @package ERDU_Lighting
@@ -24,6 +26,34 @@ if (have_posts()) :
         $hero_video_enabled = erdu_page_field('home_hero_video_enabled', false);
         $hero_video         = erdu_page_field('home_hero_video', '');
         $hero_video_poster  = erdu_page_field('home_hero_video_poster', $hero_bg);
+
+        // Hero Height
+        $hero_height = erdu_page_field('home_hero_height', '80vh');
+        $hero_height_class = 'min-h-[80vh]';
+        $hero_container_class = 'min-h-[80vh]';
+        switch ($hero_height) {
+            case 'auto':
+                $hero_height_class = '';
+                $hero_container_class = '';
+                break;
+            case '60vh':
+                $hero_height_class = 'min-h-[60vh]';
+                $hero_container_class = 'min-h-[60vh]';
+                break;
+            case '70vh':
+                $hero_height_class = 'min-h-[70vh] md:min-h-[70vh]';
+                $hero_container_class = 'min-h-[70vh] md:min-h-[70vh]';
+                break;
+            case '100vh':
+                $hero_height_class = 'min-h-[100vh]';
+                $hero_container_class = 'min-h-[100vh]';
+                break;
+            case '80vh':
+            default:
+                $hero_height_class = 'min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh]';
+                $hero_container_class = 'min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh]';
+                break;
+        }
 
         // ====== STATS ======
         $stats = erdu_page_field('home_stats', array(
@@ -113,7 +143,7 @@ if (have_posts()) :
         ?>
 
         <!-- ====== HERO BANNER ====== -->
-        <section class="relative h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden erdu-bg-secondary">
+        <section class="relative <?php echo esc_attr($hero_height_class); ?> overflow-hidden erdu-bg-secondary">
 
             <?php if ($hero_video_enabled && $hero_video) : ?>
                 <!-- Video Background -->
@@ -131,10 +161,10 @@ if (have_posts()) :
                 <div class="absolute inset-0 opacity-30" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
             <?php endif; ?>
 
-            <div class="relative erdu-container h-full flex items-center">
+            <div class="relative erdu-container <?php echo esc_attr($hero_container_class); ?> flex items-center py-16 md:py-24 lg:py-32">
                 <div class="max-w-2xl">
-                    <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight"><?php echo esc_html($hero_title); ?></h1>
-                    <p class="text-lg md:text-xl text-orange-100 mb-8"><?php echo esc_html($hero_subtitle); ?></p>
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight"><?php echo esc_html($hero_title); ?></h1>
+                    <p class="text-lg md:text-xl lg:text-2xl text-orange-100 mb-8"><?php echo esc_html($hero_subtitle); ?></p>
                     <div class="flex flex-wrap gap-4">
                         <?php if ($hero_btn && $hero_btn_link) : ?>
                             <a href="<?php echo esc_url($hero_btn_link); ?>" class="erdu-btn erdu-btn-primary">
