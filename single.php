@@ -20,7 +20,7 @@ if (have_posts()) :
         ?>
 
         <!-- Article Hero -->
-        <section class="relative py-20" style="background: linear-gradient(135deg, #2D1810 0%, #4A2510 100%);">
+        <section class="relative py-20 erdu-bg-secondary">
             <?php if (has_post_thumbnail()) : ?>
                 <div class="absolute inset-0 opacity-20" style="background-image: url('<?php echo esc_url(get_the_post_thumbnail_url(null, 'large')); ?>'); background-size: cover; background-position: center;"></div>
             <?php endif; ?>
@@ -30,7 +30,7 @@ if (have_posts()) :
                     <?php if ($categories) : ?>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
                             <?php foreach ($categories as $cat) : ?>
-                                <a href="<?php echo esc_url(get_category_link($cat)); ?>" class="px-3 py-1 text-xs font-medium rounded-full" style="background-color: rgba(243,112,33,0.2); color: #F37021;">
+                                <a href="<?php echo esc_url(get_category_link($cat)); ?>" class="px-3 py-1 text-xs font-medium rounded-full bg-orange-100 erdu-text-primary">
                                     <?php echo esc_html($cat->name); ?>
                                 </a>
                             <?php endforeach; ?>
@@ -82,13 +82,13 @@ if (have_posts()) :
 
                         <!-- Author Box -->
                         <?php if ($author_bio) : ?>
-                        <div class="mt-8 p-6 rounded-xl border border-gray-200" style="background-color: #F9FAFB;">
+                        <div class="mt-8 p-6 rounded-xl border border-gray-200 bg-gray-50">
                             <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0" style="background-color: #F37021;">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0 erdu-bg-primary">
                                     <?php echo esc_html(strtoupper(substr($author_name, 0, 1))); ?>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold" style="color: #333;"><?php echo esc_html($author_name); ?></h4>
+                                    <h4 class="font-semibold text-gray-800"><?php echo esc_html($author_name); ?></h4>
                                     <p class="text-sm text-gray-500 mt-1"><?php echo esc_html($author_bio); ?></p>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@ if (have_posts()) :
                             <a href="https://twitter.com/intent/tweet?url=<?php echo esc_attr($share_url); ?>&text=<?php echo esc_attr($share_title); ?>" target="_blank" rel="noopener" class="w-8 h-8 rounded-full flex items-center justify-center text-white" style="background-color: #1DA1F2;" aria-label="X / Twitter">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
                             </a>
-                            <a href="mailto:?subject=<?php echo esc_attr($share_title); ?>&body=<?php echo esc_attr($share_url); ?>" class="w-8 h-8 rounded-full flex items-center justify-center text-white" style="background-color: #F37021;" aria-label="Email">
+                            <a href="mailto:?subject=<?php echo esc_attr($share_title); ?>&body=<?php echo esc_attr($share_url); ?>" class="w-8 h-8 rounded-full flex items-center justify-center text-white erdu-bg-primary" aria-label="Email">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             </a>
                         </div>
@@ -119,13 +119,13 @@ if (have_posts()) :
                             <?php if ($prev_post) : ?>
                                 <a href="<?php echo esc_url(get_permalink($prev_post)); ?>" class="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                                     <span class="text-xs text-gray-400">&larr; <?php _e('Previous', 'erdu-wp'); ?></span>
-                                    <h4 class="font-medium text-sm mt-1 line-clamp-2" style="color: #333;"><?php echo esc_html(get_the_title($prev_post)); ?></h4>
+                                    <h4 class="font-medium text-sm mt-1 line-clamp-2 text-gray-800"><?php echo esc_html(get_the_title($prev_post)); ?></h4>
                                 </a>
                             <?php endif; ?>
                             <?php if ($next_post) : ?>
                                 <a href="<?php echo esc_url(get_permalink($next_post)); ?>" class="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow md:text-right">
                                     <span class="text-xs text-gray-400"><?php _e('Next', 'erdu-wp'); ?> &rarr;</span>
-                                    <h4 class="font-medium text-sm mt-1 line-clamp-2" style="color: #333;"><?php echo esc_html(get_the_title($next_post)); ?></h4>
+                                    <h4 class="font-medium text-sm mt-1 line-clamp-2 text-gray-800"><?php echo esc_html(get_the_title($next_post)); ?></h4>
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -135,7 +135,7 @@ if (have_posts()) :
                     <div class="lg:col-span-4 space-y-8">
                         <!-- Categories -->
                         <div class="p-6 rounded-xl border border-gray-200">
-                            <h4 class="font-semibold mb-4" style="color: #333;"><?php _e('Categories', 'erdu-wp'); ?></h4>
+                            <h4 class="font-semibold mb-4 text-gray-800"><?php _e('Categories', 'erdu-wp'); ?></h4>
                             <?php
                             $all_cats = get_categories(array('hide_empty' => true));
                             if ($all_cats) : ?>
@@ -144,7 +144,7 @@ if (have_posts()) :
                                         <li>
                                             <a href="<?php echo esc_url(get_category_link($c)); ?>" class="flex items-center justify-between text-sm text-gray-600 hover:text-orange-500 transition-colors">
                                                 <span><?php echo esc_html($c->name); ?></span>
-                                                <span class="text-xs px-2 py-0.5 rounded-full" style="background-color: #F9FAFB;"><?php echo intval($c->count); ?></span>
+                                                <span class="text-xs px-2 py-0.5 rounded-full bg-gray-50"><?php echo intval($c->count); ?></span>
                                             </a>
                                         </li>
                                     <?php endforeach; ?>
@@ -154,7 +154,7 @@ if (have_posts()) :
 
                         <!-- Recent Posts -->
                         <div class="p-6 rounded-xl border border-gray-200">
-                            <h4 class="font-semibold mb-4" style="color: #333;"><?php _e('Recent Posts', 'erdu-wp'); ?></h4>
+                            <h4 class="font-semibold mb-4 text-gray-800"><?php _e('Recent Posts', 'erdu-wp'); ?></h4>
                             <?php
                             $recent = new WP_Query(array(
                                 'post_type'      => 'post',
@@ -174,7 +174,7 @@ if (have_posts()) :
                                                     </div>
                                                 <?php endif; ?>
                                                 <div>
-                                                    <h5 class="text-sm font-medium line-clamp-2 group-hover:text-orange-500 transition-colors" style="color: #333;"><?php the_title(); ?></h5>
+                                                    <h5 class="text-sm font-medium line-clamp-2 group-hover:erdu-text-primary transition-colors text-gray-800"><?php the_title(); ?></h5>
                                                     <span class="text-xs text-gray-400"><?php echo get_the_date(); ?></span>
                                                 </div>
                                             </a>
@@ -196,11 +196,11 @@ if (have_posts()) :
                             ));
                             if ($related->have_posts()) : ?>
                             <div class="p-6 rounded-xl border border-gray-200">
-                                <h4 class="font-semibold mb-4" style="color: #333;"><?php _e('Related Articles', 'erdu-wp'); ?></h4>
+                                <h4 class="font-semibold mb-4 text-gray-800"><?php _e('Related Articles', 'erdu-wp'); ?></h4>
                                 <div class="space-y-4">
                                     <?php while ($related->have_posts()) : $related->the_post(); ?>
                                         <a href="<?php the_permalink(); ?>" class="block group">
-                                            <h5 class="text-sm font-medium line-clamp-2 group-hover:text-orange-500 transition-colors" style="color: #333;"><?php the_title(); ?></h5>
+                                            <h5 class="text-sm font-medium line-clamp-2 group-hover:erdu-text-primary transition-colors text-gray-800"><?php the_title(); ?></h5>
                                             <p class="text-xs text-gray-500 mt-1 line-clamp-2"><?php echo get_the_excerpt(); ?></p>
                                         </a>
                                     <?php endwhile; wp_reset_postdata(); ?>

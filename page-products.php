@@ -38,7 +38,7 @@ if (have_posts()) :
         ?>
 
         <!-- Hero -->
-        <section class="relative py-20" style="background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);">
+        <section class="relative py-20 erdu-bg-dark">
             <div class="absolute inset-0 opacity-20" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
             <div class="relative erdu-container text-center">
                 <?php erdu_breadcrumb(); ?>
@@ -47,7 +47,7 @@ if (have_posts()) :
                 <?php if ($hero_btn || $hero_btn2) : ?>
                     <div class="flex flex-wrap gap-4 justify-center mt-8">
                         <?php if ($hero_btn && $hero_btn_link) : ?>
-                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors" style="background-color: #F37021;"><?php echo esc_html($hero_btn); ?></a>
+                            <a href="<?php echo esc_url($hero_btn_link); ?>" class="px-6 py-3 font-semibold rounded-lg text-white transition-colors erdu-bg-primary"><?php echo esc_html($hero_btn); ?></a>
                         <?php endif; ?>
                         <?php if ($hero_btn2 && $hero_btn2_link) : ?>
                             <a href="<?php echo esc_url($hero_btn2_link); ?>" class="px-6 py-3 font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors"><?php echo esc_html($hero_btn2); ?></a>
@@ -65,7 +65,7 @@ if (have_posts()) :
         <?php endif; ?>
 
         <!-- Products Grid -->
-        <section class="py-16" style="background-color: #F9FAFB;">
+        <section class="py-16 bg-gray-50">
             <div class="erdu-container">
                 <div class="text-center mb-12 max-w-2xl mx-auto">
                     <?php if ($prod_intro) : ?>
@@ -139,11 +139,11 @@ if (have_posts()) :
                                         <?php endif; ?>
                                         <div class="md:col-span-<?php echo $cat_image ? '3' : '5'; ?> p-6 flex flex-col justify-center">
                                             <div class="flex items-center gap-3 mb-2">
-                                                <h3 class="font-semibold text-xl" style="color: #333;"><?php echo esc_html($cat_name); ?></h3>
-                                                <span class="px-2 py-1 text-xs rounded-full" style="background-color: #FFF5ED; color: #F37021;"><?php printf(__('%d Products', 'erdu-wp'), intval($product_count)); ?></span>
+                                                <h3 class="font-semibold text-xl text-gray-800"><?php echo esc_html($cat_name); ?></h3>
+                                                <span class="px-2 py-1 text-xs rounded-full bg-orange-50 erdu-text-primary"><?php printf(__('%d Products', 'erdu-wp'), intval($product_count)); ?></span>
                                             </div>
                                             <?php if ($cat_desc) : ?><p class="text-sm text-gray-600 mb-4"><?php echo esc_html($cat_desc); ?></p><?php endif; ?>
-                                            <a href="<?php echo esc_url($cat_link); ?>" class="inline-flex items-center gap-1 text-sm font-medium" style="color: #F37021;"><?php _e('View All', 'erdu-wp'); ?> &rarr;</a>
+                                            <a href="<?php echo esc_url($cat_link); ?>" class="inline-flex items-center gap-1 text-sm font-medium erdu-text-primary"><?php _e('View All', 'erdu-wp'); ?> &rarr;</a>
                                         </div>
                                     </div>
                                 </div>
@@ -160,8 +160,8 @@ if (have_posts()) :
                                                         </div>
                                                     <?php endif; ?>
                                                     <div class="p-4">
-                                                        <h4 class="font-medium text-sm mb-1" style="color: #333;"><?php echo esc_html($p['title']); ?></h4>
-                                                        <?php if ($p['price']) : ?><p class="text-sm font-semibold" style="color: #F37021;"><?php echo wp_kses_post($p['price']); ?></p><?php endif; ?>
+                                                        <h4 class="font-medium text-sm mb-1 text-gray-800"><?php echo esc_html($p['title']); ?></h4>
+                                                        <?php if ($p['price']) : ?><p class="text-sm font-semibold erdu-text-primary"><?php echo wp_kses_post($p['price']); ?></p><?php endif; ?>
                                                     </div>
                                                 </div>
                                             </a>
@@ -186,15 +186,15 @@ if (have_posts()) :
                                 </div>
                                 <div class="p-6">
                                     <div class="flex justify-between items-start mb-2">
-                                        <h3 class="font-semibold text-lg" style="color: #333;"><?php echo esc_html($s['name']); ?></h3>
-                                        <span class="px-2 py-1 text-xs rounded-full" style="background-color: #FFF5ED; color: #F37021;"><?php echo esc_html($s['tag']); ?></span>
+                                        <h3 class="font-semibold text-lg text-gray-800"><?php echo esc_html($s['name']); ?></h3>
+                                        <span class="px-2 py-1 text-xs rounded-full bg-orange-50 erdu-text-primary"><?php echo esc_html($s['tag']); ?></span>
                                     </div>
                                     <p class="text-sm text-gray-600 mb-3"><?php echo esc_html($s['description']); ?></p>
                                     <div class="grid grid-cols-2 gap-2 text-xs">
-                                        <div class="p-2 rounded" style="background-color: #F9FAFB;"><span class="text-gray-500"><?php _e('Power:', 'erdu-wp'); ?></span> <span class="font-medium"><?php echo esc_html($s['power']); ?></span></div>
-                                        <div class="p-2 rounded" style="background-color: #F9FAFB;"><span class="text-gray-500"><?php _e('Beam:', 'erdu-wp'); ?></span> <span class="font-medium"><?php echo esc_html($s['angle']); ?></span></div>
-                                        <div class="p-2 rounded" style="background-color: #F9FAFB;"><span class="text-gray-500">CRI:</span> <span class="font-medium"><?php echo esc_html($s['cri']); ?></span></div>
-                                        <div class="p-2 rounded" style="background-color: #F9FAFB;"><span class="text-gray-500">CCT:</span> <span class="font-medium"><?php echo esc_html($s['cct']); ?></span></div>
+                                        <div class="p-2 rounded bg-gray-50"><span class="text-gray-500"><?php _e('Power:', 'erdu-wp'); ?></span> <span class="font-medium"><?php echo esc_html($s['power']); ?></span></div>
+                                        <div class="p-2 rounded bg-gray-50"><span class="text-gray-500"><?php _e('Beam:', 'erdu-wp'); ?></span> <span class="font-medium"><?php echo esc_html($s['angle']); ?></span></div>
+                                        <div class="p-2 rounded bg-gray-50"><span class="text-gray-500">CRI:</span> <span class="font-medium"><?php echo esc_html($s['cri']); ?></span></div>
+                                        <div class="p-2 rounded bg-gray-50"><span class="text-gray-500">CCT:</span> <span class="font-medium"><?php echo esc_html($s['cct']); ?></span></div>
                                     </div>
                                 </div>
                             </div>

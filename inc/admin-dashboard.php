@@ -112,7 +112,7 @@ function erdu_dashboard_page()
         <div class="erdu-dashboard-header">
             <div class="erdu-dashboard-brand">
                 <div class="erdu-dashboard-logo">
-                    <span style="background: #F37021; color: #fff; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold;">E</span>
+                    <span class="erdu-bg-primary" style="color: #fff; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-weight: bold;">E</span>
                     <h1><?php _e('ERDU Lighting', 'erdu-wp'); ?></h1>
                 </div>
                 <span class="erdu-dashboard-version">v<?php echo ERDU_VERSION; ?></span>

@@ -113,7 +113,7 @@ if (have_posts()) :
         ?>
 
         <!-- ====== HERO BANNER ====== -->
-        <section class="relative h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden" style="background: linear-gradient(135deg, #2D1810 0%, #4A2510 100%);">
+        <section class="relative h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden erdu-bg-secondary">
 
             <?php if ($hero_video_enabled && $hero_video) : ?>
                 <!-- Video Background -->
@@ -125,7 +125,7 @@ if (have_posts()) :
                     preload="auto"
                 ></video>
                 <!-- Dark overlay for text readability -->
-                <div class="absolute inset-0" style="background: rgba(45, 24, 16, 0.55);"></div>
+                <div class="absolute inset-0" style="background: rgba(0, 0, 0, 0.55);"></div>
             <?php else : ?>
                 <!-- Image Background -->
                 <div class="absolute inset-0 opacity-30" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
@@ -156,7 +156,7 @@ if (have_posts()) :
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                     <?php foreach ($stats as $stat) : ?>
                         <div class="text-center">
-                            <div class="text-3xl md:text-4xl font-bold" style="color: #F37021;"><?php echo esc_html($stat['number']); ?></div>
+                            <div class="text-3xl md:text-4xl font-bold erdu-text-primary"><?php echo esc_html($stat['number']); ?></div>
                             <div class="text-sm text-gray-500 mt-1"><?php echo esc_html($stat['label']); ?></div>
                         </div>
                     <?php endforeach; ?>
@@ -165,14 +165,14 @@ if (have_posts()) :
         </section>
 
         <!-- ====== ABOUT INTRO ====== -->
-        <section class="erdu-section" style="background-color: #F9FAFB;">
+        <section class="erdu-section bg-gray-50">
             <div class="erdu-container">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="erdu-h2 mb-4"><?php echo esc_html($about_title); ?></h2>
                         <?php if ($about_highlight) : ?>
-                            <div class="border-l-4 p-4 mb-4 rounded-r-md" style="background-color: #FFF5ED; border-color: #F37021;">
-                                <p style="color: #F37021;" class="font-medium"><?php echo esc_html($about_highlight); ?></p>
+                            <div class="border-l-4 p-4 mb-4 rounded-r-md bg-orange-50 border-orange-500">
+                                <p class="font-medium erdu-text-primary"><?php echo esc_html($about_highlight); ?></p>
                             </div>
                         <?php endif; ?>
                         <?php if ($about_content) : ?>
@@ -186,7 +186,7 @@ if (have_posts()) :
                             <?php endforeach; ?>
                         </div>
                         <?php if ($about_link) : ?>
-                            <a href="<?php echo esc_url($about_link); ?>" class="inline-flex items-center gap-1 font-medium hover:underline" style="color: #F37021;">
+                            <a href="<?php echo esc_url($about_link); ?>" class="inline-flex items-center gap-1 font-medium hover:underline erdu-text-primary">
                                 <?php _e('Learn More', 'erdu-wp'); ?>
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </a>
@@ -255,9 +255,9 @@ if (have_posts()) :
                                 <?php endif; ?>
                             </div>
                             <div class="p-4">
-                                <h3 class="font-semibold" style="color: #333;"><?php echo esc_html($p['name']); ?></h3>
+                                <h3 class="font-semibold text-gray-800"><?php echo esc_html($p['name']); ?></h3>
                                 <p class="text-sm text-gray-500 mt-1"><?php echo esc_html($p['desc']); ?></p>
-                                <a href="<?php echo esc_url($p['link']); ?>" class="mt-3 inline-flex items-center gap-1 text-sm font-medium hover:underline" style="color: #F37021;">
+                                <a href="<?php echo esc_url($p['link']); ?>" class="mt-3 inline-flex items-center gap-1 text-sm font-medium hover:underline erdu-text-primary">
                                     <?php _e('Discover More', 'erdu-wp'); ?>
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                                 </a>
@@ -269,7 +269,7 @@ if (have_posts()) :
         </section>
 
         <!-- ====== APPLICATIONS ====== -->
-        <section class="erdu-section" style="background-color: #F9FAFB;">
+        <section class="erdu-section bg-gray-50">
             <div class="erdu-container">
                 <div class="text-center mb-10">
                     <h2 class="erdu-h2"><?php echo esc_html($apps_title); ?></h2>
@@ -281,7 +281,7 @@ if (have_posts()) :
                     ?>
                         <a href="<?php echo esc_url($app_link); ?>" class="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow border border-gray-100">
                             <?php if (!empty($a['icon'])) : ?><div class="text-4xl mb-3"><?php echo esc_html($a['icon']); ?></div><?php endif; ?>
-                            <h3 class="font-semibold" style="color: #333;"><?php echo esc_html($a['name']); ?></h3>
+                            <h3 class="font-semibold text-gray-800"><?php echo esc_html($a['name']); ?></h3>
                             <p class="text-sm text-gray-500 mt-2"><?php echo esc_html($a['description']); ?></p>
                         </a>
                     <?php endforeach; ?>
@@ -291,12 +291,12 @@ if (have_posts()) :
 
         <!-- ====== GLOBAL CTA ====== -->
         <?php if ($cta_title) : ?>
-        <section class="py-16" style="background: linear-gradient(135deg, #F37021 0%, #D45A0F 100%);">
+        <section class="py-16 erdu-bg-primary">
             <div class="erdu-container text-center">
                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-8"><?php echo esc_html($cta_title); ?></h2>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <?php if ($cta_btn && $cta_btn_link) : ?>
-                        <a href="<?php echo esc_url($cta_btn_link); ?>" class="inline-flex items-center justify-center px-8 py-3 bg-white font-semibold rounded-lg transition-all hover:shadow-lg" style="color: #F37021;"><?php echo esc_html($cta_btn); ?></a>
+                        <a href="<?php echo esc_url($cta_btn_link); ?>" class="inline-flex items-center justify-center px-8 py-3 bg-white font-semibold rounded-lg transition-all hover:shadow-lg erdu-text-primary"><?php echo esc_html($cta_btn); ?></a>
                     <?php endif; ?>
                     <?php if ($cta_btn2 && $cta_btn2_link) : ?>
                         <a href="<?php echo esc_url($cta_btn2_link); ?>" class="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-lg transition-all hover:bg-white hover:bg-opacity-10"><?php echo esc_html($cta_btn2); ?></a>
@@ -315,13 +315,13 @@ if (have_posts()) :
                     <p class="text-gray-500 mt-2"><?php echo esc_html($testi_desc); ?></p>
                 </div>
                 <?php foreach ($testimonials as $t) : ?>
-                <div class="max-w-3xl mx-auto rounded-xl p-8 mb-6" style="background-color: #F9FAFB;">
-                    <div class="text-4xl mb-4" style="color: #F37021; opacity: 0.3;">"</div>
+                <div class="max-w-3xl mx-auto rounded-xl p-8 mb-6 bg-gray-50">
+                    <div class="text-4xl mb-4 erdu-text-primary" style="opacity: 0.3;">"</div>
                     <p class="text-gray-700 text-lg leading-relaxed mb-6"><?php echo esc_html($t['quote']); ?></p>
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold" style="background-color: #F37021;"><?php echo esc_html(substr($t['author'], 0, 1)); ?></div>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold erdu-bg-primary"><?php echo esc_html(substr($t['author'], 0, 1)); ?></div>
                         <div>
-                            <div class="font-semibold" style="color: #333;"><?php echo esc_html($t['author']); ?></div>
+                            <div class="font-semibold text-gray-800"><?php echo esc_html($t['author']); ?></div>
                             <div class="text-sm text-gray-500"><?php echo esc_html($t['role']); ?></div>
                         </div>
                     </div>
@@ -332,14 +332,14 @@ if (have_posts()) :
         <?php endif; ?>
 
         <!-- ====== EXHIBITIONS ====== -->
-        <section class="erdu-section" style="background-color: #F9FAFB;">
+        <section class="erdu-section bg-gray-50">
             <div class="erdu-container">
                 <div class="flex justify-between items-end mb-8">
                     <div>
                         <h2 class="erdu-h2"><?php echo esc_html($expo_title); ?></h2>
                         <p class="text-gray-500 mt-2"><?php echo esc_html($expo_desc); ?></p>
                     </div>
-                    <a href="<?php echo esc_url(erdu_get_page_url('news')); ?>" class="hidden md:inline-flex items-center gap-1 text-sm font-medium hover:underline" style="color: #F37021;"><?php _e('View All', 'erdu-wp'); ?></a>
+                    <a href="<?php echo esc_url(erdu_get_page_url('news')); ?>" class="hidden md:inline-flex items-center gap-1 text-sm font-medium hover:underline erdu-text-primary"><?php _e('View All', 'erdu-wp'); ?></a>
                 </div>
                 <div class="grid md:grid-cols-3 gap-6">
                     <?php
@@ -372,10 +372,10 @@ if (have_posts()) :
                     foreach ($display_expos as $e) : ?>
                         <div class="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
                             <div class="flex items-center gap-2 mb-3">
-                                <svg class="w-5 h-5" style="color: #F37021;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                <?php if (!empty($e['date'])) : ?><span class="text-sm font-medium" style="color: #F37021;"><?php echo esc_html($e['date']); ?></span><?php endif; ?>
+                                <svg class="w-5 h-5 erdu-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                <?php if (!empty($e['date'])) : ?><span class="text-sm font-medium erdu-text-primary"><?php echo esc_html($e['date']); ?></span><?php endif; ?>
                             </div>
-                            <h3 class="font-semibold" style="color: #333;"><?php echo esc_html($e['name']); ?></h3>
+                            <h3 class="font-semibold text-gray-800"><?php echo esc_html($e['name']); ?></h3>
                             <?php if (!empty($e['location'])) : ?><p class="text-sm text-gray-500"><?php echo esc_html($e['location']); ?></p><?php endif; ?>
                             <?php if (!empty($e['booth'])) : ?><p class="text-sm text-gray-400 mt-1"><?php printf(__('Booth: %s', 'erdu-wp'), esc_html($e['booth'])); ?></p><?php endif; ?>
                         </div>
@@ -395,7 +395,7 @@ if (have_posts()) :
                         <?php if ($prt_logo) : ?>
                             <img src="<?php echo esc_url($prt_logo); ?>" alt="<?php echo esc_attr($prt['name']); ?>" class="h-8 object-contain grayscale hover:grayscale-0 transition-all">
                         <?php else : ?>
-                            <span class="text-lg font-bold text-gray-400 hover:text-orange-500 transition-colors cursor-pointer"><?php echo esc_html($prt['name']); ?></span>
+                            <span class="text-lg font-bold text-gray-400 hover:erdu-text-primary transition-colors cursor-pointer"><?php echo esc_html($prt['name']); ?></span>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
@@ -419,7 +419,7 @@ if (have_posts()) :
                     <?php endforeach; ?>
                 </div>
                 <div class="text-center mt-4">
-                    <a href="<?php echo esc_url(erdu_get_page_url('contact')); ?>" class="inline-flex items-center gap-1 text-sm font-medium hover:underline" style="color: #F37021;"><?php _e('View All FAQs', 'erdu-wp'); ?> →</a>
+                    <a href="<?php echo esc_url(erdu_get_page_url('contact')); ?>" class="inline-flex items-center gap-1 text-sm font-medium hover:underline erdu-text-primary"><?php _e('View All FAQs', 'erdu-wp'); ?> →</a>
                 </div>
             </div>
         </section>
@@ -427,9 +427,9 @@ if (have_posts()) :
 
         <!-- ====== NEWSLETTER ====== -->
         <?php if ($news_title) : ?>
-        <section class="py-12 border-t border-gray-100" style="background-color: #F9FAFB;">
+        <section class="py-12 border-t border-gray-100 bg-gray-50">
             <div class="erdu-container text-center">
-                <h3 class="text-xl font-semibold mb-2" style="color: #333;"><?php echo esc_html($news_title); ?></h3>
+                <h3 class="text-xl font-semibold mb-2 text-gray-800"><?php echo esc_html($news_title); ?></h3>
                 <form class="flex flex-wrap justify-center gap-2 max-w-md mx-auto mt-4">
                     <input type="email" placeholder="<?php echo esc_attr($news_placeholder); ?>" class="erdu-input flex-1 min-w-[200px]">
                     <button type="submit" class="erdu-btn erdu-btn-primary"><?php echo esc_html($news_button); ?></button>
