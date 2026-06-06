@@ -49,7 +49,7 @@ class Erdu_Header_Lang {
                         <?php foreach ($languages as $lang) :
                             if (!empty($lang['active'])) :
                                 $flag = !empty($lang['flag']) ? $lang['flag'] : '';
-                                if ($show_flags && $flag) : ?
+                                if ($show_flags && $flag) : ?>
                                     <img src="<?php echo esc_url($flag); ?>" alt="" class="w-4 h-4 rounded-sm object-cover">
                                 <?php endif; ?>
                                 <span class="font-medium"><?php echo esc_html($lang['label']); ?></span>
