@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-06-07
+
+### Fixed
+- Fixed Header transparent mode not working correctly when hero section is at the top.
+- Fixed Header search, language switcher, and CTA icons not displaying due to flex layout and responsive class conflicts.
+
 ## [1.2.0] - 2026-06-06
 
 ### Added
