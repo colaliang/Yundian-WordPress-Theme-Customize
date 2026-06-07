@@ -9,11 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.3.5] - 2026-06-07
 
-### Fixed & Enhanced
-- Enhanced About Us page:
-  - Added visual SVG icons to all Tab navigation buttons for better UI/UX.
-  - Added new `Section Title` ACF field for the "Our Journey" timeline section.
-  - Upgraded "Company Values" section to support custom icon/image uploads via ACF, with built-in SVG fallbacks for default values.
+### Added
+- Added `Header Logo Size` configuration in Header Layout settings.
+- Added `Hero Background Image` and `Hero Subtitle` rendering in the Contact Us page.
+
+### Changed
+- Improved Contact Us page UI to closely match design specifications:
+  - Form layout refactored with a more spacious 2-column grid and modern input styles.
+  - "Contact Persons" cards updated with clean backgrounds, paddings, and rounded corners.
+  - "Connect With Us" social buttons refined and properly linked to global WhatsApp/WeChat settings.
+- Refined FAQ accordion design globally (used in Contact and block renders) with clean white cards, `+` icons, and better spacing.
+
+### Fixed
+- Fixed Contact Form submission failing due to missing `Subject` field in the frontend.
+- Added missing `Estimated Quantity` field support in the Contact Form email handler.
+- Fixed `Page Content` and `Introduction` fields not rendering on the Contact Us page.
+- Fixed a fatal error caused by `erdu_get_theme_colors()` missing declaration.
+- Fixed a parse error caused by an extra closing brace in the footer about widget.
+- Enhanced About Us page with SVG icons for Tab navigation, configurable timeline titles, and custom value icons.
 
 ## [1.3.4] - 2026-06-07
 
