@@ -38,6 +38,7 @@ if (!class_exists('Erdu_Builder_Header')) {
                     'layout'         => erdu_header_field('hd_layout', 'default'),
                     'width'          => erdu_header_field('hd_width', 'container'),
                     'height'         => erdu_header_field('hd_height', 64),
+                    'logo_size'      => erdu_header_field('hd_logo_size', 32),
                     'sticky'         => erdu_header_field('hd_sticky', true),
                     'sticky_shadow'  => erdu_header_field('hd_sticky_shadow', true),
                     'transparent'    => erdu_header_field('hd_transparent', false),
@@ -56,6 +57,10 @@ if (!class_exists('Erdu_Builder_Header')) {
                     'topbar_enable'  => erdu_header_field('hd_topbar_enable', false),
                 );
             }
+        }
+
+        public function get_settings() {
+            return $this->header_settings;
         }
 
         private function load_components() {

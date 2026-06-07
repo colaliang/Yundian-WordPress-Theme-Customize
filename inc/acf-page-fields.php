@@ -1196,6 +1196,8 @@ function erdu_register_header_acf_fields()
                 'default_value' => 'container', 'layout' => 'horizontal'),
             array('key' => 'field_hd_height', 'label' => __('Header Height (px)', 'erdu-wp'), 'name' => 'hd_height', 'type' => 'number',
                 'default_value' => 64, 'min' => 48, 'max' => 120),
+            array('key' => 'field_hd_logo_size', 'label' => __('Logo Size (px)', 'erdu-wp'), 'name' => 'hd_logo_size', 'type' => 'number',
+                'default_value' => 32, 'min' => 16, 'max' => 120, 'instructions' => __('Set the width/height of the logo icon. Default is 32px.', 'erdu-wp')),
             array('key' => 'field_hd_sticky', 'label' => __('Sticky Header', 'erdu-wp'), 'name' => 'hd_sticky', 'type' => 'true_false',
                 'ui' => 1, 'default_value' => 1),
             array('key' => 'field_hd_sticky_shadow', 'label' => __('Shadow on Sticky', 'erdu-wp'), 'name' => 'hd_sticky_shadow', 'type' => 'true_false',
