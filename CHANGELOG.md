@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-06-07
+
+### Added
+- **Advanced Search Component Refactoring**:
+  - Added new ACF config options for Search: Size (Small/Medium/Large), Style (Fullscreen/Dropdown/Inline).
+  - Implemented Local Storage-based Search History feature with clear functionality.
+  - Added Promoted Search Keywords config support.
+  - Integrated Search History and Promoted Keywords directly into Dropdown, Inline, and Fullscreen search interfaces.
+
 ## [1.2.2] - 2026-06-07
 
 ### Fixed

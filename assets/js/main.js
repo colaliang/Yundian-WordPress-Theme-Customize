@@ -9,6 +9,134 @@
     'use strict';
 
     // ==========================================
+    // Search Features (History & Toggle)
+    // ==========================================
+    function initSearch() {
+        const searchForms = document.querySelectorAll('form[action*="' + window.location.host + '"]');
+        const historyContainers = document.querySelectorAll('.erdu-search-history-container');
+        const historyLists = document.querySelectorAll('.erdu-search-history-list');
+        const clearBtns = document.querySelectorAll('.erdu-search-clear-history');
+        const STORAGE_KEY = 'erdu_search_history';
+
+        // 1. Manage Search History
+        function getHistory() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveHistory(term) {
+            if (!term) return;
+            let history = getHistory();
+            // Remove if exists to push to front
+            history = history.filter(item => item !== term);
+            history.unshift(term);
+            if (history.length > 10) history.pop(); // Keep max 10
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+        }
+
+        function renderHistory() {
+            const history = getHistory();
+            if (history.length > 0) {
+                historyContainers.forEach(c => c.classList.remove('hidden'));
+                historyLists.forEach(list => {
+                    list.innerHTML = '';
+                    history.forEach(term => {
+                        const a = document.createElement('a');
+                        a.href = '/?s=' + encodeURIComponent(term);
+                        a.className = 'inline-flex items-center px-3 py-1 rounded-full bg-white border border-gray-200 text-sm text-gray-600 hover:border-orange-500 hover:text-orange-500 transition-colors';
+                        a.innerHTML = `<svg class="w-3 h-3 mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>${term}`;
+                        list.appendChild(a);
+                    });
+                });
+            } else {
+                historyContainers.forEach(c => c.classList.add('hidden'));
+            }
+        }
+
+        // Save on submit
+        searchForms.forEach(form => {
+            form.addEventListener('submit', function () {
+                const input = form.querySelector('input[name="s"]');
+                if (input && input.value.trim()) {
+                    saveHistory(input.value.trim());
+                }
+            });
+        });
+
+        // Clear history
+        clearBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem(STORAGE_KEY);
+                renderHistory();
+            });
+        });
+
+        // Initial render
+        renderHistory();
+
+        // 2. Handle Search Toggle (Dropdown & Fullscreen)
+        const toggles = document.querySelectorAll('.erdu-search-toggle');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const style = toggle.getAttribute('data-style');
+                const container = toggle.closest('.erdu-search-trigger-container');
+
+                if (style === 'dropdown') {
+                    const panel = container.querySelector('.erdu-search-dropdown-panel');
+                    if (panel) {
+                        panel.classList.toggle('opacity-0');
+                        panel.classList.toggle('invisible');
+                        if (!panel.classList.contains('invisible')) {
+                            setTimeout(() => panel.querySelector('input').focus(), 50);
+                        }
+                    }
+                } else if (style === 'fullscreen') {
+                    const overlay = document.querySelector('.erdu-search-fullscreen');
+                    const content = document.querySelector('.erdu-search-fullscreen-content');
+                    if (overlay) {
+                        overlay.classList.remove('opacity-0', 'invisible');
+                        setTimeout(() => {
+                            content.classList.remove('scale-95');
+                            overlay.querySelector('input').focus();
+                        }, 50);
+                    }
+                }
+            });
+        });
+
+        // Close Dropdown on click outside
+        document.addEventListener('click', function (e) {
+            const dropdowns = document.querySelectorAll('.erdu-search-dropdown-panel');
+            dropdowns.forEach(panel => {
+                if (!panel.classList.contains('invisible') && !panel.contains(e.target)) {
+                    panel.classList.add('opacity-0', 'invisible');
+                }
+            });
+        });
+
+        // Close Fullscreen
+        const closeFullscreen = document.querySelectorAll('.erdu-search-close');
+        closeFullscreen.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const overlay = document.querySelector('.erdu-search-fullscreen');
+                const content = document.querySelector('.erdu-search-fullscreen-content');
+                if (overlay) {
+                    content.classList.add('scale-95');
+                    setTimeout(() => {
+                        overlay.classList.add('opacity-0', 'invisible');
+                    }, 300);
+                }
+            });
+        });
+    }
+
+    // ==========================================
     // Mobile Menu Toggle
     // ==========================================
     function initMobileMenu() {
@@ -315,6 +443,7 @@
     // Initialize on DOM Ready
     // ==========================================
     function init() {
+        initSearch();
         initMobileMenu();
         initFaqAccordion();
         initTabs();
