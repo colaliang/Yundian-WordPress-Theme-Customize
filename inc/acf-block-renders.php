@@ -319,14 +319,16 @@ function erdu_block_render_faq($block, $is_preview = false)
     <section class="py-16 bg-white">
         <div class="erdu-container max-w-3xl">
             <h2 class="erdu-h2 mb-8 text-center"><?php echo esc_html($title); ?></h2>
-            <div class="space-y-4" data-faq-accordion>
+            <div class="space-y-3" id="faq-accordion">
                 <?php foreach ($items as $i => $faq) : ?>
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button type="button" class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors faq-toggle" data-index="<?php echo intval($i); ?>">
-                            <span class="font-medium" style="color: #333;"><?php echo esc_html($faq['question']); ?></span>
-                            <svg class="w-5 h-5 faq-icon transition-transform" style="color: #F37021;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    <div class="border border-gray-200 rounded-lg bg-white">
+                        <button type="button" class="w-full px-4 py-3 flex justify-between items-center text-left hover:bg-gray-50 transition-colors faq-toggle" data-index="<?php echo intval($i); ?>">
+                            <span class="font-medium text-[#333] text-sm"><?php echo esc_html($faq['question']); ?></span>
+                            <span class="faq-icon text-gray-400 transition-transform ml-4 shrink-0" style="line-height: 1;">+</span>
                         </button>
-                        <div class="faq-content hidden px-4 pb-4"><p class="text-sm text-gray-600"><?php echo esc_html($faq['answer']); ?></p></div>
+                        <div class="faq-content hidden px-4 pb-4">
+                            <p class="text-sm text-gray-600"><?php echo nl2br(esc_html($faq['answer'])); ?></p>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
