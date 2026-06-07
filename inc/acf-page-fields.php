@@ -1098,12 +1098,8 @@ function erdu_register_footer_acf_fields()
             array('key' => 'field_ft_tab_contact', 'label' => __('Contact Info', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
             array('key' => 'field_ft_contact_show', 'label' => __('Show Contact Info Column', 'erdu-wp'), 'name' => 'ft_contact_show', 'type' => 'true_false', 'ui' => 1, 'default_value' => 1),
             array('key' => 'field_ft_contact_title', 'label' => __('Column Title', 'erdu-wp'), 'name' => 'ft_contact_title', 'type' => 'text', 'default_value' => 'Contact Info'),
-            array('key' => 'field_ft_contact_address', 'label' => __('Address', 'erdu-wp'), 'name' => 'ft_contact_address', 'type' => 'textarea', 'rows' => 3,
-                'default_value' => "6th Floor, JinYe Building, Tongyi Industrial District, Guzhen, Zhongshan, Guangdong, China"),
-            array('key' => 'field_ft_contact_phone', 'label' => __('Phone', 'erdu-wp'), 'name' => 'ft_contact_phone', 'type' => 'text', 'default_value' => '+86-760-22380830'),
-            array('key' => 'field_ft_contact_mobile', 'label' => __('Mobile', 'erdu-wp'), 'name' => 'ft_contact_mobile', 'type' => 'text', 'default_value' => '+86-18938760626'),
-            array('key' => 'field_ft_contact_email', 'label' => __('Email', 'erdu-wp'), 'name' => 'ft_contact_email', 'type' => 'email', 'default_value' => 'gg@erduled.com'),
-            array('key' => 'field_ft_contact_hours', 'label' => __('Business Hours', 'erdu-wp'), 'name' => 'ft_contact_hours', 'type' => 'text', 'default_value' => 'Mon-Fri 9:00-18:00 CST'),
+            array('key' => 'field_ft_contact_info_msg', 'label' => __('Contact Details', 'erdu-wp'), 'name' => '', 'type' => 'message', 
+                'message' => __('Contact details (Phone, Email, Address, WhatsApp, WeChat, Working Hours) are automatically loaded from Global Settings.', 'erdu-wp')),
 
             // ===== Newsletter Tab =====
             array('key' => 'field_ft_tab_newsletter', 'label' => __('Newsletter', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
@@ -1130,14 +1126,7 @@ function erdu_register_footer_acf_fields()
                     array('label' => 'Terms of Service', 'url' => '#'),
                 )),
 
-            // ===== Appearance Tab =====
-            array('key' => 'field_ft_tab_appearance', 'label' => __('Appearance', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
-            array('key' => 'field_ft_bg_color', 'label' => __('Footer Background Color', 'erdu-wp'), 'name' => 'ft_bg_color', 'type' => 'color_picker', 'default_value' => '#1a1a2e'),
-            array('key' => 'field_ft_text_color', 'label' => __('Text Color', 'erdu-wp'), 'name' => 'ft_text_color', 'type' => 'color_picker', 'default_value' => '#9ca3af'),
-            array('key' => 'field_ft_heading_color', 'label' => __('Heading Color', 'erdu-wp'), 'name' => 'ft_heading_color', 'type' => 'color_picker', 'default_value' => '#ffffff'),
-            array('key' => 'field_ft_link_hover_color', 'label' => __('Link Hover Color', 'erdu-wp'), 'name' => 'ft_link_hover_color', 'type' => 'color_picker', 'default_value' => '#F37021'),
-            array('key' => 'field_ft_border_color', 'label' => __('Border Color', 'erdu-wp'), 'name' => 'ft_border_color', 'type' => 'color_picker', 'default_value' => '#374151'),
-
+            // Note: Appearance tab was removed, styles now inherit from Global Theme Colors.
         ),
         'location' => array(array(array('param' => 'options_page', 'operator' => '==', 'value' => 'erdu-footer-settings'))),
         'position' => 'normal',
@@ -1451,26 +1440,7 @@ function erdu_register_header_acf_fields()
             array('key' => 'field_hd_topbar_text', 'label' => __('Text Color', 'erdu-wp'), 'name' => 'hd_topbar_text', 'type' => 'color_picker',
                 'default_value' => '#ffffff', 'conditional_logic' => array(array(array('field' => 'field_hd_topbar_enable', 'operator' => '==', 'value' => '1')))),
 
-            // ===== Social Links Tab =====
-            array('key' => 'field_hd_tab_social', 'label' => __('Social Links', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
-            array('key' => 'field_hd_social_links', 'label' => __('Social Links', 'erdu-wp'), 'name' => 'hd_social_links', 'type' => 'repeater',
-                'button_label' => __('Add Social Link', 'erdu-wp'),
-                'sub_fields' => array(
-                    array('key' => 'field_hd_sl_platform', 'label' => __('Platform', 'erdu-wp'), 'name' => 'platform', 'type' => 'select',
-                        'choices' => array(
-                            'facebook'  => 'Facebook',
-                            'linkedin'  => 'LinkedIn',
-                            'youtube'   => 'YouTube',
-                            'instagram' => 'Instagram',
-                            'twitter'   => 'Twitter / X',
-                            'whatsapp'  => 'WhatsApp',
-                            'wechat'    => 'WeChat',
-                            'tiktok'    => 'TikTok',
-                            'custom'    => __('Custom', 'erdu-wp'),
-                        )),
-                    array('key' => 'field_hd_sl_url', 'label' => __('URL', 'erdu-wp'), 'name' => 'url', 'type' => 'url', 'required' => 1),
-                    array('key' => 'field_hd_sl_label', 'label' => __('Label', 'erdu-wp'), 'name' => 'label', 'type' => 'text'),
-                )),
+            // Note: Social links tab was removed and replaced by Global Settings.
 
             // ===== Appearance Tab =====
             array('key' => 'field_hd_tab_appearance', 'label' => __('Appearance', 'erdu-wp'), 'name' => '', 'type' => 'tab'),

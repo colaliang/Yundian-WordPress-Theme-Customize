@@ -37,12 +37,15 @@ if (!class_exists('Erdu_Builder_Footer')) {
             $this->theme_settings = get_option('erdu_settings', erdu_default_settings());
             
             if (function_exists('erdu_footer_field')) {
+                // Inherit global theme colors instead of redefining them in Footer ACF
+                $colors = erdu_get_theme_colors();
+                
                 $this->footer_settings = array(
-                    'bg_color'      => erdu_footer_field('ft_bg_color', '#1a1a2e'),
-                    'text_color'    => erdu_footer_field('ft_text_color', '#9ca3af'),
-                    'heading_color' => erdu_footer_field('ft_heading_color', '#ffffff'),
-                    'hover_color'   => erdu_footer_field('ft_link_hover_color', '#F37021'),
-                    'border_color'  => erdu_footer_field('ft_border_color', '#374151'),
+                    'bg_color'      => '#111827', // Default dark gray for footer bg
+                    'text_color'    => '#9ca3af', // Gray 400
+                    'heading_color' => '#ffffff', // White
+                    'hover_color'   => $colors['primary'] ?? '#F37021',
+                    'border_color'  => '#374151', // Gray 700
                     
                     'logo_type'     => erdu_footer_field('ft_logo_type', 'text'),
                     'logo_image'    => erdu_footer_field('ft_logo_image', ''),
@@ -59,11 +62,6 @@ if (!class_exists('Erdu_Builder_Footer')) {
                     
                     'contact_show'  => erdu_footer_field('ft_contact_show', true),
                     'contact_title' => erdu_footer_field('ft_contact_title', __('Contact Info', 'erdu-wp')),
-                    'contact_addr'  => erdu_footer_field('ft_contact_address', ''),
-                    'contact_phone' => erdu_footer_field('ft_contact_phone', ''),
-                    'contact_mobile'=> erdu_footer_field('ft_contact_mobile', ''),
-                    'contact_email' => erdu_footer_field('ft_contact_email', ''),
-                    'contact_hours' => erdu_footer_field('ft_contact_hours', ''),
                     
                     'news_show'     => erdu_footer_field('ft_newsletter_show', true),
                     'news_title'    => erdu_footer_field('ft_newsletter_title', __('Newsletter', 'erdu-wp')),
@@ -105,7 +103,7 @@ if (!class_exists('Erdu_Builder_Footer')) {
             $col_count = 0;
             if ($this->footer_settings['about'] || $this->footer_settings['social_show']) $col_count++;
             if ($this->footer_settings['quick_show'] && $this->footer_settings['quick_links']) $col_count++;
-            if ($this->footer_settings['contact_show'] && ($this->footer_settings['contact_addr'] || $this->footer_settings['contact_phone'] || $this->footer_settings['contact_email'])) $col_count++;
+            if ($this->footer_settings['contact_show']) $col_count++;
             if ($this->footer_settings['news_show']) $col_count++;
             
             $grid_class = 'grid-cols-1';
@@ -128,7 +126,7 @@ if (!class_exists('Erdu_Builder_Footer')) {
         }
 
         public function render_contact_column() {
-            Erdu_Footer_Contact::render($this->footer_settings);
+            Erdu_Footer_Contact::render($this->footer_settings, $this->theme_settings);
         }
 
         public function render_newsletter_column() {

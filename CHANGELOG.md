@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.4] - 2026-06-07
+
+### Fixed & Enhanced
+- Refactored Footer Contact Info architecture:
+  - Footer contact details (address, phone, email, hours, whatsapp, wechat) now sync directly from `Theme Settings` > `Global`.
+  - Removed redundant contact input fields and Appearance settings from Footer ACF Builder.
+  - Unified Footer component colors to inherit globally defined Theme Colors.
+
 ## [1.3.3] - 2026-06-07
 
 ### Fixed & Enhanced

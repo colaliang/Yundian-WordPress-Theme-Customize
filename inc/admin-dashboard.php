@@ -270,6 +270,7 @@ function erdu_settings_page()
             'phone'             => sanitize_text_field(wp_unslash($_POST['erdu_phone'] ?? '')),
             'email'             => sanitize_email(wp_unslash($_POST['erdu_email'] ?? '')),
             'address'           => sanitize_textarea_field(wp_unslash($_POST['erdu_address'] ?? '')),
+            'hours'             => sanitize_text_field(wp_unslash($_POST['erdu_hours'] ?? '')),
             'facebook'          => esc_url_raw(wp_unslash($_POST['erdu_facebook'] ?? '')),
             'linkedin'          => esc_url_raw(wp_unslash($_POST['erdu_linkedin'] ?? '')),
             'youtube'           => esc_url_raw(wp_unslash($_POST['erdu_youtube'] ?? '')),
@@ -354,6 +355,10 @@ function erdu_settings_page()
                     <tr>
                         <th><label for="erdu_address"><?php _e('Address', 'erdu-wp'); ?></label></th>
                         <td><textarea id="erdu_address" name="erdu_address" rows="3" class="large-text"><?php echo esc_textarea($s['address']); ?></textarea></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_hours"><?php _e('Working Hours', 'erdu-wp'); ?></label></th>
+                        <td><input type="text" id="erdu_hours" name="erdu_hours" value="<?php echo esc_attr($s['hours'] ?? ''); ?>" class="regular-text" placeholder="Mon - Fri, 9:00 - 18:00"></td>
                     </tr>
                 </table>
             </div>
