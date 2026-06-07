@@ -7,4 +7,4 @@ release/
 # Debug / Local Development Tools
 debug/
 check-php-issues.ps1
-.package-tmp/
+.package-tmp/*.zip

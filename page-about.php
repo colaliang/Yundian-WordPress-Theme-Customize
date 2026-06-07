@@ -45,6 +45,7 @@ if (have_posts()) :
         ));
 
         // --- Timeline (10 milestones matching reference design) ---
+        $timeline_title = erdu_page_field('about_timeline_title', __('Our Journey', 'erdu-wp'));
         $timeline = erdu_page_field('about_timeline', array(
             array('year' => '2009', 'title' => __('Company Founded', 'erdu-wp'), 'description' => __('Established in Guzhen, the lighting capital of China, with a vision to create professional LED lighting products.', 'erdu-wp')),
             array('year' => '2010', 'title' => __('First Exhibition', 'erdu-wp'), 'description' => __('Debuted at Hong Kong International Lighting Fair, marking the beginning of our global journey.', 'erdu-wp')),
@@ -211,14 +212,35 @@ if (have_posts()) :
         <div class="bg-white border-b border-gray-200 sticky top-16 z-40">
             <div class="erdu-container">
                 <div class="flex overflow-x-auto gap-1">
-                    <a href="<?php echo esc_url(add_query_arg('tab', 'profile',  get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'profile'  ? 'active' : ''; ?>"><?php _e('Company Profile', 'erdu-wp'); ?></a>
-                    <a href="<?php echo esc_url(add_query_arg('tab', 'timeline', get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'timeline' ? 'active' : ''; ?>"><?php _e('Our Journey', 'erdu-wp'); ?></a>
-                    <a href="<?php echo esc_url(add_query_arg('tab', 'values',   get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'values'   ? 'active' : ''; ?>"><?php _e('Mission & Values', 'erdu-wp'); ?></a>
-                    <a href="<?php echo esc_url(add_query_arg('tab', 'factory',  get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'factory'  ? 'active' : ''; ?>"><?php _e('Factory Tour', 'erdu-wp'); ?></a>
-                    <a href="<?php echo esc_url(add_query_arg('tab', 'partners', get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'partners' ? 'active' : ''; ?>"><?php _e('Partners', 'erdu-wp'); ?></a>
-                    <a href="<?php echo esc_url(add_query_arg('tab', 'certifications', get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'certifications' ? 'active' : ''; ?>"><?php _e('Certifications', 'erdu-wp'); ?></a>
+                    <a href="<?php echo esc_url(add_query_arg('tab', 'profile',  get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'profile'  ? 'active' : ''; ?>">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        <?php _e('Company Profile', 'erdu-wp'); ?>
+                    </a>
+                    <a href="<?php echo esc_url(add_query_arg('tab', 'timeline', get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'timeline' ? 'active' : ''; ?>">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                        <?php _e('Our Journey', 'erdu-wp'); ?>
+                    </a>
+                    <a href="<?php echo esc_url(add_query_arg('tab', 'values',   get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'values'   ? 'active' : ''; ?>">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                        <?php _e('Mission & Values', 'erdu-wp'); ?>
+                    </a>
+                    <a href="<?php echo esc_url(add_query_arg('tab', 'factory',  get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'factory'  ? 'active' : ''; ?>">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        <?php _e('Factory Tour', 'erdu-wp'); ?>
+                    </a>
+                    <a href="<?php echo esc_url(add_query_arg('tab', 'partners', get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'partners' ? 'active' : ''; ?>">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <?php _e('Partners', 'erdu-wp'); ?>
+                    </a>
+                    <a href="<?php echo esc_url(add_query_arg('tab', 'certifications', get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'certifications' ? 'active' : ''; ?>">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <?php _e('Certifications', 'erdu-wp'); ?>
+                    </a>
                     <?php if ($downloads_show) : ?>
-                    <a href="<?php echo esc_url(add_query_arg('tab', 'downloads', get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'downloads' ? 'active' : ''; ?>"><?php _e('Downloads', 'erdu-wp'); ?></a>
+                    <a href="<?php echo esc_url(add_query_arg('tab', 'downloads', get_permalink()) . '#content'); ?>" class="erdu-tab-btn <?php echo $tab === 'downloads' ? 'active' : ''; ?>">
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <?php _e('Downloads', 'erdu-wp'); ?>
+                    </a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -276,7 +298,7 @@ if (have_posts()) :
 
             <!-- TIMELINE TAB -->
             <?php elseif ($tab === 'timeline') : ?>
-                <h2 class="erdu-h2 mb-8 text-center"><?php _e('Our Journey', 'erdu-wp'); ?></h2>
+                <h2 class="erdu-h2 mb-8 text-center"><?php echo esc_html($timeline_title); ?></h2>
                 <div class="relative max-w-3xl mx-auto">
                     <div class="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 hidden md:block bg-orange-200"></div>
                     <div class="space-y-8">
@@ -313,8 +335,24 @@ if (have_posts()) :
                 <?php endif; ?>
                 <?php if ($values) : ?>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                        <?php foreach ($values as $v) : ?>
+                        <?php foreach ($values as $v) : 
+                            $default_svgs = array(
+                                __('Quality First', 'erdu-wp') => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>',
+                                __('Customer Focus', 'erdu-wp') => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>',
+                                __('Innovation Driven', 'erdu-wp') => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>',
+                                __('Integrity', 'erdu-wp') => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>',
+                                __('Sustainability', 'erdu-wp') => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'
+                            );
+                            $svg_path = $default_svgs[$v['title']] ?? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>';
+                        ?>
                             <div class="bg-white border border-gray-200 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                                <?php if (!empty($v['icon'])) : ?>
+                                    <img src="<?php echo esc_url($v['icon']); ?>" alt="<?php echo esc_attr($v['title']); ?>" class="w-12 h-12 mx-auto mb-4 object-contain">
+                                <?php else : ?>
+                                    <div class="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center bg-orange-50 erdu-text-primary">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><?php echo $svg_path; ?></svg>
+                                    </div>
+                                <?php endif; ?>
                                 <h4 class="font-semibold text-gray-800"><?php echo esc_html($v['title']); ?></h4>
                                 <p class="text-sm text-gray-500 mt-2"><?php echo esc_html($v['description']); ?></p>
                             </div>

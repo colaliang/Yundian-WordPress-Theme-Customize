@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.5] - 2026-06-07
+
+### Fixed & Enhanced
+- Enhanced About Us page:
+  - Added visual SVG icons to all Tab navigation buttons for better UI/UX.
+  - Added new `Section Title` ACF field for the "Our Journey" timeline section.
+  - Upgraded "Company Values" section to support custom icon/image uploads via ACF, with built-in SVG fallbacks for default values.
+
 ## [1.3.4] - 2026-06-07
 
 ### Fixed & Enhanced

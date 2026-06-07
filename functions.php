@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 /**
  * Define theme constants
  */
-define('ERDU_VERSION', '1.3.4');
+define('ERDU_VERSION', '1.3.5');
 define('ERDU_DIR', get_template_directory());
 define('ERDU_URI', get_template_directory_uri());
 
@@ -249,6 +249,7 @@ function erdu_get_page_acf_defaults($slug)
 
         // About page
         'about_company_intro' => '<p>ERDU Lighting: Your Reliable 48V Magnetic Track Light Manufacturer in China</p>',
+        'about_timeline_title' => 'Our Journey',
         'about_timeline' => array(
             array('year' => '2009', 'title' => 'Company Founded', 'description' => 'Established in Guzhen, China'),
             array('year' => '2010', 'title' => 'First Exhibition', 'description' => 'Hong Kong International Lighting Fair debut'),
@@ -745,7 +746,7 @@ function erdu_get_page_acf_defaults($slug)
         } elseif (!is_array($value) || (isset($value[0]) && is_array($value[0]))) {
             // Direct value or repeater rows — only include for matching slug scope
             $slug_map = array(
-                'about'       => array('about_hero_title', 'about_hero_subtitle', 'about_hero_bg', 'about_hero_btn', 'about_hero_btn_link', 'about_hero_btn2', 'about_hero_btn2_link', 'about_page_editor', 'about_highlight', 'about_company_intro', 'about_profile_image', 'about_profile_stats', 'about_team', 'about_timeline', 'about_mission_title', 'about_mission_text', 'about_values', 'about_factory_title', 'about_factory_images', 'about_factory_stats', 'about_partners_title', 'about_partners_list', 'about_certs_title', 'about_certs_list', 'about_downloads_title', 'about_downloads_show', 'about_cta_override', 'about_cta_title', 'about_cta_button', 'about_cta_link', 'about_cta_button2', 'about_cta_link2'),
+                'about'       => array('about_hero_title', 'about_hero_subtitle', 'about_hero_bg', 'about_hero_btn', 'about_hero_btn_link', 'about_hero_btn2', 'about_hero_btn2_link', 'about_page_editor', 'about_highlight', 'about_company_intro', 'about_profile_image', 'about_profile_stats', 'about_team', 'about_timeline_title', 'about_timeline', 'about_mission_title', 'about_mission_text', 'about_values', 'about_factory_title', 'about_factory_images', 'about_factory_stats', 'about_partners_title', 'about_partners_list', 'about_certs_title', 'about_certs_list', 'about_downloads_title', 'about_downloads_show', 'about_cta_override', 'about_cta_title', 'about_cta_button', 'about_cta_link', 'about_cta_button2', 'about_cta_link2'),
                 'quality'     => array('quality_hero_title', 'quality_hero_subtitle', 'quality_hero_bg', 'quality_hero_btn', 'quality_hero_btn_link', 'quality_hero_btn2', 'quality_hero_btn2_link', 'quality_page_editor', 'quality_intro', 'quality_certs', 'quality_params', 'quality_steps', 'quality_process', 'quality_cta_override', 'quality_cta_title', 'quality_cta_button', 'quality_cta_link', 'quality_cta_button2', 'quality_cta_link2'),
                 'solutions'   => array('solutions_hero_title', 'solutions_hero_subtitle', 'solutions_hero_bg', 'solutions_hero_btn', 'solutions_hero_btn_link', 'solutions_hero_btn2', 'solutions_hero_btn2_link', 'solutions_page_editor', 'solutions_intro', 'solutions_categories', 'solutions_cta_override', 'solutions_cta_title', 'solutions_cta_button', 'solutions_cta_link', 'solutions_cta_button2', 'solutions_cta_link2'),
                 'products'    => array('products_hero_title', 'products_hero_subtitle', 'products_hero_bg', 'products_hero_btn', 'products_hero_btn_link', 'products_hero_btn2', 'products_hero_btn2_link', 'products_page_editor', 'products_intro', 'products_cta_override', 'products_cta_title', 'products_cta_button', 'products_cta_link', 'products_cta_button2', 'products_cta_link2'),

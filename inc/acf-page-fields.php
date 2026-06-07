@@ -188,6 +188,7 @@ function erdu_register_page_field_groups()
 
             // --- Timeline Tab ---
             array('key' => 'field_about_tab_timeline', 'label' => __('Our Journey', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_about_timeline_title', 'label' => __('Section Title', 'erdu-wp'), 'name' => 'about_timeline_title', 'type' => 'text'),
             array('key' => 'field_about_timeline', 'label' => __('Timeline Events', 'erdu-wp'), 'name' => 'about_timeline', 'type' => 'repeater', 'button_label' => __('Add Event', 'erdu-wp'), 'sub_fields' => array(
                 array('key' => 'field_tl_year', 'label' => __('Year', 'erdu-wp'), 'name' => 'year', 'type' => 'text', 'required' => 1),
                 array('key' => 'field_tl_title', 'label' => __('Title', 'erdu-wp'), 'name' => 'title', 'type' => 'text', 'required' => 1),
@@ -199,6 +200,7 @@ function erdu_register_page_field_groups()
             array('key' => 'field_about_mission_title', 'label' => __('Mission Section Title', 'erdu-wp'), 'name' => 'about_mission_title', 'type' => 'text'),
             array('key' => 'field_about_mission_text', 'label' => __('Mission Statement', 'erdu-wp'), 'name' => 'about_mission_text', 'type' => 'textarea', 'rows' => 3),
             array('key' => 'field_about_values', 'label' => __('Company Values', 'erdu-wp'), 'name' => 'about_values', 'type' => 'repeater', 'button_label' => __('Add Value', 'erdu-wp'), 'sub_fields' => array(
+                array('key' => 'field_val_icon', 'label' => __('Icon (Image/SVG)', 'erdu-wp'), 'name' => 'icon', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'thumbnail'),
                 array('key' => 'field_val_title', 'label' => __('Title', 'erdu-wp'), 'name' => 'title', 'type' => 'text', 'required' => 1),
                 array('key' => 'field_val_desc', 'label' => __('Description', 'erdu-wp'), 'name' => 'description', 'type' => 'textarea', 'rows' => 2),
             )),
