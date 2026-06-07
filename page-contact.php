@@ -212,36 +212,44 @@ if (have_posts()) :
                                 <?php wp_nonce_field('erdu_contact_action', 'erdu_contact_nonce'); ?>
                                 <input type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off">
 
-                                <!-- Row 1: Name + Company -->
+                                <!-- Row 1: Name + Email -->
                                 <div class="grid md:grid-cols-2 gap-5">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Your Name', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
                                         <input type="text" name="contact_name" required placeholder="<?php _e('Full name', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Company Name', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
-                                        <input type="text" name="contact_company" required placeholder="<?php _e('Company name', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
-                                    </div>
-                                </div>
-
-                                <!-- Row 2: Email + Phone -->
-                                <div class="grid md:grid-cols-2 gap-5">
-                                    <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Email Address', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
                                         <input type="email" name="contact_email" required placeholder="email@company.com" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
                                     </div>
+                                </div>
+
+                                <!-- Row 2: Phone + Company -->
+                                <div class="grid md:grid-cols-2 gap-5">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Phone Number', 'erdu-wp'); ?></label>
                                         <input type="tel" name="contact_phone" placeholder="+1 234 567 890" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
                                     </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Company Name', 'erdu-wp'); ?></label>
+                                        <input type="text" name="contact_company" placeholder="<?php _e('Company name', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                    </div>
                                 </div>
 
-                                <!-- Row 3: Country + Interested Product -->
+                                <!-- Row 3: Country + Subject -->
                                 <div class="grid md:grid-cols-2 gap-5">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Country', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
                                         <input type="text" name="contact_country" required placeholder="<?php _e('Your country', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
                                     </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Subject', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
+                                        <input type="text" name="contact_subject" required placeholder="<?php _e('What is this regarding?', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                    </div>
+                                </div>
+
+                                <!-- Row 4: Interested Product + Quantity -->
+                                <div class="grid md:grid-cols-2 gap-5">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Interested Product', 'erdu-wp'); ?></label>
                                         <select name="contact_product" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
@@ -255,12 +263,10 @@ if (have_posts()) :
                                             <option value="multiple">Multiple Products</option>
                                         </select>
                                     </div>
-                                </div>
-
-                                <!-- Row 4: Estimated Quantity -->
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Estimated Quantity', 'erdu-wp'); ?></label>
-                                    <input type="text" name="contact_quantity" placeholder="<?php _e('e.g., 500 pcs', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Estimated Quantity', 'erdu-wp'); ?></label>
+                                        <input type="text" name="contact_quantity" placeholder="<?php _e('e.g., 500 pcs', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                    </div>
                                 </div>
 
                                 <!-- Row 5: Message -->

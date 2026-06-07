@@ -934,6 +934,7 @@ function erdu_handle_contact_form()
     $subject = isset($_POST['contact_subject']) ? sanitize_text_field(wp_unslash($_POST['contact_subject'])) : '';
     $message = isset($_POST['contact_message']) ? sanitize_textarea_field(wp_unslash($_POST['contact_message'])) : '';
     $product = isset($_POST['contact_product']) ? sanitize_text_field(wp_unslash($_POST['contact_product'])) : '';
+    $quantity = isset($_POST['contact_quantity']) ? sanitize_text_field(wp_unslash($_POST['contact_quantity'])) : '';
 
     // Validate required fields
     if (empty($name) || empty($email) || empty($subject) || empty($message)) {
@@ -958,6 +959,7 @@ function erdu_handle_contact_form()
     $body   .= "<p><strong>" . esc_html__('Country', 'erdu-wp') . ":</strong> " . esc_html($country) . "</p>\n";
     $body   .= "<p><strong>" . esc_html__('Subject', 'erdu-wp') . ":</strong> " . esc_html($subject) . "</p>\n";
     $body   .= "<p><strong>" . esc_html__('Product Interest', 'erdu-wp') . ":</strong> " . esc_html($product) . "</p>\n";
+    $body   .= "<p><strong>" . esc_html__('Estimated Quantity', 'erdu-wp') . ":</strong> " . esc_html($quantity) . "</p>\n";
     $body   .= "<p><strong>" . esc_html__('Message', 'erdu-wp') . ":</strong></p>\n";
     $body   .= "<p>" . nl2br(esc_html($message)) . "</p>\n";
 
