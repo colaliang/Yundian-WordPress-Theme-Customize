@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-06-07
+
+### Fixed & Enhanced
+- Updated default Search ACF configs: set default style to `fullscreen` and default icon size to `sm`.
+- Added new Search config: Input Width for `inline` style (Small/Medium/Large).
+- Fixed Dropdown Search panel layout: improved mobile positioning and expanded desktop width to `96`.
+
 ## [1.3.0] - 2026-06-07
 
 ### Added
