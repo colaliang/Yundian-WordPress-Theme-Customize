@@ -174,17 +174,17 @@ if (have_posts()) :
 
                         <!-- Contact Persons -->
                         <?php if ($persons) : ?>
-                        <div class="pt-6 border-t border-gray-200">
-                            <h3 class="font-bold text-base mb-4 text-gray-800"><?php _e('Contact Persons', 'erdu-wp'); ?></h3>
-                            <div class="space-y-3">
+                        <div class="pt-4 border-t border-gray-200">
+                            <h3 class="font-semibold text-sm mb-3 text-[#333]"><?php _e('Contact Persons', 'erdu-wp'); ?></h3>
+                            <div class="space-y-2">
                                 <?php foreach ($persons as $p) :
                                     $initial = !empty($p['initial']) ? $p['initial'] : strtoupper(substr($p['name'], 0, 1));
                                 ?>
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0 erdu-bg-primary"><?php echo esc_html($initial); ?></div>
+                                <div class="flex items-center gap-3 bg-gray-50 rounded-lg p-3">
+                                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shrink-0 erdu-bg-primary"><?php echo esc_html($initial); ?></div>
                                     <div>
-                                        <p class="text-sm font-medium text-gray-800"><?php echo esc_html($p['name']); ?> <?php if (!empty($p['title'])) : ?>&mdash; <?php echo esc_html($p['title']); ?><?php endif; ?></p>
-                                        <?php if (!empty($p['email'])) : ?><p class="text-xs text-gray-500"><?php echo esc_html($p['email']); ?></p><?php endif; ?>
+                                        <div class="text-sm font-medium text-[#333]"><?php echo esc_html($p['name']); ?> <?php if (!empty($p['title'])) : ?>&mdash; <?php echo esc_html($p['title']); ?><?php endif; ?></div>
+                                        <?php if (!empty($p['email'])) : ?><div class="text-xs text-gray-500"><?php echo esc_html($p['email']); ?></div><?php endif; ?>
                                     </div>
                                 </div>
                                 <?php endforeach; ?>
@@ -194,18 +194,17 @@ if (have_posts()) :
 
                         <!-- Connect With Us -->
                         <?php if ($whatsapp || $wechat) : ?>
-                        <div class="pt-6 border-t border-gray-200">
-                            <h3 class="font-bold text-base mb-4 text-gray-800"><?php echo esc_html($social_label); ?></h3>
+                        <div class="pt-4">
+                            <h3 class="font-semibold text-sm mb-3 text-[#333]"><?php echo esc_html($social_label); ?></h3>
                             <div class="flex gap-3">
                                 <?php if ($whatsapp) : ?>
-                                <a href="<?php echo esc_url(strpos($whatsapp, 'http') === 0 ? $whatsapp : 'https://wa.me/' . preg_replace('/[^0-9]/', '', $whatsapp)); ?>" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-opacity hover:opacity-90" style="background-color: #25D366;">
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                <a href="<?php echo esc_url(strpos($whatsapp, 'http') === 0 ? $whatsapp : 'https://wa.me/' . preg_replace('/[^0-9]/', '', $whatsapp)); ?>" target="_blank" rel="noopener" class="px-4 py-2 bg-green-500 text-white text-sm rounded-md flex items-center gap-2 hover:opacity-90 transition-opacity">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 17a2 2 0 01-2 2H6.828a2 2 0 00-1.414.586l-2.202 2.202A.71.71 0 012 21.286V5a2 2 0 012-2h16a2 2 0 012 2z"/></svg>
                                     WhatsApp
                                 </a>
                                 <?php endif; ?>
                                 <?php if ($wechat) : ?>
-                                <span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white cursor-default" style="background-color: #07C160;">
-                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088-.139-.009-.278-.021-.418-.033h-.088zm-2.06 3.13c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/></svg>
+                                <span class="px-4 py-2 bg-[#07C160] text-white text-sm rounded-md flex items-center gap-2 cursor-default">
                                     WeChat
                                 </span>
                                 <?php endif; ?>
@@ -216,9 +215,9 @@ if (have_posts()) :
 
                     <!-- Right: Form (2 cols) -->
                     <div class="lg:col-span-2">
-                        <h2 class="text-xl font-bold mb-8 text-gray-800"><?php _e('Send Us a Message', 'erdu-wp'); ?></h2>
+                        <h2 class="text-xl font-bold mb-6 text-[#333]"><?php _e('Send Us a Message', 'erdu-wp'); ?></h2>
 
-                        <div class="rounded-xl p-6 md:p-8 border border-gray-200 bg-gray-50">
+                        <div class="bg-white border border-gray-200 rounded-xl p-6">
                             <?php if ($form_success) : ?>
                                 <div class="mb-6 p-4 rounded-lg bg-green-50 text-green-700 border border-green-200"><?php _e('Thank you! Your message has been sent successfully. We will get back to you within 24 business hours.', 'erdu-wp'); ?></div>
                             <?php elseif ($form_error) : ?>
@@ -243,77 +242,78 @@ if (have_posts()) :
                                 <input type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off">
 
                                 <!-- Row 1: Name + Email -->
-                                <div class="grid md:grid-cols-2 gap-5">
+                                <div class="grid md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Your Name', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
-                                        <input type="text" name="contact_name" required placeholder="<?php _e('Full name', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                        <label class="block text-sm font-medium text-[#333] mb-1"><?php _e('Your Name', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
+                                        <input type="text" name="contact_name" required placeholder="<?php _e('Full name', 'erdu-wp'); ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:border-orange-500 focus:ring-0 focus:outline-none transition-colors bg-white">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Email Address', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
-                                        <input type="email" name="contact_email" required placeholder="email@company.com" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                        <label class="block text-sm font-medium text-[#333] mb-1"><?php _e('Email Address', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
+                                        <input type="email" name="contact_email" required placeholder="email@company.com" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:border-orange-500 focus:ring-0 focus:outline-none transition-colors bg-white">
                                     </div>
                                 </div>
 
                                 <!-- Row 2: Phone + Company -->
-                                <div class="grid md:grid-cols-2 gap-5">
+                                <div class="grid md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Phone Number', 'erdu-wp'); ?></label>
-                                        <input type="tel" name="contact_phone" placeholder="+1 234 567 890" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                        <label class="block text-sm font-medium text-[#333] mb-1"><?php _e('Phone Number', 'erdu-wp'); ?></label>
+                                        <input type="tel" name="contact_phone" placeholder="+1 234 567 890" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:border-orange-500 focus:ring-0 focus:outline-none transition-colors bg-white">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Company Name', 'erdu-wp'); ?></label>
-                                        <input type="text" name="contact_company" placeholder="<?php _e('Company name', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                        <label class="block text-sm font-medium text-[#333] mb-1"><?php _e('Company Name', 'erdu-wp'); ?></label>
+                                        <input type="text" name="contact_company" placeholder="<?php _e('Company name', 'erdu-wp'); ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:border-orange-500 focus:ring-0 focus:outline-none transition-colors bg-white">
                                     </div>
                                 </div>
 
                                 <!-- Row 3: Country + Subject -->
-                                <div class="grid md:grid-cols-2 gap-5">
+                                <div class="grid md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Country', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
-                                        <input type="text" name="contact_country" required placeholder="<?php _e('Your country', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                        <label class="block text-sm font-medium text-[#333] mb-1"><?php _e('Country', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
+                                        <input type="text" name="contact_country" required placeholder="<?php _e('Your country', 'erdu-wp'); ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:border-orange-500 focus:ring-0 focus:outline-none transition-colors bg-white">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Subject', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
-                                        <input type="text" name="contact_subject" required placeholder="<?php _e('What is this regarding?', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                        <label class="block text-sm font-medium text-[#333] mb-1"><?php _e('Subject', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
+                                        <input type="text" name="contact_subject" required placeholder="<?php _e('What is this regarding?', 'erdu-wp'); ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:border-orange-500 focus:ring-0 focus:outline-none transition-colors bg-white">
                                     </div>
                                 </div>
 
                                 <!-- Row 4: Interested Product + Quantity -->
-                                <div class="grid md:grid-cols-2 gap-5">
+                                <div class="grid md:grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Interested Product', 'erdu-wp'); ?></label>
-                                        <select name="contact_product" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                        <label class="block text-sm font-medium text-[#333] mb-1"><?php _e('Interested Product', 'erdu-wp'); ?></label>
+                                        <select name="contact_product" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:border-orange-500 focus:ring-0 focus:outline-none transition-colors bg-white">
                                             <option value=""><?php _e('Select a product', 'erdu-wp'); ?></option>
-                                            <option value="track">48V Magnetic Track Light</option>
-                                            <option value="downlight">Downlight</option>
-                                            <option value="spotlight">Spotlight</option>
-                                            <option value="panel">Panel Light</option>
-                                            <option value="ceiling">Ceiling Light</option>
-                                            <option value="custom">Custom/OEM</option>
-                                            <option value="multiple">Multiple Products</option>
+                                            <option value="48V Magnetic Track Light">48V Magnetic Track Light</option>
+                                            <option value="Downlight">Downlight</option>
+                                            <option value="Spotlight">Spotlight</option>
+                                            <option value="Panel Light">Panel Light</option>
+                                            <option value="Track Light">Track Light</option>
+                                            <option value="Ceiling Light">Ceiling Light</option>
+                                            <option value="Custom/OEM">Custom/OEM</option>
+                                            <option value="Multiple Products">Multiple Products</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Estimated Quantity', 'erdu-wp'); ?></label>
-                                        <input type="text" name="contact_quantity" placeholder="<?php _e('e.g., 500 pcs', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm bg-white">
+                                        <label class="block text-sm font-medium text-[#333] mb-1"><?php _e('Estimated Quantity', 'erdu-wp'); ?></label>
+                                        <input type="text" name="contact_quantity" placeholder="<?php _e('e.g., 500 pcs', 'erdu-wp'); ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:border-orange-500 focus:ring-0 focus:outline-none transition-colors bg-white">
                                     </div>
                                 </div>
 
                                 <!-- Row 5: Message -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2"><?php _e('Message', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
-                                    <textarea name="contact_message" rows="5" required placeholder="<?php _e('Tell us about your project or inquiry...', 'erdu-wp'); ?>" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm resize-y bg-white"></textarea>
+                                    <label class="block text-sm font-medium text-[#333] mb-1"><?php _e('Message', 'erdu-wp'); ?> <span class="erdu-text-primary">*</span></label>
+                                    <textarea name="contact_message" rows="4" required placeholder="<?php _e('Tell us about your project or inquiry...', 'erdu-wp'); ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:border-orange-500 focus:ring-0 focus:outline-none transition-colors resize-y bg-white"></textarea>
                                 </div>
 
                                 <!-- Privacy Checkbox -->
-                                <div class="flex items-start gap-2 pt-2">
-                                    <input type="checkbox" name="contact_privacy" id="contact_privacy" required class="mt-0.5 w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500">
-                                    <label for="contact_privacy" class="text-sm text-gray-500"><?php _e('I agree to ERDU\'s Privacy Policy and consent to being contacted regarding my inquiry.', 'erdu-wp'); ?></label>
+                                <div class="flex items-center gap-2 mt-4">
+                                    <input type="checkbox" name="contact_privacy" id="contact_privacy" required class="rounded border-gray-300 text-orange-500 focus:ring-orange-500">
+                                    <label for="contact_privacy" class="text-xs text-gray-500"><?php _e('I agree to ERDU\'s Privacy Policy and consent to being contacted regarding my inquiry.', 'erdu-wp'); ?></label>
                                 </div>
 
                                 <!-- Submit -->
-                                <button type="submit" class="inline-flex items-center gap-2 px-8 py-3 rounded-lg text-white font-semibold transition-opacity hover:opacity-90 erdu-bg-primary">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                                <button type="submit" class="mt-4 px-6 py-3 erdu-bg-primary text-white rounded-md font-medium hover:bg-orange-700 transition-colors flex items-center gap-2 w-max">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.536 21.686a.5.5 0 00.937-.024l6.5-19a.496.496 0 00-.635-.635l-19 6.5a.5.5 0 00-.024.937l7.93 3.18a2 2 0 011.112 1.11zm7.318-19.539l-10.94 10.939"/></svg>
                                     <?php _e('Send Message', 'erdu-wp'); ?>
                                 </button>
                             </form>
