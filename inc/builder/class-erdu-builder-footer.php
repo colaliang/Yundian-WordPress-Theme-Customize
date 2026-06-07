@@ -70,6 +70,8 @@ if (!class_exists('Erdu_Builder_Footer')) {
                     'news_btn'      => erdu_footer_field('ft_newsletter_button', __('Subscribe', 'erdu-wp')),
                     'news_footer'   => erdu_footer_field('ft_newsletter_footer', __('Join 500+ lighting professionals who trust our updates.', 'erdu-wp')),
                     
+                    'footer_news_show' => erdu_footer_field('ft_news_show', true), // Added Latest News
+
                     'copy_text'     => erdu_footer_field('ft_copyright_text', '© {year} ERDU Lighting Technology Co., Ltd. All Rights Reserved.'),
                     'copy_links'    => erdu_footer_field('ft_copyright_links', array()),
                 );
@@ -79,6 +81,7 @@ if (!class_exists('Erdu_Builder_Footer')) {
         private function load_components() {
             require_once ERDU_DIR . '/inc/builder/footer/class-erdu-footer-about.php';
             require_once ERDU_DIR . '/inc/builder/footer/class-erdu-footer-links.php';
+            require_once ERDU_DIR . '/inc/builder/footer/class-erdu-footer-news.php';
             require_once ERDU_DIR . '/inc/builder/footer/class-erdu-footer-contact.php';
             require_once ERDU_DIR . '/inc/builder/footer/class-erdu-footer-newsletter.php';
             require_once ERDU_DIR . '/inc/builder/footer/class-erdu-footer-copyright.php';
@@ -90,6 +93,7 @@ if (!class_exists('Erdu_Builder_Footer')) {
             // Primary Footer Items (Columns)
             add_action('erdu_primary_footer', array($this, 'render_about_column'), 10);
             add_action('erdu_primary_footer', array($this, 'render_links_column'), 20);
+            add_action('erdu_primary_footer', array($this, 'render_news_column'), 25);
             add_action('erdu_primary_footer', array($this, 'render_contact_column'), 30);
             add_action('erdu_primary_footer', array($this, 'render_newsletter_column'), 40);
             
@@ -103,12 +107,13 @@ if (!class_exists('Erdu_Builder_Footer')) {
             $col_count = 0;
             if ($this->footer_settings['about'] || $this->footer_settings['social_show']) $col_count++;
             if ($this->footer_settings['quick_show'] && $this->footer_settings['quick_links']) $col_count++;
+            if ($this->footer_settings['footer_news_show']) $col_count++;
             if ($this->footer_settings['contact_show']) $col_count++;
             if ($this->footer_settings['news_show']) $col_count++;
             
             $grid_class = 'grid-cols-1';
             if ($col_count >= 2) $grid_class .= ' md:grid-cols-2';
-            if ($col_count >= 3) $grid_class .= ' lg:grid-cols-' . min($col_count, 4);
+            if ($col_count >= 3) $grid_class .= ' lg:grid-cols-' . min($col_count, 5);
 
             echo '<div class="grid ' . esc_attr($grid_class) . ' gap-8" style="color: ' . esc_attr($this->footer_settings['text_color']) . ';">';
         }
@@ -123,6 +128,10 @@ if (!class_exists('Erdu_Builder_Footer')) {
 
         public function render_links_column() {
             Erdu_Footer_Links::render($this->footer_settings);
+        }
+
+        public function render_news_column() {
+            Erdu_Footer_News::render($this->footer_settings);
         }
 
         public function render_contact_column() {

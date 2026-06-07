@@ -71,6 +71,13 @@ $hero_img = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: erdu_placeholder
     </div>
 </section>
 
+<!-- AEO Summary Block -->
+<?php 
+if (function_exists('erdu_inject_aeo_summary_block')) {
+    echo erdu_inject_aeo_summary_block('', true);
+} 
+?>
+
 <!-- Key Metrics -->
 <?php if ($metrics && is_array($metrics) && count($metrics) > 0) : ?>
 <section class="py-12 bg-gray-50">

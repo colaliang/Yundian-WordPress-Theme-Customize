@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.6] - 2026-06-08
+### Added
+- **Deep SEO, GEO & AEO Optimization Module** (`inc/seo-geo-aeo.php`).
+- AEO Content Injection: Automatically injects AI Summary & Key Takeaways into `single.php` and `single-case.php` for AI Answer Engines (ChatGPT, Perplexity).
+- GEO Entities mapping: Supports adding target regions and industries to JSON-LD Schema.
+- Comprehensive Schema.org: Organization, WebSite, BreadcrumbList, Article/NewsArticle, FAQPage, and ItemList for archive pages.
+- Footer Latest News Component: Added `class-erdu-footer-news.php` to improve internal linking and freshness signals.
+
 ## [1.3.5] - 2026-06-07
 
 ### Added
