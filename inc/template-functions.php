@@ -98,6 +98,38 @@ function erdu_get_option($key, $default = '')
 }
 
 /**
+ * Get global theme colors
+ */
+function erdu_get_theme_colors() {
+    $colors = array(
+        'primary'       => '#F37021',
+        'primary_hover' => '#E05D10',
+        'secondary'     => '#2D1810',
+        'text'          => '#333333',
+        'text_light'    => '#6b7280',
+        'bg_dark'       => '#1a1a2e',
+        'bg_light'      => '#f9fafb',
+        'border'        => '#e5e7eb',
+        'footer_bg'     => '#1a1a2e',
+        'footer_text'   => '#9ca3af',
+        'footer_heading'=> '#ffffff',
+        'footer_hover'  => '#F37021',
+        'footer_border' => '#374151',
+    );
+
+    if (function_exists('get_field')) {
+        foreach ($colors as $key => $default) {
+            $val = get_field('erdu_' . $key, 'option');
+            if ($val) {
+                $colors[$key] = $val;
+            }
+        }
+    }
+
+    return $colors;
+}
+
+/**
  * Render section header
  */
 function erdu_section_header($title, $subtitle = '')
