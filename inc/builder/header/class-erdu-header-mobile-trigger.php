@@ -14,7 +14,7 @@ class Erdu_Header_Mobile_Trigger {
         ?>
         <div class="flex lg:hidden items-center gap-3">
             <button class="p-2 rounded-md hover:bg-gray-100 erdu-mobile-toggle"
-                    onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+                    aria-expanded="false"
                     aria-label="<?php esc_attr_e('Toggle menu', 'erdu-wp'); ?>">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>

@@ -261,9 +261,9 @@ class ERDU_Walker_Mobile_Menu extends Walker_Nav_Menu
         if (!$is_active && isset($item->url)) {
             $is_active = erdu_is_current_page($item->url);
         }
-        $class = $is_active ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-50';
+        $class = $is_active ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:bg-gray-50 hover:text-orange-600';
         $output .= sprintf(
-            '<a href="%s" class="block px-3 py-2 text-sm font-medium rounded-md %s">%s</a>',
+            '<a href="%s" class="block px-4 py-3 text-base font-medium rounded-md transition-colors %s">%s</a>',
             esc_url($item->url),
             esc_attr($class),
             esc_html($item->title)

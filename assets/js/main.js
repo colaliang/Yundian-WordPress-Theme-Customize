@@ -16,24 +16,37 @@
         const mobileMenu = document.getElementById('mobile-menu');
         if (!toggleBtn || !mobileMenu) return;
 
-        toggleBtn.addEventListener('click', function () {
-            mobileMenu.classList.toggle('active');
-            const isOpen = mobileMenu.classList.contains('active');
-            toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        toggleBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isHidden = mobileMenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                // Open menu
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('block');
+                toggleBtn.setAttribute('aria-expanded', 'true');
+            } else {
+                // Close menu
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('block');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+            }
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function (e) {
-            if (!mobileMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
-                mobileMenu.classList.remove('active');
+            if (!mobileMenu.contains(e.target) && !toggleBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('block');
                 toggleBtn.setAttribute('aria-expanded', 'false');
             }
         });
 
         // Close menu on window resize to desktop
         window.addEventListener('resize', function () {
-            if (window.innerWidth >= 1024) {
-                mobileMenu.classList.remove('active');
+            if (window.innerWidth >= 1024 && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('block');
                 toggleBtn.setAttribute('aria-expanded', 'false');
             }
         });
