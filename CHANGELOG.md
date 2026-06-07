@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.7] - 2026-06-08
+### Added
+- Pre-filled Global GEO Entities: For any page/post missing custom GEO entities, the theme now automatically injects `Commercial Lighting, 48V Magnetic Track Light, Zhongshan Lighting Manufacturer` into JSON-LD Schema (`@keywords`, `@description`, `@Organization.address`) and basic Meta Tags (`<meta name="keywords">`).
+
 ## [1.3.6] - 2026-06-08
 ### Added
 - **Deep SEO, GEO & AEO Optimization Module** (`inc/seo-geo-aeo.php`).
