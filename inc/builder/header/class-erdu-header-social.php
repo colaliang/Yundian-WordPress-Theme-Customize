@@ -28,18 +28,28 @@ class Erdu_Header_Social {
             return;
         }
 
-        $links = erdu_header_field('hd_social_links', array());
-        if (empty($links)) {
+        // Use global erdu_settings instead of individual ACF fields
+        $settings = get_option('erdu_settings', erdu_default_settings());
+        $platforms = array('facebook', 'linkedin', 'youtube', 'instagram', 'twitter', 'whatsapp', 'wechat', 'tiktok');
+        
+        $has_links = false;
+        foreach ($platforms as $platform) {
+            if (!empty($settings[$platform])) {
+                $has_links = true;
+                break;
+            }
+        }
+
+        if (!$has_links) {
             return;
         }
         ?>
         <div class="hidden lg:flex items-center gap-2">
-            <?php foreach ($links as $link) :
-                $platform = $link['platform'] ?? 'custom';
-                $url = $link['url'] ?? '';
-                $label = $link['label'] ?? ucfirst($platform);
-                $icon = self::$icons[$platform] ?? self::$icons['custom'];
+            <?php foreach ($platforms as $platform) :
+                $url = $settings[$platform] ?? '';
                 if (empty($url)) continue;
+                $label = ucfirst($platform);
+                $icon = self::$icons[$platform] ?? self::$icons['custom'];
             ?>
                 <a href="<?php echo esc_url($url); ?>"
                    target="_blank"

@@ -274,6 +274,10 @@ function erdu_settings_page()
             'linkedin'          => esc_url_raw(wp_unslash($_POST['erdu_linkedin'] ?? '')),
             'youtube'           => esc_url_raw(wp_unslash($_POST['erdu_youtube'] ?? '')),
             'instagram'         => esc_url_raw(wp_unslash($_POST['erdu_instagram'] ?? '')),
+            'twitter'           => esc_url_raw(wp_unslash($_POST['erdu_twitter'] ?? '')),
+            'whatsapp'          => esc_url_raw(wp_unslash($_POST['erdu_whatsapp'] ?? '')),
+            'wechat'            => sanitize_text_field(wp_unslash($_POST['erdu_wechat'] ?? '')),
+            'tiktok'            => esc_url_raw(wp_unslash($_POST['erdu_tiktok'] ?? '')),
             'analytics_id'      => sanitize_text_field(wp_unslash($_POST['erdu_analytics_id'] ?? '')),
         );
         update_option('erdu_settings', $settings);
@@ -356,7 +360,8 @@ function erdu_settings_page()
 
             <!-- Social Media -->
             <div class="erdu-settings-section">
-                <h2><?php _e('Social Media', 'erdu-wp'); ?></h2>
+                <h2><?php _e('Social Media Links', 'erdu-wp'); ?></h2>
+                <p class="description"><?php _e('These links will be used globally in Header and Footer if their respective switches are enabled.', 'erdu-wp'); ?></p>
                 <table class="form-table">
                     <tr>
                         <th><label for="erdu_facebook"><?php _e('Facebook', 'erdu-wp'); ?></label></th>
@@ -373,6 +378,22 @@ function erdu_settings_page()
                     <tr>
                         <th><label for="erdu_instagram"><?php _e('Instagram', 'erdu-wp'); ?></label></th>
                         <td><input type="url" id="erdu_instagram" name="erdu_instagram" value="<?php echo esc_attr($s['instagram']); ?>" class="regular-text" placeholder="https://"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_twitter"><?php _e('Twitter / X', 'erdu-wp'); ?></label></th>
+                        <td><input type="url" id="erdu_twitter" name="erdu_twitter" value="<?php echo esc_attr($s['twitter'] ?? ''); ?>" class="regular-text" placeholder="https://"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_tiktok"><?php _e('TikTok', 'erdu-wp'); ?></label></th>
+                        <td><input type="url" id="erdu_tiktok" name="erdu_tiktok" value="<?php echo esc_attr($s['tiktok'] ?? ''); ?>" class="regular-text" placeholder="https://"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_whatsapp"><?php _e('WhatsApp', 'erdu-wp'); ?></label></th>
+                        <td><input type="url" id="erdu_whatsapp" name="erdu_whatsapp" value="<?php echo esc_attr($s['whatsapp'] ?? ''); ?>" class="regular-text" placeholder="https://wa.me/..."></td>
+                    </tr>
+                    <tr>
+                        <th><label for="erdu_wechat"><?php _e('WeChat ID', 'erdu-wp'); ?></label></th>
+                        <td><input type="text" id="erdu_wechat" name="erdu_wechat" value="<?php echo esc_attr($s['wechat'] ?? ''); ?>" class="regular-text" placeholder="WeChat ID"></td>
                     </tr>
                 </table>
             </div>
@@ -561,6 +582,10 @@ function erdu_default_settings()
         'linkedin'        => '',
         'youtube'         => '',
         'instagram'       => '',
+        'twitter'         => '',
+        'whatsapp'        => '',
+        'wechat'          => '',
+        'tiktok'          => '',
         'analytics_id'    => '',
     );
 }

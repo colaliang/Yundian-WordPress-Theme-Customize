@@ -357,8 +357,18 @@ class Erdu_Header_Element_Popup {
      * Social Links Block
      */
     private static function render_block_social($block) {
-        $links = $block['social_links'] ?? array();
-        if (empty($links)) {
+        $settings = get_option('erdu_settings', erdu_default_settings());
+        $platforms = array('facebook', 'linkedin', 'youtube', 'instagram', 'twitter', 'whatsapp', 'wechat', 'tiktok');
+        
+        $has_links = false;
+        foreach ($platforms as $platform) {
+            if (!empty($settings[$platform])) {
+                $has_links = true;
+                break;
+            }
+        }
+
+        if (!$has_links) {
             return;
         }
 
@@ -375,12 +385,11 @@ class Erdu_Header_Element_Popup {
         );
         ?>
         <div class="flex flex-wrap gap-2">
-            <?php foreach ($links as $link) :
-                $platform = $link['platform'] ?? 'custom';
-                $url = $link['url'] ?? '';
-                $lbl = $link['label'] ?? ucfirst($platform);
-                $icon = $icons[$platform] ?? $icons['custom'];
+            <?php foreach ($platforms as $platform) :
+                $url = $settings[$platform] ?? '';
                 if (empty($url)) continue;
+                $lbl = ucfirst($platform);
+                $icon = $icons[$platform] ?? $icons['custom'];
             ?>
                 <a href="<?php echo esc_url($url); ?>"
                    target="_blank"

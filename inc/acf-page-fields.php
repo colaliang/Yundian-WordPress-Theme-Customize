@@ -1245,8 +1245,8 @@ function erdu_register_header_acf_fields()
                 'ui' => 1, 'default_value' => 0),
             array('key' => 'field_hd_show_cta', 'label' => __('Show CTA Button', 'erdu-wp'), 'name' => 'hd_show_cta', 'type' => 'true_false',
                 'ui' => 1, 'default_value' => 1),
-            array('key' => 'field_hd_show_social', 'label' => __('Show Social Icons', 'erdu-wp'), 'name' => 'hd_show_social', 'type' => 'true_false',
-                'ui' => 1, 'default_value' => 0),
+            // Note: Social links fields (hd_social_*) have been removed. 
+            // Header social icons will now read directly from global erdu_settings.
 
             // ===== Elements Popup / Icons Tab =====
             array('key' => 'field_hd_tab_element_popups', 'label' => __('Element Icons & Popups', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
@@ -1331,25 +1331,9 @@ function erdu_register_header_acf_fields()
                                 'conditional_logic' => array(array(array('field' => 'field_hd_epb_type', 'operator' => '==', 'value' => 'contact')))),
                             array('key' => 'field_hd_epb_contact_address', 'label' => __('Address', 'erdu-wp'), 'name' => 'contact_address', 'type' => 'textarea', 'rows' => 2,
                                 'conditional_logic' => array(array(array('field' => 'field_hd_epb_type', 'operator' => '==', 'value' => 'contact')))),
-                            array('key' => 'field_hd_epb_social_links', 'label' => __('Social Links', 'erdu-wp'), 'name' => 'social_links', 'type' => 'repeater',
-                                'button_label' => __('Add Link', 'erdu-wp'),
-                                'conditional_logic' => array(array(array('field' => 'field_hd_epb_type', 'operator' => '==', 'value' => 'social'))),
-                                'sub_fields' => array(
-                                    array('key' => 'field_hd_epbs_platform', 'label' => __('Platform', 'erdu-wp'), 'name' => 'platform', 'type' => 'select',
-                                        'choices' => array(
-                                            'facebook'  => 'Facebook',
-                                            'linkedin'  => 'LinkedIn',
-                                            'youtube'   => 'YouTube',
-                                            'instagram' => 'Instagram',
-                                            'twitter'   => 'Twitter / X',
-                                            'whatsapp'  => 'WhatsApp',
-                                            'wechat'    => 'WeChat',
-                                            'tiktok'    => 'TikTok',
-                                            'custom'    => __('Custom', 'erdu-wp'),
-                                        )),
-                                    array('key' => 'field_hd_epbs_url', 'label' => __('URL', 'erdu-wp'), 'name' => 'url', 'type' => 'url', 'required' => 1),
-                                    array('key' => 'field_hd_epbs_label', 'label' => __('Label', 'erdu-wp'), 'name' => 'label', 'type' => 'text'),
-                                )),
+                            array('key' => 'field_hd_epb_social_links_info', 'label' => __('Social Links Info', 'erdu-wp'), 'name' => '', 'type' => 'message',
+                                'message' => __('Social links are automatically loaded from Global Settings > Social Media Links.', 'erdu-wp'),
+                                'conditional_logic' => array(array(array('field' => 'field_hd_epb_type', 'operator' => '==', 'value' => 'social')))),
                         )),
                     ),
                 ),

@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.3] - 2026-06-07
+
+### Fixed & Enhanced
+- Refactored Social Links architecture: 
+  - Added centralized Social Media Links settings in `Theme Settings` > `Global`.
+  - Removed redundant Repeater fields for social links in Header and Footer ACF Builder.
+  - Header Social Icons, Header Element Popups (Social block), and Footer About section now dynamically read from the single global source of truth.
+  - Added new platform support: Twitter / X, WhatsApp, WeChat, TikTok.
+
 ## [1.3.2] - 2026-06-07
 
 ### Fixed & Enhanced
