@@ -78,8 +78,16 @@ if (!class_exists('Erdu_Builder_Header')) {
 
             // Primary Header Items
             add_action('erdu_primary_header', array('Erdu_Header_Logo', 'render'), 10);
-            add_action('erdu_primary_header', array('Erdu_Header_Contact', 'render'), 15);
+            
+            // Menu
             add_action('erdu_primary_header', array('Erdu_Header_Menu', 'render_desktop'), 20);
+            
+            // Right Side Actions Wrapper Open
+            add_action('erdu_primary_header', function() {
+                echo '<div class="flex items-center gap-2 md:gap-4">';
+            }, 21);
+
+            add_action('erdu_primary_header', array('Erdu_Header_Contact', 'render'), 22);
             add_action('erdu_primary_header', array('Erdu_Header_Mega_Menu', 'render'), 25);
             add_action('erdu_primary_header', array('Erdu_Header_Social', 'render'), 28);
             add_action('erdu_primary_header', array('Erdu_Header_Search', 'render'), 29);
@@ -87,6 +95,11 @@ if (!class_exists('Erdu_Builder_Header')) {
             add_action('erdu_primary_header', array('Erdu_Header_Element_Popup', 'render'), 32);
             add_action('erdu_primary_header', array('Erdu_Header_CTA', 'render'), 35);
             add_action('erdu_primary_header', array('Erdu_Header_Mobile_Trigger', 'render'), 40);
+            
+            // Right Side Actions Wrapper Close
+            add_action('erdu_primary_header', function() {
+                echo '</div>';
+            }, 45);
 
             // After Header (Mobile Menu)
             add_action('erdu_after_header', array('Erdu_Header_Menu', 'render_mobile'), 10);
@@ -117,19 +130,28 @@ if (!class_exists('Erdu_Builder_Header')) {
 
             // Sticky header
             if ($sticky) {
-                $styles[] = '.erdu-header { position: sticky; top: 0; z-index: 50; }';
+                $styles[] = '.erdu-header { position: sticky; top: 0; z-index: 50; width: 100%; }';
                 if ($shadow) {
-                    $styles[] = '.erdu-header.is-sticky, .erdu-header.sticky { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }';
+                    $styles[] = '.erdu-header.is-sticky, .erdu-header.sticky, .erdu-header.is-scrolled { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }';
                 }
             } else {
-                $styles[] = '.erdu-header { position: relative; }';
+                $styles[] = '.erdu-header { position: relative; z-index: 50; width: 100%; }';
             }
 
             // Transparent on hero (homepage only)
             if ($transparent && is_front_page()) {
-                $styles[] = '.erdu-header { background-color: transparent; border-bottom-color: transparent; }';
-                $styles[] = '.erdu-header .erdu-nav-link { color: #ffffff; }';
-                $styles[] = '.erdu-header .erdu-nav-link:hover, .erdu-header .erdu-nav-link.active { color: ' . esc_attr($hover) . '; }';
+                // To overlap the hero, we use absolute if not sticky, fixed if sticky
+                if ($sticky) {
+                    $styles[] = '.erdu-header { position: fixed; }';
+                } else {
+                    $styles[] = '.erdu-header { position: absolute; }';
+                }
+                $styles[] = '.erdu-header:not(.is-scrolled) { background-color: transparent; border-bottom-color: transparent; }';
+                $styles[] = '.erdu-header:not(.is-scrolled) .erdu-nav-link { color: #ffffff; }';
+                $styles[] = '.erdu-header:not(.is-scrolled) .erdu-nav-link:hover, .erdu-header:not(.is-scrolled) .erdu-nav-link.active { color: ' . esc_attr($hover) . '; }';
+                // Also need to change text color for logo and other text elements in transparent mode
+                $styles[] = '.erdu-header:not(.is-scrolled) .erdu-text-primary, .erdu-header:not(.is-scrolled) .text-gray-900, .erdu-header:not(.is-scrolled) .text-gray-700 { color: #ffffff; }';
+                $styles[] = '.erdu-header:not(.is-scrolled) svg { stroke: #ffffff; }';
             }
 
             echo '<style id="erdu-header-dynamic-css">' . implode("\n", $styles) . '</style>';

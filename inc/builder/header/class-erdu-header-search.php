@@ -15,7 +15,7 @@ class Erdu_Header_Search {
             return;
         }
         ?>
-        <div class="hidden md:flex items-center">
+        <div class="flex items-center">
             <button class="p-2 rounded-md hover:bg-gray-100 transition-colors"
                     onclick="document.getElementById('erdu-search-overlay').classList.toggle('hidden')"
                     aria-label="<?php esc_attr_e('Search', 'erdu-wp'); ?>">

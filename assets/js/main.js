@@ -154,9 +154,9 @@
 
             // Add shadow on scroll
             if (currentScroll > 10) {
-                header.classList.add('shadow-md');
+                header.classList.add('shadow-md', 'is-scrolled');
             } else {
-                header.classList.remove('shadow-md');
+                header.classList.remove('shadow-md', 'is-scrolled');
             }
 
             // Hide/show header on scroll direction

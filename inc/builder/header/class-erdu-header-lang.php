@@ -39,7 +39,7 @@ class Erdu_Header_Lang {
         $display_style = erdu_header_field('hd_lang_style', 'text'); // text | dropdown | flags
         $show_flags    = erdu_header_field('hd_lang_show_flags', false);
         ?>
-        <div class="hidden md:flex items-center">
+        <div class="flex items-center">
             <?php if ($display_style === 'dropdown') : ?>
                 <!-- 下拉菜单样式 -->
                 <div class="relative group">
