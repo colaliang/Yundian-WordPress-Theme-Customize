@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-06-07
+
+### Fixed & Enhanced
+- Re-architected mobile menu rendering and toggle mechanism:
+  - Switched from Tailwind `hidden/block` to inline CSS `max-height/opacity` transitions for smooth sliding animation.
+  - Forced mobile menu width to 100% and removed `bg-white` hardcoding.
+  - Synchronized mobile menu background with Header's dynamic transparent state (becomes transparent when Header is transparent on Hero).
+  - Improved mobile menu items styling: changed active state to bold instead of background block.
+
 ## [1.3.1] - 2026-06-07
 
 ### Fixed & Enhanced

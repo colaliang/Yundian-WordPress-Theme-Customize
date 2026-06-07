@@ -127,6 +127,7 @@ if (!class_exists('Erdu_Builder_Header')) {
             $styles[] = '.erdu-header .erdu-nav-link { color: ' . esc_attr($text) . '; }';
             $styles[] = '.erdu-header .erdu-nav-link:hover, .erdu-header .erdu-nav-link.active { color: ' . esc_attr($hover) . '; }';
             $styles[] = '.erdu-header .flex.items-center.justify-between { min-height: ' . intval($height) . 'px; }';
+            $styles[] = '.erdu-mobile-menu { background-color: ' . esc_attr($bg) . '; border-top: 1px solid ' . esc_attr($border) . '; }';
 
             // Sticky header
             if ($sticky) {
@@ -147,10 +148,14 @@ if (!class_exists('Erdu_Builder_Header')) {
                     $styles[] = '.erdu-header { position: absolute; }';
                 }
                 $styles[] = '.erdu-header:not(.is-scrolled) { background-color: transparent; border-bottom-color: transparent; }';
+                $styles[] = '.erdu-header:not(.is-scrolled) .erdu-mobile-menu { background-color: transparent; border-top-color: transparent; }';
                 $styles[] = '.erdu-header:not(.is-scrolled) .erdu-nav-link { color: #ffffff; }';
                 $styles[] = '.erdu-header:not(.is-scrolled) .erdu-nav-link:hover, .erdu-header:not(.is-scrolled) .erdu-nav-link.active { color: ' . esc_attr($hover) . '; }';
                 // Also need to change text color for logo and other text elements in transparent mode
                 $styles[] = '.erdu-header:not(.is-scrolled) .erdu-text-primary, .erdu-header:not(.is-scrolled) .text-gray-900, .erdu-header:not(.is-scrolled) .text-gray-700 { color: #ffffff; }';
+                // Update mobile menu items color in transparent mode
+                $styles[] = '.erdu-header:not(.is-scrolled) .erdu-mobile-menu a { color: #ffffff; }';
+                $styles[] = '.erdu-header:not(.is-scrolled) .erdu-mobile-menu a:hover, .erdu-header:not(.is-scrolled) .erdu-mobile-menu a.bg-orange-50 { color: ' . esc_attr($hover) . '; background-color: rgba(255,255,255,0.1); }';
                 $styles[] = '.erdu-header:not(.is-scrolled) svg { stroke: #ffffff; }';
             }
 
