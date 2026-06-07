@@ -83,6 +83,12 @@ function erdu_register_aeo_fields() {
 add_action('wp_head', 'erdu_generate_schema_markup', 99);
 function erdu_generate_schema_markup() {
     $schema = array();
+    $post_id = get_the_ID();
+    
+    // Default GEO Entity (fallback if not set per-page)
+    $default_geo_entities = "Commercial Lighting, 48V Magnetic Track Light, Zhongshan Lighting Manufacturer";
+    $page_geo_entities = function_exists('get_field') ? get_field('geo_entities', $post_id) : '';
+    $geo_entities = $page_geo_entities ? $page_geo_entities : $default_geo_entities;
     
     // 2.1 Organization & WebSite (Always output on front page)
     if (is_front_page()) {
@@ -92,12 +98,21 @@ function erdu_generate_schema_markup() {
             'name' => 'ERDU Lighting',
             'url' => home_url('/'),
             'logo' => get_theme_mod('custom_logo') ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : '',
+            'description' => get_bloginfo('description'),
+            'keywords' => $geo_entities,
             'contactPoint' => array(
                 '@type' => 'ContactPoint',
                 'telephone' => '+86-760-22380830',
                 'contactType' => 'customer service',
                 'areaServed' => 'Worldwide',
                 'availableLanguage' => array('English', 'Chinese')
+            ),
+            'address' => array(
+                '@type' => 'PostalAddress',
+                'streetAddress' => '6th Floor, JinYe Building, Tongyi Industrial District',
+                'addressLocality' => 'Guzhen, Zhongshan',
+                'addressRegion' => 'Guangdong',
+                'addressCountry' => 'CN'
             ),
             'sameAs' => array(
                 'https://www.facebook.com/erduled',
@@ -111,6 +126,7 @@ function erdu_generate_schema_markup() {
             '@type' => 'WebSite',
             'name' => get_bloginfo('name'),
             'url' => home_url('/'),
+            'keywords' => $geo_entities,
             'potentialAction' => array(
                 '@type' => 'SearchAction',
                 'target' => home_url('/?s={search_term_string}'),
@@ -209,7 +225,8 @@ function erdu_generate_schema_markup() {
                 '@context' => 'https://schema.org',
                 '@type' => 'CollectionPage',
                 'name' => get_the_title(),
-                'url' => get_permalink()
+                'url' => get_permalink(),
+                'keywords' => $geo_entities
             );
             
             // Generate basic ItemList for SEO
@@ -325,8 +342,12 @@ function erdu_generate_meta_tags() {
     $url = home_url($_SERVER['REQUEST_URI']);
     $image = get_theme_mod('custom_logo') ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : '';
     
+    $post_id = get_the_ID();
+    $default_geo_entities = "Commercial Lighting, 48V Magnetic Track Light, Zhongshan Lighting Manufacturer";
+    $page_geo_entities = function_exists('get_field') ? get_field('geo_entities', $post_id) : '';
+    $geo_entities = $page_geo_entities ? $page_geo_entities : $default_geo_entities;
+    
     if (is_singular()) {
-        $post_id = get_the_ID();
         $title = get_the_title() . ' - ' . get_bloginfo('name');
         
         if (function_exists('get_field')) {
@@ -345,6 +366,7 @@ function erdu_generate_meta_tags() {
     
     echo "\n<!-- ERDU Basic SEO & OpenGraph -->\n";
     echo '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
+    echo '<meta name="keywords" content="' . esc_attr($geo_entities) . '">' . "\n";
     echo '<link rel="canonical" href="' . esc_url($url) . '">' . "\n";
     
     // Open Graph
@@ -388,7 +410,7 @@ function erdu_inject_aeo_summary_block($content, $force = false) {
         return $content;
     }
     
-    $aeo_html = '<div class="erdu-aeo-block bg-gray-50 border-l-4 border-orange-500 p-6 my-8 rounded-r-lg shadow-sm" aria-label="Key Takeaways">';
+    $aeo_html = '<div class="erdu-aeo-block bg-gray-50 border-l-4 border-primary p-6 my-8 rounded-r-lg shadow-sm" aria-label="Key Takeaways">';
     
     if (!empty($summary)) {
         $aeo_html .= '<div class="aeo-summary text-lg font-medium text-gray-800 mb-4">' . wp_kses_post($summary) . '</div>';
