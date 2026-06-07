@@ -13,9 +13,18 @@ if (have_posts()) :
 
         // ---- Hero ----
         $hero_title    = erdu_page_field('contact_hero_title', __('Contact ERDU Lighting — We\'re Here to Light Up Your Project', 'erdu-wp'));
+        $hero_subtitle = erdu_page_field('contact_hero_subtitle', '');
+        $hero_bg       = erdu_page_field('contact_hero_bg', '');
+        $hero_btn      = erdu_page_field('contact_hero_btn', '');
+        $hero_btn_link = erdu_page_field('contact_hero_btn_link', '');
+        $hero_btn2     = erdu_page_field('contact_hero_btn2', '');
+        $hero_btn2_link= erdu_page_field('contact_hero_btn2_link', '');
 
         // ---- Page Content ----
         $page_content = erdu_page_field('contact_page_editor', '');
+
+        // ---- Intro ----
+        $intro = erdu_page_field('contact_intro', '');
 
         // ---- Contact Info ----
         $info_title = erdu_page_field('contact_info_title', __('Contact Information', 'erdu-wp'));
@@ -54,22 +63,43 @@ if (have_posts()) :
         $form_error   = isset($_GET['contact_error']) ? sanitize_text_field(wp_unslash($_GET['contact_error'])) : '';
         ?>
 
-        <!-- Hero — Dark Brown -->
-        <section class="relative py-16 erdu-bg-secondary">
-            <div class="erdu-container">
+        <!-- ====== HERO ====== -->
+        <section class="relative py-20 erdu-bg-secondary">
+            <?php if ($hero_bg) : ?>
+            <div class="absolute inset-0 opacity-20" style="background-image: url('<?php echo esc_url($hero_bg); ?>'); background-size: cover; background-position: center;"></div>
+            <?php endif; ?>
+            <div class="relative erdu-container">
                 <?php erdu_breadcrumb(); ?>
                 <h1 class="text-3xl md:text-4xl font-bold text-white mt-4"><?php echo esc_html($hero_title); ?></h1>
+                <?php if ($hero_subtitle) : ?><p class="text-orange-100 mt-4 max-w-2xl"><?php echo esc_html($hero_subtitle); ?></p><?php endif; ?>
+                <div class="flex flex-wrap gap-4 mt-8">
+                    <?php if ($hero_btn && $hero_btn_link) : ?>
+                        <a href="<?php echo esc_url($hero_btn_link); ?>" class="erdu-btn erdu-btn-primary"><?php echo esc_html($hero_btn); ?><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                    <?php endif; ?>
+                    <?php if ($hero_btn2 && $hero_btn2_link) : ?>
+                        <a href="<?php echo esc_url($hero_btn2_link); ?>" class="erdu-btn erdu-btn-outline"><?php echo esc_html($hero_btn2); ?></a>
+                    <?php endif; ?>
+                </div>
             </div>
         </section>
 
-        <!-- Editable Page Content -->
+        <!-- ====== PAGE CONTENT ====== -->
         <?php if ($page_content) : ?>
-        <section class="py-12 bg-white">
+        <section class="py-12 bg-white border-b border-gray-100">
             <div class="erdu-container"><div class="prose prose-lg max-w-none"><?php echo wp_kses_post($page_content); ?></div></div>
         </section>
         <?php endif; ?>
 
-        <!-- Contact Info + Form — Two Column Layout -->
+        <!-- ====== INTRO ====== -->
+        <?php if ($intro) : ?>
+        <section class="py-12 bg-white">
+            <div class="erdu-container">
+                <div class="prose max-w-none"><?php echo wp_kses_post($intro); ?></div>
+            </div>
+        </section>
+        <?php endif; ?>
+
+        <!-- ====== CONTACT INFO & FORM ====== -->
         <section class="py-16 bg-white">
             <div class="erdu-container">
                 <div class="grid lg:grid-cols-3 gap-12">
