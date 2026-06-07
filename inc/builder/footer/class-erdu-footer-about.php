@@ -91,4 +91,3 @@ class Erdu_Footer_About {
         );
     }
 }
-}
