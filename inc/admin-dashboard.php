@@ -77,6 +77,7 @@ function erdu_admin_menu()
 
     // Register Customizer panel
     add_action('customize_register', 'erdu_customizer_register');
+}
 
 // ==========================================
 // 2. License Activation Page
