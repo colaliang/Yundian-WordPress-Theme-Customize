@@ -5,7 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 待开发功能
+### 主题关联插件
+- SEO/GEO/AEO优化
+- AI生成主题页面，并自动优化
+- Blog/News自动生成计划
+- 多渠道内容发布
+- 多模板选择，云端加载（已做规划文档）
+
 ## [Unreleased]
+
+## [1.3.8] - 2026-06-08
+### Added
+- **Theme License Activation System**: Introduced a commercial license activation requirement.
+- Implemented global restrictions for unactivated themes: disabled module toggles, settings modifications, ACF options, and WordPress Customizer.
+- Added a dedicated License Activation dashboard page.
 
 ## [1.3.7] - 2026-06-08
 ### Added

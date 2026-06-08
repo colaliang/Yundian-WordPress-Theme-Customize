@@ -55,6 +55,16 @@ function erdu_admin_menu()
         'erdu_settings_page'
     );
 
+    // License submenu
+    add_submenu_page(
+        'erdu-dashboard',
+        __('License Activation', 'erdu-wp'),
+        __('License', 'erdu-wp'),
+        'manage_options',
+        'erdu-license',
+        'erdu_license_page'
+    );
+
     // Module Config submenu (hidden from menu, accessed via module cards)
     add_submenu_page(
         'erdu-dashboard',
@@ -67,25 +77,148 @@ function erdu_admin_menu()
 
     // Register Customizer panel
     add_action('customize_register', 'erdu_customizer_register');
+
+// ==========================================
+// 2. License Activation Page
+// ==========================================
+
+function erdu_is_theme_activated()
+{
+    $status = get_option('erdu_license_status', 'inactive');
+    return $status === 'active';
+}
+
+function erdu_license_page()
+{
+    $status = get_option('erdu_license_status', 'inactive');
+    $key    = get_option('erdu_license_key', '');
+
+    if (isset($_POST['erdu_activate_license']) && check_admin_referer('erdu_license_nonce')) {
+        $input_key = sanitize_text_field(wp_unslash($_POST['erdu_license_key']));
+        
+        // Mock activation check: Assume any key with length >= 10 is valid
+        if (strlen($input_key) >= 10) {
+            update_option('erdu_license_key', $input_key);
+            update_option('erdu_license_status', 'active');
+            $status = 'active';
+            $key = $input_key;
+            add_settings_error('erdu_license_messages', 'erdu_license_message', __('Theme activated successfully.', 'erdu-wp'), 'updated');
+        } else {
+            update_option('erdu_license_status', 'inactive');
+            $status = 'inactive';
+            add_settings_error('erdu_license_messages', 'erdu_license_message', __('Invalid license key. Please enter a valid commercial license.', 'erdu-wp'), 'error');
+        }
+    }
+
+    if (isset($_POST['erdu_deactivate_license']) && check_admin_referer('erdu_license_nonce')) {
+        delete_option('erdu_license_key');
+        update_option('erdu_license_status', 'inactive');
+        $status = 'inactive';
+        $key = '';
+        add_settings_error('erdu_license_messages', 'erdu_license_message', __('Theme deactivated.', 'erdu-wp'), 'updated');
+    }
+    ?>
+    <div class="wrap erdu-dashboard">
+        <div class="erdu-dashboard-header">
+            <h1><?php _e('Theme License Activation', 'erdu-wp'); ?></h1>
+        </div>
+
+        <?php settings_errors('erdu_license_messages'); ?>
+
+        <div class="erdu-settings-section">
+            <h2><?php _e('Commercial License', 'erdu-wp'); ?></h2>
+            <p class="description"><?php _e('ERDU Theme requires a commercial license to unlock all features and settings. Please enter your license key below.', 'erdu-wp'); ?></p>
+
+            <form method="post" action="">
+                <?php wp_nonce_field('erdu_license_nonce'); ?>
+                <table class="form-table">
+                    <tr>
+                        <th><label for="erdu_license_key"><?php _e('License Key', 'erdu-wp'); ?></label></th>
+                        <td>
+                            <input type="text" id="erdu_license_key" name="erdu_license_key" value="<?php echo esc_attr($key); ?>" class="regular-text" <?php disabled($status, 'active'); ?>>
+                            <?php if ($status === 'active') : ?>
+                                <span style="color: green; font-weight: bold; margin-left: 10px;">&check; <?php _e('Activated', 'erdu-wp'); ?></span>
+                            <?php else : ?>
+                                <span style="color: red; font-weight: bold; margin-left: 10px;">&cross; <?php _e('Not Activated', 'erdu-wp'); ?></span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                </table>
+
+                <p class="submit">
+                    <?php if ($status === 'active') : ?>
+                        <input type="submit" name="erdu_deactivate_license" class="button" value="<?php _e('Deactivate License', 'erdu-wp'); ?>" onclick="return confirm('<?php _e('Are you sure you want to deactivate?', 'erdu-wp'); ?>');">
+                    <?php else : ?>
+                        <input type="submit" name="erdu_activate_license" class="button button-primary" value="<?php _e('Activate Theme', 'erdu-wp'); ?>">
+                    <?php endif; ?>
+                </p>
+            </form>
+        </div>
+    </div>
+    <?php
+}
+
+add_action('admin_notices', 'erdu_license_admin_notice');
+function erdu_license_admin_notice()
+{
+    if (!erdu_is_theme_activated() && current_user_can('manage_options')) {
+        // Exclude the license page itself
+        if (isset($_GET['page']) && $_GET['page'] === 'erdu-license') {
+            return;
+        }
+        echo '<div class="notice notice-error"><p><strong>' . __('ERDU Theme Action Required:', 'erdu-wp') . '</strong> ' . __('The theme is not activated. All modifications and settings are disabled. Please <a href="' . admin_url('admin.php?page=erdu-license') . '">activate your commercial license</a> to enable full functionality.', 'erdu-wp') . '</p></div>';
+    }
+}
+
+add_action('admin_init', 'erdu_restrict_unactivated_access');
+function erdu_restrict_unactivated_access() {
+    if (!erdu_is_theme_activated() && current_user_can('manage_options')) {
+        global $pagenow;
+        
+        // Restrict Customizer
+        if ($pagenow === 'customize.php') {
+            wp_die(__('Theme is not activated. Customizer is disabled. Please activate your commercial license.', 'erdu-wp'));
+        }
+
+        // Restrict ACF Options Pages
+        if ($pagenow === 'admin.php' && isset($_GET['page'])) {
+            $restricted_pages = array('erdu-theme-colors', 'erdu-header-settings', 'erdu-footer-settings');
+            if (in_array($_GET['page'], $restricted_pages)) {
+                wp_redirect(admin_url('admin.php?page=erdu-license'));
+                exit;
+            }
+        }
+    }
+}
+
+add_action('acf/validate_save_post', 'erdu_acf_validate_save_post', 10, 0);
+function erdu_acf_validate_save_post() {
+    if (!erdu_is_theme_activated()) {
+        acf_add_validation_error('', __('Theme is not activated. You cannot modify settings or content. Please activate your commercial license.', 'erdu-wp'));
+    }
 }
 
 // ==========================================
-// 2. Dashboard Page
+// 3. Dashboard Page
 // ==========================================
 
 function erdu_dashboard_page()
 {
     // Handle module toggle
     if (isset($_POST['erdu_toggle_module']) && check_admin_referer('erdu_dashboard_nonce')) {
-        $module = sanitize_key($_POST['erdu_toggle_module']);
-        $state  = isset($_POST['erdu_module_state']) ? true : false;
-        $modules = get_option('erdu_modules', erdu_default_modules());
-        if (isset($modules[$module])) {
-            $modules[$module]['enabled'] = $state;
-            update_option('erdu_modules', $modules);
+        if (!erdu_is_theme_activated()) {
+            add_settings_error('erdu_messages', 'erdu_message', __('Theme not activated. Modifications are disabled.', 'erdu-wp'), 'error');
+        } else {
+            $module = sanitize_key($_POST['erdu_toggle_module']);
+            $state  = isset($_POST['erdu_module_state']) ? true : false;
+            $modules = get_option('erdu_modules', erdu_default_modules());
+            if (isset($modules[$module])) {
+                $modules[$module]['enabled'] = $state;
+                update_option('erdu_modules', $modules);
+            }
+            wp_redirect(admin_url('admin.php?page=erdu-dashboard&saved=1'));
+            exit;
         }
-        wp_redirect(admin_url('admin.php?page=erdu-dashboard&saved=1'));
-        exit;
     }
 
     // Handle quick link clicks
@@ -263,32 +396,40 @@ function erdu_settings_page()
 {
     // Save settings
     if (isset($_POST['erdu_save_settings']) && check_admin_referer('erdu_settings_nonce')) {
-        $settings = array(
-            'header_sticky'     => isset($_POST['erdu_header_sticky']) ? true : false,
-            'show_breadcrumb'   => isset($_POST['erdu_show_breadcrumb']) ? true : false,
-            'show_cta'          => isset($_POST['erdu_show_cta']) ? true : false,
-            'phone'             => sanitize_text_field(wp_unslash($_POST['erdu_phone'] ?? '')),
-            'email'             => sanitize_email(wp_unslash($_POST['erdu_email'] ?? '')),
-            'address'           => sanitize_textarea_field(wp_unslash($_POST['erdu_address'] ?? '')),
-            'hours'             => sanitize_text_field(wp_unslash($_POST['erdu_hours'] ?? '')),
-            'facebook'          => esc_url_raw(wp_unslash($_POST['erdu_facebook'] ?? '')),
-            'linkedin'          => esc_url_raw(wp_unslash($_POST['erdu_linkedin'] ?? '')),
-            'youtube'           => esc_url_raw(wp_unslash($_POST['erdu_youtube'] ?? '')),
-            'instagram'         => esc_url_raw(wp_unslash($_POST['erdu_instagram'] ?? '')),
-            'twitter'           => esc_url_raw(wp_unslash($_POST['erdu_twitter'] ?? '')),
-            'whatsapp'          => esc_url_raw(wp_unslash($_POST['erdu_whatsapp'] ?? '')),
-            'wechat'            => sanitize_text_field(wp_unslash($_POST['erdu_wechat'] ?? '')),
-            'tiktok'            => esc_url_raw(wp_unslash($_POST['erdu_tiktok'] ?? '')),
-            'analytics_id'      => sanitize_text_field(wp_unslash($_POST['erdu_analytics_id'] ?? '')),
-        );
-        update_option('erdu_settings', $settings);
-        add_settings_error('erdu_settings_messages', 'erdu_settings_message', __('Settings saved successfully.', 'erdu-wp'), 'updated');
+        if (!erdu_is_theme_activated()) {
+            add_settings_error('erdu_settings_messages', 'erdu_settings_message', __('Theme not activated. Modifications are disabled.', 'erdu-wp'), 'error');
+        } else {
+            $settings = array(
+                'header_sticky'     => isset($_POST['erdu_header_sticky']) ? true : false,
+                'show_breadcrumb'   => isset($_POST['erdu_show_breadcrumb']) ? true : false,
+                'show_cta'          => isset($_POST['erdu_show_cta']) ? true : false,
+                'phone'             => sanitize_text_field(wp_unslash($_POST['erdu_phone'] ?? '')),
+                'email'             => sanitize_email(wp_unslash($_POST['erdu_email'] ?? '')),
+                'address'           => sanitize_textarea_field(wp_unslash($_POST['erdu_address'] ?? '')),
+                'hours'             => sanitize_text_field(wp_unslash($_POST['erdu_hours'] ?? '')),
+                'facebook'          => esc_url_raw(wp_unslash($_POST['erdu_facebook'] ?? '')),
+                'linkedin'          => esc_url_raw(wp_unslash($_POST['erdu_linkedin'] ?? '')),
+                'youtube'           => esc_url_raw(wp_unslash($_POST['erdu_youtube'] ?? '')),
+                'instagram'         => esc_url_raw(wp_unslash($_POST['erdu_instagram'] ?? '')),
+                'twitter'           => esc_url_raw(wp_unslash($_POST['erdu_twitter'] ?? '')),
+                'whatsapp'          => esc_url_raw(wp_unslash($_POST['erdu_whatsapp'] ?? '')),
+                'wechat'            => sanitize_text_field(wp_unslash($_POST['erdu_wechat'] ?? '')),
+                'tiktok'            => esc_url_raw(wp_unslash($_POST['erdu_tiktok'] ?? '')),
+                'analytics_id'      => sanitize_text_field(wp_unslash($_POST['erdu_analytics_id'] ?? '')),
+            );
+            update_option('erdu_settings', $settings);
+            add_settings_error('erdu_settings_messages', 'erdu_settings_message', __('Settings saved successfully.', 'erdu-wp'), 'updated');
+        }
     }
 
     // Reset to defaults
     if (isset($_POST['erdu_reset_settings']) && check_admin_referer('erdu_settings_nonce')) {
-        delete_option('erdu_settings');
-        add_settings_error('erdu_settings_messages', 'erdu_settings_message', __('Settings reset to defaults.', 'erdu-wp'), 'updated');
+        if (!erdu_is_theme_activated()) {
+            add_settings_error('erdu_settings_messages', 'erdu_settings_message', __('Theme not activated. Modifications are disabled.', 'erdu-wp'), 'error');
+        } else {
+            delete_option('erdu_settings');
+            add_settings_error('erdu_settings_messages', 'erdu_settings_message', __('Settings reset to defaults.', 'erdu-wp'), 'updated');
+        }
     }
 
     $s = get_option('erdu_settings', erdu_default_settings());
@@ -760,49 +901,57 @@ function erdu_module_config_page()
 
     // Handle save
     if (isset($_POST['erdu_module_save']) && check_admin_referer('erdu_module_nonce')) {
-        $new_config = array();
-        foreach ($module_def['fields'] as $field_key => $field_def) {
-            $input_name = 'erdu_mod_' . $field_key;
-            if ($field_def['type'] === 'toggle') {
-                $new_config[$field_key] = isset($_POST[$input_name]) ? true : false;
-            } elseif ($field_def['type'] === 'number') {
-                $new_config[$field_key] = intval($_POST[$input_name] ?? $field_def['default']);
-            } elseif ($field_def['type'] === 'textarea') {
-                $new_config[$field_key] = sanitize_textarea_field(wp_unslash($_POST[$input_name] ?? ''));
-            } elseif ($field_def['type'] === 'repeater') {
-                // Handle repeater - expect arrays of sub-fields
-                $repeater_data = array();
-                if (isset($_POST[$input_name]) && is_array($_POST[$input_name])) {
-                    foreach ($_POST[$input_name] as $index => $row) {
-                        $clean_row = array();
-                        foreach ($field_def['sub_fields'] as $sub_key => $sub_def) {
-                            $clean_row[$sub_key] = sanitize_text_field(wp_unslash($row[$sub_key] ?? ''));
-                        }
-                        // Only add non-empty rows
-                        $has_value = false;
-                        foreach ($clean_row as $v) {
-                            if (!empty($v)) { $has_value = true; break; }
-                        }
-                        if ($has_value) {
-                            $repeater_data[] = $clean_row;
+        if (!erdu_is_theme_activated()) {
+            add_settings_error('erdu_module_messages', 'erdu_module_message', __('Theme not activated. Modifications are disabled.', 'erdu-wp'), 'error');
+        } else {
+            $new_config = array();
+            foreach ($module_def['fields'] as $field_key => $field_def) {
+                $input_name = 'erdu_mod_' . $field_key;
+                if ($field_def['type'] === 'toggle') {
+                    $new_config[$field_key] = isset($_POST[$input_name]) ? true : false;
+                } elseif ($field_def['type'] === 'number') {
+                    $new_config[$field_key] = intval($_POST[$input_name] ?? $field_def['default']);
+                } elseif ($field_def['type'] === 'textarea') {
+                    $new_config[$field_key] = sanitize_textarea_field(wp_unslash($_POST[$input_name] ?? ''));
+                } elseif ($field_def['type'] === 'repeater') {
+                    // Handle repeater - expect arrays of sub-fields
+                    $repeater_data = array();
+                    if (isset($_POST[$input_name]) && is_array($_POST[$input_name])) {
+                        foreach ($_POST[$input_name] as $index => $row) {
+                            $clean_row = array();
+                            foreach ($field_def['sub_fields'] as $sub_key => $sub_def) {
+                                $clean_row[$sub_key] = sanitize_text_field(wp_unslash($row[$sub_key] ?? ''));
+                            }
+                            // Only add non-empty rows
+                            $has_value = false;
+                            foreach ($clean_row as $v) {
+                                if (!empty($v)) { $has_value = true; break; }
+                            }
+                            if ($has_value) {
+                                $repeater_data[] = $clean_row;
+                            }
                         }
                     }
+                    $new_config[$field_key] = $repeater_data;
+                } else {
+                    $new_config[$field_key] = sanitize_text_field(wp_unslash($_POST[$input_name] ?? ''));
                 }
-                $new_config[$field_key] = $repeater_data;
-            } else {
-                $new_config[$field_key] = sanitize_text_field(wp_unslash($_POST[$input_name] ?? ''));
             }
+            update_option('erdu_module_' . $module_key, $new_config);
+            $saved_config = $new_config;
+            add_settings_error('erdu_module_messages', 'erdu_module_message', __('Module settings saved.', 'erdu-wp'), 'updated');
         }
-        update_option('erdu_module_' . $module_key, $new_config);
-        $saved_config = $new_config;
-        add_settings_error('erdu_module_messages', 'erdu_module_message', __('Module settings saved.', 'erdu-wp'), 'updated');
     }
 
     // Reset to defaults
     if (isset($_POST['erdu_module_reset']) && check_admin_referer('erdu_module_nonce')) {
-        delete_option('erdu_module_' . $module_key);
-        $saved_config = array();
-        add_settings_error('erdu_module_messages', 'erdu_module_message', __('Module settings reset to defaults.', 'erdu-wp'), 'updated');
+        if (!erdu_is_theme_activated()) {
+            add_settings_error('erdu_module_messages', 'erdu_module_message', __('Theme not activated. Modifications are disabled.', 'erdu-wp'), 'error');
+        } else {
+            delete_option('erdu_module_' . $module_key);
+            $saved_config = array();
+            add_settings_error('erdu_module_messages', 'erdu_module_message', __('Module settings reset to defaults.', 'erdu-wp'), 'updated');
+        }
     }
 
     ?>
