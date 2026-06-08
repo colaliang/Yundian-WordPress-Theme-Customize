@@ -1,5 +1,10 @@
 # ERDU Lighting - B2B WordPress Theme (二度照明定制主题)
 
+> **⚠️ 重要提示 (Important Notice):** 
+> 
+> 本主题最新版本（v1.3.8 及以上）已全面启用**商业授权机制 (Commercial License System)**。
+> 未激活商业授权的主题将严格限制后台模块配置、主题设置、自定义外观（Customizer）及 ACF 高级字段的保存功能。请确保您已获得合法的商业授权以解锁全部功能。
+
 ## 项目简介 (Project Overview)
 
 本项目是专为 **ERDU Lighting (二度照明)** —— 专业的 48V 磁吸轨道灯制造商，量身定制的高质量 B2B 独立站 WordPress 主题。该项目采用了现代化的无构建（No-Build）架构，并深度结合 ACF Pro，摒弃了传统页面构建器的臃肿，实现了极佳的性能、SEO 以及灵活的后台管理体验。
@@ -70,6 +75,11 @@ erdu-wp-theme/
 
 
 
-## 许可证 (License)
+## 许可证与商业授权 (License & Commercial Authorization)
 
-本项目采用 [MIT License](LICENSE) 开源协议。您可以自由地使用、修改和分发本项目的代码，甚至用于商业项目，只需保留原作者的版权声明和许可声明即可。
+本项目主题核心代码遵循 WordPress 官方建议的开源协议，但**完整的主题功能、高级模块配置、页面保存权限及持续更新服务需要购买商业授权 (Commercial License)**。
+
+- **未授权状态**：您可以安装主题，但无法在后台修改主题设置、颜色配置、页眉页脚模块以及 ACF 高级字段，所有修改操作将被拦截。
+- **正版激活**：购买后您将获得唯一的商业授权码。请在 WordPress 后台的 `ERDU -> License Activation` 页面进行激活，激活后即可解锁所有企业级功能。
+
+如需购买正版授权或定制开发服务，请联系**云店+ (Yundianjia)** 团队。
