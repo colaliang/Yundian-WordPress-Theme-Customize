@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 /**
  * Define theme constants
  */
-define('ERDU_VERSION', '1.3.12');
+define('ERDU_VERSION', '1.3.13');
 define('ERDU_DIR', get_template_directory());
 define('ERDU_URI', get_template_directory_uri());
 
@@ -30,7 +30,7 @@ require_once ERDU_DIR . '/inc/acf-blocks.php';
 require_once ERDU_DIR . '/inc/acf-block-renders.php';
 require_once ERDU_DIR . '/inc/template-functions.php';
 require_once ERDU_DIR . '/inc/admin-dashboard.php';
-require_once ERDU_DIR . '/inc/page-preview.php';
+require_once ERDU_DIR . '/inc/editor-tweaks.php';
 
 /**
  * Load Header & Footer Builder

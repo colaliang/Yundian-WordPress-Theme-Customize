@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.13] - 2026-06-09
+### Changed
+- **Editor Tweaks**: Removed the iframe-based live preview based on user feedback. The system now simply disables the confusing blank Gutenberg editor and Classic editor text area for ACF-driven pages, keeping only the clean data-entry panel.
+
 ## [1.3.12] - 2026-06-09
 ### Added
 - **Page Live Preview**: Added a new visual preview system (`inc/page-preview.php`) for ACF-driven page templates.
