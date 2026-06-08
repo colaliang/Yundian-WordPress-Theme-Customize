@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.11] - 2026-06-08
+### Fixed
+- Fixed WooCommerce B2B single product layout stacking issue by injecting missing responsive grid utility classes (`lg:grid-cols-2`, `gap-0`, `lg:gap-8`) into the "No-Build" `main.css`.
+- Overrode default WooCommerce `.woocommerce-product-gallery` floats to ensure correct Flex/Grid behavior in the custom template.
+- Restored `aspect-ratio` inline styling and correct utility classes for `content-product.php`.
+
 ## [1.3.10] - 2026-06-08
 ### Added
 - **Product Page Templates**: Added `page-product-category.php` and `page-product-single.php` to allow users to build custom landing pages for specific product categories or single products via the Page Editor.

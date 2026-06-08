@@ -25,10 +25,10 @@ $beam_angle = $product->get_attribute('beam-angle');
 <li <?php wc_product_class('group', $product); ?>>
     <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow h-full flex flex-col group-hover:border-orange-200">
         <!-- Thumbnail -->
-        <a href="<?php echo esc_url($product->get_permalink()); ?>" class="block relative overflow-hidden bg-gray-100 aspect-w-4 aspect-h-3">
+        <a href="<?php echo esc_url($product->get_permalink()); ?>" class="block relative overflow-hidden bg-gray-100" style="aspect-ratio: 4/3;">
             <?php
             $image_size = apply_filters('single_product_archive_thumbnail_size', 'woocommerce_thumbnail');
-            echo $product->get_image($image_size, array('class' => 'w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300'));
+            echo $product->get_image($image_size, array('class' => 'w-full h-full object-cover object-center group-hover-scale-105 transition-transform duration-300'));
             ?>
         </a>
 
@@ -49,18 +49,18 @@ $beam_angle = $product->get_attribute('beam-angle');
             <!-- Key Attributes Snippet -->
             <div class="mt-auto grid grid-cols-2 gap-2 text-xs text-gray-600 mb-4 bg-gray-50 p-3 rounded-md">
                 <?php if ($power) : ?>
-                    <div><span class="text-gray-400 block text-[10px] uppercase">Power</span><span class="font-medium"><?php echo esc_html($power); ?></span></div>
+                    <div><span class="text-gray-400 block text-xs uppercase" style="font-size: 10px;">Power</span><span class="font-medium"><?php echo esc_html($power); ?></span></div>
                 <?php endif; ?>
                 <?php if ($cct) : ?>
-                    <div><span class="text-gray-400 block text-[10px] uppercase">CCT</span><span class="font-medium"><?php echo esc_html($cct); ?></span></div>
+                    <div><span class="text-gray-400 block text-xs uppercase" style="font-size: 10px;">CCT</span><span class="font-medium"><?php echo esc_html($cct); ?></span></div>
                 <?php endif; ?>
                 <?php if ($beam_angle) : ?>
-                    <div><span class="text-gray-400 block text-[10px] uppercase">Beam</span><span class="font-medium"><?php echo esc_html($beam_angle); ?></span></div>
+                    <div><span class="text-gray-400 block text-xs uppercase" style="font-size: 10px;">Beam</span><span class="font-medium"><?php echo esc_html($beam_angle); ?></span></div>
                 <?php endif; ?>
             </div>
 
             <!-- Action -->
-            <a href="<?php echo esc_url($product->get_permalink()); ?>" class="inline-flex items-center justify-center w-full py-2.5 px-4 text-sm font-medium text-orange-600 bg-orange-50 rounded hover:bg-orange-600 hover:text-white transition-colors">
+            <a href="<?php echo esc_url($product->get_permalink()); ?>" class="inline-flex items-center justify-center w-full py-2 px-4 text-sm font-medium text-orange-600 bg-orange-50 rounded hover:bg-orange-600 hover:text-white transition-colors" style="padding-top: 0.625rem; padding-bottom: 0.625rem;">
                 <?php esc_html_e('View Details', 'erdu-wp'); ?> &rarr;
             </a>
         </div>
