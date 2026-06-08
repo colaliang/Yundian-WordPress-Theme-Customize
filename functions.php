@@ -540,6 +540,40 @@ function erdu_get_page_acf_defaults($slug)
         'about_downloads_title' => 'Downloads & Resources',
         'about_downloads_show'  => true,
 
+        // AEO defaults for core pages
+        'aeo_summary' => array(
+            'home' => 'ERDU Lighting is a premier manufacturer of 48V magnetic track lights and commercial LED solutions in China. With over a decade of OEM/ODM experience, we deliver high-quality, certified lighting systems to global distributors and projects.',
+            'about' => 'Founded in 2009, ERDU Lighting has grown into a trusted B2B partner for commercial lighting. Our ISO9001 factory ensures strict quality control from raw materials to final assembly, supporting global brands with reliable LED manufacturing.',
+            'quality' => 'Quality is the cornerstone of ERDU Lighting. We maintain a rigorous quality assurance system, subjecting every product to a 48-hour aging test and strict optical verifications to meet international commercial standards.',
+            'distributor' => "ERDU's Global Distributor Program is designed for B2B lighting wholesalers and project contractors. We offer protected territories, factory-direct pricing, and comprehensive technical support to ensure our partners' success."
+        ),
+        'aeo_takeaways' => array(
+            'home' => array(
+                array('text' => 'Direct manufacturer with 6,300m² facility in Zhongshan, China.'),
+                array('text' => 'Specializing in 48V magnetic track systems, downlights, and spotlights.'),
+                array('text' => 'Comprehensive OEM/ODM services for commercial lighting projects.'),
+                array('text' => 'ISO9001 certified with CE, RoHS, and ETL product approvals.')
+            ),
+            'about' => array(
+                array('text' => 'Established in 2009, over 15 years of LED manufacturing expertise.'),
+                array('text' => 'Strict quality control process (IQC, IPQC, Aging, OQC).'),
+                array('text' => 'Exporting to over 20 countries worldwide.'),
+                array('text' => 'Strategic partnerships with top component suppliers like Sanan and OSRAM.')
+            ),
+            'quality' => array(
+                array('text' => '100% of products undergo a minimum 48-hour aging test.'),
+                array('text' => 'Products certified for global markets: CE, RoHS, ERP, ETL, SAA.'),
+                array('text' => 'High color consistency (SDCM ≤ 3) and excellent lifespan (L70 > 50,000 hrs).'),
+                array('text' => 'Multi-stage inspection process from incoming components to final packaging.')
+            ),
+            'distributor' => array(
+                array('text' => 'Factory-direct pricing to maximize distributor margins.'),
+                array('text' => 'Exclusive territory protection to prevent market conflicts.'),
+                array('text' => 'Full marketing and technical training support provided.'),
+                array('text' => 'Standard 3-year warranty on all commercial lighting products.')
+            )
+        ),
+
         // Quality page - new fields
         'quality_steps' => array(
             array('icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'IQC — Incoming QC', 'description' => 'LED chips, drivers, and raw materials inspected upon arrival'),
@@ -744,7 +778,7 @@ function erdu_get_page_acf_defaults($slug)
     // Extract the per-slug values for universal fields
     $result = array();
     foreach ($defaults as $field_name => $value) {
-        if ($field_name === 'page_subtitle' && is_array($value)) {
+        if (in_array($field_name, array('page_subtitle', 'aeo_summary', 'aeo_takeaways'), true) && is_array($value)) {
             if (isset($value[$slug])) {
                 $result[$field_name] = $value[$slug];
             }
@@ -829,6 +863,11 @@ function erdu_ensure_pages_exist()
     if ($seeded_version !== ERDU_VERSION) {
         update_option('erdu_seed_acf_needed', 'yes');
         update_option('erdu_acf_seed_version', ERDU_VERSION);
+    }
+    
+    // Explicitly call the seed function if it was marked as needed during this request
+    if (get_option('erdu_seed_acf_needed') === 'yes' && function_exists('erdu_seed_acf_defaults')) {
+        erdu_seed_acf_defaults();
     }
 
     // Fix: ensure all existing pages have correct template assigned
