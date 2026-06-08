@@ -22,6 +22,72 @@ function erdu_is_seo_plugin_active() {
 }
 
 /**
+ * 0. Global Default TDK Map for ERDU Lighting
+ * Pre-configured Title, Description, and Keywords tailored for 
+ * LED Commercial Lighting OEM/ODM Manufacturer
+ */
+function erdu_get_default_seo_data($post_id = null) {
+    if (!$post_id) $post_id = get_the_ID();
+    
+    $data = array(
+        'title' => '',
+        'desc' => '',
+        'keywords' => 'Commercial Lighting, 48V Magnetic Track Light, Zhongshan Lighting Manufacturer, OEM LED Spotlights, ODM Downlights'
+    );
+    
+    if (is_front_page()) {
+        $data['title'] = 'Professional 48V Magnetic Track Light Manufacturer | OEM/ODM LED Lighting';
+        $data['desc'] = 'ERDU Lighting is a leading China manufacturer of 48V magnetic track lights, LED spotlights, and downlights. Offering OEM/ODM commercial lighting solutions globally.';
+        $data['keywords'] = '48V magnetic track light, LED commercial lighting, OEM LED manufacturer, ODM lighting factory, LED spotlights, downlights, ERDU Lighting';
+    } elseif (is_page('about')) {
+        $data['title'] = 'About ERDU | China LED Commercial Lighting Factory & Manufacturer';
+        $data['desc'] = 'Founded in 2009, ERDU Lighting specializes in R&D and manufacturing of commercial LED lighting. ISO9001 certified factory providing custom OEM/ODM services.';
+        $data['keywords'] = 'China LED factory, commercial lighting manufacturer, lighting OEM partner, Zhongshan lighting factory, LED ODM services';
+    } elseif (is_page('products') || is_page_template('page-products.php')) {
+        $data['title'] = 'Wholesale 48V Magnetic Track Lights & Commercial LED Spotlights';
+        $data['desc'] = 'Browse our premium 48V magnetic track lighting systems, architectural spotlights, and downlights. CE/RoHS certified, factory direct wholesale.';
+        $data['keywords'] = 'wholesale magnetic track lights, commercial LED downlights, architectural spotlights wholesale, LED lighting products factory';
+    } elseif (is_page('solutions') || is_page_template('page-solutions.php')) {
+        $data['title'] = 'Custom LED Lighting Solutions | Retail, Office & Hospitality';
+        $data['desc'] = 'Tailored commercial lighting solutions for retail stores, hotels, and offices. Expertise in magnetic track systems and no-main-light designs.';
+        $data['keywords'] = 'custom LED lighting, retail lighting solutions, hospitality LED lighting, office lighting design, no-main-light';
+    } elseif (is_page('cases') || is_page_template('page-cases.php')) {
+        $data['title'] = 'LED Lighting Projects & Case Studies | ERDU Lighting';
+        $data['desc'] = 'View our successful commercial lighting projects worldwide. See how our magnetic track lights and downlights transform retail and hospitality spaces.';
+        $data['keywords'] = 'commercial lighting projects, LED lighting case studies, track lighting applications, hotel lighting projects';
+    } elseif (is_page('contact') || is_page_template('page-contact.php')) {
+        $data['title'] = 'Contact ERDU Lighting | Get a Quote for OEM/ODM LED Manufacturing';
+        $data['desc'] = 'Contact our expert team for wholesale inquiries, custom OEM/ODM lighting manufacturing, and project quotes. Based in Zhongshan, China.';
+        $data['keywords'] = 'contact lighting manufacturer, LED wholesale inquiry, OEM lighting quote, China lighting factory contact';
+    } elseif (is_page('quality') || is_page_template('page-quality.php')) {
+        $data['title'] = 'Quality Assurance & Certifications | CE, RoHS, ISO9001 LED Factory';
+        $data['desc'] = 'ERDU strictly follows ISO9001 standards. Our LED track lights and spotlights are CE, RoHS, and ETL certified for global markets.';
+        $data['keywords'] = 'LED quality control, CE certified track lights, RoHS LED manufacturer, ISO9001 lighting factory';
+    } elseif (is_page('distributor') || is_page_template('page-distributor.php')) {
+        $data['title'] = 'Become a Lighting Distributor | Global LED Wholesale Partner';
+        $data['desc'] = 'Join ERDU\'s global network. Enjoy factory-direct pricing, marketing support, and exclusive territories for our magnetic track lighting systems.';
+        $data['keywords'] = 'lighting distributor program, LED wholesale partner, magnetic track light distributor, B2B lighting supplier';
+    }
+    
+    return $data;
+}
+
+/**
+ * Hook into document title to override WP default title
+ */
+add_filter('pre_get_document_title', 'erdu_custom_seo_title', 10);
+function erdu_custom_seo_title($title) {
+    if (erdu_is_seo_plugin_active()) {
+        return $title;
+    }
+    $seo_data = erdu_get_default_seo_data();
+    if (!empty($seo_data['title'])) {
+        return $seo_data['title'];
+    }
+    return $title;
+}
+
+/**
  * 1. Register AEO (AI Engine Optimization) Fields
  * Adds "Key Takeaways" and "AI Summary" to Posts, Pages, and Cases.
  */
@@ -85,10 +151,16 @@ function erdu_generate_schema_markup() {
     $schema = array();
     $post_id = get_the_ID();
     
+    // Get Pre-configured SEO Data
+    $seo_data = erdu_get_default_seo_data($post_id);
+    
     // Default GEO Entity (fallback if not set per-page)
-    $default_geo_entities = "Commercial Lighting, 48V Magnetic Track Light, Zhongshan Lighting Manufacturer";
+    $default_geo_entities = !empty($seo_data['keywords']) ? $seo_data['keywords'] : "Commercial Lighting, 48V Magnetic Track Light, Zhongshan Lighting Manufacturer";
     $page_geo_entities = function_exists('get_field') ? get_field('geo_entities', $post_id) : '';
     $geo_entities = $page_geo_entities ? $page_geo_entities : $default_geo_entities;
+    
+    // Use pre-configured description if available
+    $default_description = !empty($seo_data['desc']) ? $seo_data['desc'] : get_bloginfo('description');
     
     // 2.1 Organization & WebSite (Always output on front page)
     if (is_front_page()) {
@@ -98,7 +170,7 @@ function erdu_generate_schema_markup() {
             'name' => 'ERDU Lighting',
             'url' => home_url('/'),
             'logo' => get_theme_mod('custom_logo') ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : '',
-            'description' => get_bloginfo('description'),
+            'description' => $default_description,
             'keywords' => $geo_entities,
             'contactPoint' => array(
                 '@type' => 'ContactPoint',
@@ -343,18 +415,30 @@ function erdu_generate_meta_tags() {
     $image = get_theme_mod('custom_logo') ? wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full') : '';
     
     $post_id = get_the_ID();
-    $default_geo_entities = "Commercial Lighting, 48V Magnetic Track Light, Zhongshan Lighting Manufacturer";
+    $seo_data = erdu_get_default_seo_data($post_id);
+    
+    if (!empty($seo_data['title'])) {
+        $title = $seo_data['title'];
+    }
+    if (!empty($seo_data['desc'])) {
+        $desc = $seo_data['desc'];
+    }
+    
+    $default_geo_entities = !empty($seo_data['keywords']) ? $seo_data['keywords'] : "Commercial Lighting, 48V Magnetic Track Light, Zhongshan Lighting Manufacturer";
     $page_geo_entities = function_exists('get_field') ? get_field('geo_entities', $post_id) : '';
     $geo_entities = $page_geo_entities ? $page_geo_entities : $default_geo_entities;
     
     if (is_singular()) {
-        $title = get_the_title() . ' - ' . get_bloginfo('name');
+        // If it's a generic single post/page and no custom SEO title is defined, fallback to post title
+        if (empty($seo_data['title'])) {
+            $title = get_the_title() . ' - ' . get_bloginfo('name');
+        }
         
         if (function_exists('get_field')) {
             $aeo_summary = get_field('aeo_summary', $post_id);
             if (!empty($aeo_summary)) {
                 $desc = wp_trim_words($aeo_summary, 30);
-            } else {
+            } elseif (empty($seo_data['desc'])) {
                 $desc = wp_trim_words(get_post_field('post_content', $post_id), 30);
             }
         }

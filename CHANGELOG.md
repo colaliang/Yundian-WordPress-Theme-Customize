@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.7] - 2026-06-08
 ### Added
 - Pre-filled Global GEO Entities: For any page/post missing custom GEO entities, the theme now automatically injects `Commercial Lighting, 48V Magnetic Track Light, Zhongshan Lighting Manufacturer` into JSON-LD Schema (`@keywords`, `@description`, `@Organization.address`) and basic Meta Tags (`<meta name="keywords">`).
+- **Pre-configured SEO TDK Mapping**: Built-in, high-quality Title, Description, and Keywords specifically designed for an OEM/ODM LED Commercial Lighting factory. Applies to all major theme pages (Home, About, Products, Solutions, Cases, Contact, Quality, Distributor) automatically for immediate out-of-the-box SEO impact without requiring external plugins.
 
 ## [1.3.6] - 2026-06-08
 ### Added
