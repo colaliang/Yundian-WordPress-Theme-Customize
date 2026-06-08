@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.12] - 2026-06-09
+### Added
+- **Page Live Preview**: Added a new visual preview system (`inc/page-preview.php`) for ACF-driven page templates.
+- Disabled the default Gutenberg block editor for pages using ACF-based templates (e.g., Home, About, Contact) to avoid layout confusion and visual mismatch.
+- Removed the Classic Editor text area for these templates to provide a clean, data-entry focused backend interface.
+- Injected a live frontend iframe preview at the top of the editing screen, allowing administrators to visually review changes in real-time as they update ACF fields.
+
 ## [1.3.11] - 2026-06-08
 ### Fixed
 - Fixed WooCommerce B2B single product layout stacking issue by injecting missing responsive grid utility classes (`lg:grid-cols-2`, `gap-0`, `lg:gap-8`) into the "No-Build" `main.css`.
