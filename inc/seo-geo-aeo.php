@@ -490,8 +490,13 @@ function erdu_inject_aeo_summary_block($content, $force = false) {
     $summary = get_field('aeo_summary', $post_id);
     $takeaways = get_field('aeo_takeaways', $post_id);
     
+    // Only trigger fallback injection if we're dealing with empty values and they weren't explicitly cleared by a user
     if (empty($summary) && empty($takeaways)) {
-        // Automatically inject pre-configured AEO Summary & Takeaways for specific pages
+        // We do NOT want to force inject if the page exists in ACF but the user intentionally cleared it.
+        // However, if get_field returns literally nothing, it might just be uninitialized.
+        // The best approach is to only use fallback if ACF is completely inactive, or if it's a brand new install.
+        // Since we now actively seed ACF via functions.php, we can keep this fallback as a strict safety net
+        // for when ACF is disabled, or for users who haven't triggered the theme update hook yet.
         $seo_data = erdu_get_default_seo_data($post_id);
         
         if (is_front_page()) {

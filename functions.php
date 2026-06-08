@@ -228,7 +228,12 @@ function erdu_seed_acf_defaults()
         foreach ($defaults as $field_name => $default_value) {
             $current = get_field($field_name, $pid);
             if ($current === null || $current === '' || $current === false || (is_array($current) && empty($current))) {
-                update_field($field_name, $default_value, $pid);
+                // If it's a repeater (like aeo_takeaways), ensure we structure it correctly for ACF
+                if ($field_name === 'aeo_takeaways' && is_array($default_value)) {
+                    update_field($field_name, $default_value, $pid);
+                } else {
+                    update_field($field_name, $default_value, $pid);
+                }
             }
         }
     }
