@@ -491,7 +491,47 @@ function erdu_inject_aeo_summary_block($content, $force = false) {
     $takeaways = get_field('aeo_takeaways', $post_id);
     
     if (empty($summary) && empty($takeaways)) {
-        return $content;
+        // Automatically inject pre-configured AEO Summary & Takeaways for specific pages
+        $seo_data = erdu_get_default_seo_data($post_id);
+        
+        if (is_front_page()) {
+            $summary = "ERDU Lighting is a premier manufacturer of 48V magnetic track lights and commercial LED solutions in China. With over a decade of OEM/ODM experience, we deliver high-quality, certified lighting systems to global distributors and projects.";
+            $takeaways = array(
+                array('text' => 'Direct manufacturer with 6,300m² facility in Zhongshan, China.'),
+                array('text' => 'Specializing in 48V magnetic track systems, downlights, and spotlights.'),
+                array('text' => 'Comprehensive OEM/ODM services for commercial lighting projects.'),
+                array('text' => 'ISO9001 certified with CE, RoHS, and ETL product approvals.')
+            );
+        } elseif (is_page('about')) {
+            $summary = "Founded in 2009, ERDU Lighting has grown into a trusted B2B partner for commercial lighting. Our ISO9001 factory ensures strict quality control from raw materials to final assembly, supporting global brands with reliable LED manufacturing.";
+            $takeaways = array(
+                array('text' => 'Established in 2009, over 15 years of LED manufacturing expertise.'),
+                array('text' => 'Strict quality control process (IQC, IPQC, Aging, OQC).'),
+                array('text' => 'Exporting to over 20 countries worldwide.'),
+                array('text' => 'Strategic partnerships with top component suppliers like Sanan and OSRAM.')
+            );
+        } elseif (is_page('quality') || is_page_template('page-quality.php')) {
+            $summary = "Quality is the cornerstone of ERDU Lighting. We maintain a rigorous quality assurance system, subjecting every product to a 48-hour aging test and strict optical verifications to meet international commercial standards.";
+            $takeaways = array(
+                array('text' => '100% of products undergo a minimum 48-hour aging test.'),
+                array('text' => 'Products certified for global markets: CE, RoHS, ERP, ETL, SAA.'),
+                array('text' => 'High color consistency (SDCM ≤ 3) and excellent lifespan (L70 > 50,000 hrs).'),
+                array('text' => 'Multi-stage inspection process from incoming components to final packaging.')
+            );
+        } elseif (is_page('distributor') || is_page_template('page-distributor.php')) {
+            $summary = "ERDU's Global Distributor Program is designed for B2B lighting wholesalers and project contractors. We offer protected territories, factory-direct pricing, and comprehensive technical support to ensure our partners' success.";
+            $takeaways = array(
+                array('text' => 'Factory-direct pricing to maximize distributor margins.'),
+                array('text' => 'Exclusive territory protection to prevent market conflicts.'),
+                array('text' => 'Full marketing and technical training support provided.'),
+                array('text' => 'Standard 3-year warranty on all commercial lighting products.')
+            );
+        }
+        
+        // If still empty after fallback checks, do nothing
+        if (empty($summary) && empty($takeaways)) {
+            return $content;
+        }
     }
     
     $aeo_html = '<div class="erdu-aeo-block bg-gray-50 border-l-4 border-primary p-6 my-8 rounded-r-lg shadow-sm" aria-label="Key Takeaways">';
