@@ -145,6 +145,8 @@ function erdu_register_page_field_groups()
                 array('param' => 'page_template', 'operator' => '!=', 'value' => 'page-news.php'),
                 array('param' => 'page_template', 'operator' => '!=', 'value' => 'page-blog.php'),
                 array('param' => 'page_template', 'operator' => '!=', 'value' => 'page-contact.php'),
+                array('param' => 'page_template', 'operator' => '!=', 'value' => 'page-product-category.php'),
+                array('param' => 'page_template', 'operator' => '!=', 'value' => 'page-product-single.php'),
             ),
         ),
         'position'   => 'normal',
@@ -871,6 +873,50 @@ function erdu_register_page_field_groups()
                 array('param' => 'page_type', 'operator' => '==', 'value' => 'front_page'),
             ),
         ),
+        'position'   => 'normal',
+        'style'      => 'default',
+        'menu_order' => 5,
+    ));
+
+    // --- 11. Product Category Page Fields ---
+    acf_add_local_field_group(array(
+        'key'    => 'group_page_product_category',
+        'title'  => __('Product Category Page Content', 'erdu-wp'),
+        'fields' => array(
+            array('key' => 'field_pc_tab_hero', 'label' => __('Hero Banner', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_pc_hero_title', 'label' => __('Hero Title', 'erdu-wp'), 'name' => 'pc_hero_title', 'type' => 'text'),
+            array('key' => 'field_pc_hero_subtitle', 'label' => __('Hero Subtitle', 'erdu-wp'), 'name' => 'pc_hero_subtitle', 'type' => 'textarea', 'rows' => 2),
+            array('key' => 'field_pc_hero_bg', 'label' => __('Hero Background Image', 'erdu-wp'), 'name' => 'pc_hero_bg', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium'),
+            
+            array('key' => 'field_pc_tab_content', 'label' => __('Page Content', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_pc_page_editor', 'label' => __('Content', 'erdu-wp'), 'name' => 'pc_page_editor', 'type' => 'wysiwyg', 'toolbar' => 'full', 'tabs' => 'all', 'media_upload' => 1),
+            
+            array('key' => 'field_pc_tab_products', 'label' => __('Products', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_pc_category', 'label' => __('Select WooCommerce Category', 'erdu-wp'), 'name' => 'pc_category', 'type' => 'taxonomy', 'taxonomy' => 'product_cat', 'field_type' => 'select', 'allow_null' => 1, 'return_format' => 'id'),
+        ),
+        'location'   => array(array(array('param' => 'page_template', 'operator' => '==', 'value' => 'page-product-category.php'))),
+        'position'   => 'normal',
+        'style'      => 'default',
+        'menu_order' => 5,
+    ));
+
+    // --- 12. Single Product Landing Page Fields ---
+    acf_add_local_field_group(array(
+        'key'    => 'group_page_product_single',
+        'title'  => __('Product Landing Page Content', 'erdu-wp'),
+        'fields' => array(
+            array('key' => 'field_ps_tab_hero', 'label' => __('Hero Banner', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_ps_hero_title', 'label' => __('Hero Title', 'erdu-wp'), 'name' => 'ps_hero_title', 'type' => 'text'),
+            array('key' => 'field_ps_hero_subtitle', 'label' => __('Hero Subtitle', 'erdu-wp'), 'name' => 'ps_hero_subtitle', 'type' => 'textarea', 'rows' => 2),
+            array('key' => 'field_ps_hero_bg', 'label' => __('Hero Background Image', 'erdu-wp'), 'name' => 'ps_hero_bg', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium'),
+            
+            array('key' => 'field_ps_tab_content', 'label' => __('Page Content', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_ps_page_editor', 'label' => __('Content', 'erdu-wp'), 'name' => 'ps_page_editor', 'type' => 'wysiwyg', 'toolbar' => 'full', 'tabs' => 'all', 'media_upload' => 1),
+            
+            array('key' => 'field_ps_tab_product', 'label' => __('Product Data', 'erdu-wp'), 'name' => '', 'type' => 'tab'),
+            array('key' => 'field_ps_product', 'label' => __('Select WooCommerce Product', 'erdu-wp'), 'name' => 'ps_product', 'type' => 'post_object', 'post_type' => 'product', 'return_format' => 'id', 'allow_null' => 1),
+        ),
+        'location'   => array(array(array('param' => 'page_template', 'operator' => '==', 'value' => 'page-product-single.php'))),
         'position'   => 'normal',
         'style'      => 'default',
         'menu_order' => 5,

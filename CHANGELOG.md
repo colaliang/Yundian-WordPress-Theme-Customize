@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.10] - 2026-06-08
+### Added
+- **Product Page Templates**: Added `page-product-category.php` and `page-product-single.php` to allow users to build custom landing pages for specific product categories or single products via the Page Editor.
+- Added corresponding ACF Field Groups for the new product landing page templates to easily select WooCommerce categories/products and configure custom heroes.
+
 ## [1.3.9] - 2026-06-08
 ### Added
 - **WooCommerce B2B Templates Rearchitecture**: Deeply customized WooCommerce templates to fit a B2B catalog model without ecommerce checkout flows.
