@@ -60,7 +60,10 @@ description: "Yundian+WordPress Theme Customize Skill. 用于基于 ACF + No-Bui
 ### 7. 深度 SEO/GEO/AEO 优化 (SEO, GEO & AEO Optimization)
 对于生成的主页和所有页面，必须做以下深度的搜索引擎与 AI 模型优化，以达到最佳状态：
 - **SEO (Search Engine Optimization)**: 确保生成的页面具有完美的语义化 HTML 结构（合理使用 h1-h6、语义化标签如 article/section），提供友好的 URL 结构建议，合理设置 Meta 标签、Alt 属性以及结构化数据（Schema.org JSON-LD），以满足 Google 等传统搜索引擎的最佳实践。
-- **GEO (Generative Engine Optimization) & AEO (Answer Engine Optimization)**: 针对 AI 大模型和问答引擎进行内容与结构优化。确保页面内容逻辑清晰、提供直接明确的答案（Direct Answers）、使用 FAQ 区块、结构化列表或表格，以便 ChatGPT、Claude、Perplexity、AI Overviews 等工具能高效抓取和精准引用网站内容。
+- **GEO (Generative Engine Optimization) & AEO (Answer Engine Optimization)**: 
+  - **实体注入 (Entity Injection)**: 针对 AI 大模型，需确保在代码层面提供默认的 GEO 实体回退策略。例如为特定的垂直行业自动填充 `@keywords`, `@description` 以及 `Schema.org` 中的 `@Organization.address`。
+  - **AEO 摘要 (AI Summaries)**: 必须为核心 B2B 转化页面（如 Home, About, Quality, Distributor）硬编码并自动通过代码（例如 `functions.php` 的 ACF seeding 钩子）将预设的 AI Summary 和 Key Takeaways 种子数据写入 ACF 数据库。
+  - **可见性与可编辑性**: 预生成的 AI 总结数据不可仅作为前端代码的静默回退（Silent Fallback），必须在后台通过 ACF 字段对运营人员可见且可二次编辑。这确保 ChatGPT、Perplexity 等工具抓取时，能获取到逻辑清晰且人工校对过的“厂家背景”输出。
 
 ### 8. 代码实施 (Implementation)
 - 遵循现有的 `inc/` 目录架构（例如：`theme-setup.php`, `acf-fields.php`, `acf-blocks.php`, `builder/class-yundian-builder-header.php`, `class-yundian-dynamic-css.php`）。
