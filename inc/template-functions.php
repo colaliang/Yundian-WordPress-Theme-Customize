@@ -392,6 +392,51 @@ function erdu_normalize_metrics($metrics)
 }
 
 /**
+ * Check if current IP is from China
+ */
+function erdu_is_china_ip() {
+    // Fast check via Cloudflare or similar proxies
+    if (isset($_SERVER['HTTP_CF_IPCOUNTRY'])) {
+        return strtoupper($_SERVER['HTTP_CF_IPCOUNTRY']) === 'CN';
+    }
+    
+    if (isset($_SERVER['HTTP_X_COUNTRY_CODE'])) {
+        return strtoupper($_SERVER['HTTP_X_COUNTRY_CODE']) === 'CN';
+    }
+
+    $ip = '';
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    }
+
+    $ip = trim($ip);
+    if (!$ip || $ip === '127.0.0.1' || $ip === '::1') {
+        return false;
+    }
+
+    $cache_key = 'erdu_ip_cn_' . md5($ip);
+    $is_cn = get_transient($cache_key);
+    
+    if ($is_cn === false) {
+        $response = wp_remote_get("http://ip-api.com/json/{$ip}?fields=countryCode", array('timeout' => 2));
+        if (!is_wp_error($response)) {
+            $body = wp_remote_retrieve_body($response);
+            $data = json_decode($body, true);
+            $is_cn = (isset($data['countryCode']) && $data['countryCode'] === 'CN') ? 'yes' : 'no';
+            set_transient($cache_key, $is_cn, DAY_IN_SECONDS);
+        } else {
+            $is_cn = 'no';
+        }
+    }
+
+    return $is_cn === 'yes';
+}
+
+/**
  * Normalize products data from ACF (supports both Pro repeater and Free text)
  * Returns array of ['product_name' => ...]
  */

@@ -38,6 +38,78 @@ $product_fields = array(
 // post type if needed by creating a new field group targeting post_type == 'product'.
 
 // ==========================================
+// WooCommerce Product Categories Fields
+// ==========================================
+acf_add_local_field_group(array(
+    'key'      => 'group_product_cat',
+    'title'    => __('Category Settings', 'erdu-wp'),
+    'fields'   => array(
+        array(
+            'key' => 'field_cat_banner',
+            'label' => __('Category Banner Image', 'erdu-wp'),
+            'name' => 'category_banner_image',
+            'type' => 'image',
+            'return_format' => 'url',
+            'preview_size' => 'medium',
+        ),
+        array(
+            'key' => 'field_cat_subtitle',
+            'label' => __('Category Subtitle', 'erdu-wp'),
+            'name' => 'category_subtitle',
+            'type' => 'text',
+        ),
+    ),
+    'location' => array(
+        array(
+            array('param' => 'taxonomy', 'operator' => '==', 'value' => 'product_cat')
+        )
+    ),
+    'position' => 'normal',
+    'style'    => 'default',
+));
+
+// ==========================================
+// WooCommerce Product Fields (B2B Extensions)
+// ==========================================
+$wc_product_fields = array(
+    array('key' => 'field_wc_prod_subtitle', 'label' => __('Product Subtitle', 'erdu-wp'), 'name' => 'product_subtitle', 'type' => 'text'),
+);
+
+if ($has_acf_pro) {
+    $wc_product_fields[] = array(
+        'key'        => 'field_wc_prod_downloads',
+        'label'      => __('Downloads & Resources', 'erdu-wp'),
+        'name'       => 'product_downloads',
+        'type'       => 'repeater',
+        'sub_fields' => array(
+            array('key' => 'field_dl_title', 'label' => __('Title', 'erdu-wp'), 'name' => 'title', 'type' => 'text'),
+            array('key' => 'field_dl_file', 'label' => __('File URL', 'erdu-wp'), 'name' => 'file', 'type' => 'url'),
+        ),
+    );
+} else {
+    $wc_product_fields[] = array(
+        'key'   => 'field_wc_prod_downloads',
+        'label' => __('Downloads & Resources (Title | URL, one per line)', 'erdu-wp'),
+        'name'  => 'product_downloads',
+        'type'  => 'textarea',
+        'rows'  => 4,
+    );
+}
+
+acf_add_local_field_group(array(
+    'key'      => 'group_wc_product',
+    'title'    => __('B2B Product Details', 'erdu-wp'),
+    'fields'   => $wc_product_fields,
+    'location' => array(
+        array(
+            array('param' => 'post_type', 'operator' => '==', 'value' => 'product')
+        )
+    ),
+    'position' => 'normal',
+    'style'    => 'default',
+));
+
+// ==========================================
 // Case Study Fields
 // ==========================================
 

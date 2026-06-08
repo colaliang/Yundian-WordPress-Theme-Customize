@@ -15,6 +15,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.9] - 2026-06-08
+### Added
+- **WooCommerce B2B Templates Rearchitecture**: Deeply customized WooCommerce templates to fit a B2B catalog model without ecommerce checkout flows.
+- Overridden `archive-product.php` and `content-product.php` for a modern two-column layout (sidebar category tree + product grid) with key attributes snippet (Power, CCT, Beam Angle).
+- Overridden `single-product.php` and `content-single-product.php` to include an advanced image gallery, product summary, and dynamic key specifications list.
+- Overridden `tabs.php`, `product-attributes.php`, and `related.php` with Tailwind CSS styling and an integrated ACF-driven "Downloads & Resources" section.
+- Added `woocommerce-b2b.php` module to remove prices, cart, and reviews, and introduce a contextual "Inquire Now" CTA button.
+- Added new ACF Field Groups for Product Categories (Banner Image, Subtitle) and WooCommerce Products (Subtitle, Downloads Repeater).
+
 ## [1.3.8] - 2026-06-08
 ### Added
 - **Theme License Activation System**: Introduced a commercial license activation requirement.

@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 /**
  * Define theme constants
  */
-define('ERDU_VERSION', '1.3.8');
+define('ERDU_VERSION', '1.3.9');
 define('ERDU_DIR', get_template_directory());
 define('ERDU_URI', get_template_directory_uri());
 
@@ -52,6 +52,13 @@ require_once ERDU_DIR . '/inc/acf-theme-colors.php';
  * Load SEO, GEO & AEO Optimization Module
  */
 require_once ERDU_DIR . '/inc/seo-geo-aeo.php';
+
+/**
+ * Load WooCommerce B2B Enhancements
+ */
+if (class_exists('WooCommerce')) {
+    require_once ERDU_DIR . '/inc/woocommerce-b2b.php';
+}
 
 /**
  * Theme Setup

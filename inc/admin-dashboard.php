@@ -22,7 +22,7 @@ function erdu_admin_menu()
         'manage_options',
         'erdu-dashboard',
         'erdu_dashboard_page',
-        'dashicons-lightbulb',
+        'dashicons-rocket',
         3
     );
 
@@ -33,7 +33,8 @@ function erdu_admin_menu()
         __('Dashboard', 'erdu-wp'),
         'manage_options',
         'erdu-dashboard',
-        'erdu_dashboard_page'
+        'erdu_dashboard_page',
+        1
     );
 
     // Customize link (external)
@@ -42,7 +43,9 @@ function erdu_admin_menu()
         __('Customize', 'erdu-wp'),
         __('Customize', 'erdu-wp'),
         'manage_options',
-        'customize.php?autofocus[panel]=erdu_theme_options'
+        'customize.php?autofocus[panel]=erdu_theme_options',
+        '',
+        2
     );
 
     // Settings submenu
@@ -52,17 +55,8 @@ function erdu_admin_menu()
         __('Settings', 'erdu-wp'),
         'manage_options',
         'erdu-settings',
-        'erdu_settings_page'
-    );
-
-    // License submenu
-    add_submenu_page(
-        'erdu-dashboard',
-        __('License Activation', 'erdu-wp'),
-        __('License', 'erdu-wp'),
-        'manage_options',
-        'erdu-license',
-        'erdu_license_page'
+        'erdu_settings_page',
+        3
     );
 
     // Module Config submenu (hidden from menu, accessed via module cards)
@@ -72,7 +66,19 @@ function erdu_admin_menu()
         __('Module Config', 'erdu-wp'),
         'manage_options',
         'erdu-module',
-        'erdu_module_config_page'
+        'erdu_module_config_page',
+        7
+    );
+
+    // License submenu
+    add_submenu_page(
+        'erdu-dashboard',
+        __('License Activation', 'erdu-wp'),
+        __('License', 'erdu-wp'),
+        'manage_options',
+        'erdu-license',
+        'erdu_license_page',
+        8
     );
 
     // Register Customizer panel
@@ -680,6 +686,15 @@ function erdu_default_modules()
                         'answer'   => array('label' => __('Answer', 'erdu-wp'),   'type' => 'textarea'),
                     ),
                 ),
+            ),
+        ),
+        'downloads'   => array(
+            'title'   => __('Downloads', 'erdu-wp'),
+            'enabled' => true,
+            'icon'    => 'dashicons-download',
+            'fields'  => array(
+                'require_login' => array('label' => __('Require Login to Download', 'erdu-wp'), 'type' => 'toggle', 'default' => true),
+                'exclude_cn_ip' => array('label' => __('Exclude China IPs', 'erdu-wp'), 'type' => 'toggle', 'default' => false),
             ),
         ),
         'breadcrumb'  => array(

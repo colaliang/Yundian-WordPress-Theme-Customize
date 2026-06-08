@@ -457,11 +457,27 @@ if (have_posts()) :
                                 <?php endif; ?>
                             </div>
                             <!-- Download Button -->
-                            <?php if ($dl['file_url']) : ?>
-                            <a href="<?php echo esc_url($dl['file_url']); ?>" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border transition-all hover:shadow-sm shrink-0 erdu-text-primary border-orange-500" <?php echo $dl['external'] ? 'target="_blank" rel="noopener"' : 'download'; ?>>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                                <?php _e('Download', 'erdu-wp'); ?>
-                            </a>
+                            <?php if ($dl['file_url']) : 
+                                $require_login = erdu_module_config('downloads', 'require_login', true);
+                                $exclude_cn_ip = erdu_module_config('downloads', 'exclude_cn_ip', false);
+                                $is_cn_ip = $exclude_cn_ip ? erdu_is_china_ip() : false;
+                                
+                                if ($is_cn_ip) : ?>
+                                     <span class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg text-gray-500 bg-gray-100 shrink-0">
+                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                                         <?php _e('Not available in your region', 'erdu-wp'); ?>
+                                     </span>
+                                 <?php elseif ($require_login && !is_user_logged_in()) : ?>
+                                     <a href="<?php echo esc_url(wp_login_url(erdu_get_page_url('about') . '?tab=downloads')); ?>" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border transition-all hover:shadow-sm shrink-0 text-gray-700 bg-gray-50 border-gray-300" title="<?php _e('No permission. Please login to download.', 'erdu-wp'); ?>">
+                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
+                                         <?php _e('Login to Download', 'erdu-wp'); ?>
+                                     </a>
+                                 <?php else : ?>
+                                    <a href="<?php echo esc_url($dl['file_url']); ?>" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border transition-all hover:shadow-sm shrink-0 erdu-text-primary border-orange-500" <?php echo $dl['external'] ? 'target="_blank" rel="noopener"' : 'download'; ?>>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                        <?php _e('Download', 'erdu-wp'); ?>
+                                    </a>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </div>
                         <?php endforeach; ?>

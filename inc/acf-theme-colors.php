@@ -27,7 +27,7 @@ function erdu_register_theme_color_fields() {
             'capability'    => 'manage_options',
             'redirect'      => false,
             'icon_url'      => 'dashicons-art',
-            'position'      => 5,
+            'position'      => 6,
         ));
     }
 
