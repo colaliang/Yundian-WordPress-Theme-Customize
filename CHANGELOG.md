@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.6] - 2026-06-09
+### Added
+- Added MOQ configuration and display to the Single Product Page (Section 1).
+- Added "Key Attributes" configuration (repeater field) and a 3-column grid display below the short description.
+- Added a Video tab/switcher to the product gallery (Section 1), allowing users to switch between standard WooCommerce Photos and a custom Video container via Vanilla JS.
+
 ## [1.6.5] - 2026-06-08
 ### Changed
 - **Major Layout Overhaul (Single Product)**:

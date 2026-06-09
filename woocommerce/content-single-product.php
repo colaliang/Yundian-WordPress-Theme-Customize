@@ -28,15 +28,85 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
     <!-- SECTION 1: Gallery (Left) & Info (Right) -->
     <div class="flex flex-col lg:flex-row gap-12 xl:gap-16 mb-16">
         
-        <!-- Left Column: Gallery -->
+        <!-- Left Column: Gallery & Video -->
         <div class="w-full lg:w-1/2">
+            
+            <?php 
+            $video_url = function_exists('get_field') ? get_field('product_video_url') : ''; 
+            $has_video = !empty($video_url);
+            ?>
+
             <!-- Main Product Gallery -->
-            <div class="bg-white rounded-2xl p-2 lg:p-8 shadow-sm border border-gray-100">
+            <div id="erdu-gallery-container" class="bg-white rounded-2xl p-2 lg:p-8 shadow-sm border border-gray-100 <?php echo $has_video ? 'mb-4' : ''; ?>">
                 <?php 
                 // Display standard WooCommerce product gallery
                 woocommerce_show_product_images(); 
                 ?>
             </div>
+
+            <?php if ($has_video) : ?>
+            <!-- Video Container (Hidden by default) -->
+            <div id="erdu-video-container" class="hidden bg-black rounded-2xl overflow-hidden shadow-sm mb-4 relative" style="aspect-ratio: 1/1;">
+                <?php if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false || strpos($video_url, 'vimeo.com') !== false) : ?>
+                    <iframe src="<?php echo esc_url($video_url); ?>" class="absolute inset-0 w-full h-full border-0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <?php else : ?>
+                    <video controls class="absolute inset-0 w-full h-full object-contain bg-black">
+                        <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                <?php endif; ?>
+            </div>
+
+            <!-- Media Switcher (Photos / Video) -->
+            <div class="flex justify-center mt-6">
+                <div class="inline-flex bg-gray-100 rounded-lg p-1">
+                    <button id="btn-show-photos" class="px-6 py-2 rounded-md text-sm font-bold bg-white text-gray-900 shadow-sm transition-all">
+                        Photos
+                    </button>
+                    <button id="btn-show-video" class="px-6 py-2 rounded-md text-sm font-bold text-gray-500 hover:text-gray-900 transition-all">
+                        Video
+                    </button>
+                </div>
+            </div>
+            
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const btnPhotos = document.getElementById('btn-show-photos');
+                const btnVideo = document.getElementById('btn-show-video');
+                const galleryContainer = document.getElementById('erdu-gallery-container');
+                const videoContainer = document.getElementById('erdu-video-container');
+
+                if(btnPhotos && btnVideo) {
+                    btnPhotos.addEventListener('click', () => {
+                        // Show Photos
+                        galleryContainer.classList.remove('hidden');
+                        videoContainer.classList.add('hidden');
+                        // Update Button Styles
+                        btnPhotos.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
+                        btnPhotos.classList.remove('text-gray-500');
+                        btnVideo.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
+                        btnVideo.classList.add('text-gray-500');
+                        
+                        // Pause video if playing
+                        const videoEl = videoContainer.querySelector('video');
+                        if(videoEl) videoEl.pause();
+                    });
+
+                    btnVideo.addEventListener('click', () => {
+                        // Show Video
+                        videoContainer.classList.remove('hidden');
+                        galleryContainer.classList.add('hidden');
+                        // Update Button Styles
+                        btnVideo.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
+                        btnVideo.classList.remove('text-gray-500');
+                        btnPhotos.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
+                        btnPhotos.classList.add('text-gray-500');
+                    });
+                }
+            });
+            </script>
+            <?php endif; ?>
+
         </div>
 
         <!-- Right Column: Product Info -->
@@ -59,12 +129,13 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 <div class="text-lg text-gray-500 mb-4"><?php echo esc_html($subtitle); ?></div>
             <?php endif; ?>
 
-            <!-- SKU & Price (Conditional based on ACF toggles) -->
+            <!-- SKU & Price & MOQ -->
             <?php 
             $show_sku = function_exists('get_field') ? get_field('show_product_sku') : false;
             $show_price = function_exists('get_field') ? get_field('show_product_price') : false;
+            $moq = function_exists('get_field') ? get_field('product_moq') : '';
             
-            if ($show_sku || $show_price) : 
+            if ($show_sku || $show_price || $moq) : 
             ?>
             <div class="flex flex-wrap items-center gap-4 mb-6">
                 <?php if ($show_sku && wc_product_sku_enabled() && ($sku = $product->get_sku())) : ?>
@@ -74,6 +145,13 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     </div>
                 <?php endif; ?>
                 
+                <?php if ($moq) : ?>
+                    <div class="text-sm text-gray-600 bg-orange-50 px-3 py-1 rounded-md border border-orange-100">
+                        <span class="font-medium text-orange-600 mr-1"><?php esc_html_e('MOQ:', 'erdu-wp'); ?></span>
+                        <span class="font-bold text-orange-800"><?php echo esc_html($moq); ?></span>
+                    </div>
+                <?php endif; ?>
+
                 <?php if ($show_price && $product->get_price_html()) : ?>
                     <div class="text-2xl font-extrabold text-orange-600">
                         <?php echo $product->get_price_html(); ?>
@@ -84,8 +162,28 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
             <!-- Short Description -->
             <?php if (has_excerpt()) : ?>
-                <div class="prose prose-sm max-w-none text-gray-600 mb-8 leading-relaxed">
+                <div class="prose prose-sm max-w-none text-gray-600 mb-6 leading-relaxed">
                     <?php the_excerpt(); ?>
+                </div>
+            <?php endif; ?>
+
+            <!-- Key Attributes Grid -->
+            <?php if (function_exists('have_rows') && have_rows('product_key_attributes')) : ?>
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4"><?php esc_html_e('Key attributes', 'erdu-wp'); ?></h3>
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-8">
+                            <?php while (have_rows('product_key_attributes')) : the_row(); 
+                                $ka_label = get_sub_field('label');
+                                $ka_value = get_sub_field('value');
+                            ?>
+                            <div class="flex flex-col relative <?php echo (get_row_index() % 3 !== 1) ? 'lg:before:content-[\'\'] lg:before:absolute lg:before:left-[-1rem] lg:before:top-1 lg:before:bottom-1 lg:before:w-px lg:before:bg-gray-200' : ''; ?>">
+                                <span class="text-sm text-gray-500 mb-1"><?php echo esc_html($ka_label); ?></span>
+                                <span class="font-bold text-gray-900 text-base leading-tight"><?php echo esc_html($ka_value); ?></span>
+                            </div>
+                            <?php endwhile; ?>
+                        </div>
+                    </div>
                 </div>
             <?php endif; ?>
 

@@ -118,7 +118,39 @@ $wc_product_fields = array(
         )
     ),
 
-    // 1. Features Tab
+    // 1. Basic Info Tab (MOQ & Video)
+    array('key' => 'field_wc_tab_basic', 'label' => __('Basic Info', 'erdu-wp'), 'type' => 'tab'),
+    array(
+        'key' => 'field_wc_moq',
+        'label' => __('Minimum Order Quantity (MOQ)', 'erdu-wp'),
+        'name' => 'product_moq',
+        'type' => 'text',
+        'instructions' => __('e.g. "100 Pieces", "1 Pallet"', 'erdu-wp'),
+    ),
+    array(
+        'key' => 'field_wc_video_url',
+        'label' => __('Product Video URL', 'erdu-wp'),
+        'name' => 'product_video_url',
+        'type' => 'url',
+        'instructions' => __('Direct link to an MP4 file, or YouTube/Vimeo link. Will show a Video button under the gallery.', 'erdu-wp'),
+    ),
+
+    // 2. Key Attributes Tab
+    array('key' => 'field_wc_tab_key_attrs', 'label' => __('Key Attributes', 'erdu-wp'), 'type' => 'tab'),
+    array(
+        'key' => 'field_wc_key_attrs',
+        'label' => __('Key Attributes (Grid)', 'erdu-wp'),
+        'name' => 'product_key_attributes',
+        'type' => 'repeater',
+        'instructions' => __('These will be displayed as a grid below the short description. e.g., "Installation Style" -> "Embedded".', 'erdu-wp'),
+        'button_label' => __('Add Attribute', 'erdu-wp'),
+        'sub_fields' => array(
+            array('key' => 'field_ka_label', 'label' => __('Label', 'erdu-wp'), 'name' => 'label', 'type' => 'text', 'placeholder' => 'e.g. Input Voltage(V)'),
+            array('key' => 'field_ka_value', 'label' => __('Value', 'erdu-wp'), 'name' => 'value', 'type' => 'text', 'placeholder' => 'e.g. AC200-240V'),
+        ),
+    ),
+
+    // 3. Features Tab
     array('key' => 'field_wc_tab_features', 'label' => __('Features Blocks', 'erdu-wp'), 'type' => 'tab'),
     array(
         'key'        => 'field_wc_prod_features',
