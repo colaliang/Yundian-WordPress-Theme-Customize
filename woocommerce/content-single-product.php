@@ -49,7 +49,20 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 <?php if ($has_video) : ?>
                 <!-- Video Container (Hidden by default) -->
                 <div id="erdu-video-container" class="hidden w-full bg-black rounded-2xl overflow-hidden shadow-sm mb-4 relative" style="aspect-ratio: 1/1;">
-                    <?php if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false || strpos($video_url, 'vimeo.com') !== false) : ?>
+                    <?php 
+                    $is_youtube = strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false;
+                    $is_vimeo = strpos($video_url, 'vimeo.com') !== false;
+                    
+                    if ($is_youtube) : 
+                        // Extract YouTube Video ID
+                        $yt_id = '';
+                        if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/\s]{11})%i', $video_url, $match)) {
+                            $yt_id = $match[1];
+                        }
+                        $embed_url = $yt_id ? 'https://www.youtube.com/embed/' . $yt_id . '?rel=0&showinfo=0' : $video_url;
+                    ?>
+                        <iframe src="<?php echo esc_url($embed_url); ?>" title="YouTube video player" class="absolute inset-0 w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <?php elseif ($is_vimeo) : ?>
                         <iframe src="<?php echo esc_url($video_url); ?>" class="absolute inset-0 w-full h-full border-0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     <?php else : ?>
                         <video controls class="absolute inset-0 w-full h-full object-contain bg-black">
