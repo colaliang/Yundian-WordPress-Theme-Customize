@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.28] - 2026-06-09
+### Fixed
+- Fixed broken gallery layout caused by uncompiled Tailwind classes. Restored the original layout classes (`lg:flex-row`, `lg:w-1/2`) and added an internal `<style>` block to cleanly handle mobile and tablet responsive layouts (`<= 1279px`) using custom CSS rules (`erdu-product-columns`, `erdu-gallery-layout`, etc.).
+- Right Column Buttons: Refined the `Inquire Now` button to use dynamic theme color classes (`erdu-bg-primary`, `erdu-hover-primary`) instead of hardcoded hex values, ensuring it properly inherits the site's primary color.
+
 ## [1.6.27] - 2026-06-09
 ### Changed
 - Redesigned Right Column Action Buttons: 

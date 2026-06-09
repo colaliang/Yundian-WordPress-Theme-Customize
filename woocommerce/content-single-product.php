@@ -25,6 +25,22 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('product-split-wrapper erdu-container py-12', $product); ?>>
     
+    <style>
+        /* Responsive overrides for Tablet and below (up to 1279px) */
+        @media (max-width: 1279px) {
+            .erdu-product-columns { flex-direction: column !important; }
+            .erdu-product-col-left, .erdu-product-col-right { width: 100% !important; }
+            .erdu-gallery-layout { flex-direction: column-reverse !important; }
+            .erdu-rail-layout { 
+                width: 100% !important; 
+                flex-direction: row !important; 
+                overflow-x: auto !important; 
+                overflow-y: hidden !important; 
+            }
+            .erdu-thumb-layout { width: 64px !important; flex-shrink: 0 !important; }
+        }
+    </style>
+
     <!-- Breadcrumbs -->
     <?php 
     $erdu_settings = function_exists('erdu_default_settings') ? get_option('erdu_settings', erdu_default_settings()) : get_option('erdu_settings', array());
@@ -40,10 +56,10 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
     ?>
 
     <!-- SECTION 1: Gallery (Left) & Info (Right) -->
-    <div class="flex flex-col xl:flex-row gap-12 xl:gap-16 mb-16">
+    <div class="flex flex-col lg:flex-row gap-12 xl:gap-16 mb-16 erdu-product-columns">
         
         <!-- Left Column: Gallery & Video -->
-        <div class="w-full xl:w-1/2 flex flex-col">
+        <div class="w-full lg:w-1/2 flex flex-col erdu-product-col-left">
             
             <?php 
             $video_url = function_exists('get_field') ? get_field('product_video_url') : ''; 
@@ -59,11 +75,11 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 $attachment_ids = $product->get_gallery_image_ids();
                 $all_image_ids = array_filter(array_merge(array($main_image_id), $attachment_ids));
                 ?>
-                <div id="erdu-gallery-container" class="w-full relative flex flex-col-reverse lg:flex-row gap-4">
+                <div id="erdu-gallery-container" class="w-full relative flex flex-row gap-4 erdu-gallery-layout">
                     
                     <?php if (count($all_image_ids) > 1 || $has_video) : ?>
                     <!-- Thumbnail Rail -->
-                    <div class="w-full lg:w-[64px] flex-shrink-0 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-y-auto erdu-hide-scrollbar" style="scrollbar-width: none;">
+                    <div class="w-16 lg:w-[64px] flex-shrink-0 flex flex-col gap-2 overflow-y-auto erdu-hide-scrollbar erdu-rail-layout" style="scrollbar-width: none;">
                         <style>
                             .erdu-hide-scrollbar::-webkit-scrollbar { display: none; }
                         </style>
@@ -74,7 +90,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             <img src="<?php echo esc_url($thumb_url); ?>" 
                                  data-full="<?php echo esc_url($full_url); ?>" 
                                  data-index="<?php echo $index; ?>"
-                                 class="erdu-gallery-thumb w-16 lg:w-full flex-shrink-0 aspect-square rounded-lg object-cover border-2 cursor-pointer transition-all <?php echo $index === 0 ? 'border-[#f97316] opacity-100' : 'border-transparent opacity-70 hover:opacity-100 hover:border-gray-300'; ?>" 
+                                 class="erdu-gallery-thumb w-full aspect-square rounded-lg object-cover border-2 cursor-pointer transition-all <?php echo $index === 0 ? 'border-[#f97316] opacity-100' : 'border-transparent opacity-70 hover:opacity-100 hover:border-gray-300'; ?> erdu-thumb-layout" 
                                  alt="<?php echo esc_attr(get_post_meta($img_id, '_wp_attachment_image_alt', true)); ?>" />
                         <?php endforeach; ?>
 
@@ -82,7 +98,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             // Add Video Thumbnail
                             $video_bg = !empty($all_image_ids) ? wp_get_attachment_image_url(array_values($all_image_ids)[0], 'gallery_thumbnail') : wc_placeholder_img_src('gallery_thumbnail');
                         ?>
-                            <div id="erdu-video-thumb" class="erdu-video-thumb w-16 lg:w-full flex-shrink-0 aspect-square rounded-lg object-cover border-2 border-transparent opacity-70 hover:opacity-100 hover:border-gray-300 cursor-pointer transition-all relative flex items-center justify-center overflow-hidden">
+                            <div id="erdu-video-thumb" class="erdu-video-thumb w-full aspect-square rounded-lg object-cover border-2 border-transparent opacity-70 hover:opacity-100 hover:border-gray-300 cursor-pointer transition-all relative flex items-center justify-center overflow-hidden erdu-thumb-layout">
                                 <img src="<?php echo esc_url($video_bg); ?>" class="absolute inset-0 w-full h-full object-cover opacity-50" />
                                 <div class="absolute inset-0 bg-black/30"></div>
                                 <svg class="w-8 h-8 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -537,7 +553,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 $inquiry_link = erdu_get_page_url('contact');
                 $url = add_query_arg('product', urlencode($product->get_name()), $inquiry_link);
                 ?>
-                <a href="<?php echo esc_url($url); ?>" class="w-[128px] h-[48px] inline-flex items-center justify-center bg-[#f97316] text-white font-bold rounded-lg transition-all text-sm shadow-sm hover:shadow-md hover:bg-[#ea580c] hover:-translate-y-0.5">
+                <a href="<?php echo esc_url($url); ?>" class="w-[128px] h-[48px] inline-flex items-center justify-center erdu-bg-primary text-white font-bold rounded-lg transition-all text-sm shadow-sm hover:shadow-md erdu-hover-primary hover:-translate-y-0.5">
                     <svg class="w-4 h-4 mr-1.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     <span class="whitespace-nowrap"><?php esc_html_e('Inquire Now', 'erdu-wp'); ?></span>
                 </a>
