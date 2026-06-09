@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.7] - 2026-06-09
+### Changed
+- Maximized `.erdu-container` `max-width` from 1280px to 2560px globally to achieve true edge-to-edge full-screen layout on 2K/4K monitors (matching Header width).
+- Removed `max-w-5xl` constraint from Section 2 (Product Tabs), allowing the tabs and contents to expand fully to match the maximized container effect.
+
 ## [1.6.6] - 2026-06-09
 ### Added
 - Added MOQ configuration and display to the Single Product Page (Section 1).

@@ -217,7 +217,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
     <!-- SECTION 2: Horizontal Tabs (Bottom) -->
     <div class="product-tabs-section w-full border-t border-gray-200 pt-12">
-        <div class="product-tabs-container max-w-5xl mx-auto">
+        <div class="product-tabs-container w-full mx-auto">
                 <!-- Tab Navigation -->
                 <div class="flex flex-wrap border-b border-gray-200 mb-6 gap-x-8 gap-y-4">
                     <?php 
