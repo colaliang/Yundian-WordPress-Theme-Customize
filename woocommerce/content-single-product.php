@@ -187,6 +187,44 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 </div>
             <?php endif; ?>
 
+            <!-- Product Variations / Attributes -->
+            <?php 
+            $attributes = $product->get_attributes();
+            if (!empty($attributes)) : 
+                $has_visible_attributes = false;
+                ob_start();
+                foreach ($attributes as $attribute) : 
+                    if (!$attribute->get_visible()) continue;
+                    
+                    $name = wc_attribute_label($attribute->get_name());
+                    $options = $attribute->is_taxonomy() ? wc_get_product_terms($product->get_id(), $attribute->get_name(), array('fields' => 'names')) : $attribute->get_options();
+                    
+                    if (!empty($options)) : 
+                        $has_visible_attributes = true;
+            ?>
+                    <div class="mb-6">
+                        <h4 class="text-base font-bold text-gray-900 mb-3"><?php echo esc_html($name); ?></h4>
+                        <div class="flex flex-wrap gap-2 sm:gap-3">
+                            <?php foreach ($options as $index => $option) : ?>
+                                <?php if ($index === 0) : ?>
+                                    <span class="px-4 py-2 border border-gray-900 rounded-md text-sm font-bold text-gray-900 bg-gray-50 shadow-sm"><?php echo esc_html($option); ?></span>
+                                <?php else : ?>
+                                    <span class="px-4 py-2 bg-gray-100 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"><?php echo esc_html($option); ?></span>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+            <?php 
+                    endif;
+                endforeach; 
+                $attr_html = ob_get_clean();
+                
+                if ($has_visible_attributes) :
+                    echo '<div class="mb-8">' . $attr_html . '</div>';
+                endif;
+            endif; 
+            ?>
+
             <!-- Action Buttons (Inquire & WhatsApp) -->
             <div class="flex flex-col sm:flex-row items-center gap-4">
                 <?php

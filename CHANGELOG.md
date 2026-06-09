@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.8] - 2026-06-09
+### Added
+- Added visual display for WooCommerce Product Attributes in Section 1 (below Key Attributes grid). Attributes (like "Emitting Color", "Lamp Power(W)") are now rendered as a styled pill list, giving users a clear view of available options without adding a shopping cart flow.
+
 ## [1.6.7] - 2026-06-09
 ### Changed
 - Maximized `.erdu-container` `max-width` from 1280px to 2560px globally to achieve true edge-to-edge full-screen layout on 2K/4K monitors (matching Header width).
