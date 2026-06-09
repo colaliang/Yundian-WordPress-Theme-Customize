@@ -37,9 +37,37 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             ?>
 
             <!-- Media Container (Gallery or Video) -->
-            <div class="w-full flex-grow flex flex-col">
+            <div class="w-full flex-grow flex flex-col relative">
                 <!-- Main Product Gallery -->
-                <div id="erdu-gallery-container" class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden <?php echo $has_video ? 'mb-4' : ''; ?>">
+                <div id="erdu-gallery-container" class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative" style="aspect-ratio: 1/1;">
+                    <!-- WooCommerce Gallery Wrapper Override -->
+                    <style>
+                        #erdu-gallery-container .woocommerce-product-gallery {
+                            width: 100% !important;
+                            height: 100% !important;
+                            float: none !important;
+                            margin: 0 !important;
+                        }
+                        #erdu-gallery-container .woocommerce-product-gallery__wrapper {
+                            width: 100% !important;
+                            height: 100% !important;
+                            margin: 0 !important;
+                        }
+                        #erdu-gallery-container .woocommerce-product-gallery__image {
+                            width: 100% !important;
+                            height: 100% !important;
+                            display: flex !important;
+                            align-items: center !important;
+                            justify-content: center !important;
+                        }
+                        #erdu-gallery-container .woocommerce-product-gallery__image img {
+                            width: 100% !important;
+                            height: 100% !important;
+                            object-fit: cover !important;
+                            margin: 0 !important;
+                            box-shadow: none !important;
+                        }
+                    </style>
                     <?php 
                     // Display standard WooCommerce product gallery
                     woocommerce_show_product_images(); 
@@ -48,7 +76,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
                 <?php if ($has_video) : ?>
                 <!-- Video Container (Hidden by default) -->
-                <div id="erdu-video-container" class="hidden w-full bg-black rounded-2xl overflow-hidden shadow-sm mb-4 relative" style="aspect-ratio: 1/1;">
+                <div id="erdu-video-container" class="hidden w-full bg-black rounded-2xl overflow-hidden shadow-sm relative" style="aspect-ratio: 1/1;">
                     <?php 
                     $is_youtube = strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false;
                     $is_vimeo = strpos($video_url, 'vimeo.com') !== false;
@@ -244,7 +272,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             ?>
 
             <!-- Action Buttons (Inquire & WhatsApp) -->
-            <div class="flex flex-col sm:flex-row items-center gap-4">
+            <div class="flex flex-col sm:flex-row items-center gap-4 mb-8">
                 <?php
                 $inquiry_link = erdu_get_page_url('contact');
                 $url = add_query_arg('product', urlencode($product->get_name()), $inquiry_link);
@@ -273,7 +301,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
     <!-- SECTION 2: Vertical Flow Content (Bottom) -->
     <div class="product-tabs-section w-full border-t border-gray-200 pt-12">
-        <div class="product-tabs-container w-full mx-auto">
+        <div class="w-full">
             <?php 
             $content = get_the_content(); 
             $has_desc = trim(strip_tags($content));

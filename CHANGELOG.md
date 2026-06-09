@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.14] - 2026-06-09
+### Fixed
+- Forced the main WooCommerce product gallery to fill 100% of the left column container (Section 1), matching the exact dimensions and `aspect-ratio: 1/1` behavior of the video container. This resolves the issue where the native WooCommerce gallery was not expanding fully.
+- Removed the restrictive `max-w-5xl` constraint from the wrapper in Section 2, ensuring the vertical flow content now correctly spans the entire width of the page container.
+
 ## [1.6.13] - 2026-06-09
 ### Changed
 - Refactored Section 2 from a traditional "Tab Switcher" into a "Vertical Flow Landing Page" style.
