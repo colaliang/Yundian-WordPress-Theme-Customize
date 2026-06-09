@@ -29,36 +29,41 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
     <div class="flex flex-col lg:flex-row gap-12 xl:gap-16 mb-16">
         
         <!-- Left Column: Gallery & Video -->
-        <div class="w-full lg:w-1/2">
+        <div class="w-full lg:w-1/2 flex flex-col">
             
             <?php 
             $video_url = function_exists('get_field') ? get_field('product_video_url') : ''; 
             $has_video = !empty($video_url);
             ?>
 
-            <!-- Main Product Gallery -->
-            <div id="erdu-gallery-container" class="bg-white rounded-2xl p-2 lg:p-8 shadow-sm border border-gray-100 <?php echo $has_video ? 'mb-4' : ''; ?>">
-                <?php 
-                // Display standard WooCommerce product gallery
-                woocommerce_show_product_images(); 
-                ?>
-            </div>
+            <!-- Media Container (Gallery or Video) -->
+            <div class="w-full flex-grow flex flex-col">
+                <!-- Main Product Gallery -->
+                <div id="erdu-gallery-container" class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden <?php echo $has_video ? 'mb-4' : ''; ?>">
+                    <?php 
+                    // Display standard WooCommerce product gallery
+                    woocommerce_show_product_images(); 
+                    ?>
+                </div>
 
-            <?php if ($has_video) : ?>
-            <!-- Video Container (Hidden by default) -->
-            <div id="erdu-video-container" class="hidden bg-black rounded-2xl overflow-hidden shadow-sm mb-4 relative" style="aspect-ratio: 1/1;">
-                <?php if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false || strpos($video_url, 'vimeo.com') !== false) : ?>
-                    <iframe src="<?php echo esc_url($video_url); ?>" class="absolute inset-0 w-full h-full border-0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                <?php else : ?>
-                    <video controls class="absolute inset-0 w-full h-full object-contain bg-black">
-                        <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                <?php if ($has_video) : ?>
+                <!-- Video Container (Hidden by default) -->
+                <div id="erdu-video-container" class="hidden w-full bg-black rounded-2xl overflow-hidden shadow-sm mb-4 relative" style="aspect-ratio: 1/1;">
+                    <?php if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false || strpos($video_url, 'vimeo.com') !== false) : ?>
+                        <iframe src="<?php echo esc_url($video_url); ?>" class="absolute inset-0 w-full h-full border-0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <?php else : ?>
+                        <video controls class="absolute inset-0 w-full h-full object-contain bg-black">
+                            <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    <?php endif; ?>
+                </div>
                 <?php endif; ?>
             </div>
 
+            <?php if ($has_video) : ?>
             <!-- Media Switcher (Photos / Video) -->
-            <div class="flex justify-center mt-6">
+            <div class="flex justify-center mt-auto pt-6">
                 <div class="inline-flex bg-gray-100 rounded-lg p-1">
                     <button id="btn-show-photos" class="px-6 py-2 rounded-md text-sm font-bold bg-white text-gray-900 shadow-sm transition-all">
                         Photos

@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.10] - 2026-06-09
+### Changed
+- Improved Section 1 Left Column (Media) styling:
+  - Made the product gallery container expand fully (`w-full`) to fill the left column and removed excessive inner padding (`p-2 lg:p-8`) to allow images to stretch edge-to-edge within the container.
+  - Used Flexbox (`flex-col`, `flex-grow`, `mt-auto`) to strictly pin the Photos/Video switcher buttons to the bottom of the left column.
+
 ## [1.6.9] - 2026-06-09
 ### Changed
 - Synced the global `.erdu-container` `max-width` to `1760px` to match Wellmax's maximum content width on large screens (previously set to `2560px`).
