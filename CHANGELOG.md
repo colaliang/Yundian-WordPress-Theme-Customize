@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.30] - 2026-06-09
+### Fixed
+- Fixed an issue where the Inquire Now and WhatsApp buttons on the product page were not adhering to their specified dimensions (`128x48`). The custom Tailwind bracket classes (`w-[128px]` and `h-[48px]`) were not being generated due to the no-build environment. Replaced them with hardcoded inline CSS (`style="width: 128px; height: 48px;"`) to guarantee precise sizing.
+
 ## [1.6.29] - 2026-06-09
 ### Changed
 - Refined "Inquire Now" and "WhatsApp" buttons on Product page to perfectly match the Header "Get A Quote" button styling.
