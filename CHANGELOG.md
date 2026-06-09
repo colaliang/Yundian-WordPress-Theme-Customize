@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.20] - 2026-06-09
+### Fixed
+- Strictly aligned `erdu-gallery-container` layout with the 2026-06-09 design specification.
+- Updated thumbnail styles to use Hermes Orange highlight and muted non-active states.
+- Restored JavaScript class toggle for `erdu-gallery-has-thumbs` without overriding the native animation.
+
 ## [1.6.19] - 2026-06-09
 ### Fixed
 - Refined `erdu-gallery-container` toward an Alibaba-style layout with a more stable left thumbnail rail and a cleaner main image stage.

@@ -45,6 +45,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         #erdu-gallery-container {
                             padding: 1rem;
                             background: #ffffff;
+                            box-sizing: border-box;
                         }
                         #erdu-gallery-container .woocommerce-product-gallery {
                             width: 100% !important;
@@ -55,22 +56,25 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             box-sizing: border-box !important;
                             opacity: 1 !important;
                         }
+                        /* When thumbs exist, reserve left space */
                         #erdu-gallery-container.erdu-gallery-has-thumbs .woocommerce-product-gallery {
                             padding-left: 80px !important;
                         }
+                        
+                        /* Main Image Viewport */
                         #erdu-gallery-container .flex-viewport {
                             width: 100% !important;
                             height: 100% !important;
                             margin: 0 !important;
                             border-radius: 1rem;
                             overflow: hidden;
-                            background: #f3f4f6;
+                            background: #f3f4f6; /* Subtle stage background */
                         }
                         #erdu-gallery-container .woocommerce-product-gallery__wrapper {
                             width: 100% !important;
                             height: 100% !important;
                             margin: 0 !important;
-                            transition: none !important;
+                            transition: none !important; /* Prevent native animation glitches */
                         }
                         #erdu-gallery-container .woocommerce-product-gallery__image,
                         #erdu-gallery-container .woocommerce-product-gallery__image a {
@@ -85,16 +89,18 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             display: block !important;
                             width: 100% !important;
                             height: 100% !important;
-                            object-fit: contain !important;
+                            object-fit: contain !important; /* Full image without cropping */
                             margin: 0 !important;
                             padding: 0.75rem;
                             box-shadow: none !important;
                         }
+
+                        /* Thumbnail Rail */
                         #erdu-gallery-container.erdu-gallery-has-thumbs .flex-control-nav.flex-control-thumbs {
                             position: absolute;
                             left: 0;
                             top: 0;
-                            width: 64px !important;
+                            width: 64px !important; /* Fixed 64px width */
                             height: 100% !important;
                             margin: 0 !important;
                             padding: 0 !important;
@@ -125,24 +131,27 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             border-radius: 0.75rem !important;
                             border: 2px solid #e5e7eb !important;
                             cursor: pointer !important;
-                            opacity: 0.9;
-                            transition: border-color 0.2s, box-shadow 0.2s, opacity 0.2s;
+                            opacity: 0.7; /* Muted non-active state */
+                            transition: border-color 0.2s, opacity 0.2s;
                         }
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs img:hover,
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs img.flex-active {
                             opacity: 1;
-                            border-color: #111827 !important;
-                            box-shadow: 0 0 0 1px #111827;
+                            border-color: #f97316 !important; /* Hermes Orange highlight */
                         }
+                        
+                        /* Hide native zoom trigger */
                         #erdu-gallery-container .woocommerce-product-gallery__trigger {
                             display: none !important;
                         }
+
+                        /* Mobile Adjustments */
                         @media (max-width: 1023px) {
                             #erdu-gallery-container {
                                 padding: 0.75rem;
                             }
                             #erdu-gallery-container.erdu-gallery-has-thumbs .woocommerce-product-gallery {
-                                padding-left: 72px !important;
+                                padding-left: 64px !important; /* Slightly tighter on mobile */
                             }
                             #erdu-gallery-container.erdu-gallery-has-thumbs .flex-control-nav.flex-control-thumbs,
                             #erdu-gallery-container .flex-control-nav.flex-control-thumbs li,
@@ -160,6 +169,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     woocommerce_show_product_images(); 
                     ?>
                 </div>
+
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const galleryContainer = document.getElementById('erdu-gallery-container');
@@ -167,8 +177,11 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         return;
                     }
 
+                    // DOM Check: Add class if thumbnails exist to reserve left rail space
                     const thumbs = galleryContainer.querySelector('.flex-control-nav.flex-control-thumbs');
-                    galleryContainer.classList.toggle('erdu-gallery-has-thumbs', !!(thumbs && thumbs.children.length > 0));
+                    if (thumbs && thumbs.children.length > 0) {
+                        galleryContainer.classList.add('erdu-gallery-has-thumbs');
+                    }
                 });
                 </script>
 
