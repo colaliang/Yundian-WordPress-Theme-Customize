@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] - 2026-06-08
+### Changed
+- **Removed ACF Free Compatibility:** Fully committed to Advanced Custom Fields (ACF) Pro. Removed all fallback inputs and complex rendering logic for ACF Free in `inc/acf-fields.php` and `woocommerce/content-single-product.php` to streamline the codebase and data structure.
+
 ## [1.6.0] - 2026-06-08
 ### Changed
 - **Ultra-Wide Screen Support:** Optimized the single product page container to support full-width displays (up to 2560px for 2K/4K monitors) with proper side padding.

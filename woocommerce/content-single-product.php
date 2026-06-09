@@ -58,32 +58,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm" id="product-accordion">
                 
                 <!-- Panel: Product Features -->
-                <?php 
-                $has_features = false;
-                $features_html = '';
-                
-                if (function_exists('have_rows') && have_rows('product_features')) {
-                    $has_features = true;
-                    while (have_rows('product_features')) {
-                        the_row();
-                        $f_title = get_sub_field('title');
-                        $f_desc = get_sub_field('description');
-                        $features_html .= '<li><strong>' . esc_html($f_title) . '</strong> ' . esc_html($f_desc) . '</li>';
-                    }
-                } else if (function_exists('get_field')) {
-                    // Fallback for ACF Free individual fields
-                    for ($i = 1; $i <= 6; $i++) {
-                        $f_title = get_field('feature_' . $i . '_title');
-                        $f_desc = get_field('feature_' . $i . '_description');
-                        if ($f_title || $f_desc) {
-                            $has_features = true;
-                            $features_html .= '<li><strong>' . esc_html($f_title) . '</strong> ' . esc_html($f_desc) . '</li>';
-                        }
-                    }
-                }
-                
-                if ($has_features) : 
-                ?>
+                <?php if (function_exists('have_rows') && have_rows('product_features')) : ?>
                 <div class="erdu-accordion-item border-b border-gray-200">
                     <button class="erdu-accordion-header w-full flex justify-between items-center p-5 lg:p-6 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="true">
                         <span class="text-lg">Product Features:</span>
@@ -91,7 +66,12 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     </button>
                     <div class="erdu-accordion-content p-5 lg:p-6 pt-0 bg-white text-gray-600 prose prose-sm max-w-none">
                         <ul class="list-disc pl-5 space-y-2 mt-2 text-base">
-                            <?php echo $features_html; ?>
+                            <?php while (have_rows('product_features')) : the_row(); 
+                                $f_title = get_sub_field('title');
+                                $f_desc = get_sub_field('description');
+                            ?>
+                                <li><strong><?php echo esc_html($f_title); ?></strong> <?php echo esc_html($f_desc); ?></li>
+                            <?php endwhile; ?>
                         </ul>
                     </div>
                 </div>
@@ -142,32 +122,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 <?php endif; ?>
 
                 <!-- Panel: Downloads -->
-                <?php 
-                $has_downloads = false;
-                $downloads_html = '';
-                
-                if (function_exists('have_rows') && have_rows('product_downloads')) {
-                    $has_downloads = true;
-                    while (have_rows('product_downloads')) {
-                        the_row();
-                        $title = get_sub_field('title');
-                        $file = get_sub_field('file');
-                        $downloads_html .= '<a href="'.esc_url($file).'" target="_blank" class="flex items-center text-base font-medium text-orange-600 hover:text-orange-800 transition-colors"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>'.esc_html($title).'</a>';
-                    }
-                } else if (function_exists('get_field')) {
-                    // Fallback for ACF Free
-                    for ($i = 1; $i <= 3; $i++) {
-                        $title = get_field('download_' . $i . '_title');
-                        $file = get_field('download_' . $i . '_file');
-                        if ($title && $file) {
-                            $has_downloads = true;
-                            $downloads_html .= '<a href="'.esc_url($file).'" target="_blank" class="flex items-center text-base font-medium text-orange-600 hover:text-orange-800 transition-colors"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>'.esc_html($title).'</a>';
-                        }
-                    }
-                }
-                
-                if ($has_downloads) : 
-                ?>
+                <?php if (function_exists('have_rows') && have_rows('product_downloads')) : ?>
                 <div class="erdu-accordion-item">
                     <button class="erdu-accordion-header w-full flex justify-between items-center p-5 lg:p-6 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="false">
                         <span class="text-lg">Downloads:</span>
@@ -175,7 +130,15 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     </button>
                     <div class="erdu-accordion-content hidden p-5 lg:p-6 pt-0 bg-white text-gray-600">
                         <div class="space-y-4">
-                            <?php echo $downloads_html; ?>
+                            <?php while (have_rows('product_downloads')) : the_row(); 
+                                $title = get_sub_field('title');
+                                $file = get_sub_field('file');
+                            ?>
+                                <a href="<?php echo esc_url($file); ?>" target="_blank" class="flex items-center text-base font-medium text-orange-600 hover:text-orange-800 transition-colors">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                    <?php echo esc_html($title); ?>
+                                </a>
+                            <?php endwhile; ?>
                         </div>
                     </div>
                 </div>
