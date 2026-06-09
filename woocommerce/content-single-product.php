@@ -532,13 +532,14 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             ?>
 
             <!-- Action Buttons (Inquire & WhatsApp) -->
-            <div class="flex flex-col sm:flex-row items-center gap-4 mb-8">
+            <div class="flex flex-row items-center gap-4 mb-8">
                 <?php
                 $inquiry_link = erdu_get_page_url('contact');
                 $url = add_query_arg('product', urlencode($product->get_name()), $inquiry_link);
                 ?>
-                <a href="<?php echo esc_url($url); ?>" class="w-full sm:flex-1 inline-flex items-center justify-center bg-gray-900 text-white font-bold py-3.5 px-6 rounded-lg transition-all text-base shadow-sm hover:shadow-md hover:-translate-y-0.5" style="background-color: #111827;" onmouseover="this.style.backgroundColor='#ea580c'" onmouseout="this.style.backgroundColor='#111827'">
-                    <?php esc_html_e('Inquire Now', 'erdu-wp'); ?>
+                <a href="<?php echo esc_url($url); ?>" class="w-[128px] h-[48px] inline-flex items-center justify-center bg-[#f97316] text-white font-bold rounded-lg transition-all text-sm shadow-sm hover:shadow-md hover:bg-[#ea580c] hover:-translate-y-0.5">
+                    <svg class="w-4 h-4 mr-1.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span class="whitespace-nowrap"><?php esc_html_e('Inquire Now', 'erdu-wp'); ?></span>
                 </a>
 
                 <?php 
@@ -548,9 +549,9 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     $wa_text = rawurlencode("Hi, I'm interested in " . $product->get_name());
                     $wa_url = "https://wa.me/" . preg_replace('/[^0-9]/', '', $wa_number) . "?text=" . $wa_text;
                 ?>
-                <a href="<?php echo esc_url($wa_url); ?>" target="_blank" class="w-full sm:flex-1 inline-flex items-center justify-center text-white font-bold py-3.5 px-6 rounded-lg transition-all text-base shadow-sm hover:shadow-md hover:-translate-y-0.5" style="background-color: #25D366;" onmouseover="this.style.backgroundColor='#128C7E'" onmouseout="this.style.backgroundColor='#25D366'">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.122.553 4.195 1.603 6.01L.524 23.475l5.584-1.464A11.97 11.97 0 0012.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 22.015a9.924 9.924 0 01-5.074-1.39l-.364-.216-3.771.989.998-3.676-.237-.377a9.94 9.94 0 01-1.522-5.314c0-5.513 4.487-10 10-10 5.513 0 10 4.487 10 10s-4.487 10-10 10zm5.495-7.513c-.301-.151-1.782-.881-2.057-.981-.275-.101-.476-.151-.676.151-.2.301-.776.981-.951 1.182-.175.201-.35.226-.651.075-.301-.151-1.271-.468-2.42-1.332-.894-.672-1.498-1.503-1.673-1.804-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.526.151-.175.201-.301.301-.501.101-.201.05-.376-.025-.526-.075-.151-.676-1.628-.926-2.228-.244-.585-.492-.505-.676-.514-.175-.01-.376-.01-.576-.01s-.526.075-.801.376c-.275.301-1.052 1.027-1.052 2.505s1.077 2.905 1.227 3.105c.151.201 2.118 3.228 5.129 4.526 2.063.89 2.853.957 3.914.857 1.135-.106 3.483-1.425 3.984-2.805.501-1.38.501-2.555.351-2.805-.151-.25-.551-.401-.852-.551z"/></svg>
-                    WhatsApp
+                <a href="<?php echo esc_url($wa_url); ?>" target="_blank" class="w-[128px] h-[48px] inline-flex items-center justify-center text-white font-bold rounded-lg transition-all text-sm shadow-sm hover:shadow-md hover:-translate-y-0.5" style="background-color: #25D366;" onmouseover="this.style.backgroundColor='#128C7E'" onmouseout="this.style.backgroundColor='#25D366'">
+                    <svg class="w-4 h-4 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.122.553 4.195 1.603 6.01L.524 23.475l5.584-1.464A11.97 11.97 0 0012.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 22.015a9.924 9.924 0 01-5.074-1.39l-.364-.216-3.771.989.998-3.676-.237-.377a9.94 9.94 0 01-1.522-5.314c0-5.513 4.487-10 10-10 5.513 0 10 4.487 10 10s-4.487 10-10 10zm5.495-7.513c-.301-.151-1.782-.881-2.057-.981-.275-.101-.476-.151-.676.151-.2.301-.776.981-.951 1.182-.175.201-.35.226-.651.075-.301-.151-1.271-.468-2.42-1.332-.894-.672-1.498-1.503-1.673-1.804-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.526.151-.175.201-.301.301-.501.101-.201.05-.376-.025-.526-.075-.151-.676-1.628-.926-2.228-.244-.585-.492-.505-.676-.514-.175-.01-.376-.01-.576-.01s-.526.075-.801.376c-.275.301-1.052 1.027-1.052 2.505s1.077 2.905 1.227 3.105c.151.201 2.118 3.228 5.129 4.526 2.063.89 2.853.957 3.914.857 1.135-.106 3.483-1.425 3.984-2.805.501-1.38.501-2.555.351-2.805-.151-.25-.551-.401-.852-.551z"/></svg>
+                    <span class="whitespace-nowrap">WhatsApp</span>
                 </a>
                 <?php endif; ?>
             </div>

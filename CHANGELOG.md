@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.27] - 2026-06-09
+### Changed
+- Redesigned Right Column Action Buttons: 
+  - Aligned "Inquire Now" and "WhatsApp" buttons in a single row (`flex-row`) for better visual hierarchy.
+  - Set fixed precise dimensions of `128x48` for both buttons.
+  - Updated "Inquire Now" button style: changed background from black to Hermes orange (`#f97316`), matching the theme, and added an envelope icon.
+
 ## [1.6.26] - 2026-06-09
 ### Fixed
 - Improved mobile/tablet layout responsiveness by moving the split breakpoint from `lg` (1024px) to `xl` (1280px), ensuring the Gallery gets full width on tablets.
