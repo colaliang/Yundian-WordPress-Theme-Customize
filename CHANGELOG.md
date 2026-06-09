@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-06-08
+### Changed
+- **Major Architecture Change:** Replaced the traditional WooCommerce "Split Gallery/Summary" product layout with a high-impact, full-width "Landing Page" experience inspired by industry-leading B2B catalogs.
+- Updated `woocommerce/single-product.php` and `woocommerce/content-single-product.php` to bypass default WooCommerce hooks and implement the new full-width sections (Hero, Overview, Features, Applications, Specs, Downloads, CTA).
+- Overhauled Product ACF fields (`inc/acf-fields.php`) to introduce Tabbed sections for Hero Banner, Features Blocks (Repeater), and Applications Gallery.
+- Injected required landing page utility classes and animations into `main.css`.
+
 ## [1.3.13] - 2026-06-09
 ### Changed
 - **Editor Tweaks**: Removed the iframe-based live preview based on user feedback. The system now simply disables the confusing blank Gutenberg editor and Classic editor text area for ACF-driven pages, keeping only the clean data-entry panel.

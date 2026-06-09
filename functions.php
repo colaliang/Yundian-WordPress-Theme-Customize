@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 /**
  * Define theme constants
  */
-define('ERDU_VERSION', '1.3.13');
+define('ERDU_VERSION', '1.4.0');
 define('ERDU_DIR', get_template_directory());
 define('ERDU_URI', get_template_directory_uri());
 

@@ -1,0 +1,39 @@
+<h2>Product Page Architecture Ideas</h2>
+<p class="subtitle">Based on your reference to Wellmax's Disc Downlight and Astra's structures, which direction fits your vision best?</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Option A: The "Landing Page" Experience</h3>
+      <p>Like the Wellmax reference. The product page acts as a full landing page. It abandons the traditional WooCommerce "Left Gallery / Right Summary" structure entirely in favor of stacked, full-width sections (Hero banner -> Key Features -> Applications -> Specs -> Inquiry).</p>
+      <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
+        <strong>Best for:</strong> Flagship products, single series showcase.<br>
+        <strong>Trade-off:</strong> Harder to manage via standard WooCommerce product fields; usually requires an ACF flexible content layout or a page builder.
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Option B: The "Advanced B2B Catalog" (Astra-style)</h3>
+      <p>Retains the WooCommerce layout but heavily polishes it. Left side features a sticky, large image gallery (or stacked images). Right side has sticky product details, specs, and a prominent inquiry button. Below the fold are detailed tabs (Downloads, Applications, Tech Specs).</p>
+      <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
+        <strong>Best for:</strong> Catalogs with many products, maintaining standard WooCommerce data entry.<br>
+        <strong>Trade-off:</strong> Less "custom landing page" feel, but highly consistent and easy to maintain.
+      </div>
+    </div>
+  </div>
+  
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Option C: Hybrid Approach</h3>
+      <p>Top section uses the standard WooCommerce layout (Gallery + Summary) so it's easy to browse. But the bottom section (Tabs) is replaced with full-width, visually rich ACF-driven sections (e.g., Application Scenarios, Video, Big Diagrams).</p>
+      <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
+        <strong>Best for:</strong> Combining ease of management with visual impact.<br>
+      </div>
+    </div>
+  </div>
+</div>

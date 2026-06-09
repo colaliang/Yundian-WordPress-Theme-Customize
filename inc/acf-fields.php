@@ -69,18 +69,60 @@ acf_add_local_field_group(array(
 ));
 
 // ==========================================
-// WooCommerce Product Fields (B2B Extensions)
+// WooCommerce Product Fields (Landing Page Extensions)
 // ==========================================
 $wc_product_fields = array(
+    // 1. Hero Tab
+    array('key' => 'field_wc_tab_hero', 'label' => __('Hero Banner', 'erdu-wp'), 'type' => 'tab'),
     array('key' => 'field_wc_prod_subtitle', 'label' => __('Product Subtitle', 'erdu-wp'), 'name' => 'product_subtitle', 'type' => 'text'),
+    array('key' => 'field_wc_hero_bg', 'label' => __('Hero Background Image', 'erdu-wp'), 'name' => 'hero_background_image', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium'),
+    array('key' => 'field_wc_hero_img', 'label' => __('Hero Product Image (Cutout)', 'erdu-wp'), 'name' => 'hero_product_image', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium', 'instructions' => 'Optional. Displays over the background.'),
+    
+    // 2. Features Tab
+    array('key' => 'field_wc_tab_features', 'label' => __('Features Blocks', 'erdu-wp'), 'type' => 'tab'),
 );
 
+if ($has_acf_pro) {
+    $wc_product_fields[] = array(
+        'key'        => 'field_wc_prod_features',
+        'label'      => __('Product Features', 'erdu-wp'),
+        'name'       => 'product_features',
+        'type'       => 'repeater',
+        'button_label' => __('Add Feature', 'erdu-wp'),
+        'sub_fields' => array(
+            array('key' => 'field_feat_title', 'label' => __('Title', 'erdu-wp'), 'name' => 'title', 'type' => 'text'),
+            array('key' => 'field_feat_desc', 'label' => __('Description', 'erdu-wp'), 'name' => 'description', 'type' => 'textarea', 'rows' => 3),
+            array('key' => 'field_feat_img', 'label' => __('Image', 'erdu-wp'), 'name' => 'image', 'type' => 'image', 'return_format' => 'url'),
+            array('key' => 'field_feat_align', 'label' => __('Image Alignment', 'erdu-wp'), 'name' => 'alignment', 'type' => 'select', 'choices' => array('left' => 'Left', 'right' => 'Right'), 'default_value' => 'left'),
+        ),
+    );
+} else {
+    $wc_product_fields[] = array(
+        'key'   => 'field_wc_prod_features',
+        'label' => __('Product Features (Title | Description | Image URL | Alignment(left/right), one per line)', 'erdu-wp'),
+        'name'  => 'product_features_text',
+        'type'  => 'textarea',
+        'rows'  => 6,
+    );
+}
+
+// 3. Applications Tab
+$wc_product_fields[] = array('key' => 'field_wc_tab_apps', 'label' => __('Applications Gallery', 'erdu-wp'), 'type' => 'tab');
+if ($has_acf_pro) {
+    $wc_product_fields[] = array('key' => 'field_wc_app_gallery', 'label' => __('Application Images', 'erdu-wp'), 'name' => 'application_images', 'type' => 'gallery', 'return_format' => 'url');
+} else {
+    $wc_product_fields[] = array('key' => 'field_wc_app_gallery', 'label' => __('Application Image URLs (one per line)', 'erdu-wp'), 'name' => 'application_images_text', 'type' => 'textarea', 'rows' => 4);
+}
+
+// 4. Downloads Tab
+$wc_product_fields[] = array('key' => 'field_wc_tab_dl', 'label' => __('Downloads', 'erdu-wp'), 'type' => 'tab');
 if ($has_acf_pro) {
     $wc_product_fields[] = array(
         'key'        => 'field_wc_prod_downloads',
         'label'      => __('Downloads & Resources', 'erdu-wp'),
         'name'       => 'product_downloads',
         'type'       => 'repeater',
+        'button_label' => __('Add Download', 'erdu-wp'),
         'sub_fields' => array(
             array('key' => 'field_dl_title', 'label' => __('Title', 'erdu-wp'), 'name' => 'title', 'type' => 'text'),
             array('key' => 'field_dl_file', 'label' => __('File URL', 'erdu-wp'), 'name' => 'file', 'type' => 'url'),
@@ -98,7 +140,7 @@ if ($has_acf_pro) {
 
 acf_add_local_field_group(array(
     'key'      => 'group_wc_product',
-    'title'    => __('B2B Product Details', 'erdu-wp'),
+    'title'    => __('Product Landing Page Data', 'erdu-wp'),
     'fields'   => $wc_product_fields,
     'location' => array(
         array(

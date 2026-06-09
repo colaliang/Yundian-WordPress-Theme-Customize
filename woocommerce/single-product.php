@@ -13,34 +13,33 @@ if (!defined('ABSPATH')) {
 
 get_header('shop'); ?>
 
-<div class="erdu-bg-gray bg-gray-50 py-10">
-    <div class="erdu-container">
-        <?php
-            /**
-             * woocommerce_before_main_content hook.
-             *
-             * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
-             * @hooked woocommerce_breadcrumb - 20
-             */
-            do_action('woocommerce_before_main_content');
-        ?>
+<div class="erdu-product-landing-page bg-white">
+    <?php
+        /**
+         * woocommerce_before_main_content hook.
+         *
+         * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+         * @hooked woocommerce_breadcrumb - 20 (Removed for landing page style, or moved inside content)
+         */
+        remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
+        do_action('woocommerce_before_main_content');
+    ?>
 
-        <?php while (have_posts()) : ?>
-            <?php the_post(); ?>
+    <?php while (have_posts()) : ?>
+        <?php the_post(); ?>
 
-            <?php wc_get_template_part('content', 'single-product'); ?>
+        <?php wc_get_template_part('content', 'single-product'); ?>
 
-        <?php endwhile; // end of the loop. ?>
+    <?php endwhile; // end of the loop. ?>
 
-        <?php
-            /**
-             * woocommerce_after_main_content hook.
-             *
-             * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-             */
-            do_action('woocommerce_after_main_content');
-        ?>
-    </div>
+    <?php
+        /**
+         * woocommerce_after_main_content hook.
+         *
+         * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+         */
+        do_action('woocommerce_after_main_content');
+    ?>
 </div>
 
 <?php
