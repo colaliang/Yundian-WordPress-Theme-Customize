@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-06-08
+### Changed
+- **Ultra-Wide Screen Support:** Optimized the single product page container to support full-width displays (up to 2560px for 2K/4K monitors) with proper side padding.
+- **50/50 Layout Proportion:** Adjusted the split-screen accordion and gallery ratio from 5/12 & 7/12 to a balanced 1/2 & 1/2 (50/50), ensuring the gallery takes up exactly half the screen.
+- **ACF Free Usability Improvement:** Refactored the `Product Features` and `Downloads` fallback fields for ACF Free users. Replaced the single cumbersome textarea with 6 dedicated static inputs for Features (Title/Description) and 3 for Downloads, making data entry much more intuitive.
+
 ## [1.5.0] - 2026-06-08
 ### Changed
 - **Redesigned Product Single Page:** Pivoted from the full-width landing page approach to a split-screen, sticky accordion layout (inspired by Astra/Wellmax custom catalog style).

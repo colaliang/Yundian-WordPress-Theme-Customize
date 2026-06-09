@@ -92,18 +92,25 @@ if ($has_acf_pro) {
         'sub_fields' => array(
             array('key' => 'field_feat_title', 'label' => __('Title', 'erdu-wp'), 'name' => 'title', 'type' => 'text'),
             array('key' => 'field_feat_desc', 'label' => __('Description', 'erdu-wp'), 'name' => 'description', 'type' => 'textarea', 'rows' => 3),
-            array('key' => 'field_feat_img', 'label' => __('Image', 'erdu-wp'), 'name' => 'image', 'type' => 'image', 'return_format' => 'url'),
-            array('key' => 'field_feat_align', 'label' => __('Image Alignment', 'erdu-wp'), 'name' => 'alignment', 'type' => 'select', 'choices' => array('left' => 'Left', 'right' => 'Right'), 'default_value' => 'left'),
         ),
     );
 } else {
-    $wc_product_fields[] = array(
-        'key'   => 'field_wc_prod_features',
-        'label' => __('Product Features (Title | Description | Image URL | Alignment(left/right), one per line)', 'erdu-wp'),
-        'name'  => 'product_features_text',
-        'type'  => 'textarea',
-        'rows'  => 6,
-    );
+    // For ACF Free, we provide 6 static feature inputs for ease of use
+    for ($i = 1; $i <= 6; $i++) {
+        $wc_product_fields[] = array(
+            'key'   => 'field_wc_prod_feature_' . $i . '_title',
+            'label' => sprintf(__('Feature %d Title', 'erdu-wp'), $i),
+            'name'  => 'feature_' . $i . '_title',
+            'type'  => 'text',
+        );
+        $wc_product_fields[] = array(
+            'key'   => 'field_wc_prod_feature_' . $i . '_desc',
+            'label' => sprintf(__('Feature %d Description', 'erdu-wp'), $i),
+            'name'  => 'feature_' . $i . '_description',
+            'type'  => 'textarea',
+            'rows'  => 2,
+        );
+    }
 }
 
 // 3. Applications Tab
@@ -129,13 +136,21 @@ if ($has_acf_pro) {
         ),
     );
 } else {
-    $wc_product_fields[] = array(
-        'key'   => 'field_wc_prod_downloads',
-        'label' => __('Downloads & Resources (Title | URL, one per line)', 'erdu-wp'),
-        'name'  => 'product_downloads',
-        'type'  => 'textarea',
-        'rows'  => 4,
-    );
+    // For ACF Free, we provide 3 static download inputs
+    for ($i = 1; $i <= 3; $i++) {
+        $wc_product_fields[] = array(
+            'key'   => 'field_wc_prod_download_' . $i . '_title',
+            'label' => sprintf(__('Download %d Title', 'erdu-wp'), $i),
+            'name'  => 'download_' . $i . '_title',
+            'type'  => 'text',
+        );
+        $wc_product_fields[] = array(
+            'key'   => 'field_wc_prod_download_' . $i . '_file',
+            'label' => sprintf(__('Download %d File URL', 'erdu-wp'), $i),
+            'name'  => 'download_' . $i . '_file',
+            'type'  => 'url',
+        );
+    }
 }
 
 acf_add_local_field_group(array(
