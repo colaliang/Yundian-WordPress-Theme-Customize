@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.12] - 2026-06-09
+### Changed
+- Added "Technical Specifications" as an independent ACF repeater field inside "Product Landing Page Data", decoupling it from WooCommerce native attributes. The Section 2 "Specs" tab now cleanly renders this custom repeater data as a table.
+
 ## [1.6.11] - 2026-06-09
 ### Fixed
 - Improved YouTube video rendering in the Product Media Gallery: Automatically parses standard YouTube URLs (`youtube.com/watch?v=...` or `youtu.be/...`) and converts them into the official `youtube.com/embed/...` iframe format with proper permissions (`accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share`), preventing "refused to connect" or rendering issues.

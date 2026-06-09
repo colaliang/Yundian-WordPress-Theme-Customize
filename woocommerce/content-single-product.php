@@ -280,8 +280,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     $content = get_the_content(); 
                     $has_desc = trim(strip_tags($content));
                     $has_features = function_exists('have_rows') && have_rows('product_features');
-                    $attributes = $product->get_attributes();
-                    $has_specs = !empty($attributes);
+                    $has_specs = function_exists('have_rows') && have_rows('product_specifications');
                     $has_downloads = function_exists('have_rows') && have_rows('product_downloads');
                     
                     $first_tab_active = false;
@@ -343,17 +342,15 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     <div id="tab-specs" class="erdu-tab-pane <?php echo $first_pane_active ? 'hidden' : ''; ?> text-gray-600">
                         <table class="w-full text-left text-sm lg:text-base border-collapse">
                             <tbody class="divide-y divide-gray-100">
-                                <?php foreach ($attributes as $attribute) : 
-                                    if (!$attribute->get_visible()) continue;
-                                    $name = wc_attribute_label($attribute->get_name());
-                                    $value = $attribute->is_taxonomy() ? implode(', ', wp_list_pluck(wp_get_post_terms($product->get_id(), $attribute->get_name(), 'all'), 'name')) : $attribute->get_options()[0];
-                                    if ($value) :
+                                <?php while (have_rows('product_specifications')) : the_row(); 
+                                    $spec_name = get_sub_field('spec_name');
+                                    $spec_value = get_sub_field('spec_value');
                                 ?>
                                 <tr>
-                                    <th class="py-3 pr-4 font-medium text-gray-500 w-1/3"><?php echo esc_html($name); ?></th>
-                                    <td class="py-3 font-bold text-gray-900"><?php echo esc_html($value); ?></td>
+                                    <th class="py-3 pr-4 font-medium text-gray-500 w-1/3"><?php echo esc_html($spec_name); ?></th>
+                                    <td class="py-3 font-bold text-gray-900"><?php echo esc_html($spec_value); ?></td>
                                 </tr>
-                                <?php endif; endforeach; ?>
+                                <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>

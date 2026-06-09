@@ -164,7 +164,22 @@ $wc_product_fields = array(
         ),
     ),
     
-    // 2. Downloads Tab
+    // 4. Specifications Tab
+    array('key' => 'field_wc_tab_specs', 'label' => __('Specifications', 'erdu-wp'), 'type' => 'tab'),
+    array(
+        'key'        => 'field_wc_prod_specifications',
+        'label'      => __('Technical Specifications', 'erdu-wp'),
+        'name'       => 'product_specifications',
+        'type'       => 'repeater',
+        'instructions' => __('These will be displayed in the Specifications tab (Section 2) instead of WooCommerce Attributes.', 'erdu-wp'),
+        'button_label' => __('Add Specification', 'erdu-wp'),
+        'sub_fields' => array(
+            array('key' => 'field_spec_name', 'label' => __('Spec Name', 'erdu-wp'), 'name' => 'spec_name', 'type' => 'text', 'placeholder' => 'e.g. Model Number'),
+            array('key' => 'field_spec_value', 'label' => __('Spec Value', 'erdu-wp'), 'name' => 'spec_value', 'type' => 'text', 'placeholder' => 'e.g. TLD-1200'),
+        ),
+    ),
+    
+    // 5. Downloads Tab
     array('key' => 'field_wc_tab_dl', 'label' => __('Downloads', 'erdu-wp'), 'type' => 'tab'),
     array(
         'key'        => 'field_wc_prod_downloads',
