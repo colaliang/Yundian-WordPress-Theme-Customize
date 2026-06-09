@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.22] - 2026-06-09
+### Changed
+- Refactored the `erdu-gallery-container` to completely bypass WooCommerce's native gallery markup (Option B).
+- Implemented a custom gallery layout with a dedicated left thumbnail rail and a responsive main image stage using Tailwind CSS.
+- Added a custom Vanilla JS image switcher for thumbnail clicks.
+- Added a full-screen Lightbox feature (Option 2) for the main image with smooth fade transitions, accessible via click, and dismissible via background click or the Escape key.
+
 ## [1.6.21] - 2026-06-09
 ### Fixed
 - Removed the border styles (`border border-gray-100`) from the `erdu-gallery-container` for a cleaner visual look.

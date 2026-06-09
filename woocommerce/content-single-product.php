@@ -38,149 +38,121 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
             <!-- Media Container (Gallery or Video) -->
             <div class="w-full flex-grow flex flex-col relative">
-                <!-- Main Product Gallery -->
-                <div id="erdu-gallery-container" class="w-full bg-white rounded-2xl shadow-sm overflow-hidden relative" style="aspect-ratio: 1/1;">
-                    <!-- WooCommerce Gallery Wrapper Override -->
-                    <style>
-                        #erdu-gallery-container {
-                            padding: 1rem;
-                            background: #ffffff;
-                            box-sizing: border-box;
-                        }
-                        #erdu-gallery-container .woocommerce-product-gallery {
-                            width: 100% !important;
-                            height: 100% !important;
-                            float: none !important;
-                            margin: 0 !important;
-                            position: relative;
-                            box-sizing: border-box !important;
-                            opacity: 1 !important;
-                        }
-                        /* When thumbs exist, reserve left space */
-                        #erdu-gallery-container.erdu-gallery-has-thumbs .woocommerce-product-gallery {
-                            padding-left: 80px !important;
-                        }
-                        
-                        /* Main Image Viewport */
-                        #erdu-gallery-container .flex-viewport {
-                            width: 100% !important;
-                            height: 100% !important;
-                            margin: 0 !important;
-                            border-radius: 1rem;
-                            overflow: hidden;
-                            background: #f3f4f6; /* Subtle stage background */
-                        }
-                        #erdu-gallery-container .woocommerce-product-gallery__wrapper {
-                            width: 100% !important;
-                            height: 100% !important;
-                            margin: 0 !important;
-                            transition: none !important; /* Prevent native animation glitches */
-                        }
-                        #erdu-gallery-container .woocommerce-product-gallery__image,
-                        #erdu-gallery-container .woocommerce-product-gallery__image a {
-                            width: 100% !important;
-                            height: 100% !important;
-                            display: flex !important;
-                            align-items: center !important;
-                            justify-content: center !important;
-                            background: #f3f4f6;
-                        }
-                        #erdu-gallery-container .woocommerce-product-gallery__wrapper img {
-                            display: block !important;
-                            width: 100% !important;
-                            height: 100% !important;
-                            object-fit: contain !important; /* Full image without cropping */
-                            margin: 0 !important;
-                            padding: 0.75rem;
-                            box-shadow: none !important;
-                        }
+                <!-- Main Product Gallery (Option B Custom Implementation) -->
+                <?php
+                global $product;
+                $main_image_id = $product->get_image_id();
+                $attachment_ids = $product->get_gallery_image_ids();
+                $all_image_ids = array_filter(array_merge(array($main_image_id), $attachment_ids));
+                ?>
+                <div id="erdu-gallery-container" class="w-full bg-white rounded-2xl shadow-sm overflow-hidden relative flex flex-row p-4 gap-4" style="aspect-ratio: 1/1;">
+                    
+                    <?php if (count($all_image_ids) > 1) : ?>
+                    <!-- Thumbnail Rail -->
+                    <div class="w-16 lg:w-[64px] flex-shrink-0 flex flex-col gap-3 overflow-y-auto erdu-hide-scrollbar" style="scrollbar-width: none;">
+                        <style>
+                            .erdu-hide-scrollbar::-webkit-scrollbar { display: none; }
+                        </style>
+                        <?php foreach ($all_image_ids as $index => $img_id) : 
+                            $thumb_url = wp_get_attachment_image_url($img_id, 'gallery_thumbnail');
+                            $full_url = wp_get_attachment_image_url($img_id, 'full');
+                        ?>
+                            <img src="<?php echo esc_url($thumb_url); ?>" 
+                                 data-full="<?php echo esc_url($full_url); ?>" 
+                                 class="erdu-gallery-thumb w-full aspect-square rounded-xl object-cover border-2 cursor-pointer transition-all <?php echo $index === 0 ? 'border-[#f97316] opacity-100' : 'border-gray-200 opacity-70 hover:opacity-100 hover:border-gray-400'; ?>" 
+                                 alt="<?php echo esc_attr(get_post_meta($img_id, '_wp_attachment_image_alt', true)); ?>" />
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
 
-                        /* Thumbnail Rail */
-                        #erdu-gallery-container.erdu-gallery-has-thumbs .flex-control-nav.flex-control-thumbs {
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            width: 64px !important; /* Fixed 64px width */
-                            height: 100% !important;
-                            margin: 0 !important;
-                            padding: 0 !important;
-                            list-style: none !important;
-                            display: flex !important;
-                            flex-direction: column !important;
-                            gap: 0.75rem !important;
-                            overflow-y: auto !important;
-                            overflow-x: hidden !important;
-                            scrollbar-width: none;
-                        }
-                        #erdu-gallery-container.erdu-gallery-has-thumbs .flex-control-nav.flex-control-thumbs::-webkit-scrollbar {
-                            display: none;
-                        }
-                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs li {
-                            width: 64px !important;
-                            min-width: 64px !important;
-                            margin: 0 !important;
-                            float: none !important;
-                        }
-                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs img {
-                            display: block !important;
-                            width: 64px !important;
-                            height: 64px !important;
-                            aspect-ratio: 1 / 1 !important;
-                            object-fit: cover !important;
-                            background: #f9fafb;
-                            border-radius: 0.75rem !important;
-                            border: 2px solid #e5e7eb !important;
-                            cursor: pointer !important;
-                            opacity: 0.7; /* Muted non-active state */
-                            transition: border-color 0.2s, opacity 0.2s;
-                        }
-                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs img:hover,
-                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs img.flex-active {
-                            opacity: 1;
-                            border-color: #f97316 !important; /* Hermes Orange highlight */
-                        }
+                    <!-- Main Image Stage -->
+                    <div class="flex-grow bg-[#f3f4f6] rounded-xl overflow-hidden relative flex items-center justify-center cursor-zoom-in group" id="erdu-main-image-wrapper">
+                        <?php 
+                        $first_full = !empty($all_image_ids) ? wp_get_attachment_image_url(array_values($all_image_ids)[0], 'full') : wc_placeholder_img_src('full'); 
+                        ?>
+                        <img src="<?php echo esc_url($first_full); ?>" id="erdu-main-image" class="w-full h-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.02]" alt="<?php echo esc_attr($product->get_name()); ?>" />
                         
-                        /* Hide native zoom trigger */
-                        #erdu-gallery-container .woocommerce-product-gallery__trigger {
-                            display: none !important;
-                        }
+                        <!-- Lightbox Hint Icon -->
+                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-sm p-2 rounded-full text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
 
-                        /* Mobile Adjustments */
-                        @media (max-width: 1023px) {
-                            #erdu-gallery-container {
-                                padding: 0.75rem;
-                            }
-                            #erdu-gallery-container.erdu-gallery-has-thumbs .woocommerce-product-gallery {
-                                padding-left: 64px !important; /* Slightly tighter on mobile */
-                            }
-                            #erdu-gallery-container.erdu-gallery-has-thumbs .flex-control-nav.flex-control-thumbs,
-                            #erdu-gallery-container .flex-control-nav.flex-control-thumbs li,
-                            #erdu-gallery-container .flex-control-nav.flex-control-thumbs img {
-                                width: 56px !important;
-                            }
-                            #erdu-gallery-container .flex-control-nav.flex-control-thumbs img {
-                                height: 56px !important;
-                                border-radius: 0.625rem !important;
-                            }
-                        }
-                    </style>
-                    <?php 
-                    // Display standard WooCommerce product gallery
-                    woocommerce_show_product_images(); 
-                    ?>
+                <!-- Lightbox Overlay -->
+                <div id="erdu-lightbox" class="fixed inset-0 z-[99999] bg-black/95 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+                    <button id="erdu-lightbox-close" class="absolute top-6 right-8 text-white/70 hover:text-white text-5xl transition-colors cursor-pointer z-50">&times;</button>
+                    <img id="erdu-lightbox-img" src="" class="max-w-[95vw] max-h-[90vh] object-contain select-none" />
                 </div>
 
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const galleryContainer = document.getElementById('erdu-gallery-container');
-                    if (!galleryContainer) {
-                        return;
-                    }
+                    const mainImage = document.getElementById('erdu-main-image');
+                    const thumbs = document.querySelectorAll('.erdu-gallery-thumb');
+                    const lightbox = document.getElementById('erdu-lightbox');
+                    const lightboxImg = document.getElementById('erdu-lightbox-img');
+                    const lightboxClose = document.getElementById('erdu-lightbox-close');
 
-                    // DOM Check: Add class if thumbnails exist to reserve left rail space
-                    const thumbs = galleryContainer.querySelector('.flex-control-nav.flex-control-thumbs');
-                    if (thumbs && thumbs.children.length > 0) {
-                        galleryContainer.classList.add('erdu-gallery-has-thumbs');
+                    if (!galleryContainer || !mainImage) return;
+
+                    // Thumbnail Click Logic
+                    thumbs.forEach(thumb => {
+                        thumb.addEventListener('click', function() {
+                            // Update main image
+                            const fullUrl = this.getAttribute('data-full');
+                            mainImage.src = fullUrl;
+
+                            // Update thumbnail states
+                            thumbs.forEach(t => {
+                                t.classList.remove('border-[#f97316]', 'opacity-100');
+                                t.classList.add('border-gray-200', 'opacity-70');
+                            });
+                            this.classList.remove('border-gray-200', 'opacity-70');
+                            this.classList.add('border-[#f97316]', 'opacity-100');
+                        });
+                    });
+
+                    // Lightbox Open
+                    if (lightbox && lightboxImg) {
+                        mainImage.parentElement.addEventListener('click', function() {
+                            lightboxImg.src = mainImage.src;
+                            lightbox.classList.remove('hidden');
+                            lightbox.classList.add('flex');
+                            // Small delay to allow display:flex to apply before animating opacity
+                            setTimeout(() => {
+                                lightbox.classList.remove('opacity-0');
+                                lightbox.classList.add('opacity-100');
+                            }, 10);
+                            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                        });
+
+                        // Lightbox Close
+                        const closeLightbox = () => {
+                            lightbox.classList.remove('opacity-100');
+                            lightbox.classList.add('opacity-0');
+                            setTimeout(() => {
+                                lightbox.classList.add('hidden');
+                                lightbox.classList.remove('flex');
+                                document.body.style.overflow = '';
+                            }, 300); // match duration-300
+                        };
+
+                        lightboxClose.addEventListener('click', closeLightbox);
+                        lightbox.addEventListener('click', function(e) {
+                            if (e.target === lightbox || e.target === lightboxImg) {
+                                closeLightbox();
+                            }
+                        });
+                        
+                        // Close on Escape key
+                        document.addEventListener('keydown', function(e) {
+                            if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                                closeLightbox();
+                            }
+                        });
                     }
                 });
                 </script>
