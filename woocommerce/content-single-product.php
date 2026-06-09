@@ -50,34 +50,38 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             height: 100% !important;
                             float: none !important;
                             margin: 0 !important;
-                            display: flex !important;
-                            flex-direction: row-reverse !important;
-                            gap: 1rem !important;
-                            opacity: 1 !important; /* Prevent WooCommerce JS from hiding it */
+                            position: relative;
+                            opacity: 1 !important;
                         }
-                        /* Main Image */
+                        #erdu-gallery-container.erdu-gallery-has-thumbs .woocommerce-product-gallery {
+                            padding-left: 80px;
+                        }
+                        #erdu-gallery-container .flex-viewport,
                         #erdu-gallery-container .woocommerce-product-gallery__wrapper {
-                            width: calc(100% - 64px - 1rem) !important;
+                            width: 100% !important;
                             height: 100% !important;
                             margin: 0 !important;
                             transition: none !important;
                         }
-                        #erdu-gallery-container .woocommerce-product-gallery__image {
+                        #erdu-gallery-container .woocommerce-product-gallery__image,
+                        #erdu-gallery-container .woocommerce-product-gallery__image a {
                             width: 100% !important;
                             height: 100% !important;
                             display: flex !important;
                             align-items: center !important;
                             justify-content: center !important;
                         }
-                        #erdu-gallery-container .woocommerce-product-gallery__image img {
+                        #erdu-gallery-container .woocommerce-product-gallery__wrapper img {
                             width: 100% !important;
                             height: 100% !important;
-                            object-fit: contain !important; /* Changed from cover to contain to prevent cropping */
+                            object-fit: contain !important;
                             margin: 0 !important;
                             box-shadow: none !important;
                         }
-                        /* Thumbnails */
-                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs {
+                        #erdu-gallery-container.erdu-gallery-has-thumbs .flex-control-nav.flex-control-thumbs {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
                             width: 64px !important;
                             height: 100% !important;
                             margin: 0 !important;
@@ -86,17 +90,18 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             flex-direction: column !important;
                             gap: 0.5rem !important;
                             overflow-y: auto !important;
-                            position: static !important;
+                            overflow-x: hidden !important;
                         }
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs li {
-                            width: 100% !important;
-                            height: auto !important;
+                            width: 64px !important;
+                            margin: 0 !important;
                             float: none !important;
                         }
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs img {
-                            width: 100% !important;
-                            height: auto !important;
-                            aspect-ratio: 1/1 !important;
+                            display: block !important;
+                            width: 64px !important;
+                            height: 64px !important;
+                            aspect-ratio: 1 / 1 !important;
                             object-fit: cover !important;
                             border-radius: 0.5rem !important;
                             border: 2px solid transparent !important;
@@ -107,11 +112,9 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs img:hover,
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs img.flex-active {
                             opacity: 1;
-                            border-color: #ea580c !important; /* orange-600 */
+                            border-color: #ea580c !important;
                         }
-                        
-                        /* Hide WooCommerce Magnifier Glass */
-                        .woocommerce-product-gallery__trigger {
+                        #erdu-gallery-container .woocommerce-product-gallery__trigger {
                             display: none !important;
                         }
                     </style>
@@ -120,6 +123,19 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     woocommerce_show_product_images(); 
                     ?>
                 </div>
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const galleryContainer = document.getElementById('erdu-gallery-container');
+                    if (!galleryContainer) {
+                        return;
+                    }
+
+                    const thumbs = galleryContainer.querySelector('.flex-control-nav.flex-control-thumbs');
+                    if (thumbs && thumbs.children.length > 0) {
+                        galleryContainer.classList.add('erdu-gallery-has-thumbs');
+                    }
+                });
+                </script>
 
                 <?php if ($has_video) : ?>
                 <!-- Video Container (Hidden by default) -->

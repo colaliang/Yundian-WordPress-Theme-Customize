@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.18] - 2026-06-09
+### Fixed
+- Reworked `erdu-gallery-container` to keep WooCommerce native gallery switching while removing the conflicting flex-based layout override.
+- Fixed the left thumbnail rail to render at a stable `64px` width and only reserve space when thumbnails actually exist.
+- Improved the main product image area so the active image keeps full visibility during gallery switching.
+
 ## [1.6.17] - 2026-06-09
 ### Fixed
 - Fixed WooCommerce product gallery image transition issues where the main image might not show completely or correctly upon thumbnail click.
