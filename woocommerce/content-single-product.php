@@ -63,7 +63,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     
                     <?php if (count($all_image_ids) > 1) : ?>
                     <!-- Thumbnail Rail -->
-                    <div class="w-16 lg:w-[64px] flex-shrink-0 flex flex-col gap-1 overflow-y-auto erdu-hide-scrollbar" style="scrollbar-width: none;">
+                    <div class="w-16 lg:w-[64px] flex-shrink-0 flex flex-col gap-2 overflow-y-auto erdu-hide-scrollbar" style="scrollbar-width: none;">
                         <style>
                             .erdu-hide-scrollbar::-webkit-scrollbar { display: none; }
                         </style>
@@ -74,7 +74,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             <img src="<?php echo esc_url($thumb_url); ?>" 
                                  data-full="<?php echo esc_url($full_url); ?>" 
                                  data-index="<?php echo $index; ?>"
-                                 class="erdu-gallery-thumb w-full aspect-square rounded-xl object-cover border-2 cursor-pointer transition-all <?php echo $index === 0 ? 'border-[#f97316] opacity-100' : 'border-gray-200 opacity-70 hover:opacity-100 hover:border-gray-400'; ?>" 
+                                 class="erdu-gallery-thumb w-full aspect-square rounded-lg object-cover border-2 cursor-pointer transition-all <?php echo $index === 0 ? 'border-[#f97316] opacity-100' : 'border-transparent opacity-70 hover:opacity-100 hover:border-gray-300'; ?>" 
                                  alt="<?php echo esc_attr(get_post_meta($img_id, '_wp_attachment_image_alt', true)); ?>" />
                         <?php endforeach; ?>
                     </div>
@@ -96,21 +96,57 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     </div>
                 </div>
 
-                <!-- Lightbox Overlay -->
-                <div id="erdu-lightbox" class="fixed inset-0 z-[99999] bg-black/95 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-sm">
-                    <button id="erdu-lightbox-close" class="absolute top-6 right-8 text-white/70 hover:text-white text-5xl transition-colors cursor-pointer z-50">&times;</button>
+                <!-- Lightbox Overlay (Alibaba Style) -->
+                <div id="erdu-lightbox" class="fixed inset-0 z-[99999] bg-[#111111] hidden flex-col opacity-0 transition-opacity duration-300">
                     
-                    <!-- Prev Button -->
-                    <button id="erdu-lightbox-prev" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl md:text-6xl transition-colors z-50 hidden">
-                        &#8249;
-                    </button>
-                    
-                    <img id="erdu-lightbox-img" src="" class="max-w-[90vw] max-h-[90vh] object-contain select-none transition-opacity duration-200" />
-                    
-                    <!-- Next Button -->
-                    <button id="erdu-lightbox-next" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-4xl md:text-6xl transition-colors z-50 hidden">
-                        &#8250;
-                    </button>
+                    <!-- Header -->
+                    <div class="h-16 flex items-center justify-between px-6 flex-shrink-0">
+                        <div class="w-10"></div> <!-- Spacer for center alignment -->
+                        <div class="text-gray-400 text-sm font-medium tracking-widest">
+                            <span id="erdu-lightbox-current">1</span> / <span id="erdu-lightbox-total"><?php echo count($all_image_ids); ?></span>
+                        </div>
+                        <button id="erdu-lightbox-close" class="text-gray-400 hover:text-white transition-colors cursor-pointer p-2">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="flex-grow flex flex-row items-center justify-center max-w-[1400px] mx-auto w-full px-4 pb-8 gap-8">
+                        
+                        <?php if (count($all_image_ids) > 1) : ?>
+                        <!-- Lightbox Thumbnails -->
+                        <div class="w-[80px] flex-shrink-0 flex flex-col gap-2 overflow-y-auto erdu-hide-scrollbar h-full max-h-[80vh] py-4" style="scrollbar-width: none;">
+                            <?php foreach ($all_image_ids as $index => $img_id) : 
+                                $thumb_url = wp_get_attachment_image_url($img_id, 'gallery_thumbnail');
+                                $full_url = wp_get_attachment_image_url($img_id, 'full');
+                            ?>
+                                <img src="<?php echo esc_url($thumb_url); ?>" 
+                                     data-full="<?php echo esc_url($full_url); ?>" 
+                                     data-index="<?php echo $index; ?>"
+                                     class="erdu-lightbox-thumb w-full aspect-square rounded-lg object-cover border-2 cursor-pointer transition-all <?php echo $index === 0 ? 'border-[#f97316] opacity-100' : 'border-transparent opacity-60 hover:opacity-100 hover:border-gray-500'; ?>" 
+                                     alt="<?php echo esc_attr(get_post_meta($img_id, '_wp_attachment_image_alt', true)); ?>" />
+                            <?php endforeach; ?>
+                        </div>
+                        <?php endif; ?>
+
+                        <!-- Lightbox Main Image -->
+                        <div class="flex-grow relative h-full flex items-center justify-center bg-transparent group" id="erdu-lightbox-img-wrapper">
+                            
+                            <!-- Prev Button -->
+                            <button id="erdu-lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/40 hover:bg-black/80 rounded-full text-white flex items-center justify-center transition-all z-50 hidden opacity-0 group-hover:opacity-100 cursor-pointer">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            
+                            <div class="bg-white rounded-xl p-4 md:p-8 w-full h-full flex items-center justify-center max-w-[900px] max-h-[900px] shadow-2xl">
+                                <img id="erdu-lightbox-img" src="" class="max-w-full max-h-full object-contain select-none transition-opacity duration-200" />
+                            </div>
+                            
+                            <!-- Next Button -->
+                            <button id="erdu-lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/40 hover:bg-black/80 rounded-full text-white flex items-center justify-center transition-all z-50 hidden opacity-0 group-hover:opacity-100 cursor-pointer">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <script>
@@ -118,11 +154,14 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     const galleryContainer = document.getElementById('erdu-gallery-container');
                     const mainImage = document.getElementById('erdu-main-image');
                     const thumbs = Array.from(document.querySelectorAll('.erdu-gallery-thumb'));
+                    
                     const lightbox = document.getElementById('erdu-lightbox');
                     const lightboxImg = document.getElementById('erdu-lightbox-img');
                     const lightboxClose = document.getElementById('erdu-lightbox-close');
                     const lightboxPrev = document.getElementById('erdu-lightbox-prev');
                     const lightboxNext = document.getElementById('erdu-lightbox-next');
+                    const lightboxCurrent = document.getElementById('erdu-lightbox-current');
+                    const lightboxThumbs = Array.from(document.querySelectorAll('.erdu-lightbox-thumb'));
 
                     if (!galleryContainer || !mainImage) return;
 
@@ -133,12 +172,12 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         mainImage.src = fullUrl;
                         mainImage.setAttribute('data-current-index', index);
 
-                        // Update thumbnail states
+                        // Update thumbnail states (Page)
                         thumbs.forEach(t => {
                             t.classList.remove('border-[#f97316]', 'opacity-100');
-                            t.classList.add('border-gray-200', 'opacity-70');
+                            t.classList.add('border-transparent', 'opacity-70');
                         });
-                        thumb.classList.remove('border-gray-200', 'opacity-70');
+                        thumb.classList.remove('border-transparent', 'opacity-70');
                         thumb.classList.add('border-[#f97316]', 'opacity-100');
                     };
 
@@ -151,10 +190,29 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     // Lightbox Open
                     if (lightbox && lightboxImg) {
                         const updateLightboxNav = () => {
-                            if (thumbs.length <= 1) return;
                             const currentIndex = parseInt(mainImage.getAttribute('data-current-index') || '0', 10);
-                            lightboxPrev.classList.toggle('hidden', currentIndex <= 0);
-                            lightboxNext.classList.toggle('hidden', currentIndex >= thumbs.length - 1);
+                            
+                            // Update counter
+                            if (lightboxCurrent) lightboxCurrent.textContent = currentIndex + 1;
+
+                            // Update prev/next buttons
+                            if (thumbs.length > 1) {
+                                lightboxPrev.classList.toggle('hidden', currentIndex <= 0);
+                                lightboxNext.classList.toggle('hidden', currentIndex >= thumbs.length - 1);
+                            }
+
+                            // Update Lightbox Thumbnails state
+                            lightboxThumbs.forEach((lt, i) => {
+                                if (i === currentIndex) {
+                                    lt.classList.remove('border-transparent', 'opacity-60');
+                                    lt.classList.add('border-[#f97316]', 'opacity-100');
+                                    // Scroll into view
+                                    lt.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                } else {
+                                    lt.classList.remove('border-[#f97316]', 'opacity-100');
+                                    lt.classList.add('border-transparent', 'opacity-60');
+                                }
+                            });
                         };
 
                         const changeLightboxImage = (newIndex) => {
@@ -194,13 +252,23 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         };
 
                         lightboxClose.addEventListener('click', closeLightbox);
+                        
+                        // Close on backdrop click (but not when clicking the image wrapper content itself)
                         lightbox.addEventListener('click', function(e) {
-                            if (e.target === lightbox || e.target === lightboxImg) {
+                            if (e.target === lightbox || e.target.closest('#erdu-lightbox-img-wrapper') === e.target) {
                                 closeLightbox();
                             }
                         });
 
-                        // Lightbox Navigation
+                        // Lightbox Thumbnail Clicks
+                        lightboxThumbs.forEach(lt => {
+                            lt.addEventListener('click', function() {
+                                const index = parseInt(this.getAttribute('data-index'), 10);
+                                changeLightboxImage(index);
+                            });
+                        });
+
+                        // Lightbox Navigation Buttons
                         lightboxPrev.addEventListener('click', (e) => {
                             e.stopPropagation();
                             const currentIndex = parseInt(mainImage.getAttribute('data-current-index') || '0', 10);
@@ -233,7 +301,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
                 <?php if ($has_video) : ?>
                 <!-- Video Container (Hidden by default) -->
-                <div id="erdu-video-container" class="hidden w-full bg-black rounded-2xl overflow-hidden shadow-sm relative" style="aspect-ratio: 1/1;">
+                <div id="erdu-video-container" class="hidden flex-grow bg-black rounded-xl overflow-hidden shadow-sm relative max-w-[800px] w-full" style="aspect-ratio: 1/1;">
                     <?php 
                     $is_youtube = strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false;
                     $is_vimeo = strpos($video_url, 'vimeo.com') !== false;
@@ -262,11 +330,11 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             <?php if ($has_video) : ?>
             <!-- Media Switcher (Photos / Video) -->
             <div class="flex justify-center mt-6">
-                <div class="inline-flex bg-gray-100 rounded-lg p-1">
-                    <button id="btn-show-photos" class="px-6 py-2 rounded-md text-sm font-bold bg-white text-gray-900 shadow-sm transition-all">
+                <div class="flex items-center justify-center gap-2 bg-[#f4f4f4] rounded-lg h-[34px] px-1 py-1">
+                    <button id="btn-show-photos" class="flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors bg-white text-black font-bold shadow-sm">
                         Photos
                     </button>
-                    <button id="btn-show-video" class="px-6 py-2 rounded-md text-sm font-bold text-gray-500 hover:text-gray-900 transition-all">
+                    <button id="btn-show-video" class="flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors text-black font-normal hover:bg-white/50 hover:text-black hover:font-bold">
                         Video
                     </button>
                 </div>
@@ -285,10 +353,8 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         galleryContainer.classList.remove('hidden');
                         videoContainer.classList.add('hidden');
                         // Update Button Styles
-                        btnPhotos.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
-                        btnPhotos.classList.remove('text-gray-500');
-                        btnVideo.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
-                        btnVideo.classList.add('text-gray-500');
+                        btnPhotos.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors bg-white text-black font-bold shadow-sm";
+                        btnVideo.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors text-black font-normal hover:bg-white/50 hover:text-black hover:font-bold";
                         
                         // Pause video if playing
                         const videoEl = videoContainer.querySelector('video');
@@ -300,10 +366,8 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         videoContainer.classList.remove('hidden');
                         galleryContainer.classList.add('hidden');
                         // Update Button Styles
-                        btnVideo.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
-                        btnVideo.classList.remove('text-gray-500');
-                        btnPhotos.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
-                        btnPhotos.classList.add('text-gray-500');
+                        btnVideo.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors bg-white text-black font-bold shadow-sm";
+                        btnPhotos.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors text-black font-normal hover:bg-white/50 hover:text-black hover:font-bold";
                     });
                 }
             });

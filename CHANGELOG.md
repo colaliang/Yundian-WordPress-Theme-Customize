@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.25] - 2026-06-09
+### Changed
+- Lightbox UI overhaul: implemented Alibaba-style fullscreen layout with left-side thumbnail rail, center main image, and dark (#111111) background.
+- Refined Gallery active thumbnail: changed selection border to be cleaner (`border-transparent` -> `border-[#f97316]`, removing padding gaps).
+- Synced Video Container sizing (`max-w-[800px] w-full flex-grow`) to perfectly match the Main Image Stage layout.
+- Optimized "Photos/Video" toggle button styles using precise Tailwind equivalents to match the target design exactly.
+
 ## [1.6.24] - 2026-06-09
 ### Fixed
 - Enforced a `1:1` aspect ratio and a `max-width: 800px` directly on the main image stage (`#erdu-main-image-wrapper`) to ensure perfect square dimensions, instead of applying it to the outer gallery container.
