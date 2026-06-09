@@ -25,10 +25,22 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('product-split-wrapper erdu-container py-12', $product); ?>>
     
-    <div class="flex flex-col lg:flex-row gap-12 xl:gap-16">
+    <!-- SECTION 1: Gallery (Left) & Info (Right) -->
+    <div class="flex flex-col lg:flex-row gap-12 xl:gap-16 mb-16">
         
-        <!-- Left Column: Content & Accordion -->
-        <div class="w-full lg:w-1/2 lg:sticky lg:top-24 self-start">
+        <!-- Left Column: Gallery -->
+        <div class="w-full lg:w-1/2">
+            <!-- Main Product Gallery -->
+            <div class="bg-white rounded-2xl p-2 lg:p-8 shadow-sm border border-gray-100">
+                <?php 
+                // Display standard WooCommerce product gallery
+                woocommerce_show_product_images(); 
+                ?>
+            </div>
+        </div>
+
+        <!-- Right Column: Product Info -->
+        <div class="w-full lg:w-1/2 self-start lg:sticky lg:top-24">
             
             <!-- Breadcrumbs -->
             <?php
@@ -78,7 +90,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             <?php endif; ?>
 
             <!-- Action Buttons (Inquire & WhatsApp) -->
-            <div class="flex flex-col sm:flex-row items-center gap-4 mb-8 pb-8 border-b border-gray-100">
+            <div class="flex flex-col sm:flex-row items-center gap-4">
                 <?php
                 $inquiry_link = erdu_get_page_url('contact');
                 $url = add_query_arg('product', urlencode($product->get_name()), $inquiry_link);
@@ -101,15 +113,13 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 <?php endif; ?>
             </div>
             
-            <!-- Specification Badge -->
-            <div class="mb-6">
-                <span class="inline-flex items-center justify-center bg-orange-50 text-orange-700 rounded-full px-4 py-1 text-sm font-bold border border-orange-100 shadow-sm cursor-default">
-                    Specification
-                </span>
-            </div>
-            
-            <!-- Horizontal Tabs -->
-            <div class="product-tabs-container">
+        </div>
+        
+    </div>
+
+    <!-- SECTION 2: Horizontal Tabs (Bottom) -->
+    <div class="product-tabs-section w-full border-t border-gray-200 pt-12">
+        <div class="product-tabs-container max-w-5xl mx-auto">
                 <!-- Tab Navigation -->
                 <div class="flex flex-wrap border-b border-gray-200 mb-6 gap-x-8 gap-y-4">
                     <?php 
@@ -214,32 +224,8 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
                 </div>
             </div>
-            
-            <!-- Inquiry CTA Below Accordion -->
-            <div class="mt-8">
-                <?php
-                $inquiry_link = erdu_get_page_url('contact');
-                $url = add_query_arg('product', urlencode($product->get_name()), $inquiry_link);
-                ?>
-                <a href="<?php echo esc_url($url); ?>" class="flex items-center justify-center w-full bg-gray-900 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg shadow-md hover:shadow-lg">
-                    <?php esc_html_e('Inquire Now', 'erdu-wp'); ?>
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
-            </div>
 
         </div>
-
-        <!-- Right Column: Gallery -->
-        <div class="w-full lg:w-1/2">
-            <!-- Main Product Gallery -->
-            <div class="bg-white rounded-2xl p-2 lg:p-8 shadow-sm border border-gray-100">
-                <?php 
-                // Display standard WooCommerce product gallery
-                woocommerce_show_product_images(); 
-                ?>
-            </div>
-        </div>
-        
     </div>
 
 </div>

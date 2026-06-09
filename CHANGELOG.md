@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.5] - 2026-06-08
+### Changed
+- **Major Layout Overhaul (Single Product)**:
+  - **Section 1**: Swapped the columns. The main product gallery is now firmly on the **left side** (Standard WooCommerce behavior), while the core product info (Title, Price, SKU, Short Description, Action Buttons) is neatly organized on the **right side**.
+  - **Section 2**: Moved the horizontal Tab Layout (Description, Features, Specs, Downloads) completely out of the split-column view. It now spans horizontally below Section 1, creating a more traditional, spacious, and readable bottom-heavy product detail experience.
+- Completely removed redundant duplicate CTA button from the bottom of the page.
+
 ## [1.6.4] - 2026-06-08
 ### Changed
 - Refactored the single product accordion layout into a clean, horizontal Tabbed layout (Description, Features, Specs, Downloads) for better readability.
