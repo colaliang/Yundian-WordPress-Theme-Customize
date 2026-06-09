@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.19] - 2026-06-09
+### Fixed
+- Refined `erdu-gallery-container` toward an Alibaba-style layout with a more stable left thumbnail rail and a cleaner main image stage.
+- Improved thumbnail card styling, active-state visibility, and reserved spacing behavior for products with gallery images.
+- Preserved WooCommerce native gallery switching while polishing the visual presentation for desktop and mobile.
+
 ## [1.6.18] - 2026-06-09
 ### Fixed
 - Reworked `erdu-gallery-container` to keep WooCommerce native gallery switching while removing the conflicting flex-based layout override.

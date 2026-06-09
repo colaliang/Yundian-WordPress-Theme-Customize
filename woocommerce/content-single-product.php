@@ -44,6 +44,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     <style>
                         #erdu-gallery-container {
                             padding: 1rem;
+                            background: #ffffff;
                         }
                         #erdu-gallery-container .woocommerce-product-gallery {
                             width: 100% !important;
@@ -51,12 +52,20 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             float: none !important;
                             margin: 0 !important;
                             position: relative;
+                            box-sizing: border-box !important;
                             opacity: 1 !important;
                         }
                         #erdu-gallery-container.erdu-gallery-has-thumbs .woocommerce-product-gallery {
-                            padding-left: 80px;
+                            padding-left: 80px !important;
                         }
-                        #erdu-gallery-container .flex-viewport,
+                        #erdu-gallery-container .flex-viewport {
+                            width: 100% !important;
+                            height: 100% !important;
+                            margin: 0 !important;
+                            border-radius: 1rem;
+                            overflow: hidden;
+                            background: #f3f4f6;
+                        }
                         #erdu-gallery-container .woocommerce-product-gallery__wrapper {
                             width: 100% !important;
                             height: 100% !important;
@@ -70,12 +79,15 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             display: flex !important;
                             align-items: center !important;
                             justify-content: center !important;
+                            background: #f3f4f6;
                         }
                         #erdu-gallery-container .woocommerce-product-gallery__wrapper img {
+                            display: block !important;
                             width: 100% !important;
                             height: 100% !important;
                             object-fit: contain !important;
                             margin: 0 !important;
+                            padding: 0.75rem;
                             box-shadow: none !important;
                         }
                         #erdu-gallery-container.erdu-gallery-has-thumbs .flex-control-nav.flex-control-thumbs {
@@ -86,14 +98,20 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             height: 100% !important;
                             margin: 0 !important;
                             padding: 0 !important;
+                            list-style: none !important;
                             display: flex !important;
                             flex-direction: column !important;
-                            gap: 0.5rem !important;
+                            gap: 0.75rem !important;
                             overflow-y: auto !important;
                             overflow-x: hidden !important;
+                            scrollbar-width: none;
+                        }
+                        #erdu-gallery-container.erdu-gallery-has-thumbs .flex-control-nav.flex-control-thumbs::-webkit-scrollbar {
+                            display: none;
                         }
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs li {
                             width: 64px !important;
+                            min-width: 64px !important;
                             margin: 0 !important;
                             float: none !important;
                         }
@@ -103,19 +121,38 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             height: 64px !important;
                             aspect-ratio: 1 / 1 !important;
                             object-fit: cover !important;
-                            border-radius: 0.5rem !important;
-                            border: 2px solid transparent !important;
+                            background: #f9fafb;
+                            border-radius: 0.75rem !important;
+                            border: 2px solid #e5e7eb !important;
                             cursor: pointer !important;
-                            opacity: 0.6;
-                            transition: opacity 0.2s, border-color 0.2s;
+                            opacity: 0.9;
+                            transition: border-color 0.2s, box-shadow 0.2s, opacity 0.2s;
                         }
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs img:hover,
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs img.flex-active {
                             opacity: 1;
-                            border-color: #ea580c !important;
+                            border-color: #111827 !important;
+                            box-shadow: 0 0 0 1px #111827;
                         }
                         #erdu-gallery-container .woocommerce-product-gallery__trigger {
                             display: none !important;
+                        }
+                        @media (max-width: 1023px) {
+                            #erdu-gallery-container {
+                                padding: 0.75rem;
+                            }
+                            #erdu-gallery-container.erdu-gallery-has-thumbs .woocommerce-product-gallery {
+                                padding-left: 72px !important;
+                            }
+                            #erdu-gallery-container.erdu-gallery-has-thumbs .flex-control-nav.flex-control-thumbs,
+                            #erdu-gallery-container .flex-control-nav.flex-control-thumbs li,
+                            #erdu-gallery-container .flex-control-nav.flex-control-thumbs img {
+                                width: 56px !important;
+                            }
+                            #erdu-gallery-container .flex-control-nav.flex-control-thumbs img {
+                                height: 56px !important;
+                                border-radius: 0.625rem !important;
+                            }
                         }
                     </style>
                     <?php 
@@ -131,9 +168,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     }
 
                     const thumbs = galleryContainer.querySelector('.flex-control-nav.flex-control-thumbs');
-                    if (thumbs && thumbs.children.length > 0) {
-                        galleryContainer.classList.add('erdu-gallery-has-thumbs');
-                    }
+                    galleryContainer.classList.toggle('erdu-gallery-has-thumbs', !!(thumbs && thumbs.children.length > 0));
                 });
                 </script>
 
