@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.29] - 2026-06-09
+### Changed
+- Refined "Inquire Now" and "WhatsApp" buttons on Product page to perfectly match the Header "Get A Quote" button styling.
+  - Changed `rounded-lg` to `rounded` (matching Header's tighter border-radius).
+  - Ensured exactly `128px` width and `48px` height.
+  - Updated font weight from `font-bold` to `font-medium`.
+
 ## [1.6.28] - 2026-06-09
 ### Fixed
 - Fixed broken gallery layout caused by uncompiled Tailwind classes. Restored the original layout classes (`lg:flex-row`, `lg:w-1/2`) and added an internal `<style>` block to cleanly handle mobile and tablet responsive layouts (`<= 1279px`) using custom CSS rules (`erdu-product-columns`, `erdu-gallery-layout`, etc.).
