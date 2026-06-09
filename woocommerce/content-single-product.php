@@ -59,11 +59,11 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 $attachment_ids = $product->get_gallery_image_ids();
                 $all_image_ids = array_filter(array_merge(array($main_image_id), $attachment_ids));
                 ?>
-                <div id="erdu-gallery-container" class="w-full relative flex flex-row gap-4" style="aspect-ratio: 1/1;">
+                <div id="erdu-gallery-container" class="w-full relative flex flex-row gap-4">
                     
                     <?php if (count($all_image_ids) > 1) : ?>
                     <!-- Thumbnail Rail -->
-                    <div class="w-16 lg:w-[64px] flex-shrink-0 flex flex-col gap-3 overflow-y-auto erdu-hide-scrollbar" style="scrollbar-width: none;">
+                    <div class="w-16 lg:w-[64px] flex-shrink-0 flex flex-col gap-1 overflow-y-auto erdu-hide-scrollbar" style="scrollbar-width: none;">
                         <style>
                             .erdu-hide-scrollbar::-webkit-scrollbar { display: none; }
                         </style>
@@ -81,7 +81,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     <?php endif; ?>
 
                     <!-- Main Image Stage -->
-                    <div class="flex-grow bg-[#f3f4f6] rounded-xl overflow-hidden relative flex items-center justify-center cursor-zoom-in group" id="erdu-main-image-wrapper">
+                    <div class="flex-grow bg-[#f3f4f6] rounded-xl overflow-hidden relative flex items-center justify-center cursor-zoom-in group max-w-[800px] w-full" style="aspect-ratio: 1/1;" id="erdu-main-image-wrapper">
                         <?php 
                         $first_full = !empty($all_image_ids) ? wp_get_attachment_image_url(array_values($all_image_ids)[0], 'full') : wc_placeholder_img_src('full'); 
                         ?>

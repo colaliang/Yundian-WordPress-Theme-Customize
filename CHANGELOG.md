@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.24] - 2026-06-09
+### Fixed
+- Enforced a `1:1` aspect ratio and a `max-width: 800px` directly on the main image stage (`#erdu-main-image-wrapper`) to ensure perfect square dimensions, instead of applying it to the outer gallery container.
+
 ## [1.6.23] - 2026-06-09
 ### Changed
 - Moved breadcrumbs to the top left of the product page, and tied visibility to the Layout Settings (`erdu_show_breadcrumb`).
