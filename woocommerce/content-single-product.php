@@ -42,6 +42,9 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 <div id="erdu-gallery-container" class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative" style="aspect-ratio: 1/1;">
                     <!-- WooCommerce Gallery Wrapper Override -->
                     <style>
+                        #erdu-gallery-container {
+                            padding: 1rem;
+                        }
                         #erdu-gallery-container .woocommerce-product-gallery {
                             width: 100% !important;
                             height: 100% !important;
@@ -50,12 +53,14 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             display: flex !important;
                             flex-direction: row-reverse !important;
                             gap: 1rem !important;
+                            opacity: 1 !important; /* Prevent WooCommerce JS from hiding it */
                         }
                         /* Main Image */
                         #erdu-gallery-container .woocommerce-product-gallery__wrapper {
                             width: calc(100% - 64px - 1rem) !important;
                             height: 100% !important;
                             margin: 0 !important;
+                            transition: none !important;
                         }
                         #erdu-gallery-container .woocommerce-product-gallery__image {
                             width: 100% !important;
@@ -67,7 +72,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         #erdu-gallery-container .woocommerce-product-gallery__image img {
                             width: 100% !important;
                             height: 100% !important;
-                            object-fit: cover !important;
+                            object-fit: contain !important; /* Changed from cover to contain to prevent cropping */
                             margin: 0 !important;
                             box-shadow: none !important;
                         }
@@ -96,9 +101,18 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             border-radius: 0.5rem !important;
                             border: 2px solid transparent !important;
                             cursor: pointer !important;
+                            opacity: 0.6;
+                            transition: opacity 0.2s, border-color 0.2s;
                         }
+                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs img:hover,
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs img.flex-active {
+                            opacity: 1;
                             border-color: #ea580c !important; /* orange-600 */
+                        }
+                        
+                        /* Hide WooCommerce Magnifier Glass */
+                        .woocommerce-product-gallery__trigger {
+                            display: none !important;
                         }
                     </style>
                     <?php 

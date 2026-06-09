@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.17] - 2026-06-09
+### Fixed
+- Fixed WooCommerce product gallery image transition issues where the main image might not show completely or correctly upon thumbnail click.
+- Changed main gallery image `object-fit` from `cover` to `contain` to ensure the entire product image is always visible without being cropped.
+- Added padding to the gallery container and improved thumbnail visual states (opacity on hover/active).
+- Hid the default WooCommerce gallery magnifier trigger icon to maintain a clean UI.
+
 ## [1.6.16] - 2026-06-09
 ### Fixed
 - Adjusted WooCommerce gallery thumbnails width from 100px to 64px to leave more space for the main product image.
