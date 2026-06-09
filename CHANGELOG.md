@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.9] - 2026-06-09
+### Changed
+- Synced the global `.erdu-container` `max-width` to `1760px` to match Wellmax's maximum content width on large screens (previously set to `2560px`).
+
 ## [1.6.8] - 2026-06-09
 ### Added
 - Added visual display for WooCommerce Product Attributes in Section 1 (below Key Attributes grid). Attributes (like "Emitting Color", "Lamp Power(W)") are now rendered as a styled pill list, giving users a clear view of available options without adding a shopping cart flow.
