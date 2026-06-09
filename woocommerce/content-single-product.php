@@ -47,9 +47,13 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             height: 100% !important;
                             float: none !important;
                             margin: 0 !important;
+                            display: flex !important;
+                            flex-direction: row-reverse !important;
+                            gap: 1rem !important;
                         }
+                        /* Main Image */
                         #erdu-gallery-container .woocommerce-product-gallery__wrapper {
-                            width: 100% !important;
+                            width: calc(100% - 100px - 1rem) !important;
                             height: 100% !important;
                             margin: 0 !important;
                         }
@@ -66,6 +70,35 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             object-fit: cover !important;
                             margin: 0 !important;
                             box-shadow: none !important;
+                        }
+                        /* Thumbnails */
+                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs {
+                            width: 100px !important;
+                            height: 100% !important;
+                            margin: 0 !important;
+                            padding: 0 !important;
+                            display: flex !important;
+                            flex-direction: column !important;
+                            gap: 0.5rem !important;
+                            overflow-y: auto !important;
+                            position: static !important;
+                        }
+                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs li {
+                            width: 100% !important;
+                            height: auto !important;
+                            float: none !important;
+                        }
+                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs img {
+                            width: 100% !important;
+                            height: auto !important;
+                            aspect-ratio: 1/1 !important;
+                            object-fit: cover !important;
+                            border-radius: 0.5rem !important;
+                            border: 2px solid transparent !important;
+                            cursor: pointer !important;
+                        }
+                        #erdu-gallery-container .flex-control-nav.flex-control-thumbs img.flex-active {
+                            border-color: #ea580c !important; /* orange-600 */
                         }
                     </style>
                     <?php 
@@ -104,7 +137,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
             <?php if ($has_video) : ?>
             <!-- Media Switcher (Photos / Video) -->
-            <div class="flex justify-center mt-auto pt-6">
+            <div class="flex justify-center mt-6">
                 <div class="inline-flex bg-gray-100 rounded-lg p-1">
                     <button id="btn-show-photos" class="px-6 py-2 rounded-md text-sm font-bold bg-white text-gray-900 shadow-sm transition-all">
                         Photos
@@ -340,7 +373,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             </div>
 
             <!-- Content Blocks -->
-            <div class="erdu-content-blocks bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-10 space-y-16">
+            <div class="erdu-content-blocks bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-10 space-y-16 max-w-full overflow-hidden">
                 
                 <!-- Block: Description -->
                 <?php if ($has_desc) : ?>

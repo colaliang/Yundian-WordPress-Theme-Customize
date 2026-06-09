@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.15] - 2026-06-09
+### Fixed
+- Re-architected Section 1 WooCommerce Gallery: Separated thumbnails to a vertical column on the left side while the main image stays on the right, fully occupying the remaining space. This perfectly matches the requested design where thumbnails are smaller and stacked vertically.
+- Forced Section 2 content blocks to expand to full width by removing implicit internal boundaries.
+
 ## [1.6.14] - 2026-06-09
 ### Fixed
 - Forced the main WooCommerce product gallery to fill 100% of the left column container (Section 1), matching the exact dimensions and `aspect-ratio: 1/1` behavior of the video container. This resolves the issue where the native WooCommerce gallery was not expanding fully.
