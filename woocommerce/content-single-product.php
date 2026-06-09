@@ -40,10 +40,10 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
     ?>
 
     <!-- SECTION 1: Gallery (Left) & Info (Right) -->
-    <div class="flex flex-col lg:flex-row gap-12 xl:gap-16 mb-16">
+    <div class="flex flex-col xl:flex-row gap-12 xl:gap-16 mb-16">
         
         <!-- Left Column: Gallery & Video -->
-        <div class="w-full lg:w-1/2 flex flex-col">
+        <div class="w-full xl:w-1/2 flex flex-col">
             
             <?php 
             $video_url = function_exists('get_field') ? get_field('product_video_url') : ''; 
@@ -59,11 +59,11 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 $attachment_ids = $product->get_gallery_image_ids();
                 $all_image_ids = array_filter(array_merge(array($main_image_id), $attachment_ids));
                 ?>
-                <div id="erdu-gallery-container" class="w-full relative flex flex-row gap-4">
+                <div id="erdu-gallery-container" class="w-full relative flex flex-col-reverse lg:flex-row gap-4">
                     
-                    <?php if (count($all_image_ids) > 1) : ?>
+                    <?php if (count($all_image_ids) > 1 || $has_video) : ?>
                     <!-- Thumbnail Rail -->
-                    <div class="w-16 lg:w-[64px] flex-shrink-0 flex flex-col gap-2 overflow-y-auto erdu-hide-scrollbar" style="scrollbar-width: none;">
+                    <div class="w-full lg:w-[64px] flex-shrink-0 flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-y-auto erdu-hide-scrollbar" style="scrollbar-width: none;">
                         <style>
                             .erdu-hide-scrollbar::-webkit-scrollbar { display: none; }
                         </style>
@@ -74,25 +74,68 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             <img src="<?php echo esc_url($thumb_url); ?>" 
                                  data-full="<?php echo esc_url($full_url); ?>" 
                                  data-index="<?php echo $index; ?>"
-                                 class="erdu-gallery-thumb w-full aspect-square rounded-lg object-cover border-2 cursor-pointer transition-all <?php echo $index === 0 ? 'border-[#f97316] opacity-100' : 'border-transparent opacity-70 hover:opacity-100 hover:border-gray-300'; ?>" 
+                                 class="erdu-gallery-thumb w-16 lg:w-full flex-shrink-0 aspect-square rounded-lg object-cover border-2 cursor-pointer transition-all <?php echo $index === 0 ? 'border-[#f97316] opacity-100' : 'border-transparent opacity-70 hover:opacity-100 hover:border-gray-300'; ?>" 
                                  alt="<?php echo esc_attr(get_post_meta($img_id, '_wp_attachment_image_alt', true)); ?>" />
                         <?php endforeach; ?>
+
+                        <?php if ($has_video) : 
+                            // Add Video Thumbnail
+                            $video_bg = !empty($all_image_ids) ? wp_get_attachment_image_url(array_values($all_image_ids)[0], 'gallery_thumbnail') : wc_placeholder_img_src('gallery_thumbnail');
+                        ?>
+                            <div id="erdu-video-thumb" class="erdu-video-thumb w-16 lg:w-full flex-shrink-0 aspect-square rounded-lg object-cover border-2 border-transparent opacity-70 hover:opacity-100 hover:border-gray-300 cursor-pointer transition-all relative flex items-center justify-center overflow-hidden">
+                                <img src="<?php echo esc_url($video_bg); ?>" class="absolute inset-0 w-full h-full object-cover opacity-50" />
+                                <div class="absolute inset-0 bg-black/30"></div>
+                                <svg class="w-8 h-8 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <?php endif; ?>
 
-                    <!-- Main Image Stage -->
-                    <div class="flex-grow bg-[#f3f4f6] rounded-xl overflow-hidden relative flex items-center justify-center cursor-zoom-in group max-w-[800px] w-full" style="aspect-ratio: 1/1;" id="erdu-main-image-wrapper">
-                        <?php 
-                        $first_full = !empty($all_image_ids) ? wp_get_attachment_image_url(array_values($all_image_ids)[0], 'full') : wc_placeholder_img_src('full'); 
-                        ?>
-                        <img src="<?php echo esc_url($first_full); ?>" id="erdu-main-image" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]" alt="<?php echo esc_attr($product->get_name()); ?>" data-current-index="0" />
+                    <!-- Main Image Stage Area -->
+                    <div class="flex-grow relative flex items-center justify-center max-w-[800px] w-full mx-auto" style="aspect-ratio: 1/1;">
                         
-                        <!-- Lightbox Hint Icon -->
-                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-sm p-2 rounded-full text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                            </svg>
+                        <!-- Image Wrapper -->
+                        <div class="w-full h-full bg-[#f3f4f6] rounded-xl overflow-hidden relative flex items-center justify-center cursor-zoom-in group" id="erdu-main-image-wrapper">
+                            <?php 
+                            $first_full = !empty($all_image_ids) ? wp_get_attachment_image_url(array_values($all_image_ids)[0], 'full') : wc_placeholder_img_src('full'); 
+                            ?>
+                            <img src="<?php echo esc_url($first_full); ?>" id="erdu-main-image" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]" alt="<?php echo esc_attr($product->get_name()); ?>" data-current-index="0" />
+                            
+                            <!-- Lightbox Hint Icon -->
+                            <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-sm p-2 rounded-full text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                                </svg>
+                            </div>
                         </div>
+
+                        <?php if ($has_video) : ?>
+                        <!-- Video Container (Hidden by default) -->
+                        <div id="erdu-video-container" class="hidden absolute inset-0 w-full h-full bg-black rounded-xl overflow-hidden shadow-sm z-10">
+                            <?php 
+                            $is_youtube = strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false;
+                            $is_vimeo = strpos($video_url, 'vimeo.com') !== false;
+                            
+                            if ($is_youtube) : 
+                                // Extract YouTube Video ID
+                                $yt_id = '';
+                                if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/\s]{11})%i', $video_url, $match)) {
+                                    $yt_id = $match[1];
+                                }
+                                $embed_url = $yt_id ? 'https://www.youtube.com/embed/' . $yt_id . '?rel=0&showinfo=0' : $video_url;
+                            ?>
+                                <iframe src="<?php echo esc_url($embed_url); ?>" title="YouTube video player" class="absolute inset-0 w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <?php elseif ($is_vimeo) : ?>
+                                <iframe src="<?php echo esc_url($video_url); ?>" class="absolute inset-0 w-full h-full border-0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <?php else : ?>
+                                <video controls class="absolute inset-0 w-full h-full object-contain bg-black">
+                                    <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            <?php endif; ?>
+                        </div>
+                        <?php endif; ?>
+
                     </div>
                 </div>
 
@@ -153,8 +196,14 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 document.addEventListener('DOMContentLoaded', function() {
                     const galleryContainer = document.getElementById('erdu-gallery-container');
                     const mainImage = document.getElementById('erdu-main-image');
+                    const mainImageWrapper = document.getElementById('erdu-main-image-wrapper');
                     const thumbs = Array.from(document.querySelectorAll('.erdu-gallery-thumb'));
                     
+                    const videoContainer = document.getElementById('erdu-video-container');
+                    const videoThumb = document.getElementById('erdu-video-thumb');
+                    const btnPhotos = document.getElementById('btn-show-photos');
+                    const btnVideo = document.getElementById('btn-show-video');
+
                     const lightbox = document.getElementById('erdu-lightbox');
                     const lightboxImg = document.getElementById('erdu-lightbox-img');
                     const lightboxClose = document.getElementById('erdu-lightbox-close');
@@ -165,8 +214,64 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
                     if (!galleryContainer || !mainImage) return;
 
+                    // Helper: Show Photos
+                    const showPhotos = () => {
+                        if (videoContainer) videoContainer.classList.add('hidden');
+                        if (mainImageWrapper) mainImageWrapper.classList.remove('hidden');
+                        
+                        if (btnPhotos && btnVideo) {
+                            btnPhotos.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors bg-white text-black font-bold shadow-sm";
+                            btnVideo.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors text-black font-normal hover:bg-white/50 hover:text-black hover:font-bold";
+                        }
+
+                        if (videoThumb) {
+                            videoThumb.classList.remove('border-[#f97316]', 'opacity-100');
+                            videoThumb.classList.add('border-transparent', 'opacity-70');
+                        }
+                        
+                        // Pause video if playing
+                        if (videoContainer) {
+                            const videoEl = videoContainer.querySelector('video');
+                            if(videoEl) videoEl.pause();
+                        }
+                    };
+
+                    // Helper: Show Video
+                    const showVideo = () => {
+                        if (videoContainer) videoContainer.classList.remove('hidden');
+                        if (mainImageWrapper) mainImageWrapper.classList.add('hidden');
+                        
+                        if (btnPhotos && btnVideo) {
+                            btnVideo.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors bg-white text-black font-bold shadow-sm";
+                            btnPhotos.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors text-black font-normal hover:bg-white/50 hover:text-black hover:font-bold";
+                        }
+
+                        // Reset photo thumbnails highlight
+                        thumbs.forEach(t => {
+                            t.classList.remove('border-[#f97316]', 'opacity-100');
+                            t.classList.add('border-transparent', 'opacity-70');
+                        });
+
+                        // Highlight video thumb
+                        if (videoThumb) {
+                            videoThumb.classList.remove('border-transparent', 'opacity-70');
+                            videoThumb.classList.add('border-[#f97316]', 'opacity-100');
+                        }
+                    };
+
+                    // Event Listeners for Media Switchers
+                    if(btnPhotos && btnVideo) {
+                        btnPhotos.addEventListener('click', showPhotos);
+                        btnVideo.addEventListener('click', showVideo);
+                    }
+                    if (videoThumb) {
+                        videoThumb.addEventListener('click', showVideo);
+                    }
+
                     // Update main image logic
                     const updateMainImage = (thumb) => {
+                        showPhotos(); // Ensure we are in photos mode
+                        
                         const fullUrl = thumb.getAttribute('data-full');
                         const index = thumb.getAttribute('data-index');
                         mainImage.src = fullUrl;
@@ -189,6 +294,9 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
                     // Lightbox Open
                     if (lightbox && lightboxImg) {
+                        // Move lightbox to body to avoid being constrained by parent stacking contexts
+                        document.body.appendChild(lightbox);
+
                         const updateLightboxNav = () => {
                             const currentIndex = parseInt(mainImage.getAttribute('data-current-index') || '0', 10);
                             
@@ -298,33 +406,6 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     }
                 });
                 </script>
-
-                <?php if ($has_video) : ?>
-                <!-- Video Container (Hidden by default) -->
-                <div id="erdu-video-container" class="hidden flex-grow bg-black rounded-xl overflow-hidden shadow-sm relative max-w-[800px] w-full" style="aspect-ratio: 1/1;">
-                    <?php 
-                    $is_youtube = strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false;
-                    $is_vimeo = strpos($video_url, 'vimeo.com') !== false;
-                    
-                    if ($is_youtube) : 
-                        // Extract YouTube Video ID
-                        $yt_id = '';
-                        if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/\s]{11})%i', $video_url, $match)) {
-                            $yt_id = $match[1];
-                        }
-                        $embed_url = $yt_id ? 'https://www.youtube.com/embed/' . $yt_id . '?rel=0&showinfo=0' : $video_url;
-                    ?>
-                        <iframe src="<?php echo esc_url($embed_url); ?>" title="YouTube video player" class="absolute inset-0 w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <?php elseif ($is_vimeo) : ?>
-                        <iframe src="<?php echo esc_url($video_url); ?>" class="absolute inset-0 w-full h-full border-0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    <?php else : ?>
-                        <video controls class="absolute inset-0 w-full h-full object-contain bg-black">
-                            <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    <?php endif; ?>
-                </div>
-                <?php endif; ?>
             </div>
 
             <?php if ($has_video) : ?>
@@ -339,45 +420,12 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     </button>
                 </div>
             </div>
-            
-            <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const btnPhotos = document.getElementById('btn-show-photos');
-                const btnVideo = document.getElementById('btn-show-video');
-                const galleryContainer = document.getElementById('erdu-gallery-container');
-                const videoContainer = document.getElementById('erdu-video-container');
-
-                if(btnPhotos && btnVideo) {
-                    btnPhotos.addEventListener('click', () => {
-                        // Show Photos
-                        galleryContainer.classList.remove('hidden');
-                        videoContainer.classList.add('hidden');
-                        // Update Button Styles
-                        btnPhotos.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors bg-white text-black font-bold shadow-sm";
-                        btnVideo.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors text-black font-normal hover:bg-white/50 hover:text-black hover:font-bold";
-                        
-                        // Pause video if playing
-                        const videoEl = videoContainer.querySelector('video');
-                        if(videoEl) videoEl.pause();
-                    });
-
-                    btnVideo.addEventListener('click', () => {
-                        // Show Video
-                        videoContainer.classList.remove('hidden');
-                        galleryContainer.classList.add('hidden');
-                        // Update Button Styles
-                        btnVideo.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors bg-white text-black font-bold shadow-sm";
-                        btnPhotos.className = "flex items-center justify-center px-2 py-1 rounded-md text-sm transition-colors text-black font-normal hover:bg-white/50 hover:text-black hover:font-bold";
-                    });
-                }
-            });
-            </script>
             <?php endif; ?>
 
         </div>
 
         <!-- Right Column: Product Info -->
-        <div class="w-full lg:w-1/2 self-start lg:sticky lg:top-24">
+        <div class="w-full xl:w-1/2 self-start xl:sticky xl:top-24">
             
             <!-- Title & Subtitle -->
             <h1 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 leading-tight">
@@ -428,7 +476,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             <!-- Key Attributes Grid -->
             <?php if (function_exists('have_rows') && have_rows('product_key_attributes')) : ?>
                 <div class="mb-8">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4"><?php esc_html_e('Key attributes', 'erdu-wp'); ?></h3>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4"><?php esc_html_e('Key Attributes', 'erdu-wp'); ?></h3>
                     <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-8">
                             <?php while (have_rows('product_key_attributes')) : the_row(); 

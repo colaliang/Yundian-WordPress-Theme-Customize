@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.26] - 2026-06-09
+### Fixed
+- Improved mobile/tablet layout responsiveness by moving the split breakpoint from `lg` (1024px) to `xl` (1280px), ensuring the Gallery gets full width on tablets.
+- Added a video thumbnail automatically to the thumbnail rail when a video is configured, allowing users to toggle via thumbnail click.
+- Fixed Video Switcher behavior: switching to Video now keeps the thumbnail rail visible on the left and overlays the video seamlessly in the main image stage.
+- Fixed Lightbox scope limitation: forced lightbox to append to `document.body` via JS to ensure it always renders globally as a fullscreen overlay without parent CSS context interference.
+
 ## [1.6.25] - 2026-06-09
 ### Changed
 - Lightbox UI overhaul: implemented Alibaba-style fullscreen layout with left-side thumbnail rail, center main image, and dark (#111111) background.
