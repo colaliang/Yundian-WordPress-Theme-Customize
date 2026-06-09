@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.13] - 2026-06-09
+### Changed
+- Refactored Section 2 from a traditional "Tab Switcher" into a "Vertical Flow Landing Page" style.
+  - All content blocks (Description, Features, Specs, Downloads) are now stacked vertically and fully visible by default.
+  - Replaced the tab Javascript with a modern "Sticky Navigation Menu" combined with an Intersection Observer.
+  - Clicking a nav link smoothly scrolls to the corresponding section, and the nav link automatically highlights based on the user's scroll position.
+
 ## [1.6.12] - 2026-06-09
 ### Changed
 - Added "Technical Specifications" as an independent ACF repeater field inside "Product Landing Page Data", decoupling it from WooCommerce native attributes. The Section 2 "Specs" tab now cleanly renders this custom repeater data as a table.

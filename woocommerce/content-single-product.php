@@ -271,150 +271,177 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
         
     </div>
 
-    <!-- SECTION 2: Horizontal Tabs (Bottom) -->
+    <!-- SECTION 2: Vertical Flow Content (Bottom) -->
     <div class="product-tabs-section w-full border-t border-gray-200 pt-12">
         <div class="product-tabs-container w-full mx-auto">
-                <!-- Tab Navigation -->
-                <div class="flex flex-wrap border-b border-gray-200 mb-6 gap-x-8 gap-y-4">
-                    <?php 
-                    $content = get_the_content(); 
-                    $has_desc = trim(strip_tags($content));
-                    $has_features = function_exists('have_rows') && have_rows('product_features');
-                    $has_specs = function_exists('have_rows') && have_rows('product_specifications');
-                    $has_downloads = function_exists('have_rows') && have_rows('product_downloads');
-                    
-                    $first_tab_active = false;
-                    ?>
-                    
+            <?php 
+            $content = get_the_content(); 
+            $has_desc = trim(strip_tags($content));
+            $has_features = function_exists('have_rows') && have_rows('product_features');
+            $has_specs = function_exists('have_rows') && have_rows('product_specifications');
+            $has_downloads = function_exists('have_rows') && have_rows('product_downloads');
+            ?>
+
+            <!-- Sticky Navigation Menu -->
+            <div class="sticky top-[70px] z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
+                <nav class="flex overflow-x-auto hide-scrollbar gap-x-8 gap-y-4 py-4" aria-label="Product Sections">
                     <?php if ($has_desc) : ?>
-                    <button class="erdu-tab-btn pb-3 text-lg font-bold border-b-2 border-orange-600 text-orange-600 transition-colors" data-target="tab-desc">
+                    <a href="#section-desc" class="erdu-nav-link whitespace-nowrap text-lg font-bold text-gray-500 hover:text-orange-600 transition-colors">
                         <?php esc_html_e('Description', 'erdu-wp'); ?>
-                    </button>
-                    <?php $first_tab_active = true; endif; ?>
+                    </a>
+                    <?php endif; ?>
                     
                     <?php if ($has_features) : ?>
-                    <button class="erdu-tab-btn pb-3 text-lg font-bold border-b-2 <?php echo !$first_tab_active ? 'border-orange-600 text-orange-600' : 'border-transparent text-gray-500 hover:text-gray-900'; ?> transition-colors" data-target="tab-features">
+                    <a href="#section-features" class="erdu-nav-link whitespace-nowrap text-lg font-bold text-gray-500 hover:text-orange-600 transition-colors">
                         <?php esc_html_e('Features', 'erdu-wp'); ?>
-                    </button>
-                    <?php if(!$first_tab_active) $first_tab_active = true; endif; ?>
+                    </a>
+                    <?php endif; ?>
                     
                     <?php if ($has_specs) : ?>
-                    <button class="erdu-tab-btn pb-3 text-lg font-bold border-b-2 <?php echo !$first_tab_active ? 'border-orange-600 text-orange-600' : 'border-transparent text-gray-500 hover:text-gray-900'; ?> transition-colors" data-target="tab-specs">
+                    <a href="#section-specs" class="erdu-nav-link whitespace-nowrap text-lg font-bold text-gray-500 hover:text-orange-600 transition-colors">
                         <?php esc_html_e('Specs', 'erdu-wp'); ?>
-                    </button>
-                    <?php if(!$first_tab_active) $first_tab_active = true; endif; ?>
+                    </a>
+                    <?php endif; ?>
                     
                     <?php if ($has_downloads) : ?>
-                    <button class="erdu-tab-btn pb-3 text-lg font-bold border-b-2 <?php echo !$first_tab_active ? 'border-orange-600 text-orange-600' : 'border-transparent text-gray-500 hover:text-gray-900'; ?> transition-colors" data-target="tab-downloads">
+                    <a href="#section-downloads" class="erdu-nav-link whitespace-nowrap text-lg font-bold text-gray-500 hover:text-orange-600 transition-colors">
                         <?php esc_html_e('Downloads', 'erdu-wp'); ?>
-                    </button>
+                    </a>
                     <?php endif; ?>
-                </div>
+                </nav>
+            </div>
 
-                <!-- Tab Contents -->
-                <div class="erdu-tab-contents bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-8">
-                    
-                    <?php $first_pane_active = false; ?>
-                    
-                    <!-- Pane: Description -->
-                    <?php if ($has_desc) : ?>
-                    <div id="tab-desc" class="erdu-tab-pane prose prose-sm max-w-none text-base text-gray-600">
+            <!-- Content Blocks -->
+            <div class="erdu-content-blocks bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-10 space-y-16">
+                
+                <!-- Block: Description -->
+                <?php if ($has_desc) : ?>
+                <div id="section-desc" class="erdu-content-block scroll-mt-32">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100"><?php esc_html_e('Description', 'erdu-wp'); ?></h2>
+                    <div class="prose prose-lg max-w-none text-gray-600">
                         <?php echo apply_filters('the_content', $content); ?>
                     </div>
-                    <?php $first_pane_active = true; endif; ?>
+                </div>
+                <?php endif; ?>
 
-                    <!-- Pane: Product Features -->
-                    <?php if ($has_features) : ?>
-                    <div id="tab-features" class="erdu-tab-pane <?php echo $first_pane_active ? 'hidden' : ''; ?> prose prose-sm max-w-none text-base text-gray-600">
-                        <ul class="list-disc pl-5 space-y-3">
+                <!-- Block: Product Features -->
+                <?php if ($has_features) : ?>
+                <div id="section-features" class="erdu-content-block scroll-mt-32">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100"><?php esc_html_e('Features', 'erdu-wp'); ?></h2>
+                    <div class="prose prose-lg max-w-none text-gray-600">
+                        <ul class="list-disc pl-5 space-y-4">
                             <?php while (have_rows('product_features')) : the_row(); 
                                 $f_title = get_sub_field('title');
                                 $f_desc = get_sub_field('description');
                             ?>
-                                <li><strong><?php echo esc_html($f_title); ?></strong> <?php echo esc_html($f_desc); ?></li>
+                                <li><strong class="text-gray-900"><?php echo esc_html($f_title); ?></strong> - <?php echo esc_html($f_desc); ?></li>
                             <?php endwhile; ?>
                         </ul>
                     </div>
-                    <?php if(!$first_pane_active) $first_pane_active = true; endif; ?>
-                    
-                    <!-- Pane: Technical Specs -->
-                    <?php if ($has_specs) : ?>
-                    <div id="tab-specs" class="erdu-tab-pane <?php echo $first_pane_active ? 'hidden' : ''; ?> text-gray-600">
-                        <table class="w-full text-left text-sm lg:text-base border-collapse">
+                </div>
+                <?php endif; ?>
+                
+                <!-- Block: Technical Specs -->
+                <?php if ($has_specs) : ?>
+                <div id="section-specs" class="erdu-content-block scroll-mt-32">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100"><?php esc_html_e('Specifications', 'erdu-wp'); ?></h2>
+                    <div class="text-gray-600 bg-gray-50 rounded-xl p-1 overflow-hidden">
+                        <table class="w-full text-left text-base border-collapse bg-white rounded-lg">
                             <tbody class="divide-y divide-gray-100">
                                 <?php while (have_rows('product_specifications')) : the_row(); 
                                     $spec_name = get_sub_field('spec_name');
                                     $spec_value = get_sub_field('spec_value');
                                 ?>
-                                <tr>
-                                    <th class="py-3 pr-4 font-medium text-gray-500 w-1/3"><?php echo esc_html($spec_name); ?></th>
-                                    <td class="py-3 font-bold text-gray-900"><?php echo esc_html($spec_value); ?></td>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <th class="py-4 px-6 font-medium text-gray-500 w-1/3 lg:w-1/4 border-r border-gray-100"><?php echo esc_html($spec_name); ?></th>
+                                    <td class="py-4 px-6 font-bold text-gray-900"><?php echo esc_html($spec_value); ?></td>
                                 </tr>
                                 <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
-                    <?php if(!$first_pane_active) $first_pane_active = true; endif; ?>
-
-                    <!-- Pane: Downloads -->
-                    <?php if ($has_downloads) : ?>
-                    <div id="tab-downloads" class="erdu-tab-pane <?php echo $first_pane_active ? 'hidden' : ''; ?> text-gray-600">
-                        <div class="space-y-4">
-                            <?php while (have_rows('product_downloads')) : the_row(); 
-                                $title = get_sub_field('title');
-                                $file = get_sub_field('file');
-                            ?>
-                                <a href="<?php echo esc_url($file); ?>" target="_blank" class="inline-flex items-center text-base font-medium text-orange-600 hover:text-orange-800 transition-colors bg-orange-50 hover:bg-orange-100 px-5 py-3 rounded-lg w-full sm:w-auto">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                                    <?php echo esc_html($title); ?>
-                                </a>
-                            <?php endwhile; ?>
-                        </div>
-                    </div>
-                    <?php endif; ?>
-
                 </div>
-            </div>
+                <?php endif; ?>
 
+                <!-- Block: Downloads -->
+                <?php if ($has_downloads) : ?>
+                <div id="section-downloads" class="erdu-content-block scroll-mt-32">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100"><?php esc_html_e('Downloads', 'erdu-wp'); ?></h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <?php while (have_rows('product_downloads')) : the_row(); 
+                            $title = get_sub_field('title');
+                            $file = get_sub_field('file');
+                        ?>
+                            <a href="<?php echo esc_url($file); ?>" target="_blank" class="inline-flex items-center justify-between text-base font-medium text-orange-600 hover:text-orange-800 transition-all bg-orange-50 hover:bg-orange-100 border border-orange-100 px-6 py-4 rounded-xl shadow-sm hover:shadow-md">
+                                <span class="flex items-center">
+                                    <svg class="w-6 h-6 mr-3 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                    <?php echo esc_html($title); ?>
+                                </span>
+                            </a>
+                        <?php endwhile; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+            </div>
         </div>
     </div>
 
 </div>
 
-<!-- Tab JS Script -->
+<!-- Smooth Scroll & Active Nav State Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const tabBtns = document.querySelectorAll('.erdu-tab-btn');
-    const tabPanes = document.querySelectorAll('.erdu-tab-pane');
+    const navLinks = document.querySelectorAll('.erdu-nav-link');
+    const sections = document.querySelectorAll('.erdu-content-block');
     
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active classes from all buttons
-            tabBtns.forEach(b => {
-                b.classList.remove('border-orange-600', 'text-orange-600');
-                b.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-900');
-            });
+    // Smooth scrolling for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
             
-            // Add active class to clicked button
-            btn.classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-900');
-            btn.classList.add('border-orange-600', 'text-orange-600');
-            
-            // Hide all panes
-            tabPanes.forEach(pane => {
-                pane.classList.add('hidden');
-            });
-            
-            // Show target pane
-            const targetId = btn.getAttribute('data-target');
-            const targetPane = document.getElementById(targetId);
-            if(targetPane) {
-                targetPane.classList.remove('hidden');
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
         });
     });
+
+    // Intersection Observer to highlight active nav link on scroll
+    const observerOptions = {
+        root: null,
+        rootMargin: '-100px 0px -60% 0px', // Trigger slightly above center
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Remove active styling from all links
+                navLinks.forEach(link => {
+                    link.classList.remove('text-orange-600', 'border-b-2', 'border-orange-600');
+                    link.classList.add('text-gray-500');
+                });
+                
+                // Add active styling to current section's link
+                const activeId = '#' + entry.target.id;
+                const activeLink = document.querySelector(`.erdu-nav-link[href="${activeId}"]`);
+                if (activeLink) {
+                    activeLink.classList.remove('text-gray-500');
+                    activeLink.classList.add('text-orange-600', 'border-b-2', 'border-orange-600');
+                }
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 });
 </script>
-
 <?php 
 do_action('woocommerce_after_single_product'); 
 ?>
