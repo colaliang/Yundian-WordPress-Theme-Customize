@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.23] - 2026-06-09
+### Changed
+- Moved breadcrumbs to the top left of the product page, and tied visibility to the Layout Settings (`erdu_show_breadcrumb`).
+- Adjusted gallery alignment so the product image sits flush with the top of the thumbnail rail.
+- Changed thumbnail gallery interaction to trigger on hover (`mouseenter`) rather than just click.
+- Enhanced Lightbox with left/right navigation arrows and keyboard (Arrow keys) support.
+
 ## [1.6.22] - 2026-06-09
 ### Changed
 - Refactored the `erdu-gallery-container` to completely bypass WooCommerce's native gallery markup (Option B).
