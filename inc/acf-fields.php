@@ -96,6 +96,27 @@ $wc_product_fields = array(
         'default_value' => 0,
         'instructions' => __('Enable to show product SKU on the product page.', 'erdu-wp')
     ),
+    array(
+        'key' => 'field_wc_show_whatsapp', 
+        'label' => __('Show WhatsApp Button', 'erdu-wp'), 
+        'name' => 'show_whatsapp_button', 
+        'type' => 'true_false', 
+        'ui' => 1, 
+        'default_value' => 0,
+        'instructions' => __('Show a WhatsApp direct contact button next to Inquire Now.', 'erdu-wp')
+    ),
+    array(
+        'key' => 'field_wc_whatsapp_number', 
+        'label' => __('WhatsApp Number', 'erdu-wp'), 
+        'name' => 'whatsapp_number', 
+        'type' => 'text', 
+        'instructions' => __('Enter number with country code (e.g., 8613800000000)', 'erdu-wp'),
+        'conditional_logic' => array(
+            array(
+                array('field' => 'field_wc_show_whatsapp', 'operator' => '==', 'value' => '1')
+            )
+        )
+    ),
 
     // 1. Features Tab
     array('key' => 'field_wc_tab_features', 'label' => __('Features Blocks', 'erdu-wp'), 'type' => 'tab'),
@@ -111,11 +132,7 @@ $wc_product_fields = array(
         ),
     ),
     
-    // 3. Applications Tab
-    array('key' => 'field_wc_tab_apps', 'label' => __('Applications Gallery', 'erdu-wp'), 'type' => 'tab'),
-    array('key' => 'field_wc_app_gallery', 'label' => __('Application Images', 'erdu-wp'), 'name' => 'application_images', 'type' => 'gallery', 'return_format' => 'url'),
-    
-    // 4. Downloads Tab
+    // 2. Downloads Tab
     array('key' => 'field_wc_tab_dl', 'label' => __('Downloads', 'erdu-wp'), 'type' => 'tab'),
     array(
         'key'        => 'field_wc_prod_downloads',

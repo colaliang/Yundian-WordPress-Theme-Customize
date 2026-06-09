@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.3] - 2026-06-08
+### Changed
+- Removed the `Applications Gallery` feature completely from ACF and frontend, as per the new layout strategy.
+- Reordered the Accordion panels: `Description` now shows first (expanded by default), followed by `Product Features`.
+- Moved the `Inquire Now` CTA button from the bottom of the accordion to just below the Short Description.
+
+### Added
+- Added the WooCommerce standard `Short Description` (Excerpt) below the Price and SKU section.
+- Added a `WhatsApp` direct contact button next to the Inquire Now button. This button can be toggled on/off and the phone number configured globally per product via the ACF Display Options tab.
+
 ## [1.6.2] - 2026-06-08
 ### Fixed
 - Fixed product single page wrapper width to align properly with the Header (`erdu-container`) while maintaining the 50/50 split ratio.
