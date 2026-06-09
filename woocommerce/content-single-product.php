@@ -53,7 +53,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         }
                         /* Main Image */
                         #erdu-gallery-container .woocommerce-product-gallery__wrapper {
-                            width: calc(100% - 100px - 1rem) !important;
+                            width: calc(100% - 64px - 1rem) !important;
                             height: 100% !important;
                             margin: 0 !important;
                         }
@@ -73,7 +73,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                         }
                         /* Thumbnails */
                         #erdu-gallery-container .flex-control-nav.flex-control-thumbs {
-                            width: 100px !important;
+                            width: 64px !important;
                             height: 100% !important;
                             margin: 0 !important;
                             padding: 0 !important;

@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.16] - 2026-06-09
+### Fixed
+- Adjusted WooCommerce gallery thumbnails width from 100px to 64px to leave more space for the main product image.
+
 ## [1.6.15] - 2026-06-09
 ### Fixed
 - Re-architected Section 1 WooCommerce Gallery: Separated thumbnails to a vertical column on the left side while the main image stays on the right, fully occupying the remaining space. This perfectly matches the requested design where thumbnails are smaller and stacked vertically.
