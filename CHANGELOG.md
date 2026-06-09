@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.2] - 2026-06-08
+### Fixed
+- Fixed product single page wrapper width to align properly with the Header (`erdu-container`) while maintaining the 50/50 split ratio.
+- Restored the rendering logic for the `Applications Gallery` which was missing from the new split-screen layout. It now elegantly displays below the main product gallery on the right column.
+- Removed obsolete `Hero Banner` ACF fields since the top banner design was deprecated in favor of the clean Astra-style catalog.
+
+### Added
+- Added `Show SKU` and `Show Price` toggle options to the ACF Product Settings (Display Options tab).
+- Dynamically render SKU and Price above the accordion based on the new ACF toggle settings.
+
 ## [1.6.1] - 2026-06-08
 ### Changed
 - **Removed ACF Free Compatibility:** Fully committed to Advanced Custom Fields (ACF) Pro. Removed all fallback inputs and complex rendering logic for ACF Free in `inc/acf-fields.php` and `woocommerce/content-single-product.php` to streamline the codebase and data structure.

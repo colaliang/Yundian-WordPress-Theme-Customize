@@ -75,13 +75,29 @@ acf_add_local_field_group(array(
 // WooCommerce Product Fields (Landing Page Extensions)
 // ==========================================
 $wc_product_fields = array(
-    // 1. Hero Tab
-    array('key' => 'field_wc_tab_hero', 'label' => __('Hero Banner', 'erdu-wp'), 'type' => 'tab'),
+    // 0. Display Options Tab
+    array('key' => 'field_wc_tab_display', 'label' => __('Display Options', 'erdu-wp'), 'type' => 'tab'),
     array('key' => 'field_wc_prod_subtitle', 'label' => __('Product Subtitle', 'erdu-wp'), 'name' => 'product_subtitle', 'type' => 'text'),
-    array('key' => 'field_wc_hero_bg', 'label' => __('Hero Background Image', 'erdu-wp'), 'name' => 'hero_background_image', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium'),
-    array('key' => 'field_wc_hero_img', 'label' => __('Hero Product Image (Cutout)', 'erdu-wp'), 'name' => 'hero_product_image', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'medium', 'instructions' => 'Optional. Displays over the background.'),
-    
-    // 2. Features Tab
+    array(
+        'key' => 'field_wc_show_price', 
+        'label' => __('Show Price', 'erdu-wp'), 
+        'name' => 'show_product_price', 
+        'type' => 'true_false', 
+        'ui' => 1, 
+        'default_value' => 0,
+        'instructions' => __('Enable to show WooCommerce price on the product page.', 'erdu-wp')
+    ),
+    array(
+        'key' => 'field_wc_show_sku', 
+        'label' => __('Show SKU', 'erdu-wp'), 
+        'name' => 'show_product_sku', 
+        'type' => 'true_false', 
+        'ui' => 1, 
+        'default_value' => 0,
+        'instructions' => __('Enable to show product SKU on the product page.', 'erdu-wp')
+    ),
+
+    // 1. Features Tab
     array('key' => 'field_wc_tab_features', 'label' => __('Features Blocks', 'erdu-wp'), 'type' => 'tab'),
     array(
         'key'        => 'field_wc_prod_features',

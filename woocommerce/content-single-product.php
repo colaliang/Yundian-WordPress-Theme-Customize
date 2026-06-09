@@ -23,12 +23,12 @@ if (post_password_required()) {
 
 $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class('product-split-wrapper w-full max-w-[2560px] mx-auto px-4 md:px-8 lg:px-12 2xl:px-24 py-12', $product); ?>>
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class('product-split-wrapper erdu-container py-12', $product); ?>>
     
-    <div class="flex flex-col lg:flex-row gap-12 xl:gap-20">
+    <div class="flex flex-col lg:flex-row gap-12 xl:gap-16">
         
         <!-- Left Column: Content & Accordion -->
-        <div class="w-full lg:w-1/2 lg:sticky lg:top-24 self-start lg:pr-8 xl:pr-12">
+        <div class="w-full lg:w-1/2 lg:sticky lg:top-24 self-start">
             
             <!-- Breadcrumbs -->
             <?php
@@ -44,7 +44,30 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                 <?php the_title(); ?>
             </h1>
             <?php if ($subtitle) : ?>
-                <div class="text-lg text-gray-500 mb-6"><?php echo esc_html($subtitle); ?></div>
+                <div class="text-lg text-gray-500 mb-4"><?php echo esc_html($subtitle); ?></div>
+            <?php endif; ?>
+
+            <!-- SKU & Price (Conditional based on ACF toggles) -->
+            <?php 
+            $show_sku = function_exists('get_field') ? get_field('show_product_sku') : false;
+            $show_price = function_exists('get_field') ? get_field('show_product_price') : false;
+            
+            if ($show_sku || $show_price) : 
+            ?>
+            <div class="flex flex-wrap items-center gap-4 mb-6 pb-6 border-b border-gray-100">
+                <?php if ($show_sku && wc_product_sku_enabled() && ($sku = $product->get_sku())) : ?>
+                    <div class="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-md">
+                        <span class="font-medium text-gray-500 mr-1"><?php esc_html_e('SKU:', 'erdu-wp'); ?></span>
+                        <span class="font-bold text-gray-800"><?php echo esc_html($sku); ?></span>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if ($show_price && $product->get_price_html()) : ?>
+                    <div class="text-2xl font-extrabold text-orange-600">
+                        <?php echo $product->get_price_html(); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
             <?php endif; ?>
             
             <!-- Specification Badge -->
@@ -160,14 +183,33 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
         </div>
 
-        <!-- Right Column: Gallery -->
+        <!-- Right Column: Gallery & Applications -->
         <div class="w-full lg:w-1/2">
-            <div class="bg-white rounded-2xl p-2 lg:p-8 shadow-sm border border-gray-100">
+            <!-- Main Product Gallery -->
+            <div class="bg-white rounded-2xl p-2 lg:p-8 shadow-sm border border-gray-100 mb-8">
                 <?php 
-                // Display standard WooCommerce product gallery (which includes the slider functionality)
+                // Display standard WooCommerce product gallery
                 woocommerce_show_product_images(); 
                 ?>
             </div>
+
+            <!-- Application Scenarios Gallery (Below Product Gallery) -->
+            <?php 
+            $app_images = function_exists('get_field') ? get_field('application_images') : false;
+            if ($app_images) : 
+            ?>
+            <div class="bg-white rounded-2xl p-6 lg:p-8 shadow-sm border border-gray-100">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6"><?php esc_html_e('Application Scenarios', 'erdu-wp'); ?></h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <?php foreach ($app_images as $image_url) : ?>
+                        <div class="group overflow-hidden rounded-xl bg-gray-100 relative" style="aspect-ratio: 4/3;">
+                            <img src="<?php echo esc_url($image_url); ?>" alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php endif; ?>
         </div>
         
     </div>
