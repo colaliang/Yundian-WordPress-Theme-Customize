@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.4] - 2026-06-08
+### Changed
+- Refactored the single product accordion layout into a clean, horizontal Tabbed layout (Description, Features, Specs, Downloads) for better readability.
+- Cleaned up the leftover HTML skeleton of the `Applications Gallery` from the right column.
+- Fixed `Inquire Now` and `WhatsApp` button styles. Used inline colors to ensure background colors render perfectly across all environments without relying on pre-compiled Tailwind arbitrary values, and aligned them beautifully in a responsive row layout.
+
 ## [1.6.3] - 2026-06-08
 ### Changed
 - Removed the `Applications Gallery` feature completely from ACF and frontend, as per the new layout strategy.

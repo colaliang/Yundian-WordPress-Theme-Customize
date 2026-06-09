@@ -78,12 +78,12 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             <?php endif; ?>
 
             <!-- Action Buttons (Inquire & WhatsApp) -->
-            <div class="flex flex-wrap items-center gap-4 mb-8 pb-8 border-b border-gray-100">
+            <div class="flex flex-col sm:flex-row items-center gap-4 mb-8 pb-8 border-b border-gray-100">
                 <?php
                 $inquiry_link = erdu_get_page_url('contact');
                 $url = add_query_arg('product', urlencode($product->get_name()), $inquiry_link);
                 ?>
-                <a href="<?php echo esc_url($url); ?>" class="inline-flex items-center justify-center bg-gray-900 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-colors text-base shadow-sm hover:shadow-md">
+                <a href="<?php echo esc_url($url); ?>" class="w-full sm:flex-1 inline-flex items-center justify-center bg-gray-900 text-white font-bold py-3.5 px-6 rounded-lg transition-all text-base shadow-sm hover:shadow-md hover:-translate-y-0.5" style="background-color: #111827;" onmouseover="this.style.backgroundColor='#ea580c'" onmouseout="this.style.backgroundColor='#111827'">
                     <?php esc_html_e('Inquire Now', 'erdu-wp'); ?>
                 </a>
 
@@ -94,7 +94,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                     $wa_text = rawurlencode("Hi, I'm interested in " . $product->get_name());
                     $wa_url = "https://wa.me/" . preg_replace('/[^0-9]/', '', $wa_number) . "?text=" . $wa_text;
                 ?>
-                <a href="<?php echo esc_url($wa_url); ?>" target="_blank" class="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-8 rounded-lg transition-colors text-base shadow-sm hover:shadow-md">
+                <a href="<?php echo esc_url($wa_url); ?>" target="_blank" class="w-full sm:flex-1 inline-flex items-center justify-center text-white font-bold py-3.5 px-6 rounded-lg transition-all text-base shadow-sm hover:shadow-md hover:-translate-y-0.5" style="background-color: #25D366;" onmouseover="this.style.backgroundColor='#128C7E'" onmouseout="this.style.backgroundColor='#25D366'">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.122.553 4.195 1.603 6.01L.524 23.475l5.584-1.464A11.97 11.97 0 0012.031 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 22.015a9.924 9.924 0 01-5.074-1.39l-.364-.216-3.771.989.998-3.676-.237-.377a9.94 9.94 0 01-1.522-5.314c0-5.513 4.487-10 10-10 5.513 0 10 4.487 10 10s-4.487 10-10 10zm5.495-7.513c-.301-.151-1.782-.881-2.057-.981-.275-.101-.476-.151-.676.151-.2.301-.776.981-.951 1.182-.175.201-.35.226-.651.075-.301-.151-1.271-.468-2.42-1.332-.894-.672-1.498-1.503-1.673-1.804-.175-.301-.019-.464.132-.614.136-.135.301-.351.451-.526.151-.175.201-.301.301-.501.101-.201.05-.376-.025-.526-.075-.151-.676-1.628-.926-2.228-.244-.585-.492-.505-.676-.514-.175-.01-.376-.01-.576-.01s-.526.075-.801.376c-.275.301-1.052 1.027-1.052 2.505s1.077 2.905 1.227 3.105c.151.201 2.118 3.228 5.129 4.526 2.063.89 2.853.957 3.914.857 1.135-.106 3.483-1.425 3.984-2.805.501-1.38.501-2.555.351-2.805-.151-.25-.551-.401-.852-.551z"/></svg>
                     WhatsApp
                 </a>
@@ -102,38 +102,68 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             </div>
             
             <!-- Specification Badge -->
-            <div class="mb-8">
-                <span class="inline-flex items-center justify-center bg-orange-50 text-orange-700 rounded-full px-2 py-2 text-sm font-bold border border-orange-100 shadow-sm cursor-default">
+            <div class="mb-6">
+                <span class="inline-flex items-center justify-center bg-orange-50 text-orange-700 rounded-full px-4 py-1 text-sm font-bold border border-orange-100 shadow-sm cursor-default">
                     Specification
                 </span>
             </div>
             
-            <!-- Accordion -->
-            <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm" id="product-accordion">
-                
-                <!-- Panel: Description -->
-                <?php $content = get_the_content(); ?>
-                <?php if (trim(strip_tags($content))) : ?>
-                <div class="erdu-accordion-item border-b border-gray-200">
-                    <button class="erdu-accordion-header w-full flex justify-between items-center p-5 lg:p-6 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="true">
-                        <span class="text-lg">Description:</span>
-                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <!-- Horizontal Tabs -->
+            <div class="product-tabs-container">
+                <!-- Tab Navigation -->
+                <div class="flex flex-wrap border-b border-gray-200 mb-6 gap-x-8 gap-y-4">
+                    <?php 
+                    $content = get_the_content(); 
+                    $has_desc = trim(strip_tags($content));
+                    $has_features = function_exists('have_rows') && have_rows('product_features');
+                    $attributes = $product->get_attributes();
+                    $has_specs = !empty($attributes);
+                    $has_downloads = function_exists('have_rows') && have_rows('product_downloads');
+                    
+                    $first_tab_active = false;
+                    ?>
+                    
+                    <?php if ($has_desc) : ?>
+                    <button class="erdu-tab-btn pb-3 text-lg font-bold border-b-2 border-orange-600 text-orange-600 transition-colors" data-target="tab-desc">
+                        <?php esc_html_e('Description', 'erdu-wp'); ?>
                     </button>
-                    <div class="erdu-accordion-content p-5 lg:p-6 pt-0 bg-white text-gray-600 prose prose-sm max-w-none text-base">
+                    <?php $first_tab_active = true; endif; ?>
+                    
+                    <?php if ($has_features) : ?>
+                    <button class="erdu-tab-btn pb-3 text-lg font-bold border-b-2 <?php echo !$first_tab_active ? 'border-orange-600 text-orange-600' : 'border-transparent text-gray-500 hover:text-gray-900'; ?> transition-colors" data-target="tab-features">
+                        <?php esc_html_e('Features', 'erdu-wp'); ?>
+                    </button>
+                    <?php if(!$first_tab_active) $first_tab_active = true; endif; ?>
+                    
+                    <?php if ($has_specs) : ?>
+                    <button class="erdu-tab-btn pb-3 text-lg font-bold border-b-2 <?php echo !$first_tab_active ? 'border-orange-600 text-orange-600' : 'border-transparent text-gray-500 hover:text-gray-900'; ?> transition-colors" data-target="tab-specs">
+                        <?php esc_html_e('Specs', 'erdu-wp'); ?>
+                    </button>
+                    <?php if(!$first_tab_active) $first_tab_active = true; endif; ?>
+                    
+                    <?php if ($has_downloads) : ?>
+                    <button class="erdu-tab-btn pb-3 text-lg font-bold border-b-2 <?php echo !$first_tab_active ? 'border-orange-600 text-orange-600' : 'border-transparent text-gray-500 hover:text-gray-900'; ?> transition-colors" data-target="tab-downloads">
+                        <?php esc_html_e('Downloads', 'erdu-wp'); ?>
+                    </button>
+                    <?php endif; ?>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="erdu-tab-contents bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-8">
+                    
+                    <?php $first_pane_active = false; ?>
+                    
+                    <!-- Pane: Description -->
+                    <?php if ($has_desc) : ?>
+                    <div id="tab-desc" class="erdu-tab-pane prose prose-sm max-w-none text-base text-gray-600">
                         <?php echo apply_filters('the_content', $content); ?>
                     </div>
-                </div>
-                <?php endif; ?>
+                    <?php $first_pane_active = true; endif; ?>
 
-                <!-- Panel: Product Features -->
-                <?php if (function_exists('have_rows') && have_rows('product_features')) : ?>
-                <div class="erdu-accordion-item border-b border-gray-200">
-                    <button class="erdu-accordion-header w-full flex justify-between items-center p-5 lg:p-6 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="false">
-                        <span class="text-lg">Product Features:</span>
-                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="erdu-accordion-content hidden p-5 lg:p-6 pt-0 bg-white text-gray-600 prose prose-sm max-w-none">
-                        <ul class="list-disc pl-5 space-y-2 mt-2 text-base">
+                    <!-- Pane: Product Features -->
+                    <?php if ($has_features) : ?>
+                    <div id="tab-features" class="erdu-tab-pane <?php echo $first_pane_active ? 'hidden' : ''; ?> prose prose-sm max-w-none text-base text-gray-600">
+                        <ul class="list-disc pl-5 space-y-3">
                             <?php while (have_rows('product_features')) : the_row(); 
                                 $f_title = get_sub_field('title');
                                 $f_desc = get_sub_field('description');
@@ -142,20 +172,11 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             <?php endwhile; ?>
                         </ul>
                     </div>
-                </div>
-                <?php endif; ?>
-                
-                <!-- Panel: Technical Specs -->
-                <?php 
-                $attributes = $product->get_attributes();
-                if (!empty($attributes)) : 
-                ?>
-                <div class="erdu-accordion-item border-b border-gray-200">
-                    <button class="erdu-accordion-header w-full flex justify-between items-center p-5 lg:p-6 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="false">
-                        <span class="text-lg">Technical Specs:</span>
-                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="erdu-accordion-content hidden p-5 lg:p-6 pt-0 bg-white text-gray-600">
+                    <?php if(!$first_pane_active) $first_pane_active = true; endif; ?>
+                    
+                    <!-- Pane: Technical Specs -->
+                    <?php if ($has_specs) : ?>
+                    <div id="tab-specs" class="erdu-tab-pane <?php echo $first_pane_active ? 'hidden' : ''; ?> text-gray-600">
                         <table class="w-full text-left text-sm lg:text-base border-collapse">
                             <tbody class="divide-y divide-gray-100">
                                 <?php foreach ($attributes as $attribute) : 
@@ -172,32 +193,26 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <?php endif; ?>
+                    <?php if(!$first_pane_active) $first_pane_active = true; endif; ?>
 
-                <!-- Panel: Downloads -->
-                <?php if (function_exists('have_rows') && have_rows('product_downloads')) : ?>
-                <div class="erdu-accordion-item">
-                    <button class="erdu-accordion-header w-full flex justify-between items-center p-5 lg:p-6 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="false">
-                        <span class="text-lg">Downloads:</span>
-                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="erdu-accordion-content hidden p-5 lg:p-6 pt-0 bg-white text-gray-600">
+                    <!-- Pane: Downloads -->
+                    <?php if ($has_downloads) : ?>
+                    <div id="tab-downloads" class="erdu-tab-pane <?php echo $first_pane_active ? 'hidden' : ''; ?> text-gray-600">
                         <div class="space-y-4">
                             <?php while (have_rows('product_downloads')) : the_row(); 
                                 $title = get_sub_field('title');
                                 $file = get_sub_field('file');
                             ?>
-                                <a href="<?php echo esc_url($file); ?>" target="_blank" class="flex items-center text-base font-medium text-orange-600 hover:text-orange-800 transition-colors">
+                                <a href="<?php echo esc_url($file); ?>" target="_blank" class="inline-flex items-center text-base font-medium text-orange-600 hover:text-orange-800 transition-colors bg-orange-50 hover:bg-orange-100 px-5 py-3 rounded-lg w-full sm:w-auto">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                     <?php echo esc_html($title); ?>
                                 </a>
                             <?php endwhile; ?>
                         </div>
                     </div>
-                </div>
-                <?php endif; ?>
+                    <?php endif; ?>
 
+                </div>
             </div>
             
             <!-- Inquiry CTA Below Accordion -->
@@ -214,59 +229,49 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
 
         </div>
 
-        <!-- Right Column: Gallery & Applications -->
+        <!-- Right Column: Gallery -->
         <div class="w-full lg:w-1/2">
             <!-- Main Product Gallery -->
-            <div class="bg-white rounded-2xl p-2 lg:p-8 shadow-sm border border-gray-100 mb-8">
+            <div class="bg-white rounded-2xl p-2 lg:p-8 shadow-sm border border-gray-100">
                 <?php 
                 // Display standard WooCommerce product gallery
                 woocommerce_show_product_images(); 
                 ?>
             </div>
-
-            <!-- Application Scenarios Gallery (Below Product Gallery) -->
-            <?php 
-            $app_images = function_exists('get_field') ? get_field('application_images') : false;
-            if ($app_images) : 
-            ?>
-            <div class="bg-white rounded-2xl p-6 lg:p-8 shadow-sm border border-gray-100">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6"><?php esc_html_e('Application Scenarios', 'erdu-wp'); ?></h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <?php foreach ($app_images as $image_url) : ?>
-                        <div class="group overflow-hidden rounded-xl bg-gray-100 relative" style="aspect-ratio: 4/3;">
-                            <img src="<?php echo esc_url($image_url); ?>" alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <?php endif; ?>
         </div>
         
     </div>
 
 </div>
 
-<!-- Accordion JS Script -->
+<!-- Tab JS Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const headers = document.querySelectorAll('.erdu-accordion-header');
+    const tabBtns = document.querySelectorAll('.erdu-tab-btn');
+    const tabPanes = document.querySelectorAll('.erdu-tab-pane');
     
-    headers.forEach(header => {
-        header.addEventListener('click', () => {
-            const content = header.nextElementSibling;
-            const icon = header.querySelector('svg');
-            const isExpanded = header.getAttribute('aria-expanded') === 'true';
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active classes from all buttons
+            tabBtns.forEach(b => {
+                b.classList.remove('border-orange-600', 'text-orange-600');
+                b.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-900');
+            });
             
-            // Toggle current
-            if (isExpanded) {
-                header.setAttribute('aria-expanded', 'false');
-                content.classList.add('hidden');
-                icon.classList.remove('rotate-180');
-            } else {
-                header.setAttribute('aria-expanded', 'true');
-                content.classList.remove('hidden');
-                icon.classList.add('rotate-180');
+            // Add active class to clicked button
+            btn.classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-900');
+            btn.classList.add('border-orange-600', 'text-orange-600');
+            
+            // Hide all panes
+            tabPanes.forEach(pane => {
+                pane.classList.add('hidden');
+            });
+            
+            // Show target pane
+            const targetId = btn.getAttribute('data-target');
+            const targetPane = document.getElementById(targetId);
+            if(targetPane) {
+                targetPane.classList.remove('hidden');
             }
         });
     });
