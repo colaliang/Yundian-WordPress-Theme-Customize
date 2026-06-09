@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-06-08
+### Changed
+- **Redesigned Product Single Page:** Pivoted from the full-width landing page approach to a split-screen, sticky accordion layout (inspired by Astra/Wellmax custom catalog style).
+- **Left Column (Accordion):** Features breadcrumbs, product title, "Specification" badge, and an interactive Vanilla JS Accordion containing Product Features, Description, Technical Specs, and Downloads.
+- **Right Column (Gallery):** Retains the standard WooCommerce product image gallery but presented as a clean, responsive slider block on the right.
+- Injected necessary utility classes (e.g., `.lg:w-5/12`, `.lg:sticky`, `.rotate-180`) to `main.css` for the new layout.
+
 ## [1.4.0] - 2026-06-08
 ### Changed
 - **Major Architecture Change:** Replaced the traditional WooCommerce "Split Gallery/Summary" product layout with a high-impact, full-width "Landing Page" experience inspired by industry-leading B2B catalogs.

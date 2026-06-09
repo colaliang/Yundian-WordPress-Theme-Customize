@@ -1,0 +1,661 @@
+<div id="product-18800" class="ast-article-single ast-woo-product-no-review product type-product post-18800 status-publish first instock product_cat-downlights has-post-thumbnail shipping-taxable product-type-simple">
+	<div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="opacity: 1; transition: opacity 0.25s ease-in-out;"><a href="#" role="button" class="woocommerce-product-gallery__trigger" aria-haspopup="dialog" aria-controls="photoswipe-fullscreen-dialog" aria-label="View full-screen image gallery"><span aria-hidden="true"><img draggable="false" role="img" class="emoji" alt="🔍" src="https://s.w.org/images/core/emoji/17.0.2/svg/1f50d.svg"></span></a>
+	<figure class="woocommerce-product-gallery__wrapper">
+		<div data-thumb="https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-100x100.png" data-thumb-alt="DISC Ultra-thin Downlight Series" data-thumb-srcset="https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图.png 800w" data-thumb-sizes="(max-width: 100px) 100vw, 100px" class="woocommerce-product-gallery__image" style="position: relative; overflow: hidden;"><a href="https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图.png"><img width="600" height="600" src="https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-600x600.png" class="wp-post-image" alt="DISC Ultra-thin Downlight Series" data-caption="" data-src="https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图.png" data-large_image="https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图.png" data-large_image_width="800" data-large_image_height="800" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图.png 800w" sizes="(max-width: 600px) 100vw, 600px"></a><img alt="" src="https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc缩略图.png" class="zoomImg" style="position: absolute; top: 0px; left: 0px; opacity: 0; width: 800px; height: 800px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; max-width: none; max-height: none;" aria-hidden="true"></div>	</figure>
+</div>
+		<div class="wrapper animate__animated animate__fadeInUp animate__slower animate__delay-3s">
+		<div class="content-left">
+			<div class="breadcrumbs">
+				<nav class="woocommerce-breadcrumb" aria-label="Breadcrumb"><a href="/led-lights/"><img width="24px" src="/wp-content/uploads/2021/08/arrow-left.png" alt="arrow-left"><span>LED Products</span></a>&nbsp;/&nbsp;<a href="https://wellmaxgroup.com/led-lights/led-luminaire/"><span>Led Luminaires</span></a>&nbsp;/&nbsp;<a href="https://wellmaxgroup.com/led-lights/downlights/"><span>Downlights</span></a>&nbsp;/&nbsp;<span>DISC Ultra-thin Downlight Series</span></nav><h1 class="product_title entry-title">DISC Ultra-thin Downlight Series</h1><p class="price"></p>
+<div class="woocommerce-product-details__short-description">
+	<p>&nbsp;</p>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+</div>
+<div class="product_meta">
+
+	
+	
+	<span class="posted_in">Category: <a href="https://wellmaxgroup.com/product-category/led-luminaire/downlights/" rel="tag">Downlights</a></span>
+	
+	
+</div>
+			</div>
+			<div class="specification">
+				<button class="specification-title">Specification</button>
+			</div>
+
+			
+			<div class="gallery">
+				<div class="gallery-feature-description">
+										<div class="">
+					</div>
+										<div class="gallery-feature-description-slider">
+						<div id="gallery-feature-description-slider" class="slick-initialized slick-slider slick-dotted"><div class="slick-list draggable" style="padding: 0px 50px;"><div class="slick-track translate" style="opacity: 1; width: 35000px; transform: translate3d(-50px, 0px, 0px);"><div class="slick-slide slick-cloned" data-slick-index="-2" data-slick-width-factor="NaN" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图5.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="-1" data-slick-width-factor="NaN" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图6.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-current slick-active slick-center" data-slick-index="0" data-slick-width-factor="NaN" aria-hidden="false" role="tabpanel" id="slick-slide00"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc主图水印-2.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="1" data-slick-width-factor="NaN" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide01"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/产品1.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="2" data-slick-width-factor="NaN" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide02"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图2.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="3" data-slick-width-factor="NaN" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide03"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图3.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="4" data-slick-width-factor="NaN" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide04"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图4.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="5" data-slick-width-factor="NaN" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide05"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图5.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="6" data-slick-width-factor="NaN" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide06"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图6.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="7" data-slick-width-factor="NaN" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc主图水印-2.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="8" data-slick-width-factor="NaN" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/产品1.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="9" data-slick-width-factor="NaN" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图2.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="10" data-slick-width-factor="NaN" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图3.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="11" data-slick-width-factor="NaN" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图4.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned slick-center" data-slick-index="12" data-slick-width-factor="NaN" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图5.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="13" data-slick-width-factor="NaN" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图6.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div></div></div><ul class="slick-dots" style="" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 7" tabindex="0" aria-selected="true">1</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 7" tabindex="-1">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 7" tabindex="-1">3</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide03" aria-label="4 of 7" tabindex="-1">4</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control04" aria-controls="slick-slide04" aria-label="5 of 7" tabindex="-1">5</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control05" aria-controls="slick-slide05" aria-label="6 of 7" tabindex="-1">6</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control06" aria-controls="slick-slide06" aria-label="7 of 7" tabindex="-1">7</button></li></ul></div>
+						<div class="gallery-left-content d-none">
+							<p>&nbsp;</p>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+						</div>
+						<div class="gallery-right-content d-none">
+							<p>&nbsp;</p>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+						</div>
+						<div class="bottom-gallery">
+							<img src="https://wellmaxgroup.com/wp-content/uploads/2025/11/1000x64-13.png" style="height: 32px" height="32" title="bottom-gallery" alt="bottom-gallery">						</div>
+					</div>
+					<div class="gallery-story-slider d-none">
+											</div>
+				</div>
+			</div>
+			<div class="product-detail">
+				<div id="accordion-product">
+										<div class="card mb-3">
+						<div class="card-header" id="productFeatures">
+							<h5 class="mb-0">
+								<button class="btn btn-link" data-toggle="collapse" data-target="#collapseFeatures" aria-expanded="true" aria-controls="collapseFeatures">
+									<span>Product Features:</span>
+									<i class="fas fa-angle-down"></i>
+								</button>
+							</h5>
+						</div>
+						<div id="collapseFeatures" class="collapse show" aria-labelledby="productFeatures" data-parent="#accordion-product">
+							<div class="card-body">
+								<ul>
+<li>Ultra-slim, flush-mount design fits shallow ceilings — limitless installation scenarios.</li>
+<li>IP54 front protection keeps out dust, moist, and insects, suitable for semi-outdoor use.</li>
+<li>Customized driver with WELLMAX patented design ensures safe and super quick installation.</li>
+<li>4 different ways to control color temperatures for flexible use.</li>
+<li>High efficacy at 100 lm/W, ensuring bright light with lower energy use.</li>
+<li>High-quality LG materials provide durability and premium build.</li>
+</ul>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+							</div>
+						</div>
+					</div>
+													<div class="card mb-3">
+						<div class="card-header" id="productDescription">
+						<h5 class="mb-0">
+							<button class="btn btn-link" data-toggle="collapse" data-target="#collapseDescription" aria-expanded="true" aria-controls="collapseDescription">
+								<span>Description:</span>
+								<i class="fas fa-angle-up"></i>
+							</button>
+						</h5>
+						</div>
+						<div id="collapseDescription" class="collapse" aria-labelledby="productDescription" data-parent="#accordion-product">
+							<div class="card-body d-none">
+								<p><img fetchpriority="high" decoding="async" class="aligncenter size-full wp-image-18816" src="https://wellmaxgroup.com/wp-content/uploads/2025/11/lQDPJwKJOi-hb2vNAULNAhKwl67XtTokP3QI7c5MVrI7AQ_530_322.jpg" alt="DISC Ultra-thin Downlight Series" width="530" height="322" srcset="https://wellmaxgroup.com/wp-content/uploads/2025/11/lQDPJwKJOi-hb2vNAULNAhKwl67XtTokP3QI7c5MVrI7AQ_530_322.jpg 530w, https://wellmaxgroup.com/wp-content/uploads/2025/11/lQDPJwKJOi-hb2vNAULNAhKwl67XtTokP3QI7c5MVrI7AQ_530_322-500x304.jpg 500w" sizes="(max-width: 530px) 100vw, 530px"></p>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+							</div>
+						</div>
+					</div>
+													<div class="card mb-3">
+						<div class="card-header" id="productStory">
+						<h5 class="mb-0">
+							<button class="btn btn-link" data-toggle="collapse" data-target="#collapseStory" aria-expanded="true" aria-controls="collapseStory">
+								<span>The Story:</span>
+								<i class="fas fa-angle-up"></i>
+							</button>
+						</h5>
+						</div>
+						<div id="collapseStory" class="collapse" aria-labelledby="productStory" data-parent="#accordion-product">
+							<div class="card-body d-none">
+								<p><strong>DISC Ultra-thin Downlight</strong><br>
+No More Ceiling Space Limits<br>
+DISC is an ultra-thin downlight designed to solve installation challenges caused by limited ceiling space.<br>
+With an ultra-thin profile of only 13 mm, it fits easily into different ceiling types and provides greater installation flexibility. Its patented power supply ensures stable quality while supporting fast and easy installation. With an efficacy of 100 lm/W, DISC delivers bright, energy-efficient lighting with low lumen depreciation for reliable long-term performance.<br>
+Available in both single CCT and 3-in-1 CCT versions, DISC can meet different application needs with greater flexibility.<br>
+Equipped with premium LED chips from WELLMAX, DISC ensures stable quality and dependable performance.</p>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+							</div>
+						</div>
+					</div>
+							</div>
+			</div>
+		</div>
+		<div class="gallery">
+			<div class="gallery-feature-description">
+								<div class="">
+				</div>
+								<div class="gallery-feature-description-slider">
+					<div id="gallery-feature-description-slider" class="slick-initialized slick-slider slick-dotted"><div class="slick-list draggable" style="padding: 0px 50px;"><div class="slick-track translate" style="opacity: 1; width: 35000px; transform: translate3d(-1141px, 0px, 0px);"><div class="slick-slide slick-cloned" data-slick-index="-2" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图5.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="-1" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图6.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-current slick-active slick-center" data-slick-index="0" data-slick-width-factor="1" aria-hidden="false" role="tabpanel" id="slick-slide10"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc主图水印-2.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="1" data-slick-width-factor="1" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide11"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/产品1.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="2" data-slick-width-factor="1" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide12"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图2.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="3" data-slick-width-factor="1" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide13"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图3.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="4" data-slick-width-factor="1" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide14"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图4.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="5" data-slick-width-factor="1" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide15"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图5.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide" data-slick-index="6" data-slick-width-factor="1" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide16"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图6.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="7" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/Disc主图水印-2.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="8" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/产品1.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="9" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图2.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="10" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图3.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="11" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图4.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned slick-center" data-slick-index="12" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图5.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div><div class="slick-slide slick-cloned" data-slick-index="13" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-gallery-image" style="background-image: url(&quot;https://wellmaxgroup.com/wp-content/uploads/2025/11/图6.png&quot;); background-repeat: no-repeat; background-position: center center; background-size: contain; width: 100%; min-width: 800px; max-width: 800px; height: 640px; display: inline-block;"></div></div></div></div></div><ul class="slick-dots" style="" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control10" aria-controls="slick-slide10" aria-label="1 of 7" tabindex="0" aria-selected="true">1</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control11" aria-controls="slick-slide11" aria-label="2 of 7" tabindex="-1">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control12" aria-controls="slick-slide12" aria-label="3 of 7" tabindex="-1">3</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control13" aria-controls="slick-slide13" aria-label="4 of 7" tabindex="-1">4</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control14" aria-controls="slick-slide14" aria-label="5 of 7" tabindex="-1">5</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control15" aria-controls="slick-slide15" aria-label="6 of 7" tabindex="-1">6</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control16" aria-controls="slick-slide16" aria-label="7 of 7" tabindex="-1">7</button></li></ul></div>
+					<div class="gallery-left-content d-none">
+						<p>&nbsp;</p>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+					</div>
+					<div class="gallery-right-content d-none">
+						<p>&nbsp;</p>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+					</div>
+					<div class="bottom-gallery">
+						<img src="https://wellmaxgroup.com/wp-content/uploads/2025/11/1000x64-13.png" style="height: 32px" height="32" title="bottom-gallery" alt="bottom-gallery">					</div>
+				</div>
+				<div class="gallery-story-slider d-none">
+									</div>
+			</div>
+		</div>
+	</div>
+	<div class="relation-product animate__animated animate__fadeInUp animate__slower animate__delay-3s">
+		<h3>Recommendation</h3>
+		<div class="relative-product-list">
+			<!--  -->
+			<div class="products-related slick-initialized slick-slider"><button type="button" class="slick-prev pull-left slick-arrow" style=""><img src="/wp-content/uploads/2021/08/arrow-left.png" alt="arrow-left" title="arrow-left"></button><div class="slick-list draggable"><div class="slick-track translate" style="opacity: 1; width: 30000px; transform: translate3d(-1096px, 0px, 0px);"><div class="slick-slide slick-cloned" data-slick-index="-4" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/led-panel-light-backlite/" title="Backlite LED Panel Light series" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Backlite LED Panel Light series" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Panel Lights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Backlite LED Panel Light series</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>&nbsp;
+</p><div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div><p></p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/led-panel-light-backlite/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-cloned" data-slick-index="-3" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/garden-bulkhead-series/" title="Garden Bulkhead Series" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Garden Bulkhead Series" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Bulkhead Lights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Garden Bulkhead Series</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>8W-24W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/garden-bulkhead-series/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-cloned" data-slick-index="-2" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/trooper-led-street-light/" title="Trooper LED Street Light" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Trooper Street Lights" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Street Lights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Trooper LED Street Light</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>50W~200W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/trooper-led-street-light/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-cloned" data-slick-index="-1" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/sunflower-recessed-led-downlight-super-bright/" title="Sunflower Recessed LED Downlight – Super Bright" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Super Bright Recessed LED Downlight" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Downlights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Sunflower Recessed LED Downlight – Super Bright</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>6W-20W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/sunflower-recessed-led-downlight-super-bright/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-current slick-active" data-slick-index="0" data-slick-width-factor="1" aria-hidden="false"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/eagle-eye-spotlight-track-recessed-surface/" title="Eagle Eye Spotlight – Track/Recessed/Surface" tabindex="0">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Eagle Eye Spotlight - Track/Recessed/Surface" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="0">Spotlights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Eagle Eye Spotlight – Track/Recessed/Surface</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>10W-40W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/eagle-eye-spotlight-track-recessed-surface/" tabindex="0"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-active" data-slick-index="1" data-slick-width-factor="1" aria-hidden="false"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/eagle-eye-magnetic-track-series-pendant/" title="Eagle Eye Magnetic Track Series – Pendant" tabindex="0">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Eagle Eye Magnetic Track Series – Pendant" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="0">Spotlights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Eagle Eye Magnetic Track Series – Pendant</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>&nbsp;
+</p><div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div><p></p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/eagle-eye-magnetic-track-series-pendant/" tabindex="0"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-active" data-slick-index="2" data-slick-width-factor="1" aria-hidden="false"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/led-panel-light-backlite/" title="Backlite LED Panel Light series" tabindex="0">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Backlite LED Panel Light series" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="0">Panel Lights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Backlite LED Panel Light series</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>&nbsp;
+</p><div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="dd-fill-indicator-container">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div><p></p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/led-panel-light-backlite/" tabindex="0"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-active" data-slick-index="3" data-slick-width-factor="1" aria-hidden="false"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/garden-bulkhead-series/" title="Garden Bulkhead Series" tabindex="0">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Garden Bulkhead Series" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="0">Bulkhead Lights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Garden Bulkhead Series</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>8W-24W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/garden-bulkhead-series/" tabindex="0"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide" data-slick-index="4" data-slick-width-factor="1" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/trooper-led-street-light/" title="Trooper LED Street Light" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Trooper Street Lights" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Street Lights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Trooper LED Street Light</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>50W~200W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/trooper-led-street-light/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide" data-slick-index="5" data-slick-width-factor="1" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/sunflower-recessed-led-downlight-super-bright/" title="Sunflower Recessed LED Downlight – Super Bright" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Super Bright Recessed LED Downlight" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Downlights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Sunflower Recessed LED Downlight – Super Bright</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>6W-20W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/sunflower-recessed-led-downlight-super-bright/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-cloned" data-slick-index="6" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/eagle-eye-spotlight-track-recessed-surface/" title="Eagle Eye Spotlight – Track/Recessed/Surface" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Eagle Eye Spotlight - Track/Recessed/Surface" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2024/03/鹰眼轨道射灯-4.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Spotlights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Eagle Eye Spotlight – Track/Recessed/Surface</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>10W-40W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/eagle-eye-spotlight-track-recessed-surface/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-cloned" data-slick-index="7" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/eagle-eye-magnetic-track-series-pendant/" title="Eagle Eye Magnetic Track Series – Pendant" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Eagle Eye Magnetic Track Series – Pendant" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2026/04/吊灯主图.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Spotlights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Eagle Eye Magnetic Track Series – Pendant</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>&nbsp;
+</p><div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div><p></p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/eagle-eye-magnetic-track-series-pendant/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-cloned" data-slick-index="8" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/led-panel-light-backlite/" title="Backlite LED Panel Light series" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Backlite LED Panel Light series" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2021/09/LED-Panel-Light-8.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Panel Lights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Backlite LED Panel Light series</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>&nbsp;
+</p><div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div>
+<div id="">
+<div style="visibility: hidden;">
+<div class="ball"></div>
+</div>
+</div><p></p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/led-panel-light-backlite/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-cloned" data-slick-index="9" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/garden-bulkhead-series/" title="Garden Bulkhead Series" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Garden Bulkhead Series" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2025/11/garden-new.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Bulkhead Lights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Garden Bulkhead Series</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>8W-24W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/garden-bulkhead-series/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-cloned" data-slick-index="10" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/trooper-led-street-light/" title="Trooper LED Street Light" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Trooper Street Lights" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2025/09/lQLPJyB9LUJ2F4vNAyDNAyCw7arJvaumRtcH0FHL3cLxAQ_800_800.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Street Lights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Trooper LED Street Light</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>50W~200W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/trooper-led-street-light/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div><div class="slick-slide slick-cloned" data-slick-index="11" data-slick-width-factor="1" id="" aria-hidden="true" tabindex="-1"><div><div class="item-product" style="width: 100%; display: inline-block;">
+						<div class="item-product-thumb">
+							<div class="">
+								<a href="https://wellmaxgroup.com/portfolio/sunflower-recessed-led-downlight-super-bright/" title="Sunflower Recessed LED Downlight – Super Bright" tabindex="-1">
+								<img width="300" height="300" src="https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-300x300.png" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="Super Bright Recessed LED Downlight" decoding="async" srcset="https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-300x300.png 300w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-500x500.png 500w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-768x768.png 768w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-600x600.png 600w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight-100x100.png 100w, https://wellmaxgroup.com/wp-content/uploads/2022/05/Super-Bright-Recessed-LED-Downlight.png 800w" sizes="(max-width: 300px) 100vw, 300px">
+								</a>
+							</div>
+						</div>
+						<div class="item-product-tag">
+							<a tabindex="-1">Downlights</a>
+						</div>
+						<div class="title-excerpt">
+							<div class="item-product-title">
+								<h4><p>Sunflower Recessed LED Downlight – Super Bright</p></h4>
+							</div>
+							<div class="item-product-excerpt">
+								<p>6W-20W</p>
+							</div>
+						</div>
+						<div class="item-discovery-more">
+							<a href="https://wellmaxgroup.com/portfolio/sunflower-recessed-led-downlight-super-bright/" tabindex="-1"><span>Discover more</span><img width="24px" src="/wp-content/uploads/2021/08/arrow-more.png" alt="Discover-more"></a>
+						</div>
+					</div></div></div></div></div><button type="button" class="slick-next pull-right slick-arrow" style=""><img src="/wp-content/uploads/2021/08/arrow-more.png" alt="arrow-right" title="arrow-right"></button></div>		</div>
+	</div>
+</div>

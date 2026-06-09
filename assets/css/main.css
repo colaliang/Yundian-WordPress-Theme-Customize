@@ -524,3 +524,13 @@ input, textarea, select { font-family: inherit; }
 .lg\:flex-row-reverse { flex-direction: row-reverse; }
 .hover\:bg-gray-750:hover { background-color: #2d3748; }
 .divide-y > :not([hidden]) ~ :not([hidden]) { border-top-width: 1px; border-bottom-width: 0; }
+
+/* ===== Accordion Layout Extras ===== */
+.lg\:sticky { position: sticky; }
+.lg\:top-24 { top: 6rem; }
+.self-start { align-self: flex-start; }
+.rotate-180 { transform: rotate(180deg); }
+.border-collapse { border-collapse: collapse; }
+.text-orange-700 { color: #c2410c; }
+.lg\:w-5\/12 { width: 41.666667%; }
+.lg\:w-7\/12 { width: 58.333333%; }

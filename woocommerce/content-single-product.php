@@ -1,7 +1,7 @@
 <?php
 /**
  * The template for displaying product content in the single-product.php template
- * Landing Page Style (Option A)
+ * Split Screen Accordion Style (Astra Reference)
  *
  * @package ERDU_Lighting/WooCommerce
  */
@@ -21,237 +21,185 @@ if (post_password_required()) {
     return;
 }
 
-// Fetch ACF Data
-$hero_bg = function_exists('get_field') ? get_field('hero_background_image') : '';
-if (!$hero_bg) {
-    // Fallback to product thumbnail
-    $hero_bg = get_the_post_thumbnail_url($product->get_id(), 'full') ?: 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=1920';
-}
-$hero_img = function_exists('get_field') ? get_field('hero_product_image') : '';
 $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
-
-// 1. Hero Section
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class('product-landing-wrapper', $product); ?>>
+<div id="product-<?php the_ID(); ?>" <?php wc_product_class('product-split-wrapper erdu-container py-12', $product); ?>>
     
-    <section class="relative bg-gray-900 overflow-hidden" style="min-height: 80vh; display: flex; align-items: center;">
-        <!-- Background -->
-        <div class="absolute inset-0 z-0">
-            <img src="<?php echo esc_url($hero_bg); ?>" alt="" class="w-full h-full object-cover opacity-30">
-        </div>
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
         
-        <div class="erdu-container relative z-10 py-20 w-full">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-                <!-- Text Content -->
-                <div class="lg:w-1/2 text-white">
-                    <?php
-                    // Breadcrumb over hero
-                    woocommerce_breadcrumb(array(
-                        'wrap_before' => '<nav class="woocommerce-breadcrumb text-sm text-gray-400 mb-6 font-medium tracking-wide">',
-                        'wrap_after'  => '</nav>',
-                    ));
-                    ?>
-                    
-                    <?php if ($subtitle) : ?>
-                        <div class="text-orange-500 font-bold tracking-widest uppercase mb-3 text-sm"><?php echo esc_html($subtitle); ?></div>
-                    <?php endif; ?>
-                    
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
-                        <?php the_title(); ?>
-                    </h1>
-                    
-                    <div class="prose prose-lg text-gray-300 mb-10 max-w-xl">
-                        <?php the_excerpt(); ?>
-                    </div>
-                    
-                    <div>
-                        <a href="#inquiry" class="inline-block bg-orange-600 hover:bg-orange-500 text-white font-bold py-4 px-10 rounded-full transition-colors text-lg shadow-[0_0_20px_rgba(243,112,33,0.4)] hover:shadow-[0_0_30px_rgba(243,112,33,0.6)]">
-                            <?php esc_html_e('Inquire Now', 'erdu-wp'); ?>
-                        </a>
-                        <a href="#specs" class="inline-block ml-4 text-white hover:text-orange-400 font-medium py-4 px-6 transition-colors">
-                            <?php esc_html_e('View Specs &darr;', 'erdu-wp'); ?>
-                        </a>
-                    </div>
-                </div>
+        <!-- Left Column: Content & Accordion -->
+        <div class="w-full lg:w-5/12 lg:sticky lg:top-24 self-start">
+            
+            <!-- Breadcrumbs -->
+            <?php
+            woocommerce_breadcrumb(array(
+                'wrap_before' => '<nav class="woocommerce-breadcrumb text-sm text-gray-500 mb-6 font-medium flex flex-wrap items-center gap-2">',
+                'wrap_after'  => '</nav>',
+                'delimiter'   => '<span class="text-gray-300">/</span>',
+            ));
+            ?>
+            
+            <!-- Title & Subtitle -->
+            <h1 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 leading-tight">
+                <?php the_title(); ?>
+            </h1>
+            <?php if ($subtitle) : ?>
+                <div class="text-lg text-gray-500 mb-6"><?php echo esc_html($subtitle); ?></div>
+            <?php endif; ?>
+            
+            <!-- Specification Badge -->
+            <div class="mb-8">
+                <span class="inline-flex items-center justify-center bg-orange-50 text-orange-700 rounded-full px-5 py-2 text-sm font-bold border border-orange-100 shadow-sm cursor-default">
+                    Specification
+                </span>
+            </div>
+            
+            <!-- Accordion -->
+            <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm" id="product-accordion">
                 
-                <!-- Optional Cutout Image -->
-                <?php if ($hero_img) : ?>
-                <div class="lg:w-1/2 flex justify-center lg:justify-end">
-                    <img src="<?php echo esc_url($hero_img); ?>" alt="<?php the_title_attribute(); ?>" class="max-w-full h-auto drop-shadow-2xl animate-fade-in-up">
+                <!-- Panel: Product Features -->
+                <?php if (function_exists('have_rows') && have_rows('product_features')) : ?>
+                <div class="erdu-accordion-item border-b border-gray-200">
+                    <button class="erdu-accordion-header w-full flex justify-between items-center p-5 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="true">
+                        <span>Product Features:</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="erdu-accordion-content p-5 pt-0 bg-white text-gray-600 prose prose-sm max-w-none">
+                        <ul class="list-disc pl-5 space-y-2 mt-2">
+                            <?php while (have_rows('product_features')) : the_row(); 
+                                $f_title = get_sub_field('title');
+                                $f_desc = get_sub_field('description');
+                            ?>
+                                <li><strong><?php echo esc_html($f_title); ?></strong> <?php echo esc_html($f_desc); ?></li>
+                            <?php endwhile; ?>
+                        </ul>
+                    </div>
                 </div>
                 <?php endif; ?>
-            </div>
-        </div>
-    </section>
 
-    <!-- 2. Overview Content -->
-    <?php $content = get_the_content(); ?>
-    <?php if (trim(strip_tags($content))) : ?>
-    <section class="py-20 bg-white">
-        <div class="erdu-container max-w-4xl text-center">
-            <h2 class="text-3xl font-bold mb-10 text-gray-900"><?php esc_html_e('Product Overview', 'erdu-wp'); ?></h2>
-            <div class="prose prose-lg mx-auto text-gray-600">
-                <?php echo apply_filters('the_content', $content); ?>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
-
-    <!-- 3. Features Blocks (Alternating) -->
-    <?php 
-    if (function_exists('have_rows') && have_rows('product_features')) : 
-        $idx = 0;
-    ?>
-    <div class="product-features-wrap bg-gray-50 py-10">
-        <?php while (have_rows('product_features')) : the_row(); 
-            $f_title = get_sub_field('title');
-            $f_desc = get_sub_field('description');
-            $f_img = get_sub_field('image');
-            $f_align = get_sub_field('alignment'); // 'left' or 'right'
-            $idx++;
-            
-            // If align is not set, alternate based on index
-            if (!$f_align) {
-                $f_align = ($idx % 2 == 0) ? 'right' : 'left';
-            }
-            
-            $flex_dir = ($f_align === 'right') ? 'lg:flex-row-reverse' : 'lg:flex-row';
-        ?>
-        <section class="py-16 lg:py-24">
-            <div class="erdu-container">
-                <div class="flex flex-col <?php echo esc_attr($flex_dir); ?> items-center gap-12 lg:gap-20">
-                    <div class="lg:w-1/2 w-full">
-                        <?php if ($f_img) : ?>
-                            <img src="<?php echo esc_url($f_img); ?>" alt="<?php echo esc_attr($f_title); ?>" class="w-full h-auto rounded-2xl shadow-xl">
-                        <?php endif; ?>
+                <!-- Panel: Description -->
+                <?php $content = get_the_content(); ?>
+                <?php if (trim(strip_tags($content))) : ?>
+                <div class="erdu-accordion-item border-b border-gray-200">
+                    <button class="erdu-accordion-header w-full flex justify-between items-center p-5 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="false">
+                        <span>Description:</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="erdu-accordion-content hidden p-5 pt-0 bg-white text-gray-600 prose prose-sm max-w-none">
+                        <?php echo apply_filters('the_content', $content); ?>
                     </div>
-                    <div class="lg:w-1/2 w-full">
-                        <div class="inline-block text-orange-600 font-bold tracking-widest text-sm mb-4">0<?php echo $idx; ?></div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6"><?php echo esc_html($f_title); ?></h2>
-                        <div class="prose prose-lg text-gray-600 max-w-none">
-                            <?php echo wpautop(wp_kses_post($f_desc)); ?>
+                </div>
+                <?php endif; ?>
+                
+                <!-- Panel: Technical Specs -->
+                <?php 
+                $attributes = $product->get_attributes();
+                if (!empty($attributes)) : 
+                ?>
+                <div class="erdu-accordion-item border-b border-gray-200">
+                    <button class="erdu-accordion-header w-full flex justify-between items-center p-5 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="false">
+                        <span>Technical Specs:</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="erdu-accordion-content hidden p-5 pt-0 bg-white text-gray-600">
+                        <table class="w-full text-left text-sm border-collapse">
+                            <tbody class="divide-y divide-gray-100">
+                                <?php foreach ($attributes as $attribute) : 
+                                    if (!$attribute->get_visible()) continue;
+                                    $name = wc_attribute_label($attribute->get_name());
+                                    $value = $attribute->is_taxonomy() ? implode(', ', wp_list_pluck(wp_get_post_terms($product->get_id(), $attribute->get_name(), 'all'), 'name')) : $attribute->get_options()[0];
+                                    if ($value) :
+                                ?>
+                                <tr>
+                                    <th class="py-2 pr-4 font-medium text-gray-500 w-1/3"><?php echo esc_html($name); ?></th>
+                                    <td class="py-2 font-bold text-gray-900"><?php echo esc_html($value); ?></td>
+                                </tr>
+                                <?php endif; endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <!-- Panel: Downloads -->
+                <?php if (function_exists('have_rows') && have_rows('product_downloads')) : ?>
+                <div class="erdu-accordion-item">
+                    <button class="erdu-accordion-header w-full flex justify-between items-center p-5 bg-white hover:bg-gray-50 text-left font-bold text-gray-900 transition-colors focus:outline-none" aria-expanded="false">
+                        <span>Downloads:</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="erdu-accordion-content hidden p-5 pt-0 bg-white text-gray-600">
+                        <div class="space-y-3">
+                            <?php while (have_rows('product_downloads')) : the_row(); 
+                                $title = get_sub_field('title');
+                                $file = get_sub_field('file');
+                            ?>
+                                <a href="<?php echo esc_url($file); ?>" target="_blank" class="flex items-center text-sm font-medium text-orange-600 hover:text-orange-800 transition-colors">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                    <?php echo esc_html($title); ?>
+                                </a>
+                            <?php endwhile; ?>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <?php endwhile; ?>
-    </div>
-    <?php endif; ?>
+                <?php endif; ?>
 
-    <!-- 4. Applications Gallery -->
-    <?php 
-    $app_images = function_exists('get_field') ? get_field('application_images') : false;
-    if ($app_images) : 
-    ?>
-    <section class="py-20 bg-white">
-        <div class="erdu-container">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"><?php esc_html_e('Application Scenarios', 'erdu-wp'); ?></h2>
-                <p class="text-gray-500 max-w-2xl mx-auto"><?php esc_html_e('See how this product illuminates real-world spaces.', 'erdu-wp'); ?></p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <?php foreach ($app_images as $image_url) : ?>
-                    <div class="group overflow-hidden rounded-xl bg-gray-100 aspect-w-4 aspect-h-3 relative">
-                        <img src="<?php echo esc_url($image_url); ?>" alt="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
-
-    <!-- 5. Technical Specifications -->
-    <?php 
-    $attributes = $product->get_attributes();
-    if (!empty($attributes)) : 
-    ?>
-    <section id="specs" class="py-20 bg-gray-900 text-white">
-        <div class="erdu-container max-w-5xl">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4"><?php esc_html_e('Technical Specifications', 'erdu-wp'); ?></h2>
-            </div>
-            
-            <div class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 shadow-2xl">
-                <table class="w-full text-left text-sm md:text-base">
-                    <tbody class="divide-y divide-gray-700">
-                        <?php foreach ($attributes as $attribute) : 
-                            if (!$attribute->get_visible()) continue;
-                            
-                            $name = wc_attribute_label($attribute->get_name());
-                            $value = '';
-                            
-                            if ($attribute->is_taxonomy()) {
-                                $terms = wp_get_post_terms($product->get_id(), $attribute->get_name(), 'all');
-                                $values = array();
-                                foreach ($terms as $term) {
-                                    $values[] = $term->name;
-                                }
-                                $value = implode(', ', $values);
-                            } else {
-                                $value = $attribute->get_options()[0];
-                            }
-                            
-                            if ($value) :
-                        ?>
-                        <tr class="hover:bg-gray-750 transition-colors">
-                            <th class="py-5 px-6 md:px-10 font-medium text-gray-400 w-1/3 border-r border-gray-700"><?php echo esc_html($name); ?></th>
-                            <td class="py-5 px-6 md:px-10 font-bold text-white"><?php echo esc_html($value); ?></td>
-                        </tr>
-                        <?php 
-                            endif;
-                        endforeach; 
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
-
-    <!-- 6. Downloads -->
-    <?php if (function_exists('have_rows') && have_rows('product_downloads')) : ?>
-    <section class="py-16 bg-white border-b border-gray-200">
-        <div class="erdu-container max-w-5xl">
-            <h3 class="text-2xl font-bold mb-8 text-center"><?php esc_html_e('Downloads & Resources', 'erdu-wp'); ?></h3>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <?php while (have_rows('product_downloads')) : the_row(); 
-                    $title = get_sub_field('title');
-                    $file = get_sub_field('file');
+            <!-- Inquiry CTA Below Accordion -->
+            <div class="mt-8">
+                <?php
+                $inquiry_link = erdu_get_page_url('contact');
+                $url = add_query_arg('product', urlencode($product->get_name()), $inquiry_link);
                 ?>
-                    <a href="<?php echo esc_url($file); ?>" target="_blank" class="flex items-center p-5 bg-gray-50 rounded-xl border border-gray-200 hover:bg-orange-50 hover:border-orange-200 transition-colors group">
-                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-gray-400 group-hover:text-orange-500 mr-4 transition-colors">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </div>
-                        <span class="font-bold text-gray-800 group-hover:text-orange-700"><?php echo esc_html($title); ?></span>
-                    </a>
-                <?php endwhile; ?>
+                <a href="<?php echo esc_url($url); ?>" class="flex items-center justify-center w-full bg-gray-900 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg shadow-md hover:shadow-lg">
+                    <?php esc_html_e('Inquire Now', 'erdu-wp'); ?>
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Gallery -->
+        <div class="w-full lg:w-7/12">
+            <div class="bg-white rounded-2xl p-2 lg:p-8">
+                <?php 
+                // Display standard WooCommerce product gallery (which includes the slider functionality)
+                woocommerce_show_product_images(); 
+                ?>
             </div>
         </div>
-    </section>
-    <?php endif; ?>
-
-    <!-- 7. Bottom CTA -->
-    <section id="inquiry" class="py-24 bg-orange-600 text-white text-center">
-        <div class="erdu-container max-w-3xl">
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-6"><?php esc_html_e('Ready to Upgrade Your Lighting?', 'erdu-wp'); ?></h2>
-            <p class="text-xl text-orange-100 mb-10"><?php esc_html_e('Get a customized quote and expert advice for your project.', 'erdu-wp'); ?></p>
-            <?php
-            $inquiry_link = erdu_get_page_url('contact');
-            $url = add_query_arg('product', urlencode($product->get_name()), $inquiry_link);
-            ?>
-            <a href="<?php echo esc_url($url); ?>" class="inline-block bg-white text-orange-600 hover:bg-gray-100 font-bold py-5 px-12 rounded-full transition-colors text-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                <?php esc_html_e('Request a Quote', 'erdu-wp'); ?>
-            </a>
-        </div>
-    </section>
+        
+    </div>
 
 </div>
 
+<!-- Accordion JS Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const headers = document.querySelectorAll('.erdu-accordion-header');
+    
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('svg');
+            const isExpanded = header.getAttribute('aria-expanded') === 'true';
+            
+            // Toggle current
+            if (isExpanded) {
+                header.setAttribute('aria-expanded', 'false');
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            } else {
+                header.setAttribute('aria-expanded', 'true');
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            }
+        });
+    });
+});
+</script>
+
 <?php 
-// We completely bypassed the default WooCommerce layout hooks to build our own.
-// But we still fire this to allow plugins to hook after the product.
 do_action('woocommerce_after_single_product'); 
 ?>
