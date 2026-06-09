@@ -39,7 +39,7 @@ $subtitle = function_exists('get_field') ? get_field('product_subtitle') : '';
             <!-- Media Container (Gallery or Video) -->
             <div class="w-full flex-grow flex flex-col relative">
                 <!-- Main Product Gallery -->
-                <div id="erdu-gallery-container" class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden relative" style="aspect-ratio: 1/1;">
+                <div id="erdu-gallery-container" class="w-full bg-white rounded-2xl shadow-sm overflow-hidden relative" style="aspect-ratio: 1/1;">
                     <!-- WooCommerce Gallery Wrapper Override -->
                     <style>
                         #erdu-gallery-container {

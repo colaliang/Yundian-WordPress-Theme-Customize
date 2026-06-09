@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.21] - 2026-06-09
+### Fixed
+- Removed the border styles (`border border-gray-100`) from the `erdu-gallery-container` for a cleaner visual look.
+
 ## [1.6.20] - 2026-06-09
 ### Fixed
 - Strictly aligned `erdu-gallery-container` layout with the 2026-06-09 design specification.
