@@ -11,7 +11,7 @@ if (!function_exists('have_rows') || !have_rows('product_downloads')) {
     return;
 }
 ?>
-<div id="section-downloads" class="erdu-content-block scroll-mt-32">
+<div id="section-downloads" class="erdu-content-block scroll-mt-32 py-10 lg:py-16">
     <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100"><?php esc_html_e('Downloads', 'erdu-wp'); ?></h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         <?php while (have_rows('product_downloads')) : the_row();

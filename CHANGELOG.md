@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.35] - 2026-06-10
+### Fixed
+- Unified padding for all content blocks: moved `py-10 lg:py-16` from outer container to each individual section for consistent spacing.
+- Unified body font size across all sections to `text-base` (removed `prose-lg` from Description).
+- Increased Specifications Spec Name width from `md:w-5/12` to `md:w-1/3`.
+- Fixed FAQ accordion: first item now expanded by default; initial icon rotation synced with JS logic.
+
 ## [1.6.34] - 2026-06-10
 ### Changed
 - Sticky navigation menu now left-aligned (`justify-start`).

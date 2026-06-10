@@ -11,7 +11,7 @@ if (!function_exists('have_rows') || !have_rows('product_features')) {
     return;
 }
 ?>
-<div id="section-features" class="erdu-content-block scroll-mt-32">
+<div id="section-features" class="erdu-content-block scroll-mt-32 py-10 lg:py-16">
     <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100"><?php esc_html_e('Features', 'erdu-wp'); ?></h2>
     <div class="space-y-5 text-gray-600 text-base leading-relaxed">
         <?php while (have_rows('product_features')) : the_row();

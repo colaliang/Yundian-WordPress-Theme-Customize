@@ -774,15 +774,13 @@ function erdu_create_navigation_menu()
     $menu_obj  = wp_get_nav_menu_object($menu_name);
     $menu_id   = 0;
 
-    // Create or get existing menu
+    // 如果菜单已存在且已有菜单项，直接跳过，避免重复写入
     if ($menu_obj) {
         $menu_id = $menu_obj->term_id;
-        // Delete all existing items to rebuild
         $existing_items = wp_get_nav_menu_items($menu_id);
-        if ($existing_items && !is_wp_error($existing_items)) {
-            foreach ($existing_items as $item) {
-                wp_delete_post($item->ID, true);
-            }
+        if ($existing_items && !is_wp_error($existing_items) && count($existing_items) > 0) {
+            // 菜单已存在且有内容，不再重建
+            return;
         }
     } else {
         $menu_id = wp_create_nav_menu($menu_name);
