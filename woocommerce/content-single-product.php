@@ -31,11 +31,13 @@ $attachment_ids = $product->get_gallery_image_ids();
 $all_image_ids  = array_filter(array_merge(array($main_image_id), $attachment_ids));
 
 // Prepare bottom section flags
-$content       = get_the_content();
-$has_desc      = trim(strip_tags($content));
-$has_features  = function_exists('have_rows') && have_rows('product_features');
-$has_specs     = function_exists('have_rows') && have_rows('product_specifications');
-$has_downloads = function_exists('have_rows') && have_rows('product_downloads');
+$content         = get_the_content();
+$has_desc        = trim(strip_tags($content));
+$has_features    = function_exists('have_rows') && have_rows('product_features');
+$has_specs       = function_exists('have_rows') && have_rows('product_specifications');
+$has_certificates= function_exists('have_rows') && have_rows('product_certificates');
+$has_faq         = function_exists('have_rows') && have_rows('product_faq');
+$has_downloads   = function_exists('have_rows') && have_rows('product_downloads');
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('product-split-wrapper erdu-container py-12', $product); ?>>
 
@@ -89,10 +91,12 @@ $has_downloads = function_exists('have_rows') && have_rows('product_downloads');
                 <nav class="flex overflow-x-auto hide-scrollbar gap-x-8 gap-y-4 py-4" aria-label="Product Sections">
                     <?php
                     $nav_items = array();
-                    if ($has_desc)      $nav_items[] = array('id' => 'section-desc',      'label' => __('Description', 'erdu-wp'));
-                    if ($has_features)  $nav_items[] = array('id' => 'section-features',  'label' => __('Features', 'erdu-wp'));
-                    if ($has_specs)     $nav_items[] = array('id' => 'section-specs',     'label' => __('Specs', 'erdu-wp'));
-                    if ($has_downloads) $nav_items[] = array('id' => 'section-downloads', 'label' => __('Downloads', 'erdu-wp'));
+                    if ($has_desc)        $nav_items[] = array('id' => 'section-desc',         'label' => __('Description', 'erdu-wp'));
+                    if ($has_features)    $nav_items[] = array('id' => 'section-features',     'label' => __('Features', 'erdu-wp'));
+                    if ($has_specs)       $nav_items[] = array('id' => 'section-specs',        'label' => __('Specs', 'erdu-wp'));
+                    if ($has_certificates) $nav_items[] = array('id' => 'section-certificates', 'label' => __('Certificates', 'erdu-wp'));
+                    if ($has_faq)         $nav_items[] = array('id' => 'section-faq',          'label' => __('FAQ', 'erdu-wp'));
+                    if ($has_downloads)   $nav_items[] = array('id' => 'section-downloads',    'label' => __('Downloads', 'erdu-wp'));
 
                     foreach ($nav_items as $i => $item) :
                         $is_first = ($i === 0);
@@ -110,6 +114,8 @@ $has_downloads = function_exists('have_rows') && have_rows('product_downloads');
                 wc_get_template('single-product/product-section-desc.php');
                 wc_get_template('single-product/product-section-features.php');
                 wc_get_template('single-product/product-section-specs.php');
+                wc_get_template('single-product/product-section-certificates.php');
+                wc_get_template('single-product/product-section-faq.php');
                 wc_get_template('single-product/product-section-downloads.php');
                 ?>
             </div>

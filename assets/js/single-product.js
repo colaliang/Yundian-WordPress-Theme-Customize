@@ -289,11 +289,44 @@
     }
 
     // ==========================================
+    // Product FAQ Accordion
+    // ==========================================
+    function initProductFaq() {
+        var faqItems = document.querySelectorAll('.erdu-faq-item');
+        if (!faqItems.length) return;
+
+        faqItems.forEach(function (item) {
+            var question = item.querySelector('.erdu-faq-question');
+            var answer   = item.querySelector('.erdu-faq-answer');
+            var icon     = item.querySelector('.erdu-faq-icon');
+            if (!question || !answer) return;
+
+            question.addEventListener('click', function () {
+                var isOpen = !answer.classList.contains('hidden');
+
+                // Close all others
+                faqItems.forEach(function (otherItem) {
+                    var otherAnswer = otherItem.querySelector('.erdu-faq-answer');
+                    var otherIcon   = otherItem.querySelector('.erdu-faq-icon');
+                    if (otherAnswer) otherAnswer.classList.add('hidden');
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                });
+
+                if (!isOpen) {
+                    answer.classList.remove('hidden');
+                    if (icon) icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+    }
+
+    // ==========================================
     // Initialize
     // ==========================================
     function init() {
         initProductGallery();
         initProductTabs();
+        initProductFaq();
     }
 
     if (document.readyState === 'loading') {

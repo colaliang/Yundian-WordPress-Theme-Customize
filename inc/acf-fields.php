@@ -179,7 +179,37 @@ $wc_product_fields = array(
         ),
     ),
     
-    // 5. Downloads Tab
+    // 5. Certificates Tab
+    array('key' => 'field_wc_tab_certs', 'label' => __('Certificates', 'erdu-wp'), 'type' => 'tab'),
+    array(
+        'key'        => 'field_wc_prod_certificates',
+        'label'      => __('Product Certificates', 'erdu-wp'),
+        'name'       => 'product_certificates',
+        'type'       => 'repeater',
+        'instructions' => __('Display certification badges on the product page (e.g., CE, RoHS, ISO9001).', 'erdu-wp'),
+        'button_label' => __('Add Certificate', 'erdu-wp'),
+        'sub_fields' => array(
+            array('key' => 'field_cert_name', 'label' => __('Certificate Name', 'erdu-wp'), 'name' => 'cert_name', 'type' => 'text', 'placeholder' => 'e.g. CE Certification'),
+            array('key' => 'field_cert_image', 'label' => __('Certificate Image', 'erdu-wp'), 'name' => 'cert_image', 'type' => 'image', 'return_format' => 'url', 'preview_size' => 'thumbnail'),
+        ),
+    ),
+
+    // 6. FAQ Tab
+    array('key' => 'field_wc_tab_faq', 'label' => __('FAQ', 'erdu-wp'), 'type' => 'tab'),
+    array(
+        'key'        => 'field_wc_prod_faq',
+        'label'      => __('Product FAQ', 'erdu-wp'),
+        'name'       => 'product_faq',
+        'type'       => 'repeater',
+        'instructions' => __('Frequently asked questions for this product.', 'erdu-wp'),
+        'button_label' => __('Add FAQ', 'erdu-wp'),
+        'sub_fields' => array(
+            array('key' => 'field_faq_question', 'label' => __('Question', 'erdu-wp'), 'name' => 'faq_question', 'type' => 'text'),
+            array('key' => 'field_faq_answer', 'label' => __('Answer', 'erdu-wp'), 'name' => 'faq_answer', 'type' => 'textarea', 'rows' => 4),
+        ),
+    ),
+
+    // 7. Downloads Tab
     array('key' => 'field_wc_tab_dl', 'label' => __('Downloads', 'erdu-wp'), 'type' => 'tab'),
     array(
         'key'        => 'field_wc_prod_downloads',
