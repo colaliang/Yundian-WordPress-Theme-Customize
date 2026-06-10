@@ -25,7 +25,7 @@ $first_full  = !empty($all_image_ids) ? wp_get_attachment_image_url(array_values
 <div class="w-full flex-grow flex flex-col relative">
     <div id="erdu-gallery-container" class="w-full relative flex flex-row gap-4 erdu-gallery-layout">
 
-        <?php if ($image_count > 1 || $has_video) : ?
+        <?php if ($image_count > 1 || $has_video) : ?>
         <!-- Thumbnail Rail -->
         <div class="w-16 lg:w-[64px] flex-shrink-0 flex flex-col gap-2 overflow-y-auto erdu-hide-scrollbar erdu-rail-layout">
             <?php foreach ($all_image_ids as $index => $img_id) :

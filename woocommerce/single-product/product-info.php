@@ -16,7 +16,7 @@ defined('ABSPATH') || exit;
 <h1 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 leading-tight">
     <?php the_title(); ?>
 </h1>
-<?php if ($subtitle) : ?
+<?php if ($subtitle) : ?>
     <div class="text-lg text-gray-500 mb-4"><?php echo esc_html($subtitle); ?></div>
 <?php endif; ?>
 
