@@ -13,7 +13,7 @@ if (!function_exists('have_rows') || !have_rows('product_faq')) {
 ?>
 <div id="section-faq" class="erdu-content-block scroll-mt-32 py-10 lg:py-16">
     <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100"><?php esc_html_e('FAQ', 'erdu-wp'); ?></h2>
-    <div class="space-y-5">
+    <div class="prose max-w-none space-y-5">
         <?php
         $faq_index = 0;
         while (have_rows('product_faq')) : the_row();

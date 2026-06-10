@@ -27,7 +27,7 @@ $right = array_slice($specs, $half);
 ?>
 <div id="section-specs" class="erdu-content-block scroll-mt-32 py-10 lg:py-16">
     <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100"><?php esc_html_e('Specifications', 'erdu-wp'); ?></h2>
-    <div class="border border-gray-200 rounded-lg overflow-hidden">
+    <div class="prose max-w-none border border-gray-200 rounded-lg overflow-hidden">
         <?php
         $max_rows = max(count($left), count($right));
         for ($i = 0; $i < $max_rows; $i++) :
