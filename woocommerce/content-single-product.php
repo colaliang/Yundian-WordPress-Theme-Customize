@@ -87,8 +87,8 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
         <div class="w-full">
 
             <!-- Sticky Navigation Menu -->
-            <div class="sticky top-[70px] z-40 bg-white/95 backdrop-blur-sm mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
-                <nav class="flex overflow-x-auto hide-scrollbar gap-x-8 gap-y-4 py-4" aria-label="Product Sections">
+            <div class="sticky top-[70px] z-40 bg-white/95 backdrop-blur-sm -mx-4 px-4 sm:mx-0 sm:px-0">
+                <nav class="flex overflow-x-auto hide-scrollbar gap-x-8 gap-y-4 py-4 justify-start" aria-label="Product Sections">
                     <?php
                     $nav_items = array();
                     if ($has_desc)        $nav_items[] = array('id' => 'section-desc',         'label' => __('Description', 'erdu-wp'));
@@ -101,7 +101,7 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
                     foreach ($nav_items as $i => $item) :
                         $is_first = ($i === 0);
                     ?>
-                    <a href="#<?php echo esc_attr($item['id']); ?>" class="erdu-nav-link whitespace-nowrap text-lg font-bold transition-colors <?php echo $is_first ? 'text-orange-600' : 'text-gray-500 hover:text-orange-600'; ?>">
+                    <a href="#<?php echo esc_attr($item['id']); ?>" class="erdu-nav-link whitespace-nowrap text-2xl font-bold transition-colors <?php echo $is_first ? 'text-orange-600' : 'text-gray-500 hover:text-orange-600'; ?>">
                         <?php echo esc_html($item['label']); ?>
                     </a>
                     <?php endforeach; ?>
@@ -109,7 +109,7 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
             </div>
 
             <!-- Content Blocks -->
-            <div class="erdu-content-blocks bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-10 space-y-24 max-w-full overflow-hidden">
+            <div class="erdu-content-blocks bg-white rounded-xl shadow-sm border border-gray-100 space-y-24 max-w-full overflow-hidden py-10 lg:py-16">
                 <?php
                 wc_get_template('single-product/product-section-desc.php');
                 wc_get_template('single-product/product-section-features.php');
