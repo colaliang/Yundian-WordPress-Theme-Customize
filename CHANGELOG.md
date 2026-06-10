@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.34] - 2026-06-10
+### Changed
+- Sticky navigation menu now left-aligned (`justify-start`).
+- Content Blocks container now has vertical padding (`py-10 lg:py-16`) for better breathing room.
+
 ## [1.6.33] - 2026-06-10
 ### Changed
 - Unified Section 2 typography, spacing and visual style across all product page partials:
