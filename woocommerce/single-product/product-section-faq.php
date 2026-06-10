@@ -35,4 +35,5 @@ if (!function_exists('have_rows') || !have_rows('product_faq')) {
         </div>
         <?php endwhile; ?>
     </div>
+    <div class="mb-8"></div>
 </div>

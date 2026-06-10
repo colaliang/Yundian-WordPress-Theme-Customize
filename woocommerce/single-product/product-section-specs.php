@@ -60,4 +60,5 @@ $right = array_slice($specs, $half);
         </div>
         <?php endfor; ?>
     </div>
+    <div class="mb-8"></div>
 </div>

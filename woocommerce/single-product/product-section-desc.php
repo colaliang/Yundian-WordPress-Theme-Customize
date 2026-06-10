@@ -19,4 +19,5 @@ if (!$has_desc) {
     <div class="prose max-w-none text-gray-600 text-base leading-relaxed">
         <?php echo apply_filters('the_content', $content); ?>
     </div>
+    <div class="mb-8"></div>
 </div>
