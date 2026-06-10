@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.33] - 2026-06-10
+### Changed
+- Unified Section 2 typography, spacing and visual style across all product page partials:
+  - Consistent section title spacing (`mb-8`) and bottom border.
+  - Unified body text to `text-base text-gray-600 leading-relaxed`.
+  - Unified emphasized text to `font-semibold text-gray-900`.
+  - Consistent card/item spacing (`space-y-5`, `gap-5`) and border color (`border-gray-200`).
+  - Improved Features list with orange bullet dots.
+  - Added `rounded-lg` and `leading-relaxed` to Specifications table.
+
 ## [1.6.32] - 2026-06-10
 ### Added
 - **Product Certificates Section**: Added ACF Repeater field `product_certificates` (cert_name + cert_image) and new partial template `product-section-certificates.php` to display certification badges in a responsive grid.
