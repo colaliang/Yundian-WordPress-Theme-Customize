@@ -15,6 +15,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.31] - 2026-06-10
+### Refactored
+- Refactored `woocommerce/content-single-product.php` to reduce template complexity:
+  - Extracted inline `<style>` blocks to `assets/css/main.css`.
+  - Extracted inline `<script>` blocks to new `assets/js/single-product.js` (loaded conditionally on single product pages).
+  - Split bottom 4 content sections (Description, Features, Specs, Downloads) into dedicated partial templates under `woocommerce/single-product/`.
+  - Extracted the gallery + lightbox markup into `product-gallery.php`.
+  - Extracted the product info column (title, SKU/price/MOQ, attributes, action buttons) into `product-info.php`.
+  - Removed all inline `style` attributes; replaced with CSS utility classes.
+  - Removed duplicate `global $product` declaration.
+
 ## [1.6.30] - 2026-06-09
 ### Fixed
 - Fixed an issue where the Inquire Now and WhatsApp buttons on the product page were not adhering to their specified dimensions (`128x48`). The custom Tailwind bracket classes (`w-[128px]` and `h-[48px]`) were not being generated due to the no-build environment. Replaced them with hardcoded inline CSS (`style="width: 128px; height: 48px;"`) to guarantee precise sizing.
