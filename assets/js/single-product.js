@@ -269,7 +269,7 @@
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     navLinks.forEach(function (link) {
-                        link.classList.remove('text-orange-600', 'border-b-2', 'border-orange-600');
+                        link.classList.remove('text-orange-600');
                         link.classList.add('text-gray-500');
                     });
 
@@ -277,7 +277,7 @@
                     var activeLink = document.querySelector('.erdu-nav-link[href="' + activeId + '"]');
                     if (activeLink) {
                         activeLink.classList.remove('text-gray-500');
-                        activeLink.classList.add('text-orange-600', 'border-b-2', 'border-orange-600');
+                        activeLink.classList.add('text-orange-600');
                     }
                 }
             });

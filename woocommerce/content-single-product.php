@@ -81,35 +81,26 @@ $has_downloads = function_exists('have_rows') && have_rows('product_downloads');
     </div>
 
     <!-- SECTION 2: Vertical Flow Content (Bottom) -->
-    <div class="product-tabs-section w-full border-t border-gray-200 pt-12">
+    <div class="product-tabs-section w-full">
         <div class="w-full">
 
             <!-- Sticky Navigation Menu -->
-            <div class="sticky top-[70px] z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div class="sticky top-[70px] z-40 bg-white/95 backdrop-blur-sm mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
                 <nav class="flex overflow-x-auto hide-scrollbar gap-x-8 gap-y-4 py-4" aria-label="Product Sections">
-                    <?php if ($has_desc) : ?>
-                    <a href="#section-desc" class="erdu-nav-link whitespace-nowrap text-lg font-bold text-gray-500 hover:text-orange-600 transition-colors">
-                        <?php esc_html_e('Description', 'erdu-wp'); ?>
-                    </a>
-                    <?php endif; ?>
+                    <?php
+                    $nav_items = array();
+                    if ($has_desc)      $nav_items[] = array('id' => 'section-desc',      'label' => __('Description', 'erdu-wp'));
+                    if ($has_features)  $nav_items[] = array('id' => 'section-features',  'label' => __('Features', 'erdu-wp'));
+                    if ($has_specs)     $nav_items[] = array('id' => 'section-specs',     'label' => __('Specs', 'erdu-wp'));
+                    if ($has_downloads) $nav_items[] = array('id' => 'section-downloads', 'label' => __('Downloads', 'erdu-wp'));
 
-                    <?php if ($has_features) : ?>
-                    <a href="#section-features" class="erdu-nav-link whitespace-nowrap text-lg font-bold text-gray-500 hover:text-orange-600 transition-colors">
-                        <?php esc_html_e('Features', 'erdu-wp'); ?>
+                    foreach ($nav_items as $i => $item) :
+                        $is_first = ($i === 0);
+                    ?>
+                    <a href="#<?php echo esc_attr($item['id']); ?>" class="erdu-nav-link whitespace-nowrap text-lg font-bold transition-colors <?php echo $is_first ? 'text-orange-600' : 'text-gray-500 hover:text-orange-600'; ?>">
+                        <?php echo esc_html($item['label']); ?>
                     </a>
-                    <?php endif; ?>
-
-                    <?php if ($has_specs) : ?>
-                    <a href="#section-specs" class="erdu-nav-link whitespace-nowrap text-lg font-bold text-gray-500 hover:text-orange-600 transition-colors">
-                        <?php esc_html_e('Specs', 'erdu-wp'); ?>
-                    </a>
-                    <?php endif; ?>
-
-                    <?php if ($has_downloads) : ?>
-                    <a href="#section-downloads" class="erdu-nav-link whitespace-nowrap text-lg font-bold text-gray-500 hover:text-orange-600 transition-colors">
-                        <?php esc_html_e('Downloads', 'erdu-wp'); ?>
-                    </a>
-                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </nav>
             </div>
 
