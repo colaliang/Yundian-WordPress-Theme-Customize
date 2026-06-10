@@ -1097,6 +1097,8 @@ function erdu_register_footer_acf_fields()
             array('key' => 'field_ft_logo_text', 'label' => __('Logo Text', 'erdu-wp'), 'name' => 'ft_logo_text', 'type' => 'text', 'default_value' => 'ERDU LIGHTING'),
             array('key' => 'field_ft_logo_icon', 'label' => __('Show Icon Badge', 'erdu-wp'), 'name' => 'ft_logo_icon', 'type' => 'true_false', 'ui' => 1, 'default_value' => 1),
             array('key' => 'field_ft_logo_icon_text', 'label' => __('Icon Text (1 letter)', 'erdu-wp'), 'name' => 'ft_logo_icon_text', 'type' => 'text', 'default_value' => 'E', 'conditional_logic' => array(array(array('field' => 'field_ft_logo_icon', 'operator' => '==', 'value' => '1')))),
+            array('key' => 'field_ft_logo_size', 'label' => __('Logo Size (px)', 'erdu-wp'), 'name' => 'ft_logo_size', 'type' => 'number',
+                'default_value' => 64, 'min' => 16, 'max' => 200, 'instructions' => __('Set the width/height of the footer logo. Default is 64px.', 'erdu-wp')),
             array('key' => 'field_ft_about', 'label' => __('About Description', 'erdu-wp'), 'name' => 'ft_about', 'type' => 'textarea', 'rows' => 4,
                 'default_value' => 'Professional 48V Magnetic Track Light Manufacturer since 2009. 6300m² factory, 100+ employees, exporting to 20+ countries.'),
 

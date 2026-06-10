@@ -52,6 +52,7 @@ if (!class_exists('Erdu_Builder_Footer')) {
                     'logo_text'     => erdu_footer_field('ft_logo_text', 'ERDU LIGHTING'),
                     'logo_icon'     => erdu_footer_field('ft_logo_icon', true),
                     'logo_icon_t'   => erdu_footer_field('ft_logo_icon_text', 'E'),
+                    'logo_size'     => erdu_footer_field('ft_logo_size', 64),
                     'about'         => erdu_footer_field('ft_about', 'Professional 48V Magnetic Track Light Manufacturer since 2009. 6300m² factory, 100+ employees, exporting to 20+ countries.'),
                     
                     'social_show'   => erdu_footer_field('ft_social_show', true),

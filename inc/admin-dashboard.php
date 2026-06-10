@@ -22,7 +22,7 @@ function erdu_admin_menu()
         'manage_options',
         'erdu-dashboard',
         'erdu_dashboard_page',
-        'dashicons-rocket',
+        'dashicons-lightbulb',
         3
     );
 

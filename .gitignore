@@ -8,3 +8,4 @@ release/
 debug/
 check-php-issues.ps1
 .package-tmp/*.zip
+*.zip

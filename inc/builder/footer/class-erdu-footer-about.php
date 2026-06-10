@@ -20,12 +20,16 @@ class Erdu_Footer_About {
         <div>
             <!-- Logo -->
             <div class="flex items-center gap-2 mb-4">
+                <?php
+                $logo_size = isset($settings['logo_size']) ? absint($settings['logo_size']) : 64;
+                $logo_class = $logo_size <= 32 ? 'h-8' : '';
+                ?>
                 <?php if ($settings['logo_type'] === 'image' && $settings['logo_image']) : ?>
-                    <img src="<?php echo esc_url($settings['logo_image']); ?>" alt="<?php echo esc_attr($settings['logo_text']); ?>" class="h-8">
+                    <img src="<?php echo esc_url($settings['logo_image']); ?>" alt="<?php echo esc_attr($settings['logo_text']); ?>" style="width: <?php echo esc_attr($logo_size); ?>px; height: auto;" class="shrink-0">
                 <?php else : ?>
                     <?php if ($settings['logo_icon']) : ?>
-                    <div class="w-8 h-8 rounded flex items-center justify-center shrink-0 erdu-bg-primary">
-                        <span class="text-white font-bold text-sm"><?php echo esc_html($settings['logo_icon_t']); ?></span>
+                    <div class="rounded flex items-center justify-center shrink-0 erdu-bg-primary" style="width: <?php echo esc_attr($logo_size); ?>px; height: <?php echo esc_attr($logo_size); ?>px;">
+                        <span class="text-white font-bold" style="font-size: <?php echo esc_attr(max(10, $logo_size * 0.4)); ?>px;"><?php echo esc_html($settings['logo_icon_t']); ?></span>
                     </div>
                     <?php endif; ?>
                     <span class="text-xl font-bold" style="color: <?php echo esc_attr($settings['heading_color']); ?>;"><?php echo esc_html($settings['logo_text']); ?></span>
