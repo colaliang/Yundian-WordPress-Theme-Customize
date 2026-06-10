@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.32] - 2026-06-10
+### Added
+- **Product Certificates Section**: Added ACF Repeater field `product_certificates` (cert_name + cert_image) and new partial template `product-section-certificates.php` to display certification badges in a responsive grid.
+- **Product FAQ Section**: Added ACF Repeater field `product_faq` (faq_question + faq_answer) and new partial template `product-section-faq.php` with accordion interaction.
+- **FAQ Accordion JS**: Added `initProductFaq()` to `assets/js/single-product.js` for expand/collapse behavior with single-open mode and arrow rotation.
+
 ## [1.6.31] - 2026-06-10
 ### Refactored
 - Refactored `woocommerce/content-single-product.php` to reduce template complexity:
