@@ -12,7 +12,7 @@ if (!function_exists('have_rows') || !have_rows('product_certificates')) {
 }
 ?>
 <div id="section-certificates" class="erdu-content-block scroll-mt-32">
-    <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100"><?php esc_html_e('Certificates', 'erdu-wp'); ?></h2>
+    <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100"><?php esc_html_e('Certificates', 'erdu-wp'); ?></h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         <?php while (have_rows('product_certificates')) : the_row();
             $cert_name  = get_sub_field('cert_name');
@@ -29,7 +29,7 @@ if (!function_exists('have_rows') || !have_rows('product_certificates')) {
                 </div>
             <?php endif; ?>
             <?php if ($cert_name) : ?>
-                <span class="text-sm font-medium text-gray-700"><?php echo esc_html($cert_name); ?></span>
+                <span class="text-base font-medium text-gray-700"><?php echo esc_html($cert_name); ?></span>
             <?php endif; ?>
         </div>
         <?php endwhile; ?>

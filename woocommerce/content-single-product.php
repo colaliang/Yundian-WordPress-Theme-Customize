@@ -109,7 +109,7 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
             </div>
 
             <!-- Content Blocks -->
-            <div class="erdu-content-blocks bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-10 space-y-16 max-w-full overflow-hidden">
+            <div class="erdu-content-blocks bg-white rounded-xl shadow-sm border border-gray-100 p-6 lg:p-10 space-y-24 max-w-full overflow-hidden">
                 <?php
                 wc_get_template('single-product/product-section-desc.php');
                 wc_get_template('single-product/product-section-features.php');

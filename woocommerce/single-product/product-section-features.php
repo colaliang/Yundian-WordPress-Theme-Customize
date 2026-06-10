@@ -12,15 +12,20 @@ if (!function_exists('have_rows') || !have_rows('product_features')) {
 }
 ?>
 <div id="section-features" class="erdu-content-block scroll-mt-32">
-    <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100"><?php esc_html_e('Features', 'erdu-wp'); ?></h2>
-    <div class="prose prose-lg max-w-none text-gray-600">
-        <ul class="list-disc pl-5 space-y-4">
-            <?php while (have_rows('product_features')) : the_row();
-                $f_title = get_sub_field('title');
-                $f_desc  = get_sub_field('description');
-            ?>
-                <li><strong class="text-gray-900"><?php echo esc_html($f_title); ?></strong> - <?php echo esc_html($f_desc); ?></li>
-            <?php endwhile; ?>
-        </ul>
+    <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100"><?php esc_html_e('Features', 'erdu-wp'); ?></h2>
+    <div class="space-y-5 text-gray-600 text-base leading-relaxed">
+        <?php while (have_rows('product_features')) : the_row();
+            $f_title = get_sub_field('title');
+            $f_desc  = get_sub_field('description');
+        ?>
+        <div class="flex items-start gap-3">
+            <span class="mt-2 w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0"></span>
+            <p>
+                <span class="font-semibold text-gray-900"><?php echo esc_html($f_title); ?></span>
+                <span class="mx-1">—</span>
+                <?php echo esc_html($f_desc); ?>
+            </p>
+        </div>
+        <?php endwhile; ?>
     </div>
 </div>
