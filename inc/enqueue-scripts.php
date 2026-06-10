@@ -33,6 +33,17 @@ function erdu_enqueue_assets()
         true
     );
 
+    // Single Product JS
+    if (is_singular('product')) {
+        wp_enqueue_script(
+            'erdu-single-product',
+            ERDU_URI . '/assets/js/single-product.js',
+            array(),
+            ERDU_VERSION,
+            true
+        );
+    }
+
     // Theme settings
     $theme_settings = get_option('erdu_settings', array());
 

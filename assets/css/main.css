@@ -146,6 +146,7 @@ input, textarea, select { font-family: inherit; }
 .w-48 { width: 12rem; }
 .w-56 { width: 14rem; }
 .w-full { width: 100%; }
+.w-\[80px\] { width: 80px; }
 .min-w-\[200px\] { min-width: 200px; }
 .max-w-md { max-width: 28rem; }
 .max-w-lg { max-width: 32rem; }
@@ -153,6 +154,9 @@ input, textarea, select { font-family: inherit; }
 .max-w-3xl { max-width: 48rem; }
 .max-w-4xl { max-width: 56rem; }
 .max-w-none { max-width: none; }
+.max-w-\[800px\] { max-width: 800px; }
+.max-w-\[900px\] { max-width: 900px; }
+.max-w-\[1400px\] { max-width: 1400px; }
 
 /* ===== Sizing - Height ===== */
 .h-3 { height: 0.75rem; }
@@ -172,6 +176,8 @@ input, textarea, select { font-family: inherit; }
 .h-full { height: 100%; }
 .h-\[400px\] { height: 400px; }
 .h-\[500px\] { height: 500px; }
+.max-h-\[80vh\] { max-height: 80vh; }
+.max-h-\[900px\] { max-height: 900px; }
 
 /* ===== Hero Section - Responsive Height ===== */
 .min-h-\[60vh\] { min-height: 60vh; }
@@ -306,6 +312,38 @@ input, textarea, select { font-family: inherit; }
 .opacity-20 { opacity: 0.2; }
 .opacity-30 { opacity: 0.3; }
 .opacity-60 { opacity: 0.6; }
+.opacity-70 { opacity: 0.7; }
+.opacity-100 { opacity: 1; }
+
+/* ===== Effects - Backdrop ===== */
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* ===== Position - Custom ===== */
+.top-\[70px\] { top: 70px; }
+.z-\[60\] { z-index: 60; }
+.z-\[99999\] { z-index: 99999; }
+
+/* ===== Background - Arbitrary / Alpha ===== */
+.bg-\[\#111111\] { background-color: #111111; }
+.bg-white\/80 { background-color: rgba(255, 255, 255, 0.8); }
+.bg-white\/95 { background-color: rgba(255, 255, 255, 0.95); }
+.bg-black\/30 { background-color: rgba(0, 0, 0, 0.3); }
+.bg-black\/40 { background-color: rgba(0, 0, 0, 0.4); }
+.bg-black\/50 { background-color: rgba(0, 0, 0, 0.5); }
+.bg-black\/80 { background-color: rgba(0, 0, 0, 0.8); }
+
+/* ===== Border - Arbitrary ===== */
+.border-\[\#f97316\] { border-color: #f97316; }
+
+/* ===== Scroll Helpers ===== */
+.scroll-mt-32 { scroll-margin-top: 8rem; }
+.hide-scrollbar,
+.erdu-hide-scrollbar { scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar,
+.erdu-hide-scrollbar::-webkit-scrollbar { display: none; }
 
 /* ===== Transitions ===== */
 .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
@@ -322,6 +360,7 @@ input, textarea, select { font-family: inherit; }
 .hover\:bg-orange-100:hover { background-color: #ffedd5; }
 .hover\:bg-orange-500:hover { background-color: #f97316; }
 .hover\:bg-black:hover { background-color: #000000; }
+.hover\:bg-black\/80:hover { background-color: rgba(0, 0, 0, 0.8); }
 .hover\:bg-blue-600:hover { background-color: #2563eb; }
 .hover\:text-white:hover { color: #ffffff; }
 .hover\:text-gray-300:hover { color: #d1d5db; }
@@ -335,11 +374,16 @@ input, textarea, select { font-family: inherit; }
 .hover\:shadow-lg:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); }
 .hover\:scale-105:hover { transform: scale(1.05); }
 .hover\:opacity-90:hover { opacity: 0.9; }
+.hover\:opacity-100:hover { opacity: 1; }
 .hover\:border-orange-200:hover { border-color: #fed7aa; }
+.hover\:border-gray-300:hover { border-color: #d1d5db; }
+.hover\:border-gray-500:hover { border-color: #6b7280; }
 
 /* ===== Group Hover ===== */
 .group:hover .group-hover\:text-orange-500 { color: #f97316; }
 .group:hover .group-hover\:scale-105 { transform: scale(1.05); }
+.group:hover .group-hover\:opacity-100 { opacity: 1; }
+.group:hover .group-hover\:scale-\[1\.02\] { transform: scale(1.02); }
 
 /* ===== Z-Index ===== */
 .z-10 { z-index: 10; }
@@ -382,6 +426,7 @@ input, textarea, select { font-family: inherit; }
 .prose img { margin: 2em 0; border-radius: 0.75rem; }
 .prose a { color: #f97316; text-decoration: underline; }
 .prose blockquote { border-left: 4px solid #f97316; padding-left: 1rem; font-style: italic; color: #6b7280; }
+.prose.max-w-none { max-width: none; }
 .prose-lg { font-size: 1.125rem; line-height: 1.75; }
 
 /* ===== FAQ specific ===== */
@@ -392,6 +437,8 @@ input, textarea, select { font-family: inherit; }
   .sm\:col-span-2 { grid-column: span 2 / span 2; }
   .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sm\:inline { display: inline; }
+  .sm\:mx-0 { margin-left: 0; margin-right: 0; }
+  .sm\:px-0 { padding-left: 0; padding-right: 0; }
 }
 
 /* ===== Responsive: md (768px) ===== */
@@ -406,6 +453,7 @@ input, textarea, select { font-family: inherit; }
   .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .md\:h-80 { height: 20rem; }
   .md\:h-\[600px\] { height: 600px; }
+  .md\:p-8 { padding: 2rem; }
   .md\:gap-12 { gap: 3rem; }
   .md\:text-left { text-align: left; }
   .md\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
@@ -433,6 +481,7 @@ input, textarea, select { font-family: inherit; }
   .lg\:w-3\/4 { width: 75%; }
   .lg\:w-1\/3 { width: 33.333333%; }
   .lg\:w-2\/3 { width: 66.666667%; }
+  .lg\:w-\[64px\] { width: 64px; }
 
   .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -444,6 +493,31 @@ input, textarea, select { font-family: inherit; }
 /* ===== Responsive: xl (1280px) ===== */
 @media (min-width: 1280px) {
   .xl\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .xl\:w-1\/2 { width: 50%; }
+  .xl\:sticky { position: sticky; }
+  .xl\:top-24 { top: 6rem; }
+  .xl\:gap-16 { gap: 4rem; }
+}
+
+/* ===== Single Product Specific ===== */
+.erdu-gallery-stage { aspect-ratio: 1 / 1; }
+.erdu-btn-inquire { width: 128px; height: 48px; }
+.erdu-btn-whatsapp { width: 128px; height: 48px; background-color: #25D366; }
+.erdu-btn-whatsapp:hover { background-color: #128C7E; }
+
+/* ===== Single Product Gallery Responsive Overrides ===== */
+@media (max-width: 1279px) {
+  .erdu-product-columns { flex-direction: column !important; }
+  .erdu-product-col-left,
+  .erdu-product-col-right { width: 100% !important; }
+  .erdu-gallery-layout { flex-direction: column-reverse !important; }
+  .erdu-rail-layout {
+    width: 100% !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+  .erdu-thumb-layout { width: 64px !important; flex-shrink: 0 !important; }
 }
 
 /* ===== Hero Video Background ===== */
