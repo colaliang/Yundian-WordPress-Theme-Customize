@@ -54,7 +54,7 @@ if ($show_sku || $show_price || $moq) :
 <!-- Short Description -->
 <?php if (has_excerpt()) : ?>
     <div class="prose prose-sm max-w-none text-gray-600 mb-6 leading-relaxed">
-        <?php the_excerpt(); ?>
+        <?php echo wp_kses_post(get_the_excerpt()); ?>
     </div>
 <?php endif; ?>
 

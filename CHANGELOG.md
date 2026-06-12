@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.36] - 2026-06-12
+### Fixed
+- Version number sync: updated style.css to 1.6.36 to match functions.php.
+- Various product page improvements (see git log for details).
+
 ## [1.6.35] - 2026-06-10
 ### Fixed
 - Unified padding for all content blocks: moved `py-10 lg:py-16` from outer container to each individual section for consistent spacing.

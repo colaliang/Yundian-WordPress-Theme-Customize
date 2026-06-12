@@ -42,7 +42,7 @@ $first_full  = !empty($all_image_ids) ? wp_get_attachment_image_url(array_values
             <?php if ($has_video) :
                 $video_bg = !empty($all_image_ids) ? wp_get_attachment_image_url(array_values($all_image_ids)[0], 'gallery_thumbnail') : wc_placeholder_img_src('gallery_thumbnail');
             ?>
-                <div id="erdu-video-thumb" class="erdu-video-thumb w-full aspect-square rounded-lg object-cover border-2 border-transparent opacity-70 hover:opacity-100 hover:border-gray-300 cursor-pointer transition-all relative flex items-center justify-center overflow-hidden erdu-thumb-layout">
+                <div id="erdu-video-thumb" class="erdu-video-thumb w-full aspect-square rounded-lg border-2 border-transparent opacity-70 hover:opacity-100 hover:border-gray-300 cursor-pointer transition-all relative flex items-center justify-center overflow-hidden erdu-thumb-layout">
                     <img src="<?php echo esc_url($video_bg); ?>" class="absolute inset-0 w-full h-full object-cover opacity-50" />
                     <div class="absolute inset-0 bg-black/30"></div>
                     <svg class="w-8 h-8 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>

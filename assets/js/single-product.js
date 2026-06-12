@@ -248,8 +248,10 @@
         // Smooth scrolling for navigation links
         navLinks.forEach(function (link) {
             link.addEventListener('click', function (e) {
-                e.preventDefault();
                 var targetId = this.getAttribute('href');
+                // Only handle anchor links (starting with #), skip regular page links
+                if (!targetId || targetId.charAt(0) !== '#') return;
+                e.preventDefault();
                 var targetElement = document.querySelector(targetId);
 
                 if (targetElement) {
