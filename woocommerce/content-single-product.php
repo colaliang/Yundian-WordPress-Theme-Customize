@@ -83,7 +83,14 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
     </div>
 
     <!-- Related Products Section (Between Section 1 & 2) -->
-    <?php wc_get_template('single-product/product-section-related.php', array('product' => $product)); ?>
+    <?php
+    $related_template = 'single-product/product-section-related.php';
+    if (file_exists(get_template_directory() . '/woocommerce/' . $related_template)) {
+        wc_get_template($related_template, array('product' => $product));
+    } else {
+        echo '<!-- DEBUG: Template not found: ' . esc_html($related_template) . ' -->';
+    }
+    ?>
 
     <!-- SECTION 2: Vertical Flow Content (Bottom) -->
     <div class="product-tabs-section w-full">
