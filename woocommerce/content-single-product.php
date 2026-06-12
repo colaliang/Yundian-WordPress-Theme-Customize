@@ -82,6 +82,9 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
 
     </div>
 
+    <!-- Related Products Section (Between Section 1 & 2) -->
+    <?php wc_get_template('single-product/product-section-related.php', array('product' => $product)); ?>
+
     <!-- SECTION 2: Vertical Flow Content (Bottom) -->
     <div class="product-tabs-section w-full">
         <div class="w-full">

@@ -222,6 +222,86 @@ $wc_product_fields = array(
             array('key' => 'field_dl_file', 'label' => __('File URL', 'erdu-wp'), 'name' => 'file', 'type' => 'url'),
         ),
     ),
+
+    // 8. Related Products Tab
+    array('key' => 'field_wc_tab_related', 'label' => __('Related Products', 'erdu-wp'), 'type' => 'tab'),
+    array(
+        'key' => 'field_wc_related_mode',
+        'label' => __('Product Selection Mode', 'erdu-wp'),
+        'name' => 'related_products_mode',
+        'type' => 'radio',
+        'choices' => array(
+            'auto' => __('Auto Match (by category)', 'erdu-wp'),
+            'manual' => __('Manual Select', 'erdu-wp'),
+        ),
+        'default_value' => 'auto',
+        'layout' => 'horizontal',
+    ),
+    array(
+        'key' => 'field_wc_related_manual',
+        'label' => __('Select Products', 'erdu-wp'),
+        'name' => 'related_products_manual',
+        'type' => 'relationship',
+        'post_type' => array('product'),
+        'filters' => array('search', 'post_type'),
+        'elements' => array(),
+        'return_format' => 'id',
+        'max' => 12,
+        'conditional_logic' => array(
+            array(
+                array('field' => 'field_wc_related_mode', 'operator' => '==', 'value' => 'manual')
+            )
+        ),
+    ),
+    array(
+        'key' => 'field_wc_related_max',
+        'label' => __('Max Display Count', 'erdu-wp'),
+        'name' => 'related_products_max',
+        'type' => 'number',
+        'min' => 1,
+        'max' => 12,
+        'default_value' => 4,
+        'step' => 1,
+    ),
+    array(
+        'key' => 'field_wc_related_show_title',
+        'label' => __('Show Title', 'erdu-wp'),
+        'name' => 'related_show_title',
+        'type' => 'true_false',
+        'ui' => 1,
+        'default_value' => 1,
+    ),
+    array(
+        'key' => 'field_wc_related_show_price',
+        'label' => __('Show Price', 'erdu-wp'),
+        'name' => 'related_show_price',
+        'type' => 'true_false',
+        'ui' => 1,
+        'default_value' => 1,
+    ),
+    array(
+        'key' => 'field_wc_related_show_moq',
+        'label' => __('Show MOQ', 'erdu-wp'),
+        'name' => 'related_show_moq',
+        'type' => 'true_false',
+        'ui' => 1,
+        'default_value' => 1,
+    ),
+    array(
+        'key' => 'field_wc_related_show_certs',
+        'label' => __('Show Certification Badges', 'erdu-wp'),
+        'name' => 'related_show_certs',
+        'type' => 'true_false',
+        'ui' => 1,
+        'default_value' => 1,
+    ),
+    array(
+        'key' => 'field_wc_related_section_title',
+        'label' => __('Section Title', 'erdu-wp'),
+        'name' => 'related_section_title',
+        'type' => 'text',
+        'default_value' => __('Related Products', 'erdu-wp'),
+    ),
 );
 
 acf_add_local_field_group(array(
