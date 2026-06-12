@@ -15,6 +15,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.38] - 2026-06-12
+### Added
+- 产品推荐模块（Related Products Section）：在单产品页Section 1（画廊/信息）和Section 2（标签页）之间新增推荐产品区块。
+- ACF配置：支持自动匹配（按分类）或手动选择产品，可配置最大显示数量、区块标题、显示/隐藏标题/价格/MOQ/认证标识。
+- 响应式网格布局：手机1列、平板2列、桌面4列。
+- 产品卡片悬停效果：阴影、图片缩放、标题变色。
+
+## [1.6.37] - 2026-06-12
+### Fixed
+- 修复产品推荐模块模板加载逻辑，增加文件存在性检查。
+
 ## [1.6.36] - 2026-06-12
 ### Fixed
 - Version number sync: updated style.css to 1.6.36 to match functions.php.
