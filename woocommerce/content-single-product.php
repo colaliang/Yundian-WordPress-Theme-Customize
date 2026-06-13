@@ -71,7 +71,7 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
         </div>
 
         <!-- Right Column: Product Info -->
-        <div class="w-full xl:w-1/2 self-start xl:sticky xl:top-24">
+        <div class="w-full xl:w-1/2 self-start xl:sticky xl:top-24 erdu-product-col-right">
             <?php
             wc_get_template('single-product/product-info.php', array(
                 'product'  => $product,
@@ -93,12 +93,12 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
     ?>
 
     <!-- SECTION 2: Vertical Flow Content (Bottom) -->
-    <div class="product-tabs-section w-full">
-        <div class="w-full">
+    <div class="product-tabs-section w-full erdu-product-tabs-shell">
+        <div class="w-full erdu-product-tabs-layout">
 
             <!-- Sticky Navigation Menu -->
-            <div class="sticky top-[70px] z-40 bg-white/95 backdrop-blur-sm -mx-4 px-4 sm:mx-0 sm:px-0">
-                <nav class="flex overflow-x-auto hide-scrollbar gap-x-8 gap-y-4 py-4 justify-start" aria-label="Product Sections">
+            <div class="sticky top-[70px] z-40 bg-white/95 backdrop-blur-sm -mx-4 px-4 sm:mx-0 sm:px-0 erdu-product-sections-nav-wrap erdu-product-tabs-bar-wrap">
+                <nav class="flex overflow-x-auto hide-scrollbar justify-start erdu-product-sections-nav erdu-product-tabs-bar" aria-label="Product Sections">
                     <?php
                     $nav_items = array();
                     if ($has_desc)        $nav_items[] = array('id' => 'section-desc',         'label' => __('Description', 'erdu-wp'));
@@ -111,7 +111,7 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
                     foreach ($nav_items as $i => $item) :
                         $is_first = ($i === 0);
                     ?>
-                    <a href="#<?php echo esc_attr($item['id']); ?>" class="erdu-nav-link whitespace-nowrap text-2xl font-bold transition-colors <?php echo $is_first ? 'text-orange-600' : 'text-gray-500 hover:text-orange-600'; ?>">
+                    <a href="#<?php echo esc_attr($item['id']); ?>" class="erdu-nav-link erdu-product-tab-link whitespace-nowrap <?php echo $is_first ? 'active' : ''; ?>">
                         <?php echo esc_html($item['label']); ?>
                     </a>
                     <?php endforeach; ?>
@@ -119,7 +119,7 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
             </div>
 
             <!-- Content Blocks -->
-            <div class="erdu-content-blocks bg-white rounded-xl shadow-sm border border-gray-100 max-w-full overflow-hidden">
+            <div class="erdu-content-blocks">
                 <?php
                 wc_get_template('single-product/product-section-desc.php');
                 wc_get_template('single-product/product-section-features.php');

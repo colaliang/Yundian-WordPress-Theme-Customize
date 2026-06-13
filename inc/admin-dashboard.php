@@ -233,10 +233,15 @@ function erdu_dashboard_page()
         add_settings_error('erdu_messages', 'erdu_message', __('Settings saved.', 'erdu-wp'), 'updated');
     }
 
-    $modules   = get_option('erdu_modules', erdu_default_modules());
-    $page_count = wp_count_posts('page')->publish;
-    $product_count = wp_count_posts('product')->publish;
-    $case_count = wp_count_posts('erdu_case')->publish;
+    $modules = get_option('erdu_modules', erdu_default_modules());
+
+    $page_counts = wp_count_posts('page');
+    $product_counts = wp_count_posts('product');
+    $case_counts = wp_count_posts('erdu_case');
+
+    $page_count = isset($page_counts->publish) ? (int) $page_counts->publish : 0;
+    $product_count = isset($product_counts->publish) ? (int) $product_counts->publish : 0;
+    $case_count = isset($case_counts->publish) ? (int) $case_counts->publish : 0;
     ?>
     <div class="wrap erdu-dashboard">
         <div class="erdu-dashboard-header">

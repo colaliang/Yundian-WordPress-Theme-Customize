@@ -14,18 +14,30 @@ if (!function_exists('get_field')) {
     return;
 }
 
-$mode       = get_field('related_products_mode') ?: 'auto';
-$max_count  = (int) (get_field('related_products_max') ?: 4);
-$show_title = get_field('related_show_title') !== false ? get_field('related_show_title') : true;
-$show_price = get_field('related_show_price') !== false ? get_field('related_show_price') : true;
-$show_moq   = get_field('related_show_moq') !== false ? get_field('related_show_moq') : true;
-$show_certs = get_field('related_show_certs') !== false ? get_field('related_show_certs') : true;
-$section_title = get_field('related_section_title') ?: __('Related Products', 'erdu-wp');
+$product_id    = $product->get_id();
+$mode          = get_field('related_products_mode', $product_id) ?: 'auto';
+$max_count     = max(1, (int) (get_field('related_products_max', $product_id) ?: 4));
+$section_title = get_field('related_section_title', $product_id) ?: __('Related Products', 'erdu-wp');
+
+// True/false ACF fields return falsy values when unchecked, so read raw meta to
+// distinguish between "field not saved yet" and an intentional off state.
+$show_title = metadata_exists('post', $product_id, 'related_show_title')
+    ? (bool) get_post_meta($product_id, 'related_show_title', true)
+    : true;
+$show_price = metadata_exists('post', $product_id, 'related_show_price')
+    ? (bool) get_post_meta($product_id, 'related_show_price', true)
+    : true;
+$show_moq = metadata_exists('post', $product_id, 'related_show_moq')
+    ? (bool) get_post_meta($product_id, 'related_show_moq', true)
+    : true;
+$show_certs = metadata_exists('post', $product_id, 'related_show_certs')
+    ? (bool) get_post_meta($product_id, 'related_show_certs', true)
+    : true;
 
 $related_ids = array();
 
 if ($mode === 'manual') {
-    $manual_ids = get_field('related_products_manual');
+    $manual_ids = get_field('related_products_manual', $product_id);
     if (!empty($manual_ids)) {
         $related_ids = is_array($manual_ids) ? $manual_ids : array($manual_ids);
     }
@@ -62,77 +74,94 @@ if (empty($related_ids)) {
     return;
 }
 
-// Limit to max count
+$related_ids = array_values(array_filter(array_unique(array_map('intval', $related_ids)), function ($related_id) use ($product_id) {
+    return $related_id > 0 && $related_id !== $product_id;
+}));
+
+if (empty($related_ids)) {
+    return;
+}
+
 $related_ids = array_slice($related_ids, 0, $max_count);
 ?>
 
 <!-- Section: Related Products -->
-<section class="erdu-related-products-section py-12 mb-8">
-    <div class="erdu-container">
-        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">
+<section class="erdu-related-products-section">
+    <div class="erdu-container erdu-related-products-inner">
+        <h2 class="erdu-related-products-title">
             <?php echo esc_html($section_title); ?>
         </h2>
 
-        <div class="erdu-related-products-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="erdu-related-products-grid">
             <?php foreach ($related_ids as $related_id) :
                 $related_product = wc_get_product($related_id);
-                if (!$related_product) continue;
+                if (!$related_product) {
+                    continue;
+                }
 
                 $related_image = get_the_post_thumbnail_url($related_id, 'woocommerce_thumbnail');
                 $related_title = get_the_title($related_id);
                 $related_permalink = get_permalink($related_id);
                 $related_moq = get_field('product_moq', $related_id);
                 $related_certs = get_field('product_certificates', $related_id);
+                $price_html = $related_product->get_price_html();
+
+                $cert_badges = array();
+                if ($show_certs && !empty($related_certs) && is_array($related_certs)) {
+                    foreach ($related_certs as $cert) {
+                        if (empty($cert['cert_image'])) {
+                            continue;
+                        }
+
+                        $cert_badges[] = array(
+                            'image' => $cert['cert_image'],
+                            'name'  => isset($cert['cert_name']) ? $cert['cert_name'] : '',
+                        );
+
+                        if (count($cert_badges) >= 3) {
+                            break;
+                        }
+                    }
+                }
             ?>
-                <a href="<?php echo esc_url($related_permalink); ?>" class="erdu-related-product-card group block bg-white rounded-xl border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-gray-200">
-                    <!-- Product Image -->
-                    <div class="relative aspect-square overflow-hidden bg-gray-50">
+                <a href="<?php echo esc_url($related_permalink); ?>" class="erdu-related-product-card">
+                    <div class="erdu-related-product-media">
                         <?php if ($related_image) : ?>
-                            <img src="<?php echo esc_url($related_image); ?>" alt="<?php echo esc_attr($related_title); ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            <img src="<?php echo esc_url($related_image); ?>" alt="<?php echo esc_attr($related_title); ?>" class="erdu-related-product-image" loading="lazy">
                         <?php else : ?>
-                            <div class="w-full h-full flex items-center justify-center bg-gray-100">
-                                <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="erdu-related-product-placeholder" aria-hidden="true">
+                                <svg class="erdu-related-product-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
                             </div>
                         <?php endif; ?>
 
-                        <!-- Certification Badges Overlay -->
-                        <?php if ($show_certs && !empty($related_certs) && is_array($related_certs)) : ?>
-                            <div class="absolute bottom-2 left-2 flex flex-wrap gap-1">
-                                <?php
-                                $cert_count = 0;
-                                foreach ($related_certs as $cert) :
-                                    if ($cert_count >= 3) break;
-                                    if (!empty($cert['cert_image'])) :
-                                        $cert_count++;
-                                ?>
-                                    <img src="<?php echo esc_url($cert['cert_image']); ?>" alt="<?php echo esc_attr($cert['cert_name'] ?? ''); ?>" class="w-8 h-8 rounded-full object-cover border border-white shadow-sm" loading="lazy">
-                                <?php
-                                    endif;
-                                endforeach;
-                                ?>
+                        <?php if (!empty($cert_badges)) : ?>
+                            <div class="erdu-related-product-badges" aria-hidden="true">
+                                <?php foreach ($cert_badges as $badge) : ?>
+                                    <img src="<?php echo esc_url($badge['image']); ?>" alt="<?php echo esc_attr($badge['name']); ?>" class="erdu-related-product-badge" loading="lazy">
+                                <?php endforeach; ?>
                             </div>
                         <?php endif; ?>
                     </div>
 
-                    <!-- Product Info -->
-                    <div class="p-4">
+                    <div class="erdu-related-product-body">
                         <?php if ($show_title) : ?>
-                            <h3 class="text-sm font-semibold text-gray-900 leading-snug mb-2 line-clamp-2 group-hover:text-orange-600 transition-colors">
+                            <h3 class="erdu-related-product-title">
                                 <?php echo esc_html($related_title); ?>
                             </h3>
                         <?php endif; ?>
 
-                        <?php if ($show_price && $related_product->get_price_html()) : ?>
-                            <div class="text-lg font-bold text-gray-900 mb-1">
-                                <?php echo $related_product->get_price_html(); ?>
+                        <?php if ($show_price && $price_html) : ?>
+                            <div class="erdu-related-product-price">
+                                <?php echo wp_kses_post($price_html); ?>
                             </div>
                         <?php endif; ?>
 
                         <?php if ($show_moq && $related_moq) : ?>
-                            <div class="text-xs text-gray-500">
-                                <?php esc_html_e('MOQ:', 'erdu-wp'); ?> <span class="font-medium text-gray-700"><?php echo esc_html($related_moq); ?></span>
+                            <div class="erdu-related-product-meta">
+                                <?php esc_html_e('MOQ:', 'erdu-wp'); ?>
+                                <span class="erdu-related-product-meta-value"><?php echo esc_html($related_moq); ?></span>
                             </div>
                         <?php endif; ?>
                     </div>

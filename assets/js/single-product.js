@@ -240,8 +240,11 @@
     // Product Tabs Smooth Scroll & Active State
     // ==========================================
     function initProductTabs() {
-        var navLinks = document.querySelectorAll('.erdu-nav-link');
-        var sections = document.querySelectorAll('.erdu-content-block');
+        var tabShell = document.querySelector('.erdu-product-tabs-shell');
+        if (!tabShell) return;
+
+        var navLinks = tabShell.querySelectorAll('.erdu-nav-link');
+        var sections = tabShell.querySelectorAll('.erdu-content-block');
 
         if (!navLinks.length || !sections.length) return;
 
@@ -271,15 +274,13 @@
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     navLinks.forEach(function (link) {
-                        link.classList.remove('text-orange-600');
-                        link.classList.add('text-gray-500');
+                        link.classList.remove('active');
                     });
 
                     var activeId = '#' + entry.target.id;
-                    var activeLink = document.querySelector('.erdu-nav-link[href="' + activeId + '"]');
+                    var activeLink = tabShell.querySelector('.erdu-nav-link[href="' + activeId + '"]');
                     if (activeLink) {
-                        activeLink.classList.remove('text-gray-500');
-                        activeLink.classList.add('text-orange-600');
+                        activeLink.classList.add('active');
                     }
                 }
             });

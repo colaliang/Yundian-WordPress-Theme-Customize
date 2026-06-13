@@ -15,6 +15,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.41] - 2026-06-13
+### Changed
+- 调整单产品页 Section 2：移除 `erdu-product-tabs-panel` 面板壳，恢复更自然的内容流布局。
+- 将 Sticky Navigation Menu 统一为 `2xl` 级别视觉，并改为左对齐展示。
+
+### Fixed
+- 保留 Section 2 原有锚点滚动和高亮逻辑的同时，降低样式壳层带来的视觉干扰。
+
+## [1.6.40] - 2026-06-13
+### Changed
+- 参考 `debug/TabbedDetails.tsx` 的视觉风格，重做单产品页 Section 2 顶部导航与内容面板样式，但保留原有锚点滚动浏览方式。
+- 为 Section 2 新增专用 tab 样式类，弱化原有大号标题式导航，改为更接近产品详情页 tab 的分栏视觉。
+
+### Fixed
+- 调整 `assets/js/single-product.js` 中的单产品页 tabs 高亮逻辑，将作用范围限定到 Section 2 容器，避免与全站其他 `.erdu-nav-link` 样式互相影响。
+- 打包前重新执行 PHP 静态检查，确认当前主题文件无语法问题，可安全生成安装包。
+
+## [1.6.39] - 2026-06-13
+### Fixed
+- 恢复 `assets/css/main.css` 中被误删的通用 utility 样式，修复全站多处页面样式错乱。
+- 修正单产品页右侧信息列响应式类缺失问题，并优化移动端 Product Sections 导航的可读性。
+- 保留单产品页推荐区块与内容区块之间的稳定间距，避免桌面端和移动端出现残留错位。
+
+### Changed
+- 重构 `woocommerce/single-product/product-section-related.php`，改为以专用组件类为主的实现，降低对零散 utility class 的脆弱依赖。
+- 收敛 Related Products 区块的数据读取逻辑，避免重复 `get_field()` 调用，并增强证书徽章与占位图渲染的稳健性。
+- 增加对当前产品 ID 的排除逻辑，防止推荐区块错误地把当前产品推荐给自己。
+
 ## [1.6.38] - 2026-06-12
 ### Added
 - 产品推荐模块（Related Products Section）：在单产品页Section 1（画廊/信息）和Section 2（标签页）之间新增推荐产品区块。
