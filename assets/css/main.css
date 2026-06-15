@@ -660,6 +660,12 @@ input, textarea, select { font-family: inherit; }
 
 @media (min-width: 1024px) {
   .erdu-related-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .erdu-related-products-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -839,6 +845,18 @@ input, textarea, select { font-family: inherit; }
 .erdu-product-sections-nav {
   align-items: center;
   padding-bottom: 0.25rem;
+}
+
+@media (max-width: 1279px) {
+  .erdu-product-tabs-shell .erdu-product-tab-link {
+    font-size: 1.125rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .erdu-content-blocks .erdu-content-block {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 @media (max-width: 767px) {

@@ -24,7 +24,7 @@ if ($related_products) : ?>
             </div>
         <?php endif; ?>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <?php
             // We use our custom B2B content-product.php card structure
             woocommerce_product_loop_start();

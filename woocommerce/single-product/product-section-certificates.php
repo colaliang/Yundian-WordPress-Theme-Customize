@@ -13,7 +13,7 @@ if (!function_exists('have_rows') || !have_rows('product_certificates')) {
 ?>
 <div id="section-certificates" class="erdu-content-block scroll-mt-32 py-10 lg:py-16">
     <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100"><?php esc_html_e('Certificates', 'erdu-wp'); ?></h2>
-    <div class="prose max-w-none grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+    <div class="prose max-w-none grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
         <?php while (have_rows('product_certificates')) : the_row();
             $cert_name  = get_sub_field('cert_name');
             $cert_image = get_sub_field('cert_image');

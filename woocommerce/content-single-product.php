@@ -71,7 +71,7 @@ $has_downloads   = function_exists('have_rows') && have_rows('product_downloads'
         </div>
 
         <!-- Right Column: Product Info -->
-        <div class="w-full xl:w-1/2 self-start xl:sticky xl:top-24 erdu-product-col-right">
+        <div class="w-full lg:w-1/2 self-start xl:sticky xl:top-24 erdu-product-col-right">
             <?php
             wc_get_template('single-product/product-info.php', array(
                 'product'  => $product,
