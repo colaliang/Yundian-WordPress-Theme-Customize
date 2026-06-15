@@ -1,0 +1,577 @@
+uid=12_0 RootWebArea "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel – ERDU" url="http://127.0.0.1:8081/?product=test"
+  uid=12_1 ignored
+    uid=12_2 generic
+      uid=12_3 banner
+        uid=12_4 ignored
+          uid=12_5 ignored
+            uid=12_6 link "ERDU" url="http://127.0.0.1:8081/"
+              uid=12_7 image "ERDU" url="http://127.0.0.1:8081/wp-content/uploads/2026/06/LOGO.png"
+            uid=12_8 navigation
+              uid=12_9 link "Home" url="http://127.0.0.1:8081/"
+                uid=12_10 StaticText "Home"
+                  uid=12_11 InlineTextBox "Home"
+              uid=12_12 link "About Us" url="http://127.0.0.1:8081/?page_id=849"
+                uid=12_13 StaticText "About Us"
+                  uid=12_11 InlineTextBox "About Us"
+              uid=12_14 link "Products" url="http://127.0.0.1:8081/?page_id=1027"
+                uid=12_15 StaticText "Products"
+                  uid=12_11 InlineTextBox "Products"
+              uid=12_16 link "Solutions" url="http://127.0.0.1:8081/?page_id=851"
+                uid=12_17 StaticText "Solutions"
+                  uid=12_11 InlineTextBox "Solutions"
+              uid=12_18 link "Quality" url="http://127.0.0.1:8081/?page_id=852"
+                uid=12_19 StaticText "Quality"
+                  uid=12_11 InlineTextBox "Quality"
+              uid=12_20 link "Distributor" url="http://127.0.0.1:8081/?page_id=853"
+                uid=12_21 StaticText "Distributor"
+                  uid=12_11 InlineTextBox "Distributor"
+              uid=12_22 link "Case Studies" url="http://127.0.0.1:8081/?page_id=854"
+                uid=12_23 StaticText "Case Studies"
+                  uid=12_11 InlineTextBox "Case Studies"
+              uid=12_24 link "News" url="http://127.0.0.1:8081/?page_id=855"
+                uid=12_25 StaticText "News"
+                  uid=12_11 InlineTextBox "News"
+              uid=12_26 link "Contact" url="http://127.0.0.1:8081/?page_id=857"
+                uid=12_27 StaticText "Contact"
+                  uid=12_11 InlineTextBox "Contact"
+            uid=12_28 ignored
+              uid=12_29 ignored
+                uid=12_30 link "Facebook" url="https://www.facebook.com/"
+                  uid=12_31 image
+                uid=12_32 link "Wechat" url="http://kejieleung/"
+                  uid=12_33 image
+              uid=12_34 ignored
+                uid=12_35 ignored
+                  uid=12_36 ignored
+                    uid=12_37 StaticText "中文"
+                      uid=12_11 InlineTextBox "中文"
+                  uid=12_38 ignored
+                    uid=12_39 StaticText "/"
+                      uid=12_11 InlineTextBox "/"
+                  uid=12_40 link "EN" url="http://127.0.0.1:8081/en"
+                    uid=12_41 StaticText "EN"
+                      uid=12_11 InlineTextBox "EN"
+              uid=12_42 link "Get a Quote" url="http://127.0.0.1:8081/?page_id=857"
+                uid=12_43 StaticText "Get a Quote"
+                  uid=12_11 InlineTextBox "Get a Quote"
+      uid=12_44 main
+        uid=12_45 ignored
+          uid=12_46 generic
+            uid=12_47 main
+              uid=12_48 ignored
+              uid=12_49 generic
+                uid=12_50 navigation
+                  uid=12_51 link "首页" url="http://127.0.0.1:8081/"
+                    uid=12_52 StaticText "首页"
+                      uid=12_11 InlineTextBox "首页"
+                  uid=12_53 ignored
+                    uid=12_54 StaticText "/"
+                      uid=12_11 InlineTextBox "/"
+                  uid=12_55 link "Downlighting" url="http://127.0.0.1:8081/?product_cat=downlighting"
+                    uid=12_56 StaticText "Downlighting"
+                      uid=12_11 InlineTextBox "Downlighting"
+                  uid=12_57 ignored
+                    uid=12_58 StaticText "/"
+                      uid=12_11 InlineTextBox "/"
+                  uid=12_59 StaticText "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel"
+                    uid=12_11 InlineTextBox "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel"
+                uid=12_60 ignored
+                  uid=12_61 ignored
+                    uid=12_62 generic
+                      uid=12_63 generic
+                        uid=12_64 ignored
+                          uid=12_65 image url="http://127.0.0.1:8081/wp-content/uploads/2026/06/1.jpg"
+                          uid=12_66 image url="http://127.0.0.1:8081/wp-content/uploads/2026/06/2.jpg"
+                          uid=12_67 image url="http://127.0.0.1:8081/wp-content/uploads/2026/06/3.jpg"
+                          uid=12_68 image url="http://127.0.0.1:8081/wp-content/uploads/2026/06/4.jpg"
+                          uid=12_69 generic
+                            uid=12_70 image url="http://127.0.0.1:8081/wp-content/uploads/2026/06/1.jpg"
+                            uid=12_71 generic
+                            uid=12_72 image
+                        uid=12_73 generic
+                          uid=12_74 generic
+                            uid=12_75 image "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel" url="http://127.0.0.1:8081/wp-content/uploads/2026/06/1.jpg"
+                            uid=12_76 generic
+                              uid=12_77 image
+                    uid=12_78 ignored
+                      uid=12_79 ignored
+                        uid=12_80 button "Photos"
+                          uid=12_81 StaticText "Photos"
+                            uid=12_11 InlineTextBox "Photos"
+                        uid=12_82 button "Video"
+                          uid=12_83 StaticText "Video"
+                            uid=12_11 InlineTextBox "Video"
+                  uid=12_84 generic
+                    uid=12_85 heading "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel" level="1"
+                      uid=12_86 StaticText "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel"
+                        uid=12_11 InlineTextBox "LED Ceiling Downlight 3000K Color "
+                        uid=12_11 InlineTextBox "Temperature for Home Office Hotel"
+                    uid=12_87 ignored
+                      uid=12_88 generic
+                        uid=12_89 StaticText "SKU:"
+                          uid=12_11 InlineTextBox "SKU:"
+                        uid=12_90 StaticText " "
+                          uid=12_11 InlineTextBox " "
+                        uid=12_91 StaticText "KC-D18"
+                          uid=12_11 InlineTextBox "KC-D18"
+                      uid=12_92 generic
+                        uid=12_93 StaticText "MOQ:"
+                          uid=12_11 InlineTextBox "MOQ:"
+                        uid=12_94 StaticText " "
+                          uid=12_11 InlineTextBox " "
+                        uid=12_95 StaticText "100"
+                          uid=12_11 InlineTextBox "100"
+                    uid=12_96 ignored
+                      uid=12_97 ignored
+                        uid=12_98 list
+                          uid=12_99 listitem level="1"
+                            uid=12_100 ListMarker "• "
+                              uid=12_11 ignored
+                            uid=12_101 strong
+                              uid=12_102 StaticText "High Efficacy & Energy Saving:"
+                                uid=12_11 InlineTextBox "High Efficacy & Energy Saving:"
+                            uid=12_103 StaticText " Luminous efficiency up to 100 lm/w, luminous flux from 700 to 3000lm (depending on wattage) – energy efficient and eco-friendly."
+                              uid=12_11 InlineTextBox " Luminous efficiency up to 100 lm/w, luminous flux from 700 to "
+                              uid=12_11 InlineTextBox "3000lm (depending on wattage) – energy efficient and eco-friendly."
+                          uid=12_104 listitem level="1"
+                            uid=12_105 ListMarker "• "
+                              uid=12_11 ignored
+                            uid=12_106 strong
+                              uid=12_107 StaticText "Selectable Color Temperature:"
+                                uid=12_11 InlineTextBox "Selectable Color Temperature:"
+                            uid=12_108 StaticText " 3000K warm white, 4000K neutral white, or 6000K daylight alert – adapt to different ambiance needs."
+                              uid=12_11 InlineTextBox " 3000K warm white, 4000K neutral white, or 6000K daylight alert – "
+                              uid=12_11 InlineTextBox "adapt to different ambiance needs."
+                          uid=12_109 listitem level="1"
+                            uid=12_110 ListMarker "• "
+                              uid=12_11 ignored
+                            uid=12_111 strong
+                              uid=12_112 StaticText "True Color Rendering:"
+                                uid=12_11 InlineTextBox "True Color Rendering:"
+                            uid=12_113 StaticText " Color Rendering Index Ra ≥80 – vibrant and natural light."
+                              uid=12_11 InlineTextBox " Color Rendering Index Ra ≥80 – vibrant and natural light."
+                          uid=12_114 listitem level="1"
+                            uid=12_115 ListMarker "• "
+                              uid=12_11 ignored
+                            uid=12_116 strong
+                              uid=12_117 StaticText "Uniform Wide Beam:"
+                                uid=12_11 InlineTextBox "Uniform Wide Beam:"
+                            uid=12_118 StaticText " 120° beam angle for wide coverage without dark spots."
+                              uid=12_11 InlineTextBox " 120° beam angle for wide coverage without dark spots."
+                          uid=12_119 listitem level="1"
+                            uid=12_120 ListMarker "• "
+                              uid=12_11 ignored
+                            uid=12_121 strong
+                              uid=12_122 StaticText "Convenient Touch Control:"
+                                uid=12_11 InlineTextBox "Convenient Touch Control:"
+                            uid=12_123 StaticText " Touch on/off switch with quick response (dimmer not supported)."
+                              uid=12_11 InlineTextBox " Touch on/off switch with quick response (dimmer not supported)."
+                          uid=12_124 listitem level="1"
+                            uid=12_125 ListMarker "• "
+                              uid=12_11 ignored
+                            uid=12_126 strong
+                              uid=12_127 StaticText "Recessed Installation:"
+                                uid=12_11 InlineTextBox "Recessed Installation:"
+                            uid=12_128 StaticText " Seamlessly blends into ceilings, IP22 rated for dust and dripping water protection."
+                              uid=12_11 InlineTextBox " Seamlessly blends into ceilings, IP22 rated for dust and dripping water "
+                              uid=12_11 InlineTextBox "protection."
+                          uid=12_129 listitem level="1"
+                            uid=12_130 ListMarker "• "
+                              uid=12_11 ignored
+                            uid=12_131 strong
+                              uid=12_132 StaticText "Safe & Durable:"
+                                uid=12_11 InlineTextBox "Safe & Durable:"
+                            uid=12_133 StaticText " Isolated driver, aluminum + PC heatsink structure, 30,000-hour lifespan."
+                              uid=12_11 InlineTextBox " Isolated driver, aluminum + PC heatsink structure, 30,000-hour lifespan."
+                          uid=12_134 listitem level="1"
+                            uid=12_135 ListMarker "• "
+                              uid=12_11 ignored
+                            uid=12_136 strong
+                              uid=12_137 StaticText "Professional Services:"
+                                uid=12_11 InlineTextBox "Professional Services:"
+                            uid=12_138 StaticText " Lighting and circuitry design, onsite metering, project installation – one-stop solution."
+                              uid=12_11 InlineTextBox " Lighting and circuitry design, onsite metering, project installation – one-stop "
+                              uid=12_11 InlineTextBox "solution."
+                    uid=12_139 ignored
+                      uid=12_140 heading "Key Attributes" level="3"
+                        uid=12_141 StaticText "Key Attributes"
+                          uid=12_11 InlineTextBox "Key Attributes"
+                      uid=12_142 ignored
+                        uid=12_143 ignored
+                          uid=12_144 generic
+                            uid=12_145 ignored
+                              uid=12_146 StaticText "Installation Style"
+                                uid=12_11 InlineTextBox "Installation Style"
+                            uid=12_147 ignored
+                              uid=12_148 StaticText "Embeded"
+                                uid=12_11 InlineTextBox "Embeded"
+                          uid=12_149 generic
+                            uid=12_150 ignored
+                              uid=12_151 StaticText "Input Voltage(V)"
+                                uid=12_11 InlineTextBox "Input Voltage(V)"
+                            uid=12_152 ignored
+                              uid=12_153 StaticText "AC200-240V"
+                                uid=12_11 InlineTextBox "AC200-240V"
+                          uid=12_154 generic
+                            uid=12_155 ignored
+                              uid=12_156 StaticText "Application"
+                                uid=12_11 InlineTextBox "Application"
+                            uid=12_157 ignored
+                              uid=12_158 StaticText "Home Office"
+                                uid=12_11 InlineTextBox "Home Office"
+                          uid=12_159 generic
+                            uid=12_160 ignored
+                              uid=12_161 StaticText "IP Rating"
+                                uid=12_11 InlineTextBox "IP Rating"
+                            uid=12_162 ignored
+                              uid=12_163 StaticText "IP22"
+                                uid=12_11 InlineTextBox "IP22"
+                          uid=12_164 generic
+                            uid=12_165 ignored
+                              uid=12_166 StaticText "Color Temperature(CCT)"
+                                uid=12_11 InlineTextBox "Color Temperature(CCT)"
+                            uid=12_167 ignored
+                              uid=12_168 StaticText "6000K (Daylight Alert), 3000K, 4000K"
+                                uid=12_11 InlineTextBox "6000K (Daylight Alert), "
+                                uid=12_11 InlineTextBox "3000K, 4000K"
+                          uid=12_169 generic
+                            uid=12_170 ignored
+                              uid=12_171 StaticText "Lamp Luminous Efficiency(lm/w)"
+                                uid=12_11 InlineTextBox "Lamp Luminous "
+                                uid=12_11 InlineTextBox "Efficiency(lm/w)"
+                            uid=12_172 ignored
+                              uid=12_173 StaticText "100"
+                                uid=12_11 InlineTextBox "100"
+                    uid=12_174 ignored
+                      uid=12_175 ignored
+                        uid=12_176 heading "Emitting Color" level="4"
+                          uid=12_177 StaticText "Emitting Color"
+                            uid=12_11 InlineTextBox "Emitting Color"
+                        uid=12_178 ignored
+                          uid=12_179 ignored
+                            uid=12_180 StaticText "Cool White-6000K"
+                              uid=12_11 InlineTextBox "Cool White-6000K"
+                          uid=12_181 ignored
+                            uid=12_182 StaticText "Nature White-4000K"
+                              uid=12_11 InlineTextBox "Nature White-4000K"
+                          uid=12_183 ignored
+                            uid=12_184 StaticText "Warm White-3000K"
+                              uid=12_11 InlineTextBox "Warm White-3000K"
+                      uid=12_185 ignored
+                        uid=12_186 heading "Lamp Power(W)" level="4"
+                          uid=12_187 StaticText "Lamp Power(W)"
+                            uid=12_11 InlineTextBox "Lamp Power(W)"
+                        uid=12_188 ignored
+                          uid=12_189 ignored
+                            uid=12_190 StaticText "6W"
+                              uid=12_11 InlineTextBox "6W"
+                          uid=12_191 ignored
+                            uid=12_192 StaticText "9W"
+                              uid=12_11 InlineTextBox "9W"
+                          uid=12_193 ignored
+                            uid=12_194 StaticText "12W"
+                              uid=12_11 InlineTextBox "12W"
+                    uid=12_195 ignored
+                      uid=12_196 link "Inquire Now" url="http://127.0.0.1:8081/?page_id=857&product=LED+Ceiling+Downlight+3000K+Color+Temperature+for+Home+Office+Hotel"
+                        uid=12_197 image
+                        uid=12_198 ignored
+                          uid=12_199 StaticText "Inquire Now"
+                            uid=12_11 InlineTextBox "Inquire Now"
+                      uid=12_200 link "WhatsApp" url="https://wa.me/861363117943?text=Hi%2C%20I%27m%20interested%20in%20LED%20Ceiling%20Downlight%203000K%20Color%20Temperature%20for%20Home%20Office%20Hotel"
+                        uid=12_201 image
+                        uid=12_202 ignored
+                          uid=12_203 StaticText "WhatsApp"
+                            uid=12_11 InlineTextBox "WhatsApp"
+                uid=12_204 generic
+                  uid=12_205 ignored
+                    uid=12_206 heading "Related Products" level="2"
+                      uid=12_207 StaticText "Related Products"
+                        uid=12_11 InlineTextBox "Related Products"
+                    uid=12_208 ignored
+                      uid=12_209 link "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel MOQ: 100" url="http://127.0.0.1:8081/?product=test"
+                        uid=12_210 generic
+                          uid=12_211 image "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel" url="http://127.0.0.1:8081/wp-content/uploads/2026/06/1-300x300.jpg"
+                          uid=12_212 generic
+                        uid=12_213 ignored
+                          uid=12_214 heading "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel" level="3"
+                            uid=12_215 StaticText "LED Ceiling Downlight 3000K Color Temperature for Home Office Hotel"
+                              uid=12_11 InlineTextBox "LED Ceiling Downlight 3000K Color "
+                              uid=12_11 InlineTextBox "Temperature for Home Office Hotel"
+                          uid=12_216 generic
+                            uid=12_217 StaticText "MOQ: "
+                              uid=12_11 InlineTextBox "MOQ: "
+                            uid=12_218 StaticText "100"
+                              uid=12_11 InlineTextBox "100"
+                uid=12_219 ignored
+                  uid=12_220 ignored
+                    uid=12_221 generic
+                      uid=12_222 navigation "Product Sections"
+                        uid=12_223 link "Description" url="http://127.0.0.1:8081/?product=test#section-desc"
+                          uid=12_224 StaticText "Description"
+                            uid=12_11 InlineTextBox "Description"
+                        uid=12_225 link "Features" url="http://127.0.0.1:8081/?product=test#section-features"
+                          uid=12_226 StaticText "Features"
+                            uid=12_11 InlineTextBox "Features"
+                        uid=12_227 link "Specs" url="http://127.0.0.1:8081/?product=test#section-specs"
+                          uid=12_228 StaticText "Specs"
+                            uid=12_11 InlineTextBox "Specs"
+                        uid=12_229 link "Certificates" url="http://127.0.0.1:8081/?product=test#section-certificates"
+                          uid=12_230 StaticText "Certificates"
+                            uid=12_11 InlineTextBox "Certificates"
+                        uid=12_231 link "FAQ" url="http://127.0.0.1:8081/?product=test#section-faq"
+                          uid=12_232 StaticText "FAQ"
+                            uid=12_11 InlineTextBox "FAQ"
+                        uid=12_233 link "Downloads" url="http://127.0.0.1:8081/?product=test#section-downloads"
+                          uid=12_234 StaticText "Downloads"
+                            uid=12_11 InlineTextBox "Downloads"
+                    uid=12_235 ignored
+                      uid=12_236 generic
+                        uid=12_237 heading "Description" level="2"
+                          uid=12_238 StaticText "Description"
+                            uid=12_11 InlineTextBox "Description"
+                        uid=12_239 ignored
+                          uid=12_240 paragraph
+                            uid=12_241 StaticText "The ERDU ED-YX2.5C-5W series modern LED recessed downlight combines high luminous efficiency, elegant design, and a touch switch. It is ideal for homes, offices, hotels, shopping malls, and various indoor spaces. The fixture is made of high-quality aluminum and PC material with a sleek white finish, equipped with an isolated driver and SANAN LED chips for stable and reliable performance. With a 30,000-hour lifespan and a 3-year warranty, it offers an energy-saving and worry-free lighting solution."
+                              uid=12_11 InlineTextBox "The ERDU ED-YX2.5C-5W series modern LED recessed downlight combines high luminous efficiency, elegant design, and a touch switch. It is ideal for homes, offices, hotels, shopping malls, "
+                              uid=12_11 InlineTextBox "and various indoor spaces. The fixture is made of high-quality aluminum and PC material with a sleek white finish, equipped with an isolated driver and SANAN LED chips for stable and "
+                              uid=12_11 InlineTextBox "reliable performance. With a 30,000-hour lifespan and a 3-year warranty, it offers an energy-saving and worry-free lighting solution."
+                        uid=12_242 ignored
+                      uid=12_243 generic
+                        uid=12_244 heading "Features" level="2"
+                          uid=12_245 StaticText "Features"
+                            uid=12_11 InlineTextBox "Features"
+                        uid=12_246 ignored
+                          uid=12_247 ignored
+                            uid=12_248 ignored
+                            uid=12_249 paragraph
+                              uid=12_250 StaticText "Packaging & Delivery"
+                                uid=12_11 InlineTextBox "Packaging & Delivery"
+                              uid=12_251 StaticText " "
+                                uid=12_11 InlineTextBox " "
+                              uid=12_252 StaticText "—"
+                                uid=12_11 InlineTextBox "—"
+                              uid=12_253 StaticText " Selling Unit: Single item Single Package Size: 20 × 20 × 6 cm Single Package Weight: 0.96 kg"
+                                uid=12_11 InlineTextBox " Selling Unit: Single item Single Package Size: 20 × 20 × 6 cm Single Package Weight: 0.96 kg"
+                          uid=12_254 ignored
+                            uid=12_255 ignored
+                            uid=12_256 paragraph
+                              uid=12_257 StaticText "Service Support"
+                                uid=12_11 InlineTextBox "Service Support"
+                              uid=12_258 StaticText " "
+                                uid=12_11 InlineTextBox " "
+                              uid=12_259 StaticText "—"
+                                uid=12_11 InlineTextBox "—"
+                              uid=12_260 StaticText " We provide comprehensive lighting solutions including lighting and circuitry design, onsite metering, and project installation. Whether for commercial spaces or home renovation, the ERDU team can customize an efficient and comfortable lighting plan for your needs. * Specifications are based on lab test conditions; actual performance may vary slightly by environment. For bulk orders or customization, please contact us for further support."
+                                uid=12_11 InlineTextBox " We provide comprehensive lighting solutions including lighting and circuitry design, onsite metering, and project installation. Whether for commercial spaces or home "
+                                uid=12_11 InlineTextBox "renovation, the ERDU team can customize an efficient and comfortable lighting plan for your needs. * Specifications are based on lab test conditions; actual performance may vary slightly "
+                                uid=12_11 InlineTextBox "by environment. For bulk orders or customization, please contact us for further support."
+                        uid=12_261 ignored
+                      uid=12_262 generic
+                        uid=12_263 heading "Specifications" level="2"
+                          uid=12_264 StaticText "Specifications"
+                            uid=12_11 InlineTextBox "Specifications"
+                        uid=12_265 ignored
+                          uid=12_266 ignored
+                            uid=12_267 ignored
+                              uid=12_268 generic
+                                uid=12_269 StaticText "Brand / Model"
+                                  uid=12_11 InlineTextBox "Brand / Model"
+                              uid=12_270 generic
+                                uid=12_271 StaticText "ERDU / ED-YX2.5C-5W Series"
+                                  uid=12_11 InlineTextBox "ERDU / ED-YX2.5C-5W Series"
+                            uid=12_272 ignored
+                              uid=12_273 generic
+                                uid=12_274 StaticText "Luminous Flux Range"
+                                  uid=12_11 InlineTextBox "Luminous Flux Range"
+                              uid=12_275 generic
+                                uid=12_276 StaticText "700 – 3000 lm (depends on wattage)"
+                                  uid=12_11 InlineTextBox "700 – 3000 lm (depends on wattage)"
+                          uid=12_277 ignored
+                            uid=12_278 ignored
+                              uid=12_279 generic
+                                uid=12_280 StaticText "Wattage Options"
+                                  uid=12_11 InlineTextBox "Wattage Options"
+                              uid=12_281 generic
+                                uid=12_282 StaticText "5W / 7W / 9W / 12W / 18W"
+                                  uid=12_11 InlineTextBox "5W / 7W / 9W / 12W / 18W"
+                            uid=12_283 ignored
+                              uid=12_284 generic
+                                uid=12_285 StaticText "Luminous Efficacy"
+                                  uid=12_11 InlineTextBox "Luminous Efficacy"
+                              uid=12_286 generic
+                                uid=12_287 StaticText "100 lm/W"
+                                  uid=12_11 InlineTextBox "100 lm/W"
+                        uid=12_288 ignored
+                      uid=12_289 generic
+                        uid=12_290 heading "Certificates" level="2"
+                          uid=12_291 StaticText "Certificates"
+                            uid=12_11 InlineTextBox "Certificates"
+                        uid=12_292 ignored
+                          uid=12_293 ignored
+                            uid=12_294 ignored
+                              uid=12_295 image
+                            uid=12_296 ignored
+                              uid=12_297 StaticText "SAA"
+                                uid=12_11 InlineTextBox "SAA"
+                        uid=12_298 ignored
+                      uid=12_299 generic
+                        uid=12_300 heading "FAQ" level="2"
+                          uid=12_301 StaticText "FAQ"
+                            uid=12_11 InlineTextBox "FAQ"
+                        uid=12_302 ignored
+                          uid=12_303 ignored
+                            uid=12_304 button "Q1. Can I have a sample order for led light?"
+                              uid=12_305 ignored
+                                uid=12_306 StaticText "Q1. Can I have a sample order for led light?"
+                                  uid=12_11 InlineTextBox "Q1. Can I have a sample order for led light?"
+                              uid=12_307 image
+                          uid=12_308 ignored
+                            uid=12_309 button "Q2. What about the lead time?"
+                              uid=12_310 ignored
+                                uid=12_311 StaticText "Q2. What about the lead time?"
+                                  uid=12_11 InlineTextBox "Q2. What about the lead time?"
+                              uid=12_312 image
+                          uid=12_313 ignored
+                            uid=12_314 button "Q3. Do you have any MOQ limit for led light order?"
+                              uid=12_315 ignored
+                                uid=12_316 StaticText "Q3. Do you have any MOQ limit for led light order?"
+                                  uid=12_11 InlineTextBox "Q3. Do you have any MOQ limit for led light order?"
+                              uid=12_317 image
+                        uid=12_318 ignored
+                      uid=12_319 generic
+                        uid=12_320 heading "Downloads" level="2"
+                          uid=12_321 StaticText "Downloads"
+                            uid=12_11 InlineTextBox "Downloads"
+                        uid=12_322 ignored
+                          uid=12_323 link "IES" url="https://localhost/"
+                            uid=12_324 ignored
+                              uid=12_325 image
+                              uid=12_326 StaticText "IES"
+                                uid=12_11 InlineTextBox "IES"
+                        uid=12_327 ignored
+      uid=12_328 contentinfo
+        uid=12_329 ignored
+          uid=12_330 ignored
+            uid=12_331 ignored
+              uid=12_332 ignored
+                uid=12_333 image "ERDU LIGHTING" url="http://127.0.0.1:8081/wp-content/uploads/2026/06/LOGO.png"
+              uid=12_334 paragraph
+                uid=12_335 StaticText "Professional 48V Magnetic Track Light Manufacturer since 2009. 6300m² factory, 100+ employees, exporting to 20+ countries."
+                  uid=12_11 InlineTextBox "Professional 48V Magnetic Track Light "
+                  uid=12_11 InlineTextBox "Manufacturer since 2009. 6300m² factory, 100+ "
+                  uid=12_11 InlineTextBox "employees, exporting to 20+ countries."
+              uid=12_336 ignored
+                uid=12_337 link "Facebook" url="https://www.facebook.com/"
+                  uid=12_338 ignored
+                uid=12_339 link "Wechat" url="http://kejieleung/"
+                  uid=12_340 ignored
+            uid=12_341 ignored
+              uid=12_342 heading "Latest News" level="4"
+                uid=12_343 StaticText "Latest News"
+                  uid=12_11 InlineTextBox "Latest News"
+              uid=12_344 list
+                uid=12_345 listitem level="1"
+                  uid=12_346 ListMarker "• "
+                    uid=12_11 ignored
+                  uid=12_347 link "世界，您好！ 2026年6月4日" url="http://127.0.0.1:8081/?p=1"
+                    uid=12_348 ignored
+                      uid=12_349 StaticText "世界，您好！"
+                        uid=12_11 InlineTextBox "世界，您好！"
+                    uid=12_350 ignored
+                      uid=12_351 StaticText "2026年6月4日"
+                        uid=12_11 InlineTextBox "2026年6月4日"
+                uid=12_352 listitem level="1"
+                  uid=12_353 ListMarker "• "
+                    uid=12_11 ignored
+                  uid=12_354 link "ERDU Unveils New UT16 Smart Track Light Series at Hong Kong Lighting Fair 2026年4月15日" url="http://127.0.0.1:8081/?erdu_news=erdu-unveils-new-ut16-smart-track-light-series-at-hong-kong-lighting-fair"
+                    uid=12_355 ignored
+                      uid=12_356 StaticText "ERDU Unveils New UT16 Smart Track Light Series at Hong Kong Lighting Fair"
+                        uid=12_11 InlineTextBox "ERDU Unveils New UT16 Smart Track Light "
+                        uid=12_11 InlineTextBox "Series at Hong Kong Lighting Fair"
+                    uid=12_357 ignored
+                      uid=12_358 StaticText "2026年4月15日"
+                        uid=12_11 InlineTextBox "2026年4月15日"
+                uid=12_359 listitem level="1"
+                  uid=12_360 ListMarker "• "
+                    uid=12_11 ignored
+                  uid=12_361 link "ERDU Achieves ISO 9001:2015 Recertification with Zero Non-Conformities 2026年3月22日" url="http://127.0.0.1:8081/?erdu_news=erdu-achieves-iso-90012015-recertification-with-zero-non-conformities"
+                    uid=12_362 ignored
+                      uid=12_363 StaticText "ERDU Achieves ISO 9001:2015 Recertification with Zero Non-Conformities"
+                        uid=12_11 InlineTextBox "ERDU Achieves ISO 9001:2015 "
+                        uid=12_11 InlineTextBox "Recertification with Zero Non-Conformities"
+                    uid=12_364 ignored
+                      uid=12_365 StaticText "2026年3月22日"
+                        uid=12_11 InlineTextBox "2026年3月22日"
+                uid=12_366 listitem level="1"
+                  uid=12_367 ListMarker "• "
+                    uid=12_11 ignored
+                  uid=12_368 link "ERDU Expands European Distribution Network with Three New Partners 2026年2月10日" url="http://127.0.0.1:8081/?erdu_news=erdu-expands-european-distribution-network-with-three-new-partners"
+                    uid=12_369 ignored
+                      uid=12_370 StaticText "ERDU Expands European Distribution Network with Three New Partners"
+                        uid=12_11 InlineTextBox "ERDU Expands European Distribution "
+                        uid=12_11 InlineTextBox "Network with Three New Partners"
+                    uid=12_371 ignored
+                      uid=12_372 StaticText "2026年2月10日"
+                        uid=12_11 InlineTextBox "2026年2月10日"
+                uid=12_373 listitem level="1"
+                  uid=12_374 ListMarker "• "
+                    uid=12_11 ignored
+                  uid=12_375 link "New GS Pro Series: Anti-Glare Grille Spot Light with UGR < 13 2026年1月28日" url="http://127.0.0.1:8081/?erdu_news=new-gs-pro-series-anti-glare-grille-spot-light-with-ugr-13"
+                    uid=12_376 ignored
+                      uid=12_377 StaticText "New GS Pro Series: Anti-Glare Grille Spot Light with UGR < 13"
+                        uid=12_11 InlineTextBox "New GS Pro Series: Anti-Glare Grille Spot "
+                        uid=12_11 InlineTextBox "Light with UGR < 13"
+                    uid=12_378 ignored
+                      uid=12_379 StaticText "2026年1月28日"
+                        uid=12_11 InlineTextBox "2026年1月28日"
+            uid=12_380 ignored
+              uid=12_381 heading "Contact Info" level="4"
+                uid=12_382 StaticText "Contact Info"
+                  uid=12_11 InlineTextBox "Contact Info"
+              uid=12_383 list
+                uid=12_384 listitem level="1"
+                  uid=12_385 image
+                  uid=12_386 ignored
+                    uid=12_387 StaticText "6th Floor, JinYe Building, Tongyi Industrial District, Guzhen, Zhongshan, Guangdong, China"
+                      uid=12_11 InlineTextBox "6th Floor, JinYe Building, Tongyi "
+                      uid=12_11 InlineTextBox "Industrial District, Guzhen, Zhongshan, "
+                      uid=12_11 InlineTextBox "Guangdong, China"
+                uid=12_388 listitem level="1"
+                  uid=12_389 image
+                  uid=12_390 ignored
+                    uid=12_391 StaticText "+86-760-22380830"
+                      uid=12_11 InlineTextBox "+86-760-22380830"
+                uid=12_392 listitem level="1"
+                  uid=12_393 image
+                  uid=12_394 link "bb@erduled.com" url="mailto:bb@erduled.com"
+                    uid=12_395 StaticText "bb@erduled.com"
+                      uid=12_11 InlineTextBox "bb@erduled.com"
+                uid=12_396 listitem level="1"
+                  uid=12_397 image
+                  uid=12_398 ignored
+                    uid=12_399 StaticText "kejieleung"
+                      uid=12_11 InlineTextBox "kejieleung"
+            uid=12_400 ignored
+              uid=12_401 heading "Newsletter" level="4"
+                uid=12_402 StaticText "Newsletter"
+                  uid=12_11 InlineTextBox "Newsletter"
+              uid=12_403 paragraph
+                uid=12_404 StaticText "Stay updated with latest products & lighting trends."
+                  uid=12_11 InlineTextBox "Stay updated with latest products & lighting "
+                  uid=12_11 InlineTextBox "trends."
+              uid=12_405 form
+                uid=12_406 textbox "Your email"
+                  uid=12_407 ignored
+                  uid=12_408 generic
+                uid=12_409 button "Subscribe"
+                  uid=12_410 StaticText "Subscribe"
+                    uid=12_11 InlineTextBox "Subscribe"
+              uid=12_411 paragraph
+                uid=12_412 StaticText "Join 500+ lighting professionals who trust our updates."
+                  uid=12_11 InlineTextBox "Join 500+ lighting professionals who trust our updates."
+        uid=12_413 ignored
+          uid=12_414 ignored
+            uid=12_415 generic
+              uid=12_416 StaticText "© 2026 ERDU Lighting Technology Co., Ltd. All Rights Reserved."
+                uid=12_11 InlineTextBox "© 2026 ERDU Lighting Technology Co., Ltd. All Rights Reserved."
+      uid=12_417 status atomic live="polite" relevant="additions text"
