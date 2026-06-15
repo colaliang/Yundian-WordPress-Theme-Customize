@@ -406,3 +406,84 @@ acf_add_local_field_group(array(
 
 // Note: Home Page fields are defined in acf-page-fields.php as group_page_home
 // (more comprehensive version with Tabbed interface)
+
+// ==========================================
+// Preset Default Specifications for Products
+// ==========================================
+add_filter('acf/load_value/name=product_specifications', function ($value, $post_id, $field) {
+    // Only for product post type
+    $post_type = get_post_type($post_id);
+    if ($post_type !== 'product') {
+        return $value;
+    }
+
+    // If value already exists (user has saved data), don't override
+    if (!empty($value)) {
+        return $value;
+    }
+
+    // Preset default specifications
+    $preset_specs = array(
+        array('spec_name' => __('Input Voltage(V)', 'erdu-wp'),         'spec_value' => '48 V DC'),
+        array('spec_name' => __('Color Temperature(CCT)', 'erdu-wp'),  'spec_value' => '3000/4000/6000K'),
+        array('spec_name' => __('Color Rendering Index(Ra)', 'erdu-wp'), 'spec_value' => '90'),
+        array('spec_name' => __('Lamp Luminous Efficiency(lm/w)', 'erdu-wp'), 'spec_value' => '80'),
+        array('spec_name' => __('Lifespan(Hours)', 'erdu-wp'),          'spec_value' => '30000'),
+        array('spec_name' => __('Warranty(Year)', 'erdu-wp'),            'spec_value' => '3-Year'),
+        array('spec_name' => __('Installation', 'erdu-wp'),            'spec_value' => 'Embedded, Surface Mounted'),
+        array('spec_name' => __('Support Dimmer', 'erdu-wp'),           'spec_value' => 'Yes'),
+        array('spec_name' => __('Led chip', 'erdu-wp'),                'spec_value' => 'Cob'),
+        array('spec_name' => __('Lamp Body Material', 'erdu-wp'),       'spec_value' => 'Aluminum'),
+        array('spec_name' => __('Design Style', 'erdu-wp'),            'spec_value' => 'Modern'),
+        array('spec_name' => __('Application', 'erdu-wp'),             'spec_value' => 'Mall'),
+        array('spec_name' => __('Item Type', 'erdu-wp'),                'spec_value' => 'Track Lights'),
+        array('spec_name' => __('Lamp Luminous Flux(lm)', 'erdu-wp'),   'spec_value' => '540-1620'),
+        array('spec_name' => __('Model Number', 'erdu-wp'),             'spec_value' => ''),
+        array('spec_name' => __('Place of Origin', 'erdu-wp'),          'spec_value' => 'Guangdong, China'),
+        array('spec_name' => __('Brand Name', 'erdu-wp'),              'spec_value' => 'ERDU'),
+        array('spec_name' => __('Product Weight(kg)', 'erdu-wp'),       'spec_value' => '1.5'),
+        array('spec_name' => __('Power', 'erdu-wp'),                   'spec_value' => '6W/10W/12W/18W/24W/36W/48W'),
+        array('spec_name' => __('Color', 'erdu-wp'),                   'spec_value' => 'Black'),
+        array('spec_name' => __('Beam angle', 'erdu-wp'),              'spec_value' => '24Degree'),
+        array('spec_name' => __('Working Time(hours)', 'erdu-wp'),      'spec_value' => '30000'),
+        array('spec_name' => __('CRI(Ra>)', 'erdu-wp'),                'spec_value' => '90'),
+        array('spec_name' => __('LED Light Source', 'erdu-wp'),         'spec_value' => 'LED'),
+    );
+
+    // Try to get values from ACF fields and override defaults
+    $acf_field_map = array(
+        'Input Voltage(V)'         => 'product_voltage',
+        'Color Temperature(CCT)'  => 'product_cct',
+        'Color Rendering Index(Ra)' => 'product_cri',
+        'Lamp Luminous Efficiency(lm/w)' => 'product_lumen',
+        'Warranty(Year)'           => 'product_warranty',
+        'Lamp Body Material'       => 'product_material',
+        'Lamp Luminous Flux(lm)'   => 'product_lumen',
+        'Model Number'             => 'product_model',
+        'Power'                    => 'product_power',
+        'CRI(Ra>)'                 => 'product_cri',
+    );
+
+    $default_value = array();
+    foreach ($preset_specs as $i => $spec) {
+        $spec_value = $spec['spec_value'];
+
+        // Check if there's a mapped ACF field with a value
+        if (isset($acf_field_map[$spec['spec_name']]) && function_exists('get_field')) {
+            $acf_val = get_field($acf_field_map[$spec['spec_name']], $post_id);
+            if (!empty($acf_val)) {
+                $spec_value = $acf_val;
+            }
+        }
+
+        // Only add if we have a value
+        if (!empty($spec_value)) {
+            $default_value[] = array(
+                'field_spec_name'  => $spec['spec_name'],
+                'field_spec_value' => $spec_value,
+            );
+        }
+    }
+
+    return $default_value;
+}, 10, 3);
