@@ -899,7 +899,6 @@ input, textarea, select { font-family: inherit; }
   grid-template-columns: repeat(2, 1fr);
   gap: 0;
   border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
   overflow: hidden;
 }
 
