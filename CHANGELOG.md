@@ -15,6 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-06-15
+### Added
+- 预设规格字段：product-section-specs 在未配置时自动显示24个预设规格字段，优先读取 ACF 字段值。
+- 预设关键属性：product-info 中 Key Attributes 在未配置时自动显示6个预设字段（Input Voltage, Color Temperature, CRI, Luminous Efficiency, Lifespan, Warranty）。
+- ACF 编辑器默认值：新建产品时，product_specifications 和 product_key_attributes 自动填充预设字段。
+- 规格表格响应式布局：2列默认，2k屏以上3列，Spec Name 固定宽度200px。
+- 产品页1k分辨率兼容优化：修复右列宽度、导航标签字体、内容块内边距、相关产品和证书网格响应式。
+
+### Changed
+- 产品描述图片：移除圆角和垂直间距，图片之间无空隙。
+- 规格表格：移除边框圆角。
+
 ## [1.6.41] - 2026-06-13
 ### Changed
 - 调整单产品页 Section 2：移除 `erdu-product-tabs-panel` 面板壳，恢复更自然的内容流布局。
