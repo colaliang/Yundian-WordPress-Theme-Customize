@@ -892,3 +892,108 @@ input, textarea, select { font-family: inherit; }
     font-size: 1.25rem;
   }
 }
+
+/* ===== Specifications Grid ===== */
+.erdu-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.erdu-spec-item {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.erdu-spec-item:last-child {
+  border-bottom: none;
+}
+
+.erdu-spec-name {
+  flex-shrink: 0;
+  width: 200px;
+  padding: 1rem 1.5rem;
+  background-color: #f9fafb;
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+}
+
+.erdu-spec-value {
+  flex-grow: 1;
+  padding: 1rem 1.5rem;
+  color: #111827;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+}
+
+/* 2 columns at 768px+ */
+@media (min-width: 768px) {
+  .erdu-specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .erdu-spec-item {
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+  }
+  .erdu-spec-item:nth-child(2n) {
+    border-right: none;
+  }
+  /* Remove bottom border for last row items */
+  .erdu-spec-item:nth-last-child(-n+2):nth-child(2n-1),
+  .erdu-spec-item:nth-last-child(-n+2):nth-child(2n) {
+    border-bottom: none;
+  }
+}
+
+/* 3 columns at 1920px+ (2k screens) */
+@media (min-width: 1920px) {
+  .erdu-specs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .erdu-spec-item {
+    border-right: 1px solid #e5e7eb;
+  }
+  .erdu-spec-item:nth-child(2n) {
+    border-right: 1px solid #e5e7eb;
+  }
+  .erdu-spec-item:nth-child(3n) {
+    border-right: none;
+  }
+  /* Reset bottom border rules */
+  .erdu-spec-item:nth-last-child(-n+2):nth-child(2n-1),
+  .erdu-spec-item:nth-last-child(-n+2):nth-child(2n) {
+    border-bottom: 1px solid #e5e7eb;
+  }
+  /* Remove bottom border for last row items */
+  .erdu-spec-item:nth-last-child(-n+3):nth-child(3n-2),
+  .erdu-spec-item:nth-last-child(-n+3):nth-child(3n-1),
+  .erdu-spec-item:nth-last-child(-n+3):nth-child(3n) {
+    border-bottom: none;
+  }
+}
+
+/* Mobile: spec name full width */
+@media (max-width: 767px) {
+  .erdu-spec-item {
+    flex-direction: column;
+  }
+  .erdu-spec-name {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .erdu-spec-value {
+    padding: 0.75rem 1rem;
+  }
+}

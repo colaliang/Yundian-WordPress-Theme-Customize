@@ -2,8 +2,9 @@
 /**
  * Single Product Section: Specifications
  *
- * Displays product specifications in a two-column table layout.
- * Falls back to preset default specifications if none are configured.
+ * Displays product specifications in a grid layout.
+ * 2k screens and above show up to 3 columns.
+ * Spec Name has a fixed width for consistency.
  *
  * @package ERDU_Lighting/WooCommerce
  */
@@ -56,18 +57,15 @@ if (empty($specs)) {
 
     foreach ($preset as $item) {
         $value = '';
-        // Try to get value from ACF field
         if (!empty($item['field']) && function_exists('get_field')) {
             $acf_value = get_field($item['field']);
             if (!empty($acf_value)) {
                 $value = $acf_value;
             }
         }
-        // Fallback to default
         if (empty($value) && !empty($item['default'])) {
             $value = $item['default'];
         }
-        // Only add if we have a value
         if (!empty($value)) {
             $specs[] = array(
                 'name'  => $item['label'],
@@ -77,51 +75,19 @@ if (empty($specs)) {
     }
 }
 
-// If still empty, don't render section
 if (empty($specs)) {
     return;
 }
-
-// Split into two columns for paired layout
-$total = count($specs);
-$half  = (int) ceil($total / 2);
-$left  = array_slice($specs, 0, $half);
-$right = array_slice($specs, $half);
 ?>
 <div id="section-specs" class="erdu-content-block scroll-mt-32 py-10 lg:py-16">
     <h2 class="text-2xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-100"><?php esc_html_e('Specifications', 'erdu-wp'); ?></h2>
-    <div class="prose max-w-none border border-gray-200 rounded-lg overflow-hidden">
-        <?php
-        $max_rows = max(count($left), count($right));
-        for ($i = 0; $i < $max_rows; $i++) :
-            $has_left  = isset($left[$i]);
-            $has_right = isset($right[$i]);
-            $is_last   = ($i === $max_rows - 1);
-        ?>
-        <div class="flex flex-col md:flex-row <?php echo $is_last ? '' : 'border-b border-gray-200'; ?>">
-            <?php if ($has_left) : ?>
-            <div class="flex flex-1 items-stretch">
-                <div class="w-1/2 md:w-1/3 py-4 px-6 bg-gray-50 text-gray-500 text-base leading-relaxed">
-                    <?php echo esc_html($left[$i]['name']); ?>
-                </div>
-                <div class="w-1/2 md:w-2/3 py-4 px-6 text-gray-900 font-semibold text-base leading-relaxed">
-                    <?php echo esc_html($left[$i]['value']); ?>
-                </div>
-            </div>
-            <?php endif; ?>
-
-            <?php if ($has_right) : ?>
-            <div class="flex flex-1 items-stretch <?php echo $has_left ? 'border-t md:border-t-0 md:border-l border-gray-200' : ''; ?>">
-                <div class="w-1/2 md:w-1/3 py-4 px-6 bg-gray-50 text-gray-500 text-base leading-relaxed">
-                    <?php echo esc_html($right[$i]['name']); ?>
-                </div>
-                <div class="w-1/2 md:w-2/3 py-4 px-6 text-gray-900 font-semibold text-base leading-relaxed">
-                    <?php echo esc_html($right[$i]['value']); ?>
-                </div>
-            </div>
-            <?php endif; ?>
+    <div class="erdu-specs-grid">
+        <?php foreach ($specs as $spec) : ?>
+        <div class="erdu-spec-item">
+            <div class="erdu-spec-name"><?php echo esc_html($spec['name']); ?></div>
+            <div class="erdu-spec-value"><?php echo esc_html($spec['value']); ?></div>
         </div>
-        <?php endfor; ?>
+        <?php endforeach; ?>
     </div>
     <div class="mb-8"></div>
 </div>
