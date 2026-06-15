@@ -487,3 +487,58 @@ add_filter('acf/load_value/name=product_specifications', function ($value, $post
 
     return $default_value;
 }, 10, 3);
+
+// ==========================================
+// Preset Default Key Attributes for Products
+// ==========================================
+add_filter('acf/load_value/name=product_key_attributes', function ($value, $post_id, $field) {
+    $post_type = get_post_type($post_id);
+    if ($post_type !== 'product') {
+        return $value;
+    }
+
+    // If value already exists, don't override
+    if (!empty($value)) {
+        return $value;
+    }
+
+    $preset_ka = array(
+        array('label' => __('Input Voltage(V)', 'erdu-wp'),         'value' => '48 V DC'),
+        array('label' => __('Color Temperature(CCT)', 'erdu-wp'),  'value' => '3000/4000/6000K'),
+        array('label' => __('Color Rendering Index(Ra)', 'erdu-wp'), 'value' => '90'),
+        array('label' => __('Lamp Luminous Efficiency(lm/w)', 'erdu-wp'), 'value' => '80'),
+        array('label' => __('Lifespan(Hours)', 'erdu-wp'),          'value' => '30000'),
+        array('label' => __('Warranty(Year)', 'erdu-wp'),            'value' => '3-Year'),
+    );
+
+    // Try to override with ACF field values
+    $acf_field_map = array(
+        'Input Voltage(V)'         => 'product_voltage',
+        'Color Temperature(CCT)'  => 'product_cct',
+        'Color Rendering Index(Ra)' => 'product_cri',
+        'Lamp Luminous Efficiency(lm/w)' => 'product_lumen',
+        'Lifespan(Hours)'          => '',
+        'Warranty(Year)'           => 'product_warranty',
+    );
+
+    $default_value = array();
+    foreach ($preset_ka as $ka) {
+        $ka_value = $ka['value'];
+
+        if (!empty($acf_field_map[$ka['label']]) && function_exists('get_field')) {
+            $acf_val = get_field($acf_field_map[$ka['label']], $post_id);
+            if (!empty($acf_val)) {
+                $ka_value = $acf_val;
+            }
+        }
+
+        if (!empty($ka_value)) {
+            $default_value[] = array(
+                'field_ka_label' => $ka['label'],
+                'field_ka_value' => $ka_value,
+            );
+        }
+    }
+
+    return $default_value;
+}, 10, 3);

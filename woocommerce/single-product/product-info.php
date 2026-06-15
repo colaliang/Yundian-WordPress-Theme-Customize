@@ -76,7 +76,7 @@ if (function_exists('have_rows') && have_rows('product_key_attributes')) {
     endwhile;
 }
 
-// If no key attributes configured, build from preset defaults
+// If no key attributes configured, build from preset defaults (6 fields)
 if (empty($key_attributes)) {
     $preset_ka = array(
         array('label' => __('Input Voltage(V)', 'erdu-wp'),         'field' => 'product_voltage',    'default' => '48 V DC'),
@@ -85,24 +85,6 @@ if (empty($key_attributes)) {
         array('label' => __('Lamp Luminous Efficiency(lm/w)', 'erdu-wp'), 'field' => 'product_lumen', 'default' => '80'),
         array('label' => __('Lifespan(Hours)', 'erdu-wp'),          'field' => '',                 'default' => '30000'),
         array('label' => __('Warranty(Year)', 'erdu-wp'),            'field' => 'product_warranty',   'default' => '3-Year'),
-        array('label' => __('Installation', 'erdu-wp'),            'field' => '',                 'default' => 'Embedded, Surface Mounted'),
-        array('label' => __('Support Dimmer', 'erdu-wp'),           'field' => '',                 'default' => 'Yes'),
-        array('label' => __('Led chip', 'erdu-wp'),                'field' => '',                 'default' => 'Cob'),
-        array('label' => __('Lamp Body Material', 'erdu-wp'),       'field' => 'product_material',   'default' => 'Aluminum'),
-        array('label' => __('Design Style', 'erdu-wp'),            'field' => '',                 'default' => 'Modern'),
-        array('label' => __('Application', 'erdu-wp'),             'field' => '',                 'default' => 'Mall'),
-        array('label' => __('Item Type', 'erdu-wp'),                'field' => '',                 'default' => 'Track Lights'),
-        array('label' => __('Lamp Luminous Flux(lm)', 'erdu-wp'),   'field' => 'product_lumen',      'default' => '540-1620'),
-        array('label' => __('Model Number', 'erdu-wp'),             'field' => 'product_model',      'default' => ''),
-        array('label' => __('Place of Origin', 'erdu-wp'),          'field' => '',                 'default' => 'Guangdong, China'),
-        array('label' => __('Brand Name', 'erdu-wp'),              'field' => '',                 'default' => 'ERDU'),
-        array('label' => __('Product Weight(kg)', 'erdu-wp'),       'field' => '',                 'default' => '1.5'),
-        array('label' => __('Power', 'erdu-wp'),                   'field' => 'product_power',      'default' => '6W/10W/12W/18W/24W/36W/48W'),
-        array('label' => __('Color', 'erdu-wp'),                   'field' => '',                 'default' => 'Black'),
-        array('label' => __('Beam angle', 'erdu-wp'),              'field' => '',                 'default' => '24Degree'),
-        array('label' => __('Working Time(hours)', 'erdu-wp'),      'field' => '',                 'default' => '30000'),
-        array('label' => __('CRI(Ra>)', 'erdu-wp'),                'field' => 'product_cri',        'default' => '90'),
-        array('label' => __('LED Light Source', 'erdu-wp'),         'field' => '',                 'default' => 'LED'),
     );
 
     foreach ($preset_ka as $item) {
