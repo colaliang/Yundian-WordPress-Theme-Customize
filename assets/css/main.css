@@ -896,7 +896,7 @@ input, textarea, select { font-family: inherit; }
 /* ===== Specifications Grid ===== */
 .erdu-specs-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
@@ -907,9 +907,15 @@ input, textarea, select { font-family: inherit; }
   display: flex;
   align-items: stretch;
   border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
 }
 
-.erdu-spec-item:last-child {
+.erdu-spec-item:nth-child(2n) {
+  border-right: none;
+}
+
+.erdu-spec-item:nth-last-child(-n+2):nth-child(2n-1),
+.erdu-spec-item:nth-last-child(-n+2):nth-child(2n) {
   border-bottom: none;
 }
 
@@ -935,25 +941,6 @@ input, textarea, select { font-family: inherit; }
   display: flex;
   align-items: center;
   word-break: break-word;
-}
-
-/* 2 columns at 768px+ */
-@media (min-width: 768px) {
-  .erdu-specs-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .erdu-spec-item {
-    border-bottom: 1px solid #e5e7eb;
-    border-right: 1px solid #e5e7eb;
-  }
-  .erdu-spec-item:nth-child(2n) {
-    border-right: none;
-  }
-  /* Remove bottom border for last row items */
-  .erdu-spec-item:nth-last-child(-n+2):nth-child(2n-1),
-  .erdu-spec-item:nth-last-child(-n+2):nth-child(2n) {
-    border-bottom: none;
-  }
 }
 
 /* 3 columns at 1920px+ (2k screens) */
