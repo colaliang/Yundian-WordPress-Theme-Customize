@@ -59,20 +59,86 @@ if ($show_sku || $show_price || $moq) :
 <?php endif; ?>
 
 <!-- Key Attributes Grid -->
-<?php if (function_exists('have_rows') && have_rows('product_key_attributes')) : ?>
+<?php
+$key_attributes = array();
+
+// Collect from ACF product_key_attributes repeater
+if (function_exists('have_rows') && have_rows('product_key_attributes')) {
+    while (have_rows('product_key_attributes')) : the_row();
+        $label = get_sub_field('label');
+        $value = get_sub_field('value');
+        if ($label && $value) {
+            $key_attributes[] = array(
+                'label' => $label,
+                'value' => $value,
+            );
+        }
+    endwhile;
+}
+
+// If no key attributes configured, build from preset defaults
+if (empty($key_attributes)) {
+    $preset_ka = array(
+        array('label' => __('Input Voltage(V)', 'erdu-wp'),         'field' => 'product_voltage',    'default' => '48 V DC'),
+        array('label' => __('Color Temperature(CCT)', 'erdu-wp'),  'field' => 'product_cct',        'default' => '3000/4000/6000K'),
+        array('label' => __('Color Rendering Index(Ra)', 'erdu-wp'), 'field' => 'product_cri',        'default' => '90'),
+        array('label' => __('Lamp Luminous Efficiency(lm/w)', 'erdu-wp'), 'field' => 'product_lumen', 'default' => '80'),
+        array('label' => __('Lifespan(Hours)', 'erdu-wp'),          'field' => '',                 'default' => '30000'),
+        array('label' => __('Warranty(Year)', 'erdu-wp'),            'field' => 'product_warranty',   'default' => '3-Year'),
+        array('label' => __('Installation', 'erdu-wp'),            'field' => '',                 'default' => 'Embedded, Surface Mounted'),
+        array('label' => __('Support Dimmer', 'erdu-wp'),           'field' => '',                 'default' => 'Yes'),
+        array('label' => __('Led chip', 'erdu-wp'),                'field' => '',                 'default' => 'Cob'),
+        array('label' => __('Lamp Body Material', 'erdu-wp'),       'field' => 'product_material',   'default' => 'Aluminum'),
+        array('label' => __('Design Style', 'erdu-wp'),            'field' => '',                 'default' => 'Modern'),
+        array('label' => __('Application', 'erdu-wp'),             'field' => '',                 'default' => 'Mall'),
+        array('label' => __('Item Type', 'erdu-wp'),                'field' => '',                 'default' => 'Track Lights'),
+        array('label' => __('Lamp Luminous Flux(lm)', 'erdu-wp'),   'field' => 'product_lumen',      'default' => '540-1620'),
+        array('label' => __('Model Number', 'erdu-wp'),             'field' => 'product_model',      'default' => ''),
+        array('label' => __('Place of Origin', 'erdu-wp'),          'field' => '',                 'default' => 'Guangdong, China'),
+        array('label' => __('Brand Name', 'erdu-wp'),              'field' => '',                 'default' => 'ERDU'),
+        array('label' => __('Product Weight(kg)', 'erdu-wp'),       'field' => '',                 'default' => '1.5'),
+        array('label' => __('Power', 'erdu-wp'),                   'field' => 'product_power',      'default' => '6W/10W/12W/18W/24W/36W/48W'),
+        array('label' => __('Color', 'erdu-wp'),                   'field' => '',                 'default' => 'Black'),
+        array('label' => __('Beam angle', 'erdu-wp'),              'field' => '',                 'default' => '24Degree'),
+        array('label' => __('Working Time(hours)', 'erdu-wp'),      'field' => '',                 'default' => '30000'),
+        array('label' => __('CRI(Ra>)', 'erdu-wp'),                'field' => 'product_cri',        'default' => '90'),
+        array('label' => __('LED Light Source', 'erdu-wp'),         'field' => '',                 'default' => 'LED'),
+    );
+
+    foreach ($preset_ka as $item) {
+        $value = '';
+        if (!empty($item['field']) && function_exists('get_field')) {
+            $acf_value = get_field($item['field']);
+            if (!empty($acf_value)) {
+                $value = $acf_value;
+            }
+        }
+        if (empty($value) && !empty($item['default'])) {
+            $value = $item['default'];
+        }
+        if (!empty($value)) {
+            $key_attributes[] = array(
+                'label' => $item['label'],
+                'value' => $value,
+            );
+        }
+    }
+}
+
+if (!empty($key_attributes)) :
+    // Limit to first 6 for the info column display
+    $display_ka = array_slice($key_attributes, 0, 6);
+?>
     <div class="mb-8">
         <h3 class="text-lg font-bold text-gray-900 mb-4"><?php esc_html_e('Key Attributes', 'erdu-wp'); ?></h3>
         <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-8">
-                <?php while (have_rows('product_key_attributes')) : the_row();
-                    $ka_label = get_sub_field('label');
-                    $ka_value = get_sub_field('value');
-                ?>
-                <div class="flex flex-col relative <?php echo (get_row_index() % 3 !== 1) ? 'lg:before:content-[\'\'] lg:before:absolute lg:before:left-[-1rem] lg:before:top-1 lg:before:bottom-1 lg:before:w-px lg:before:bg-gray-200' : ''; ?>">
-                    <span class="text-sm text-gray-500 mb-1"><?php echo esc_html($ka_label); ?></span>
-                    <span class="font-bold text-gray-900 text-base leading-tight"><?php echo esc_html($ka_value); ?></span>
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-8">
+                <?php foreach ($display_ka as $index => $ka) : ?>
+                <div class="flex flex-col relative <?php echo ($index % 3 !== 0) ? 'lg:before:content-[\'\'] lg:before:absolute lg:before:left-[-1rem] lg:before:top-1 lg:before:bottom-1 lg:before:w-px lg:before:bg-gray-200' : ''; ?>">
+                    <span class="text-sm text-gray-500 mb-1"><?php echo esc_html($ka['label']); ?></span>
+                    <span class="font-bold text-gray-900 text-base leading-tight"><?php echo esc_html($ka['value']); ?></span>
                 </div>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
